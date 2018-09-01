@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
-import { Button } from 'antd'
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import HomePage from './pages/Home'
 
 class App extends Component {
   render () {
     return (
-      <h1>hello app !<Button>click</Button></h1>
+      <HomePage />
     )
   }
 }

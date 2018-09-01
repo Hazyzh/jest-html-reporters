@@ -13,8 +13,9 @@ const presets = [
 
 const plugins = [
   ['import-separation', { 'libraryName': 'antd', 'style': true }],
+  '@babel/plugin-proposal-class-properties',
   '@babel/plugin-transform-runtime',
-  'react-hot-loader/babel'
+  'react-hot-loader/babel',
 ]
 
 module.exports = { presets, plugins }
