@@ -55,6 +55,13 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
+      },
+      {
         test: /\.less$/,
         use: [
           'style-loader',

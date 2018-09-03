@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import data from '../testdata.json'
-console.log(data)
+import TableItem from '../components/Table'
+console.log(data.testResults)
 
 class HomePage extends Component {
   state = {
     ...data
   }
   render () {
+    const { testResults } = this.state
     return (
-      <h1>hello name</h1>
+      <div>
+        <TableItem data={testResults} />
+      </div>
     )
   }
 }
