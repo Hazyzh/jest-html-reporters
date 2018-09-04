@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import data from '../testdata.json'
 import TableItem from '../components/Table'
+import { Row, Col } from 'antd'
 console.log(data.testResults)
 
 class HomePage extends Component {
@@ -10,9 +11,13 @@ class HomePage extends Component {
   render () {
     const { testResults } = this.state
     return (
-      <div>
-        <TableItem data={testResults} />
-      </div>
+      <Row
+        type='flex'
+        justify='center'>
+        <Col span={20}>
+          <TableItem data={testResults} />
+        </Col>
+      </Row>
     )
   }
 }

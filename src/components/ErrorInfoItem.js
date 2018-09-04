@@ -1,6 +1,8 @@
 import React from 'react'
 import Convert from 'ansi-to-html'
-const convert = new Convert()
+const convert = new Convert({
+  fg: '#595959'
+})
 
 const createMarkup = (text) => ({
   __html: convert.toHtml(text)
