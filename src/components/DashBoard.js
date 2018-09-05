@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Row, Col, Card } from 'antd'
 
 const MyCardItem = ({
   labelColor,
@@ -7,20 +7,66 @@ const MyCardItem = ({
   title,
   content
 }) => <Card
-  hoverable
-  style={{ width: '200px' }}>
-  {label ? <p className='card_item_label' style={{ color: labelColor }}>{label}</p> : null}
-  <p className='card_item_title'>{title}</p>
+  hoverable>
+  <p className='card_item_label'>
+    {label}
+  </p>
+  <p className='card_item_title' style={{ color: labelColor }}>{title}</p>
   <p className='card_item_content'>{content}</p>
 </Card>
 
-const DashBoard = () => {
+const DashBoard = ({
+  numTotalTests,
+  numTotalTestSuites,
+  numFailedTestSuites,
+  numFailedTests,
+  numPendingTestSuites,
+  numPendingTests,
+}) => {
+  const TotalTestSuites = {
+    title: numTotalTestSuites,
+    content: 'Test Suites Total'
+  }
+  const TotalTests = {
+    title: numTotalTests,
+    content: 'Tests Total'
+  }
+  const FailedTestSuites = {
+    title: numFailedTestSuites,
+    content: 'Failed Suites Total',
+    label: `${(Math.floor((numFailedTestSuites / numTotalTestSuites) * 100))} %`,
+    labelColor: '#cf1322'
+  }
+  const FailedTests = {
+    title: numFailedTests,
+    content: 'Failed Tests Total',
+    label: `${(Math.floor((numFailedTests / numTotalTests) * 100))} %`,
+    labelColor: '#cf1322'
+  }
+  const PendingTestSuites = {
+    title: numPendingTestSuites,
+    content: 'Pending Suites Total',
+    label: `${(Math.floor((numPendingTestSuites / numTotalTests) * 100))} %`,
+    labelColor: '#faad14'
+  }
+  const PendingTests = {
+    title: numPendingTests,
+    content: 'Pending Tests Total',
+    label: `${(Math.floor((numPendingTests / numTotalTests) * 100))} %`,
+    labelColor: '#faad14'
+  }
+  const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites, PendingTests]
   return <div className='dash_board'>
-    <MyCardItem
-      labelColor='red'
-      label={'6%'}
-      title={43}
-      content='New Tickets' />
+    <Row gutter={24}>
+      {
+        cardsList.map(item =>
+          <Col key={item.content} span={4}>
+            <MyCardItem
+              {...item} />
+          </Col>
+        )
+      }
+    </Row>
   </div>
 }
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import data from '../testdata.json'
+import data from '../testdata.1.json'
 import { Row, Col } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
-console.log(data.testResults)
+console.log(data)
 
 class HomePage extends Component {
   state = {
@@ -14,7 +14,7 @@ class HomePage extends Component {
     return (
       <div>
         <h3 className='area_subject'>Dashboard</h3>
-        <DashBoard />
+        <DashBoard {...this.state} />
         <h3 className='area_subject'>Dashboard</h3>
         <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
           <TableItem data={testResults} />
