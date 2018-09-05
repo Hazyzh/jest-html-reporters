@@ -4,7 +4,7 @@ import { Row, Col, Icon, Button, Modal } from 'antd'
 import ErrorInfoItem from './ErrorInfoItem'
 
 function info(data) {
-  Modal.info({
+  Modal.error({
     title: 'This is the failureMessage',
     width: '80%',
     maskClosable: true,
@@ -15,17 +15,17 @@ function info(data) {
         </Col>
       </Row>
     ),
-    onOk() {},
   })
 }
 
 const ErrorButton = ({ failureMessage }) => {
   if (!failureMessage) return null
   return <Button
-    type='danger'
+    ghost
+    type='dashed'
     size='small'
     onClick={() => info(failureMessage)}>
-    <Icon type='info-circle' theme='outlined' /> FailInfo
+    <Icon type='exclamation-circle' theme='filled' /> Info
   </Button>
 }
 

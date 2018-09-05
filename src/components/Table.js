@@ -1,21 +1,39 @@
 import React from 'react'
-import { Table, Icon, Badge } from 'antd'
+import { Table, Icon, Tag } from 'antd'
 import { getRecordClass } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
 
 export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 
-const TYPE_MAP = {
-  'pass': { backgroundColor: '#52c41a' },
-  'fail': {},
-  'pending': { backgroundColor: '#faad14' }
-}
+const renderStatus = ({
+  numPassingTests,
+  numFailingTests,
+  numPendingTests,
+}) => {
+  let tagsInfo
+  if (numFailingTests === 0 && numPendingTests === 0) {
+    tagsInfo = <span style={{ color: '#52c41a' }}>
+      <Tag color='#52c41a' className='one_tag'>
+        All Passd
+        <span>{numPassingTests}</span>
+        <Icon type='check-circle' theme='outlined' />
+      </Tag>
+    </span>
+  } else {
+    tagsInfo = <span>
+      <Tag color='#52c41a'>{numPassingTests}</Tag>
+      {!!numFailingTests && <Tag color='#cf1322'>{numFailingTests}</Tag>}
+      {!!numPendingTests && <Tag color='#faad14'>{numPendingTests}</Tag>}
+    </span>
+  }
 
-const getNumber = type => text =>
-  <Badge
-    count={text}
-    style={TYPE_MAP[type]} />
+  return (
+    <div className='mian_table_tags'>
+      {tagsInfo}
+    </div>
+  )
+}
 
 const columns = [
   {
@@ -30,15 +48,18 @@ const columns = [
       </span>
     }
   },
-  { title: 'Pass', dataIndex: 'numPassingTests', render: getNumber('pass') },
-  { title: 'Fail', dataIndex: 'numFailingTests', render: getNumber('fail') },
-  { title: 'Pending', dataIndex: 'numPendingTests', render: getNumber('pending') },
-  { title: 'Action', key: 'operation', render: ({ failureMessage }) => <ErrorButton failureMessage={failureMessage} /> },
+  { title: 'Status', key: 'status', render: renderStatus, width: '150px' },
+  {
+    width: '100px',
+    title: 'Action',
+    key: 'operation',
+    render: ({ failureMessage }) => <ErrorButton failureMessage={failureMessage} />
+  },
 ]
 
 const TableItem = ({ data }) =>
   <Table
-    bordered
+    size='small'
     pagination={false}
     rowKey='testFilePath'
     rowClassName={({ numFailingTests, numPendingTests }, index) => {

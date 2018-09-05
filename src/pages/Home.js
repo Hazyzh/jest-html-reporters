@@ -17,7 +17,7 @@ class HomePage extends Component {
         <h3 className='area_subject'>Dashboard</h3>
         <DashBoard {...this.state} />
         <h3 className='area_subject'>Dashboard</h3>
-        <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+        <div style={{ background: '#fff', padding: 12 }}>
           <TableItem data={testResults} />
         </div>
         <Row

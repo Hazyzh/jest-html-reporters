@@ -1,41 +1,61 @@
 @import 'colors.less';
 
-.path_text{
+.path_text {
   color: cadetblue;
 }
 // code modal
-pre{
+pre {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   background: url(../../static/imgs/blueprint.png) #F6F6F6;
   border-radius: 10px;
   text-shadow: 0 1px white;
 }
 // table
-.row_fail{
+.row_fail {
   background: @failColor;
-  &:hover td{
+  &:hover td {
     background: @failColor_hover !important;
   }
 }
-.row_pass_odd{
+.row_pass_odd {
   background: @passOddColor;
-  &:hover td{
+  &:hover td {
     background: @passColor_hover !important;
   }
 }
-.row_pass_even{
+.row_pass_even {
   background: @passEvenColor;
-  &:hover td{
+  &:hover td {
     background: @passColor_hover !important;
   }
 }
-.row_pending{
+.row_pending {
   background: @pending;
-  &:hover td{
+  &:hover td {
     background: @pending_hover !important;
   }
 }
-
+.mian_table_tags {
+  text-align: center;
+  .ant-tag {
+    width: 40px;
+    text-align: center;
+    padding: 1px;
+    margin-right: 2px;
+    box-shadow: 0px 1px 1px 0px #eee;
+  }
+  .one_tag {
+    width: 120px;
+    span {
+      display: inline-block;
+      width: 30px;
+      font-weight: 500;
+      text-align: left;
+      padding-left: 8px; 
+    }
+    i {margin-left: 5px;}
+  }
+}
 // home title
 .area_subject {
   font-size: 24px;
