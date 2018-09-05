@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import data from '../testdata.1.json'
-import { Row, Col } from 'antd'
+import data from '../testdata.json'
+import { Row, Col, BackTop } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
 console.log(data)
@@ -13,6 +13,7 @@ class HomePage extends Component {
     const { testResults } = this.state
     return (
       <div>
+        <BackTop />
         <h3 className='area_subject'>Dashboard</h3>
         <DashBoard {...this.state} />
         <h3 className='area_subject'>Dashboard</h3>

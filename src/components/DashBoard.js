@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Card } from 'antd'
-
+import { getPercentage } from '@/untils'
 const MyCardItem = ({
   labelColor,
   label,
@@ -34,25 +34,25 @@ const DashBoard = ({
   const FailedTestSuites = {
     title: numFailedTestSuites,
     content: 'Failed Suites Total',
-    label: `${(Math.floor((numFailedTestSuites / numTotalTestSuites) * 100))} %`,
+    label: `${getPercentage(numFailedTestSuites, numTotalTestSuites)} %`,
     labelColor: '#cf1322'
   }
   const FailedTests = {
     title: numFailedTests,
     content: 'Failed Tests Total',
-    label: `${(Math.floor((numFailedTests / numTotalTests) * 100))} %`,
+    label: `${getPercentage(numFailedTests, numTotalTests)} %`,
     labelColor: '#cf1322'
   }
   const PendingTestSuites = {
     title: numPendingTestSuites,
     content: 'Pending Suites Total',
-    label: `${(Math.floor((numPendingTestSuites / numTotalTests) * 100))} %`,
+    label: `${getPercentage(numPendingTestSuites, numTotalTests)} %`,
     labelColor: '#faad14'
   }
   const PendingTests = {
     title: numPendingTests,
     content: 'Pending Tests Total',
-    label: `${(Math.floor((numPendingTests / numTotalTests) * 100))} %`,
+    label: `${getPercentage(numPendingTests, numTotalTests)} %`,
     labelColor: '#faad14'
   }
   const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites, PendingTests]
