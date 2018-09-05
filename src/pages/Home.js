@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import data from '../testdata.json'
-import TableItem from '../components/Table'
 import { Row, Col } from 'antd'
+import TableItem from '../components/Table'
+import DashBoard from '../components/DashBoard'
 console.log(data.testResults)
 
 class HomePage extends Component {
@@ -11,13 +12,21 @@ class HomePage extends Component {
   render () {
     const { testResults } = this.state
     return (
-      <Row
-        type='flex'
-        justify='center'>
-        <Col span={20}>
+      <div>
+        <h3 className='area_subject'>Dashboard</h3>
+        <DashBoard />
+        <h3 className='area_subject'>Dashboard</h3>
+        <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
           <TableItem data={testResults} />
-        </Col>
-      </Row>
+        </div>
+        <Row
+          type='flex'
+          justify='center'>
+          <Col span={24}>
+        1
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

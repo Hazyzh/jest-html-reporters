@@ -1,8 +1,8 @@
 import React from 'react'
 import { Table, Icon, Badge } from 'antd'
+import { getRecordClass } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
-import './index.less'
 
 export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 
@@ -36,17 +36,17 @@ const columns = [
   { title: 'Action', key: 'operation', render: ({ failureMessage }) => <ErrorButton failureMessage={failureMessage} /> },
 ]
 
-const getRecordClass = (record) => {
-  if (record.numFailingTests) return 'row_fail'
-  if (record.numPendingTests) return 'row_pending'
-  return 'row_pass'
-}
-
 const TableItem = ({ data }) =>
   <Table
+    bordered
     pagination={false}
     rowKey='testFilePath'
-    rowClassName={getRecordClass}
+    rowClassName={({ numFailingTests, numPendingTests }, index) => {
+      let status = ''
+      if (numFailingTests) status = 'failed'
+      if (numPendingTests) status = 'pending'
+      return getRecordClass(status, index)
+    }}
     expandedRowRender={
       ({ testResults }) => <DetailTable data={testResults} />
     }

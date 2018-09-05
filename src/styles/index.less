@@ -3,21 +3,28 @@
 .path_text{
   color: cadetblue;
 }
+// code modal
 pre{
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   background: url(../../static/imgs/blueprint.png) #F6F6F6;
   border-radius: 10px;
   text-shadow: 0 1px white;
 }
-
+// table
 .row_fail{
   background: @failColor;
   &:hover td{
     background: @failColor_hover !important;
   }
 }
-.row_pass{
-  background: @passColor;
+.row_pass_odd{
+  background: @passOddColor;
+  &:hover td{
+    background: @passColor_hover !important;
+  }
+}
+.row_pass_even{
+  background: @passEvenColor;
   &:hover td{
     background: @passColor_hover !important;
   }
@@ -27,4 +34,14 @@ pre{
   &:hover td{
     background: @pending_hover !important;
   }
+}
+
+// home title
+.area_subject {
+  font-size: 24px;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  color: @titleTextColor;
+  line-height: 3rem;
+  margin: 20px 0;
 }

@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const utils = require('./build/utils')
+const theme = require('./build/theme')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -69,7 +70,8 @@ module.exports = {
           {
             loader: 'less-loader',
             options: {
-              javascriptEnabled: true
+              javascriptEnabled: true,
+              modifyVars: theme
             }
           }
         ]
