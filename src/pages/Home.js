@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import data from '../testdata.json'
+import data from '../testdata.1.json'
 import { Row, Col, BackTop, Icon } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'

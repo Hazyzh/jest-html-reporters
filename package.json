@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config=webpack.development.config.js",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,9 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.0",
     "babel-plugin-import-separation": "^1.0.0",
     "css-loader": "^1.0.0",
@@ -36,12 +39,14 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^21.3.0-beta.15",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.5",
     "react-router-dom": "^4.3.1",
+    "regenerator-runtime": "^0.12.1",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.17.1",
@@ -50,6 +55,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "ansi-to-html": "^0.6.6",
     "antd": "^3.8.4"
   }
 }
