@@ -15,4 +15,3 @@ yarn-error.log*
 
 server/config/*
 *.json
-*.json
