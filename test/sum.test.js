@@ -1,4 +1,4 @@
-// import sum from '../src/sum'
+import sum from '../src/sum'
 const sum = () => 1;
 
 describe('Frist test case', () => {

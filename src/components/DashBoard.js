@@ -7,6 +7,7 @@ const MyCardItem = ({
   title,
   content
 }) => <Card
+  bodyStyle={{ padding: '12px' }}
   hoverable>
   <p className='card_item_label'>
     {label}
@@ -22,6 +23,7 @@ const DashBoard = ({
   numFailedTests,
   numPendingTestSuites,
   numPendingTests,
+  numRuntimeErrorTestSuites,
 }) => {
   const TotalTestSuites = {
     title: numTotalTestSuites,
@@ -33,34 +35,48 @@ const DashBoard = ({
   }
   const FailedTestSuites = {
     title: numFailedTestSuites,
-    content: 'Failed Suites Total',
+    content: 'Failed Suites',
     label: `${getPercentage(numFailedTestSuites, numTotalTestSuites)} %`,
     labelColor: '#cf1322'
   }
   const FailedTests = {
     title: numFailedTests,
-    content: 'Failed Tests Total',
+    content: 'Failed Tests',
     label: `${getPercentage(numFailedTests, numTotalTests)} %`,
     labelColor: '#cf1322'
   }
   const PendingTestSuites = {
     title: numPendingTestSuites,
-    content: 'Pending Suites Total',
+    content: 'Pending Suites',
     label: `${getPercentage(numPendingTestSuites, numTotalTests)} %`,
     labelColor: '#faad14'
   }
   const PendingTests = {
     title: numPendingTests,
-    content: 'Pending Tests Total',
+    content: 'Pending Tests',
     label: `${getPercentage(numPendingTests, numTotalTests)} %`,
     labelColor: '#faad14'
   }
   const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites, PendingTests]
+  if (numRuntimeErrorTestSuites) {
+    const RuntimeErrorTestSuites = {
+      title: numRuntimeErrorTestSuites,
+      content: 'Runtime Error Suites',
+      label: `${getPercentage(numRuntimeErrorTestSuites, numTotalTestSuites)} %`,
+      labelColor: '#cf1322'
+    }
+    cardsList.push(RuntimeErrorTestSuites)
+  }
+  const length = cardsList.length
+  const gutter = (24 % length) ? 0 : 12
   return <div className='dash_board'>
-    <Row gutter={24}>
+    <Row
+      gutter={gutter}
+      type='flex'
+      justify='space-around'>
       {
         cardsList.map(item =>
-          <Col key={item.content} span={4}>
+          <Col key={item.content} span={Math.floor(24 / length)}>
             <MyCardItem
               {...item} />
           </Col>

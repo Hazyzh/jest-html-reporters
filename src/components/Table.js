@@ -10,14 +10,25 @@ const renderStatus = ({
   numPassingTests,
   numFailingTests,
   numPendingTests,
+  testExecError,
 }) => {
   let tagsInfo
-  if (numFailingTests === 0 && numPendingTests === 0) {
+  if (
+    testExecError
+  ) {
+    tagsInfo = <span style={{ color: '#52c41a' }}>
+      <Tag color='#cf1322' className='one_tag'>
+        Exec Error
+        <span />
+        <Icon type='close' theme='outlined' />
+      </Tag>
+    </span>
+  } else if (numFailingTests === 0 && numPendingTests === 0) {
     tagsInfo = <span style={{ color: '#52c41a' }}>
       <Tag color='#52c41a' className='one_tag'>
         All Passd
         <span>{numPassingTests}</span>
-        <Icon type='check-circle' theme='outlined' />
+        <Icon type='check' theme='outlined' />
       </Tag>
     </span>
   } else {
@@ -62,8 +73,9 @@ const TableItem = ({ data }) =>
     size='small'
     pagination={false}
     rowKey='testFilePath'
-    rowClassName={({ numFailingTests, numPendingTests }, index) => {
+    rowClassName={({ numFailingTests, numPendingTests, testExecError }, index) => {
       let status = ''
+      if (testExecError) status = 'failed'
       if (numFailingTests) status = 'failed'
       if (numPendingTests) status = 'pending'
       return getRecordClass(status, index)
