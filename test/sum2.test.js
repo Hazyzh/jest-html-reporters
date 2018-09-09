@@ -1,9 +1,8 @@
 // import sum from '../src/sum'
-const sum = () => 1;
+const sum = () => 4;
 
 describe('Frist test case', () => {
   test('adds 1 + 3 to equal 4', () => {
-    as = asd
     expect(sum(1, 3)).toBe(4)
   })
 })
@@ -15,6 +14,5 @@ test('asa', () => {
       y: 2,
     },
   }
-
   expect(bar).toMatchSnapshot()
 })

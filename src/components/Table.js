@@ -1,10 +1,10 @@
 import React from 'react'
 import { Table, Icon, Tag } from 'antd'
-import { getRecordClass } from '@/untils'
+import { getRecordClass, getFormatTime } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
 
-export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
+// export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 
 const renderStatus = ({
   numPassingTests,
@@ -46,19 +46,24 @@ const renderStatus = ({
   )
 }
 
-const columns = [
+const renderTime = ({
+  perfStats: { start, end }
+}) => getFormatTime(start, end)
+
+const getColumns = (rootDir) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
     key: 'name',
     render: text => {
-      const relativePath = text.replace(new RegExp('^' + file), '')
+      const relativePath = text.replace(new RegExp('^' + rootDir), '')
       return <span>
         <Icon type='file' theme='twoTone' />
         <span className='path_text'> {relativePath}</span>
       </span>
     }
   },
+  { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
   { title: 'Status', key: 'status', render: renderStatus, width: '150px' },
   {
     width: '100px',
@@ -68,7 +73,7 @@ const columns = [
   },
 ]
 
-const TableItem = ({ data }) =>
+const TableItem = ({ testResults, config: { rootDir } }) =>
   <Table
     size='small'
     pagination={false}
@@ -83,7 +88,7 @@ const TableItem = ({ data }) =>
     expandedRowRender={
       ({ testResults }) => <DetailTable data={testResults} />
     }
-    columns={columns}
-    dataSource={data} />
+    columns={getColumns(rootDir)}
+    dataSource={testResults} />
 
 export default TableItem

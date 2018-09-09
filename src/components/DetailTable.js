@@ -15,6 +15,7 @@ const columns = [
 
 const DetailTable = ({ data }) =>
   <Table
+    size='small'
     showHeader={false}
     rowKey={(_, index) => `${index}`}
     rowClassName={({ status }, index) => getRecordClass(status, index)}

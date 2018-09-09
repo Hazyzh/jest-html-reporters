@@ -77,7 +77,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -99,6 +99,21 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: '@svgr/webpack',
+            options: {
+              babel: false,
+              icon: true,
+            },
+          },
+        ],
       }
     ]
   }

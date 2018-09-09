@@ -11,10 +11,10 @@ module.exports = {
     '^.+\\.js$': 'babel-jest'
   },
   reporters: [
-    'default',
+    // 'default',
     '<rootDir>/my-custom-reporter.js'
   ],
-  // testResultsProcessor: './my-custom-results.js',
+  testResultsProcessor: './my-custom-testResultsProcessor.js',
   collectCoverageFrom: [
     '<rootDir>/src/*.{js,jsx}'
   ]

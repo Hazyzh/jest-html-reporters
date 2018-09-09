@@ -6,6 +6,7 @@ import HomePage from './pages/Home'
 import './styles/app.less'
 import './styles/index.less'
 import './styles/dashBoard.less'
+import './styles/information.less'
 
 const { Header, Content, Footer } = Layout
 class App extends Component {
