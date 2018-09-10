@@ -9,7 +9,7 @@ console.log(data)
 class HomePage extends Component {
   state = {
     config: {
-
+      rootDir: '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
     },
     ...data
   }
