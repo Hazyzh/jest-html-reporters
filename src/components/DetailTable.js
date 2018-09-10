@@ -32,8 +32,17 @@ const renderTime = ({
   duration
 }) => getFormatTime(0, duration)
 
+const MAX_TITLE_LENGTH = 85
+const renderTitleContent = (title = '') => {
+  const len = title.length
+  if (len > MAX_TITLE_LENGTH) {
+    return title.substr(0, 85) + '...'
+  }
+  return title
+}
+
 const renderTitle = title => <Tooltip overlayStyle={{ width: '800px' }} title={title}>
-  <span>{title}</span>
+  <span style={{ color: '#a7a6a6' }}>{renderTitleContent(title)}</span>
 </Tooltip>
 
 const columns = [
