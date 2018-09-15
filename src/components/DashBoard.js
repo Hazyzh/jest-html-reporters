@@ -9,7 +9,7 @@ const MyCardItem = ({
 }) => <Card
   bodyStyle={{ padding: '12px' }}
   hoverable>
-  <p className='card_item_label'>
+  <p className='card_item_label' style={{ color: labelColor }}>
     {label}
   </p>
   <p className='card_item_title' style={{ color: labelColor }}>{title}</p>

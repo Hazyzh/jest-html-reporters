@@ -48,6 +48,7 @@
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.5",
     "react-router-dom": "^4.3.1",
+    "recharts": "^1.2.0",
     "regenerator-runtime": "^0.12.1",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",

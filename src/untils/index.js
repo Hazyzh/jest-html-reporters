@@ -62,3 +62,12 @@ export const getFormatTime = (start, end) => {
     {node}
   </span>
 }
+
+export const getFormatData = (data = []) => {
+  return data.map(({ testFilePath, perfStats: { end, start } }) => ({
+    name: testFilePath,
+    time: (end - start) / 1000
+  })).sort(
+    (a, b) => b.time - a.time
+  )
+}
