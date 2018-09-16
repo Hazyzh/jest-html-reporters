@@ -19,7 +19,7 @@ const renderStatus = (status) => {
       </span>
       break
     case 'failed' :
-      info = <span style={{ color: '#f5222d' }} >
+      info = <span style={{ color: '#fafafa' }} >
         <Icon type='close' theme='outlined' />
         <span className='detail_status_text'>{status}</span>
       </span>
@@ -42,7 +42,7 @@ const renderTitleContent = (title = '') => {
 }
 
 const renderTitle = title => <Tooltip overlayStyle={{ width: '800px' }} title={title}>
-  <span style={{ color: '#a7a6a6' }}>{renderTitleContent(title)}</span>
+  <span className='inner_path_text'>{renderTitleContent(title)}</span>
 </Tooltip>
 
 const columns = [

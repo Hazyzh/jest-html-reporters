@@ -1,7 +1,11 @@
 @import 'colors.less';
 
+
 .path_text {
   color: cadetblue;
+}
+.inner_path_text {
+  color: #a7a6a6;
 }
 // code modal
 pre {
@@ -15,6 +19,18 @@ pre {
   background: @failColor;
   &:hover td {
     background: @failColor_hover !important;
+  }
+  .path_text {
+    color: @failTextColor;
+  }
+  .inner_path_text {
+    color: @failTextColor;
+  }
+  .time_box {
+    color: @failTextColor;
+    span {
+      color: @failTextColor;
+    }
   }
 }
 .row_pass_odd {
@@ -85,4 +101,20 @@ pre {
   text-transform: capitalize;
   font-size: 0.8em;
   margin-left: 1em;
+}
+
+.error_button {
+  cursor: pointer;
+  color: @failTextColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &>i {
+    margin-right: 10px;
+  }
+  border-radius: 10%;
+  box-shadow: 1px -1px @failTextColor inset;
+  &:hover {
+    color: bisque;
+  }
 }

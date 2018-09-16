@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Row, Col, Icon, Button, Modal } from 'antd'
+import { Row, Col, Icon, Modal } from 'antd'
 import ErrorInfoItem from './ErrorInfoItem'
 
 function info(data) {
@@ -20,13 +20,11 @@ function info(data) {
 
 const ErrorButton = ({ failureMessage }) => {
   if (!failureMessage) return null
-  return <Button
-    ghost
-    type='dashed'
-    size='small'
+  return <div
+    className='error_button'
     onClick={() => info(failureMessage)}>
     <Icon type='exclamation-circle' theme='filled' /> Info
-  </Button>
+  </div>
 }
 
 export default ErrorButton

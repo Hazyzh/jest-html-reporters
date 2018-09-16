@@ -18,3 +18,33 @@
   text-overflow: ellipsis;
   width: 100%;
 }
+
+.tooltip_box {
+  display: flex;
+  align-self: center;
+  width: 100%;
+  .icon {
+    color: #999;
+    flex-basis: 20px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .title {
+    text-indent: 1em;
+    color: #999;
+    flex-basis: 70px;
+    flex-shrink: 0;
+    text-align: left;
+  }
+  .symbol{
+    margin: 0 5px;
+  }
+  .content {
+    text-indent: 1em;
+    flex-shrink: 1;
+    flex: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+  }
+}

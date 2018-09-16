@@ -1,26 +1,51 @@
 import React from 'react'
-import { Row, Col, Card } from 'antd'
+import { Row, Col, Card, Icon } from 'antd'
 import { getFormatTime, getFormatData } from '@/untils'
 import { BarChart, Bar, Brush, ReferenceLine,
   XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer,
 } from 'recharts'
+import { TimeIcon } from '@/untils/icons'
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload, label, rootDir }) => {
   if (active) {
-    const { name } = payload[0].payload
+    const { time, name, numFailingTests, numPassingTests, numPendingTests, } = payload[0].payload
+    const relativePath = name.replace(new RegExp('^' + rootDir), '')
+    const lists = [
+      { icon: <TimeIcon />, title: 'Time', content: `${time} S` },
+      { icon: <Icon type='file' theme='outlined' />, title: 'Name', content: relativePath },
+      { icon: <Icon type='check' theme='outlined' style={{ color: 'green' }} />, title: 'Passed', content: numPassingTests },
+      { icon: <Icon type='close' theme='outlined' style={{ color: '#ff4d4f' }} />, title: 'Failed', content: numFailingTests },
+      { icon: <Icon type='loading-3-quarters' theme='outlined' style={{ color: '#faad14' }} />, title: 'Pending', content: numPendingTests },
+    ]
+
     return (
-      <Card style={{ width: 300 }}>
-        <p className='label'>{`Time : ${payload[0].value}`}</p>
-        <p className='intro'>{`${name}`}</p>
-        <p className='desc'>Anything you want can be displayed here.</p>
+      <Card style={{ width: 700 }}>
+        <Row gutter={12}>
+          <Col span={16}>
+            {
+              lists.map((item, i) => (
+                <div className='tooltip_box' key={i}>
+                  <span className='icon'>{item.icon}</span>
+                  <span className='title'>{item.title} </span>
+                  <span className='symbol'>:</span>
+                  <span className='content'>{item.content}</span>
+                </div>
+              ))
+            }
+          </Col>
+          <Col span={8}>
+            1
+          </Col>
+        </Row>
+
       </Card>
     )
   }
   return null
 }
 
-const SimpleBarChart = ({ data }) => {
+const SimpleBarChart = ({ data, rootDir }) => {
   return (
     <ResponsiveContainer width={'100%'} height={300}>
       <BarChart data={getFormatData(data)}
@@ -29,11 +54,15 @@ const SimpleBarChart = ({ data }) => {
         <XAxis hide />
         <YAxis />
         <Tooltip
-          content={<CustomTooltip />} />
+          content={<CustomTooltip rootDir={rootDir} />} />
         <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke='#000' />
         <Brush height={20} stroke='#8884d8' />
-        <Bar dataKey='time' name='Time' fill='#0ebf8c' />
+        <Bar
+          dataKey='time'
+          name='Time'
+          fill='#0ebf8c'
+          onClick={({ name }) => { window.location.hash = '#' + name }} />
       </BarChart>
     </ResponsiveContainer>
 
@@ -51,7 +80,7 @@ const Information = ({
 }) =>
   <Row>
     <Col span={18}>
-      <SimpleBarChart data={testResults} />
+      <SimpleBarChart data={testResults} rootDir={rootDir} />
       <Card>
         <p>MaxWorkers: {maxWorkers}</p>
         <p>Time: {getFormatTime(startTime, endTime)}</p>

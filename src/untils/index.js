@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import timerSand from '../../static/imgs/timer-sand.svg'
-import { Icon } from 'antd'
+import { TimeIcon } from './icons'
 
 /**
  * return calss name
@@ -58,15 +57,20 @@ export const getFormatTime = (start, end) => {
     </span>
   }
   return <span className='time_box'>
-    <Icon component={timerSand} />
+    <TimeIcon />
     {node}
   </span>
 }
 
 export const getFormatData = (data = []) => {
-  return data.map(({ testFilePath, perfStats: { end, start } }) => ({
+  return data.map(({ numFailingTests, numPassingTests, numPendingTests,
+    testResults, testFilePath, perfStats: { end, start } }) => ({
     name: testFilePath,
-    time: (end - start) / 1000
+    time: (end - start) / 1000,
+    numFailingTests,
+    numPassingTests,
+    numPendingTests,
+    testResults,
   })).sort(
     (a, b) => b.time - a.time
   )

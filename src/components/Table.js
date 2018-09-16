@@ -59,7 +59,7 @@ const getColumns = (rootDir) => [
       const relativePath = text.replace(new RegExp('^' + rootDir), '')
       return <span>
         <Icon type='file' theme='twoTone' />
-        <span className='path_text'> {relativePath}</span>
+        <span className='path_text' id={text}> {relativePath}</span>
       </span>
     }
   },
