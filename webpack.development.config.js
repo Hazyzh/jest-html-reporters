@@ -29,6 +29,7 @@ module.exports = {
     hot: true,
     quiet: true,
   },
+  devtool: 'eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

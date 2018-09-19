@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Card, Icon } from 'antd'
-import { getFormatTime, getFormatData } from '@/untils'
+import { getFormatTime, getFormatData, scrollTo } from '@/untils'
 import { BarChart, Bar, Brush, ReferenceLine,
   XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer,
@@ -62,7 +62,7 @@ const SimpleBarChart = ({ data, rootDir }) => {
           dataKey='time'
           name='Time'
           fill='#0ebf8c'
-          onClick={({ name }) => { window.location.hash = '#' + name }} />
+          onClick={({ name }) => { scrollTo(name) }} />
       </BarChart>
     </ResponsiveContainer>
 
