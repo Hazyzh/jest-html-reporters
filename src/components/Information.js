@@ -1,15 +1,19 @@
 import React from 'react'
 import { Row, Col, Card, Icon } from 'antd'
+import randomColor from 'randomcolor'
 import { getFormatTime, getFormatData, scrollTo } from '@/untils'
 import { BarChart, Bar, Brush, ReferenceLine,
   XAxis, YAxis, CartesianGrid, Tooltip,
-  Legend, ResponsiveContainer,
+  Legend, ResponsiveContainer, PieChart,
+  Pie, Cell,
 } from 'recharts'
 import { TimeIcon } from '@/untils/icons'
 
+const colors = [...new Array(40)].map(d => randomColor())
+
 const CustomTooltip = ({ active, payload, label, rootDir }) => {
   if (active) {
-    const { time, name, numFailingTests, numPassingTests, numPendingTests, } = payload[0].payload
+    const { time, name, numFailingTests, numPassingTests, numPendingTests, testResults } = payload[0].payload
     const relativePath = name.replace(new RegExp('^' + rootDir), '')
     const lists = [
       { icon: <TimeIcon />, title: 'Time', content: `${time} S` },
@@ -35,10 +39,28 @@ const CustomTooltip = ({ active, payload, label, rootDir }) => {
             }
           </Col>
           <Col span={8}>
-            1
+            <p className='chart_title'>
+              Duration Ratio
+            </p>
+            <ResponsiveContainer width={'100%'} height={100}>
+              <PieChart>
+                <Pie
+                  data={testResults}
+                  dataKey='duration'
+                  cx='50%'
+                  cy='50%'
+                  outerRadius={50}
+                  animationDuration={500} >
+                  {
+                    testResults.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={colors[index % 40]} />
+                    ))
+                  }
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
           </Col>
         </Row>
-
       </Card>
     )
   }
@@ -55,7 +77,9 @@ const SimpleBarChart = ({ data, rootDir }) => {
         <YAxis />
         <Tooltip
           content={<CustomTooltip rootDir={rootDir} />} />
-        <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} />
+        <Legend
+          verticalAlign='top'
+          wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke='#000' />
         <Brush height={20} stroke='#8884d8' />
         <Bar
@@ -81,14 +105,37 @@ const Information = ({
   <Row>
     <Col span={18}>
       <SimpleBarChart data={testResults} rootDir={rootDir} />
+    </Col>
+    <Col span={6}>
+      <p className='chart_title'>
+        <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
+        Ratio
+      </p>
+      <ResponsiveContainer width={'100%'} height={300}>
+        <PieChart>
+          <Pie
+            data={getFormatData(testResults)}
+            dataKey='time'
+            cx='50%'
+            cy='50%'
+            outerRadius={'90%'}
+            onClick={({ name }) => { scrollTo(name) }}
+            animationDuration={500} >
+            {
+              testResults.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index % 40]} />
+              ))
+            }
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </Col>
+    <Col span={24}>
       <Card>
         <p>MaxWorkers: {maxWorkers}</p>
         <p>Time: {getFormatTime(startTime, endTime)}</p>
         <p>RootDir: {rootDir}</p>
       </Card>
-    </Col>
-    <Col span={12}>
-1
     </Col>
   </Row>
 
