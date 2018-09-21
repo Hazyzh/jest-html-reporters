@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import data from '../testdata.json'
-import { Row, Col, BackTop, Icon } from 'antd'
+import { BackTop, Icon } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
 import Information from '../components/Information'
@@ -25,13 +25,6 @@ class HomePage extends Component {
         <div style={{ background: '#fff', padding: 12 }}>
           <TableItem {...this.state} />
         </div>
-        <Row
-          type='flex'
-          justify='center'>
-          <Col span={24}>
-        1
-          </Col>
-        </Row>
       </div>
     )
   }

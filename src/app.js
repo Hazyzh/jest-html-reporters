@@ -18,7 +18,7 @@ class App extends Component {
           <HomePage />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+          Harry ©2018 Jest Reporter
         </Footer>
       </Layout>
     )
