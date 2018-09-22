@@ -63,8 +63,38 @@ const getColumns = (rootDir) => [
       </span>
     }
   },
-  { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
-  { title: 'Status', key: 'status', render: renderStatus, width: '150px' },
+  {
+    title: 'UseTime',
+    key: 'UseTime',
+    render: renderTime,
+    width: '150px',
+    sorter: (a, b) => (a.perfStats.end - a.perfStats.start) - (b.perfStats.end - b.perfStats.start),
+  },
+  { title: 'Status',
+    key: 'status',
+    render: renderStatus,
+    width: '150px',
+    filters: [
+      { text: 'Passed', value: 'passed' },
+      { text: 'Failed', value: 'failed' },
+      { text: 'Pending', value: 'pending' },
+      { text: 'Not Passed', value: 'noPass' },
+    ],
+    filterMultiple: false,
+    onFilter: (value, { numFailingTests,
+      numPendingTests, testExecError }) => {
+      switch (value) {
+        case 'passed':
+          return !(testExecError || numFailingTests > 0 || numPendingTests > 0)
+        case 'failed':
+          return testExecError || numFailingTests > 0
+        case 'pending':
+          return numPendingTests > 0
+        case 'noPass':
+          return (testExecError || numFailingTests > 0 || numPendingTests > 0)
+      }
+    },
+  },
   {
     width: '100px',
     title: 'Action',
