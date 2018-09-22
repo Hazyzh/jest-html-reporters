@@ -21,7 +21,7 @@ class HomePage extends Component {
         <DashBoard {...this.state} />
         <h3 className='area_subject'><Icon type='pie-chart' theme='outlined' />Information</h3>
         <Information {...this.state} />
-        <h3 className='area_subject'><Icon type='pie-chart' theme='outlined' />Information</h3>
+        <h3 className='area_subject'><Icon type='profile' theme='outlined' />Details</h3>
         <div style={{ background: '#fff', padding: 12 }}>
           <TableItem {...this.state} />
         </div>
