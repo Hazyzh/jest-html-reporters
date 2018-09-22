@@ -1,7 +1,7 @@
 ### Jest reporter
 
+Jest test results processor for generating a summary in HTML
+
 ### todos
 
-- add bottom information
-- add sequence option of mian tabel
-- generate `html`
+[Todos:](https://github.com/Hazyzh/jest-html-reporters/issues/1)

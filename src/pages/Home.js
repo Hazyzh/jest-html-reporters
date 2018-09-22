@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import data from '../testdata.json'
 import { BackTop, Icon } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
 import Information from '../components/Information'
-console.log(data)
-
+let data
+if (process.env.NODE_ENV === 'production') {
+  data = JSON.parse(window.resData)
+} else {
+  data = require('../testdata.json')
+}
+window.c = data
 class HomePage extends Component {
   state = {
-    config: {
-      rootDir: '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
-    },
     ...data
   }
   render () {

@@ -1,6 +1,5 @@
 const testResultsProcessor = (testResults) => {
-  console.log(testResults)
-  return 'ok'
+  return testResultsProcessor
 }
 
 module.exports = testResultsProcessor
