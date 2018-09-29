@@ -12,9 +12,8 @@ module.exports = {
   },
   reporters: [
     'default',
-    '<rootDir>/index.js'
+    '<rootDir>/index.dev.js'
   ],
-  testResultsProcessor: './my-custom-testResultsProcessor.js',
   collectCoverageFrom: [
     '<rootDir>/src/*.{js,jsx}'
   ]

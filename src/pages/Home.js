@@ -7,7 +7,7 @@ let data
 if (process.env.NODE_ENV === 'production') {
   data = JSON.parse(window.resData)
 } else {
-  data = require('../testdata.json')
+  data = require('../testdata.1.json')
 }
 window.c = data
 class HomePage extends Component {

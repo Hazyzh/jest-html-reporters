@@ -1,5 +1,4 @@
-import sum from '../src/sum'
-const sum = () => 1;
+const sum = (a, b) => a + b;
 
 describe('Frist test case', () => {
   test('adds 1 + 2 to equal 3', () => {
