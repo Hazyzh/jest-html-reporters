@@ -52,7 +52,7 @@ function NestedTable() {
         pagination={false}
       />
     )
-  };
+  }
 
   const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },

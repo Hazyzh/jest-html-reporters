@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils')
 const theme = require('./build/theme')
+const packageInfo = require('./package.json')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -28,7 +29,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        VERSIONS: JSON.stringify(packageInfo.version),
       }
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

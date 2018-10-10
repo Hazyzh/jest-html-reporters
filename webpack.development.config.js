@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const utils = require('./build/utils')
 const theme = require('./build/theme')
+const packageInfo = require('./package.json')
+
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -31,6 +33,11 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        VERSIONS: JSON.stringify(packageInfo.version),
+      }
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
