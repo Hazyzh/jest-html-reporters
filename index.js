@@ -11,7 +11,6 @@ class MyCustomReporter {
 
   onRunComplete(contexts, results) {
     results.config = this._globalConfig
-    // console.log('Options: ', this._options);
     results.endTime = Date.now()
     const data = JSON.stringify(results)
     const index = fs.readFileSync(TMP, 'utf-8')

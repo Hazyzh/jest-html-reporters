@@ -10,19 +10,36 @@ import './styles/dashBoard.less'
 import './styles/information.less'
 import './styles/footer.less'
 
+// context
+import { Provider } from './contexts/expand'
+
 const { Header, Content, Footer } = Layout
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      expand: [],
+      toggleExpand: this.toggleExpand,
+    }
+  }
+
+  toggleExpand = ({ key, state }) => {
+    this.setState(({ expand }) => ({ expand: { ...expand, [key]: state } }))
+  }
+
   render () {
     return (
-      <Layout className='layout'>
-        <Header className='header' />
-        <Content style={{ padding: '0 50px' }}>
-          <HomePage />
-        </Content>
-        <Footer style={{ marginTop: '50px', background: '#000' }}>
-          <FooterInfo />
-        </Footer>
-      </Layout>
+      <Provider value={this.state}>
+        <Layout className='layout'>
+          <Header className='header' />
+          <Content style={{ padding: '0 50px' }}>
+            <HomePage />
+          </Content>
+          <Footer style={{ marginTop: '50px', background: '#000' }}>
+            <FooterInfo />
+          </Footer>
+        </Layout>
+      </Provider>
     )
   }
 }

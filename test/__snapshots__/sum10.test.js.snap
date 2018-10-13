@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`asa 1`] = `
+Object {
+  "foo": Object {
+    "x": 3,
+    "y": 2,
+  },
+}
+`;

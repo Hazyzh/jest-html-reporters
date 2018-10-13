@@ -78,7 +78,7 @@ export const getFormatData = (data = []) => {
 }
 
 const OFFSETHEIGHT = -10
-export function scrollTo(id) {
+export function scrollTo(id, expandFunc = () => {}) {
   const targetElement = document.getElementById(id)
   if (!targetElement) {
     return
@@ -86,7 +86,15 @@ export function scrollTo(id) {
   jump(targetElement, {
     duration: 500,
     offset: OFFSETHEIGHT,
-    callback: undefined,
+    callback: () => expandFunc({ key: id, state: true }),
     a11y: false
   })
+}
+
+/**
+ * @param {Object} obj
+ * @return {Array} object exist keys list
+ */
+export const getExistKeys = (obj = {}) => {
+  return Object.entries(obj).filter(item => item[1]).map(item => item[0])
 }

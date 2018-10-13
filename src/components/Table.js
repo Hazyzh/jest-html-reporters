@@ -1,10 +1,11 @@
 import React from 'react'
 import { Table, Icon, Tag } from 'antd'
-import { getRecordClass, getFormatTime } from '@/untils'
+import { getRecordClass, getFormatTime, getExistKeys } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
 
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
+import { Consumer } from '../contexts/expand'
 
 const renderStatus = ({
   numPassingTests,
@@ -104,21 +105,28 @@ const getColumns = (rootDir) => [
 ]
 
 const TableItem = ({ testResults, config: { rootDir } }) =>
-  <Table
-    size='small'
-    pagination={false}
-    rowKey='testFilePath'
-    rowClassName={({ numFailingTests, numPendingTests, testExecError }, index) => {
-      let status = ''
-      if (testExecError) status = 'failed'
-      if (numFailingTests) status = 'failed'
-      if (numPendingTests) status = 'pending'
-      return getRecordClass(status, index)
-    }}
-    expandedRowRender={
-      ({ testResults }) => <DetailTable data={testResults} />
+  <Consumer>
+    {
+      ({ expand, toggleExpand }) =>
+        <Table
+          size='small'
+          pagination={false}
+          rowKey='testFilePath'
+          rowClassName={({ numFailingTests, numPendingTests, testExecError }, index) => {
+            let status = ''
+            if (testExecError) status = 'failed'
+            if (numFailingTests) status = 'failed'
+            if (numPendingTests) status = 'pending'
+            return getRecordClass(status, index)
+          }}
+          expandedRowRender={
+            ({ testResults }) => <DetailTable data={testResults} />
+          }
+          expandedRowKeys={getExistKeys(expand)}
+          onExpand={(state, { testFilePath }) => toggleExpand({ key: testFilePath, state })}
+          columns={getColumns(rootDir)}
+          dataSource={testResults} />
     }
-    columns={getColumns(rootDir)}
-    dataSource={testResults} />
+  </Consumer>
 
 export default TableItem

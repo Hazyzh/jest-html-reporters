@@ -8,6 +8,7 @@ import { BarChart, Bar, Brush, ReferenceLine,
   Pie, Cell,
 } from 'recharts'
 import { TimeIcon } from '@/untils/icons'
+import { Consumer } from '../contexts/expand'
 
 const colors = [...new Array(40)].map(d => randomColor())
 
@@ -69,26 +70,32 @@ const CustomTooltip = ({ active, payload, label, rootDir }) => {
 
 const SimpleBarChart = ({ data, rootDir }) => {
   return (
-    <ResponsiveContainer width={'100%'} height={300}>
-      <BarChart data={getFormatData(data)}
-        margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
-        <CartesianGrid strokeDasharray='3 10' />
-        <XAxis hide />
-        <YAxis />
-        <Tooltip
-          content={<CustomTooltip rootDir={rootDir} />} />
-        <Legend
-          verticalAlign='top'
-          wrapperStyle={{ lineHeight: '40px' }} />
-        <ReferenceLine y={0} stroke='#000' />
-        <Brush height={20} stroke='#8884d8' />
-        <Bar
-          dataKey='time'
-          name='Time'
-          fill='#0ebf8c'
-          onClick={({ name }) => { scrollTo(name) }} />
-      </BarChart>
-    </ResponsiveContainer>
+    <Consumer>
+      {
+        ({ toggleExpand }) => (
+          <ResponsiveContainer width={'100%'} height={300}>
+            <BarChart data={getFormatData(data)}
+              margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
+              <CartesianGrid strokeDasharray='3 10' />
+              <XAxis hide />
+              <YAxis />
+              <Tooltip
+                content={<CustomTooltip rootDir={rootDir} />} />
+              <Legend
+                verticalAlign='top'
+                wrapperStyle={{ lineHeight: '40px' }} />
+              <ReferenceLine y={0} stroke='#000' />
+              <Brush height={20} stroke='#8884d8' />
+              <Bar
+                dataKey='time'
+                name='Time'
+                fill='#0ebf8c'
+                onClick={({ name }) => { scrollTo(name, toggleExpand) }} />
+            </BarChart>
+          </ResponsiveContainer>
+        )
+      }
+    </Consumer>
 
   )
 }
@@ -102,41 +109,47 @@ const Information = ({
   endTime,
   testResults,
 }) =>
-  <Row>
-    <Col span={18}>
-      <SimpleBarChart data={testResults} rootDir={rootDir} />
-    </Col>
-    <Col span={6}>
-      <p className='chart_title'>
-        <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
-        Ratio
-      </p>
-      <ResponsiveContainer width={'100%'} height={300}>
-        <PieChart>
-          <Pie
-            data={getFormatData(testResults)}
-            dataKey='time'
-            cx='50%'
-            cy='50%'
-            outerRadius={'90%'}
-            onClick={({ name }) => { scrollTo(name) }}
-            animationDuration={500} >
-            {
-              testResults.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % 40]} />
-              ))
-            }
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
-    </Col>
-    <Col span={24}>
-      <Card>
-        <p>MaxWorkers: {maxWorkers}</p>
-        <p>Time: {getFormatTime(startTime, endTime)}</p>
-        <p>RootDir: {rootDir}</p>
-      </Card>
-    </Col>
-  </Row>
+  <Consumer>
+    {
+      ({ toggleExpand }) => (
+        <Row>
+        <Col span={18}>
+          <SimpleBarChart data={testResults} rootDir={rootDir} />
+        </Col>
+        <Col span={6}>
+          <p className='chart_title'>
+            <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
+            Ratio
+          </p>
+          <ResponsiveContainer width={'100%'} height={300}>
+            <PieChart>
+              <Pie
+                data={getFormatData(testResults)}
+                dataKey='time'
+                cx='50%'
+                cy='50%'
+                outerRadius={'90%'}
+                onClick={({ name }) => { scrollTo(name, toggleExpand) }}
+                animationDuration={500} >
+                {
+                  testResults.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={colors[index % 40]} />
+                  ))
+                }
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </Col>
+        <Col span={24}>
+          <Card>
+            <p>MaxWorkers: {maxWorkers}</p>
+            <p>Time: {getFormatTime(startTime, endTime)}</p>
+            <p>RootDir: {rootDir}</p>
+          </Card>
+        </Col>
+      </Row>
+      )
+    }
+  </Consumer>
 
 export default Information

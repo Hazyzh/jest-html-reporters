@@ -28,9 +28,8 @@ module.exports = {
     'camelcase': 0,
     // comma-dangle
     'comma-dangle': 0,
-    // globals
-    'globals': {
-      'PRODUCTION': true
-    }
+    // no-callback-literal
+    'no-callback-literal': 0,
+
   }
 }
