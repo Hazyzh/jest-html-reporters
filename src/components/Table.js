@@ -1,5 +1,6 @@
 import React from 'react'
-import { Table, Icon, Tag } from 'antd'
+import { Table, Icon, Tag, message } from 'antd'
+import copy from 'copy-to-clipboard'
 import { getRecordClass, getFormatTime, getExistKeys } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
@@ -59,8 +60,14 @@ const getColumns = (rootDir) => [
     render: text => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '')
       return <span>
-        <Icon type='file' theme='twoTone' />
-        <span className='path_text' id={text}> {relativePath}</span>
+        <span className='copy_icon' title='click to copy path to clipborad'>
+          <Icon type='file' theme='twoTone'
+            onClick={() => {
+              copy(relativePath)
+              message.success('Copy succeed! The path has been copied to the clipboard.')
+            }} />
+        </span>
+        <span className='path_text' id={text} > {relativePath}</span>
       </span>
     }
   },

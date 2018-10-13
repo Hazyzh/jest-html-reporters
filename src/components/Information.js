@@ -113,41 +113,41 @@ const Information = ({
     {
       ({ toggleExpand }) => (
         <Row>
-        <Col span={18}>
-          <SimpleBarChart data={testResults} rootDir={rootDir} />
-        </Col>
-        <Col span={6}>
-          <p className='chart_title'>
-            <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
+          <Col span={18}>
+            <SimpleBarChart data={testResults} rootDir={rootDir} />
+          </Col>
+          <Col span={6}>
+            <p className='chart_title'>
+              <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
             Ratio
-          </p>
-          <ResponsiveContainer width={'100%'} height={300}>
-            <PieChart>
-              <Pie
-                data={getFormatData(testResults)}
-                dataKey='time'
-                cx='50%'
-                cy='50%'
-                outerRadius={'90%'}
-                onClick={({ name }) => { scrollTo(name, toggleExpand) }}
-                animationDuration={500} >
-                {
-                  testResults.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % 40]} />
-                  ))
-                }
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </Col>
-        <Col span={24}>
-          <Card>
-            <p>MaxWorkers: {maxWorkers}</p>
-            <p>Time: {getFormatTime(startTime, endTime)}</p>
-            <p>RootDir: {rootDir}</p>
-          </Card>
-        </Col>
-      </Row>
+            </p>
+            <ResponsiveContainer width={'100%'} height={300}>
+              <PieChart>
+                <Pie
+                  data={getFormatData(testResults)}
+                  dataKey='time'
+                  cx='50%'
+                  cy='50%'
+                  outerRadius={'90%'}
+                  onClick={({ name }) => { scrollTo(name, toggleExpand) }}
+                  animationDuration={500} >
+                  {
+                    testResults.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={colors[index % 40]} />
+                    ))
+                  }
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+          </Col>
+          <Col span={24}>
+            <Card>
+              <p>MaxWorkers: {maxWorkers}</p>
+              <p>Time: {getFormatTime(startTime, endTime)}</p>
+              <p>RootDir: {rootDir}</p>
+            </Card>
+          </Col>
+        </Row>
       )
     }
   </Consumer>
