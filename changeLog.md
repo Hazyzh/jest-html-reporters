@@ -6,4 +6,5 @@
 
   - Add clipboard feature in main table
 
-    you can click copy icon to copy path to clipboard.
+    you can click copy icon to copy path to clipboard in main table.
+
