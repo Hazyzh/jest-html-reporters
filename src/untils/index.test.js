@@ -1,6 +1,6 @@
-import { getRecordClass } from './index'
+import { getRecordClass, getExistKeys } from './index'
 
-describe('test return calss name with state and index', () => {
+describe('Test Func  ==> `getRecordClass` :', () => {
   test('should return `row_fail` is state is failed', () => {
     const state = 'failed'
     expect(getRecordClass(state, 0)).toBe('row_fail')
@@ -28,5 +28,24 @@ describe('test return calss name with state and index', () => {
     expect(getRecordClass(state, 5)).toBe('row_pass_even')
     expect(getRecordClass(state, 7)).toBe('row_pass_even')
     expect(getRecordClass(state, 11)).toBe('row_pass_even')
+  })
+})
+
+describe('Test Func  ==> `getExistKeys` :', () => {
+  test('empty object should return []', () => {
+    const emptyObject = {}
+    const res = getExistKeys(emptyObject)
+    expect(res).toEqual([])
+  })
+  test('object should return keys which is not falsy value as an array', () => {
+    const emptyObject = {
+      'true': true,
+      'string': '1as',
+      'null': null,
+      'undefined': undefined,
+      'false': false,
+    }
+    const res = getExistKeys(emptyObject)
+    expect(res).toEqual(['true', 'string'])
   })
 })

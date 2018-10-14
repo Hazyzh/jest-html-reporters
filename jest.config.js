@@ -7,6 +7,11 @@ module.exports = {
   moduleDirectories: [
     'node_modules',
   ],
+  moduleNameMapper: {
+    'assets/images/.+?\\.svg$': '<rootDir>/test/__mocks__/svgMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ogg)$': '<rootDir>/test/__mocks__/fileMock.js',
+    '\\.(css|less|scss)$': '<rootDir>/test/__mocks__/styleMock.js'
+  },
   transform: {
     '^.+\\.js$': 'babel-jest'
   },
@@ -16,5 +21,6 @@ module.exports = {
   ],
   collectCoverageFrom: [
     '<rootDir>/src/*.{js,jsx}'
-  ]
+  ],
+  testURL: 'http://localhost/'
 }
