@@ -17,7 +17,12 @@ module.exports = {
   },
   reporters: [
     'default',
-    '<rootDir>/index.dev.js'
+    ['<rootDir>/index.dev.js',
+      { outPutPath: '/Users/harry.hou/Desktop/hazyzh/repoter/jest_report/dist',
+        outPutName: 'hello_world.html',
+      }
+    ],
+    // '<rootDir>/index.dev.js',
   ],
   collectCoverageFrom: [
     '<rootDir>/src/*.{js,jsx}'
