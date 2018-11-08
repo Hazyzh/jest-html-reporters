@@ -17,7 +17,7 @@ module.exports = {
   },
   reporters: [
     'default',
-    ['<rootDir>/index.dev.js',
+    ['<rootDir>/index.js',
       { outPutPath: '/Users/harry.hou/Desktop/hazyzh/repoter/jest_report/dist',
         outPutName: 'hello_world.html',
       }

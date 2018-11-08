@@ -16,11 +16,11 @@ class MyCustomReporter {
     const data = JSON.stringify(results)
 
     const {
-      outPutPath,
-      outPutName = 'jest_html_reporters.html'
+      publicPath,
+      filename = 'jest_html_reporters.html'
     } = this._options
-    const tmp = !outPutPath ? localTemplatePath : serverTemplatePath
-    const filePath = path.resolve(outPutPath || path.cwd(), outPutName)
+    const tmp = !publicPath ? localTemplatePath : serverTemplatePath
+    const filePath = path.resolve(publicPath || process.cwd(), filename)
     const htmlTemplate = fs.readFileSync(tmp, 'utf-8')
     const outPutContext = htmlTemplate
       .replace('$resultData', JSON.stringify(data))

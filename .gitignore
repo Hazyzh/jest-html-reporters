@@ -13,3 +13,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+jest_html_reporters.html
