@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils')
@@ -36,12 +37,17 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'index_server_tmp.html',
       template: 'index.html',
       inject: true,
-      // add favicon
-      favicon: path.join(__dirname, './favicon.ico')
+      inlineSource: '.(js|css)$'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'index_local_tmp.html',
+      template: 'index.html',
+      inject: true,
+    }),
+    new HtmlWebpackInlineSourcePlugin(),
     // Copyright
     new webpack.BannerPlugin('Copyright Harry All rights reserved.'),
     // new BundleAnalyzerPlugin(),

@@ -1,9 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const templatePath = path.resolve(__dirname, './dist/index.html')
-const sourcePath = './node_modules/jest-html-reporters/dist'
-const sourcePathReg = new RegExp(sourcePath, 'g')
-const outPutSourcePath = path.resolve(__dirname, sourcePath)
+const localTemplatePath = path.resolve(__dirname, './dist/index_local_tmp.html')
+const serverTemplatePath = path.resolve(__dirname, './dist/index_server_tmp.html')
 
 // my-custom-reporter.js
 class MyCustomReporter {
@@ -18,13 +16,13 @@ class MyCustomReporter {
     const data = JSON.stringify(results)
 
     const {
-      outPutPath = process.cwd(),
+      outPutPath,
       outPutName = 'jest_html_reporters.html'
     } = this._options
-    const filePath = path.resolve(outPutPath, outPutName)
-    const htmlTemplate = fs.readFileSync(templatePath, 'utf-8')
+    const tmp = !outPutPath ? localTemplatePath : serverTemplatePath
+    const filePath = path.resolve(outPutPath || path.cwd(), outPutName)
+    const htmlTemplate = fs.readFileSync(tmp, 'utf-8')
     const outPutContext = htmlTemplate
-      .replace(sourcePathReg, outPutSourcePath)
       .replace('$resultData', JSON.stringify(data))
     fs.writeFile(filePath, outPutContext, 'utf-8')
   }

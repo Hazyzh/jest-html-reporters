@@ -15,7 +15,7 @@ const FooterInfo = () =>
     <div className='bottom-line'>
       <span />
       <p>
-        Version _{versions}
+        Versions _{versions}
       </p>
     </div>
   </div>
