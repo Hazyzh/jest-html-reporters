@@ -63,8 +63,9 @@ const getColumns = (rootDir) => [
         <span className='copy_icon' title='click to copy path to clipborad'>
           <Icon type='file' theme='twoTone'
             onClick={() => {
-              copy(relativePath)
-              message.success('Copy succeed! The path has been copied to the clipboard.')
+              const execCommand = 'npx jest .' + relativePath
+              copy(execCommand)
+              message.success('Copy succeed! The command has been copied to the clipboard.')
             }} />
         </span>
         <span className='path_text' id={text} > {relativePath}</span>
