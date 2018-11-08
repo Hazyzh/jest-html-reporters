@@ -100,6 +100,12 @@ const SimpleBarChart = ({ data, rootDir }) => {
   )
 }
 
+const LabelInfo = ({ title, icon, context }) =>
+  <p>
+    <span className='label_title'>{title}</span>
+    <span>{context}</span>
+  </p>
+
 const Information = ({
   config: {
     rootDir,
@@ -140,11 +146,11 @@ const Information = ({
               </PieChart>
             </ResponsiveContainer>
           </Col>
-          <Col span={24}>
+          <Col span={24} className='main_information'>
             <Card>
-              <p>MaxWorkers: {maxWorkers}</p>
-              <p>Time: {getFormatTime(startTime, endTime)}</p>
-              <p>RootDir: {rootDir}</p>
+              <LabelInfo title='MaxWorkers' context={maxWorkers} />
+              <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} />
+              <LabelInfo title='RootDir' context={rootDir} />
             </Card>
           </Col>
         </Row>

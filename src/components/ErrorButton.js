@@ -5,7 +5,7 @@ import ErrorInfoItem from './ErrorInfoItem'
 
 function info(data) {
   Modal.error({
-    title: 'This is the failureMessage',
+    title: 'Failure Message',
     width: '80%',
     maskClosable: true,
     content: (
