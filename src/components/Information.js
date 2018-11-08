@@ -102,7 +102,7 @@ const SimpleBarChart = ({ data, rootDir }) => {
 
 const LabelInfo = ({ title, icon, context }) =>
   <p>
-    <span className='label_title'>{title}</span>
+    <span className='label_title'>{icon} {title}</span>
     <span>{context}</span>
   </p>
 
@@ -148,9 +148,9 @@ const Information = ({
           </Col>
           <Col span={24} className='main_information'>
             <Card>
-              <LabelInfo title='MaxWorkers' context={maxWorkers} />
-              <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} />
-              <LabelInfo title='RootDir' context={rootDir} />
+              <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<Icon type='compass' theme='filled' />} />
+              <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<Icon type='clock-circle' theme='filled' />} />
+              <LabelInfo title='RootDir' context={rootDir} icon={<Icon type='folder' theme='filled' />} />
             </Card>
           </Col>
         </Row>
