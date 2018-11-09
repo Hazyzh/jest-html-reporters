@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils')
 const theme = require('./build/theme')
@@ -11,15 +12,11 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
-const PUBLICPATH = './node_modules/jest-html-reporters/dist/'
-
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
   output: {
     path: resolve('dist'),
-    filename: '[name].js',
-    publicPath: PUBLICPATH
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -28,6 +25,7 @@ module.exports = {
     }
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -37,15 +35,10 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index_server_tmp.html',
+      filename: 'index.html',
       template: 'index.html',
       inject: true,
       inlineSource: '.(js|css)$'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'index_local_tmp.html',
-      template: 'index.html',
-      inject: true,
     }),
     new HtmlWebpackInlineSourcePlugin(),
     // Copyright

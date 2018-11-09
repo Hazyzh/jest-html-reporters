@@ -18,8 +18,8 @@ module.exports = {
   reporters: [
     'default',
     ['<rootDir>/index.js',
-      { outPutPath: '/Users/harry.hou/Desktop/hazyzh/repoter/jest_report/dist',
-        outPutName: 'hello_world.html',
+      { publicPath: '/Users/harry.hou/Desktop/hazyzh/repoter/jest_report/dist',
+        filename: 'hello_world.html',
       }
     ],
     // '<rootDir>/index.dev.js',
