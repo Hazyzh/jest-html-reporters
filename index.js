@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const localTemplatePath = path.resolve(__dirname, './dist/index_local_tmp.html')
-const serverTemplatePath = path.resolve(__dirname, './dist/index_server_tmp.html')
+const localTemplatePath = path.resolve(__dirname, './dist/index.html')
 
 // my-custom-reporter.js
 class MyCustomReporter {
@@ -16,12 +15,11 @@ class MyCustomReporter {
     const data = JSON.stringify(results)
 
     const {
-      publicPath,
+      publicPath = process.cwd(),
       filename = 'jest_html_reporters.html'
     } = this._options
-    const tmp = !publicPath ? localTemplatePath : serverTemplatePath
-    const filePath = path.resolve(publicPath || process.cwd(), filename)
-    const htmlTemplate = fs.readFileSync(tmp, 'utf-8')
+    const filePath = path.resolve(publicPath, filename)
+    const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8')
     const outPutContext = htmlTemplate
       .replace('$resultData', JSON.stringify(data))
     fs.writeFile(filePath, outPutContext, 'utf-8')
