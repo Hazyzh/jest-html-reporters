@@ -19,3 +19,7 @@
   - click dashboard card can scroll to corresponding test
 
     when there has error click the dashboard card can easy find the row's position.
+
+### 1.1.1
+
+  - add footer of the page
