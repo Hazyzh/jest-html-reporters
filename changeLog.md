@@ -22,4 +22,8 @@
 
 ### 1.1.1
 
-  - add footer of the page
+  - add footer of the page.
+
+### 1.1.2
+
+  - add start time info in information board.

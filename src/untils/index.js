@@ -98,3 +98,13 @@ export function scrollTo(id, expandFunc = () => {}) {
 export const getExistKeys = (obj = {}) => {
   return Object.entries(obj).filter(item => item[1]).map(item => item[0])
 }
+
+/**
+ * format timestamp to yy-MM-dd hh:mm:ss
+ * @param {number} timestamp
+ */
+export const formatDate = (timestamp) =>
+  new Date(timestamp - new Date().getTimezoneOffset() * 60 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ')

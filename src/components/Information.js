@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Card, Icon } from 'antd'
 import randomColor from 'randomcolor'
-import { getFormatTime, getFormatData, scrollTo } from '@/untils'
+import { getFormatTime, getFormatData, scrollTo, formatDate } from '@/untils'
 import { BarChart, Bar, Brush, ReferenceLine,
   XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer, PieChart,
@@ -148,9 +148,16 @@ const Information = ({
           </Col>
           <Col span={24} className='main_information'>
             <Card>
-              <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<Icon type='compass' theme='filled' />} />
-              <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<Icon type='clock-circle' theme='filled' />} />
-              <LabelInfo title='RootDir' context={rootDir} icon={<Icon type='folder' theme='filled' />} />
+              <Row span={24}>
+                <Col span={16}>
+                  <LabelInfo title='StartTime' context={formatDate(startTime)} icon={<Icon type='box-plot' theme='filled' />} />
+                  <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<Icon type='clock-circle' theme='filled' />} />
+                  <LabelInfo title='RootDir' context={rootDir} icon={<Icon type='folder' theme='filled' />} />
+                </Col>
+                <Col span={8}>
+                  <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<Icon type='compass' theme='filled' />} />
+                </Col>
+              </Row>
             </Card>
           </Col>
         </Row>
