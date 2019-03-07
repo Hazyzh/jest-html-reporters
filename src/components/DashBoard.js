@@ -3,7 +3,7 @@ import { Row, Col, Card } from 'antd'
 import { getPercentage, scrollTo } from '@/untils'
 import { Consumer } from '../contexts/expand'
 
-const MyCardItem = ({
+export const MyCardItem = ({
   labelColor,
   label,
   title,
