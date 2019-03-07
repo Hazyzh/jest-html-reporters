@@ -70,7 +70,7 @@
     "moment": "^2.22.2",
     "randomcolor": "^0.5.3",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.7.0",
     "react-hot-loader": "^4.3.5",
     "react-router-dom": "^4.3.1",
     "recharts": "^1.2.0",
