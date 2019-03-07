@@ -7,9 +7,9 @@ let data
 if (process.env.NODE_ENV === 'production') {
   data = JSON.parse(window.resData)
 } else {
-  data = require('../testdata.1.json')
+  data = require('../devMock.json')
 }
-window.c = data
+window.realData = data
 class HomePage extends Component {
   state = {
     ...data
