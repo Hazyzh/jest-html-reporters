@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { Layout } from 'antd'
+import { Layout, Icon } from 'antd'
 import HomePage from './pages/Home'
 import FooterInfo from './components/FooterInfo'
 import './styles/app.less'
@@ -31,7 +31,11 @@ class App extends Component {
     return (
       <Provider value={this.state}>
         <Layout className='layout'>
-          <Header className='header' />
+          <Header className='header'>
+            <a target='_blank' href='https://github.com/Hazyzh/jest-html-reporters'>
+              <Icon type='github' theme='filled' />
+            </a>
+          </Header>
           <Content style={{ padding: '0 50px' }}>
             <HomePage />
           </Content>

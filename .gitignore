@@ -14,3 +14,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 jest_html_reporters.html
+test/Examples/*

@@ -68,7 +68,7 @@ const CustomTooltip = ({ active, payload, label, rootDir }) => {
   return null
 }
 
-const SimpleBarChart = ({ data, rootDir }) => {
+export const SimpleBarChart = ({ data, rootDir }) => {
   return (
     <Consumer>
       {
