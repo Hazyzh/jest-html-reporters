@@ -1,5 +1,7 @@
 ### Jest reporter
 
+[![npm](https://img.shields.io/npm/v/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters)
+
 Jest test results processor for generating a summary in HTML
 
 ![example picture](./show.gif)
