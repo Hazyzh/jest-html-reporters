@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters)
 [![NPM downloads](http://img.shields.io/npm/dm/jest-html-reporters.svg?style=flat-square)](http://npmjs.com/jest-html-reporters)
+[![license](https://img.shields.io/npm/l/jest-html-reporters.svg)
+
 
 Jest test results processor for generating a summary in HTML
 
