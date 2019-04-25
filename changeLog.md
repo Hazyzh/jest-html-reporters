@@ -27,3 +27,7 @@
 ### 1.1.2
 
   - add start time info in information board.
+
+### 1.1.4
+
+  - fix bug [ignore empty public path when create `#5`].
