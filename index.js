@@ -25,7 +25,7 @@ class MyCustomReporter {
       publicPath = process.cwd(),
       filename = 'jest_html_reporters.html'
     } = this._options
-    fs.existsSync(publicPath) === false && mkdirs(publicPath)
+    fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)
     const filePath = path.resolve(publicPath, filename)
     const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8')
     const outPutContext = htmlTemplate
