@@ -41,7 +41,7 @@ const renderTitleContent = (title = '') => {
   return title
 }
 
-const renderTitle = title => <Tooltip overlayStyle={{ maxWidth: '800px' }} title={title}>
+const renderTitle = (title, { fullName }) => <Tooltip overlayStyle={{ maxWidth: '800px' }} title={fullName}>
   <span className='inner_path_text'>{renderTitleContent(title)}</span>
 </Tooltip>
 
