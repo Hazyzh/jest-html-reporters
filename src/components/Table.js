@@ -28,7 +28,7 @@ const renderStatus = ({
   } else if (numFailingTests === 0 && numPendingTests === 0) {
     tagsInfo = <span style={{ color: '#52c41a' }}>
       <Tag color='#52c41a' className='one_tag'>
-        All Passd
+        All Passed
         <span>{numPassingTests}</span>
         <Icon type='check' theme='outlined' />
       </Tag>
