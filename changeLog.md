@@ -31,3 +31,8 @@
 ### 1.1.4
 
   - fix bug [ignore empty public path when create `#5`].
+
+### 1.1.5
+  
+  - fix bug [fixing typo `Passd` -> `All Passed`  `#8`].
+  - Nested describes [Separate tests by their respective `describe` blocks `#9`].
