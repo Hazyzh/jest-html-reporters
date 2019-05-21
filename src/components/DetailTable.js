@@ -41,12 +41,18 @@ const renderTitleContent = (title = '') => {
   return title
 }
 
-const renderTitle = (title, { fullName }) => <Tooltip overlayStyle={{ maxWidth: '800px' }} title={fullName}>
-  <span className='inner_path_text'>{renderTitleContent(title)}</span>
-</Tooltip>
+const renderTitle = ({ ancestorTitles = [], title, fullName }) => {
+  const sep = ' > '
+  const nestedTitle = [...ancestorTitles, title].join(sep)
+  return (
+    <Tooltip overlayStyle={{ maxWidth: '800px' }} title={fullName}>
+      <span className='inner_path_text'>{renderTitleContent(nestedTitle)}</span>
+    </Tooltip>
+  )
+}
 
 const columns = [
-  { title: 'title', dataIndex: 'title', render: renderTitle },
+  { title: 'title', key: 'Name', render: renderTitle },
   { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
   { title: 'status', dataIndex: 'status', render: renderStatus, align: 'center', width: '150px' },
   {
