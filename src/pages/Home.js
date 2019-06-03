@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
-import { BackTop, Icon } from 'antd'
+import { BackTop, Icon, Switch } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
 import Information from '../components/Information'
-let data
-if (process.env.NODE_ENV === 'production') {
-  data = JSON.parse(window.resData)
-} else {
-  data = require('../devMock.json')
-}
-window.realData = data
+
 class HomePage extends Component {
   state = {
-    ...data
+    ...window.realData,
+    globalExpandState: window.realData._reporterOptions.expand || false,
   }
   render () {
     return (
@@ -22,7 +17,15 @@ class HomePage extends Component {
         <DashBoard {...this.state} />
         <h3 className='area_subject'><Icon type='pie-chart' theme='outlined' />Information</h3>
         <Information {...this.state} />
-        <h3 className='area_subject'><Icon type='profile' theme='outlined' />Details</h3>
+        <h3 className='area_subject expand_box'>
+          <span><Icon type='profile' theme='outlined' />Details</span>
+          <span className='expand_title'>
+            <span className='text'>Expand All</span>
+            <Switch
+              onChange={(checked) => this.setState({ globalExpandState: checked })}
+              checked={this.state.globalExpandState} />
+          </span>
+        </h3>
         <div style={{ background: '#fff', padding: 12 }}>
           <TableItem {...this.state} />
         </div>

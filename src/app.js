@@ -13,12 +13,25 @@ import './styles/footer.less'
 // context
 import { Provider } from './contexts/expand'
 
+let data
+if (process.env.NODE_ENV === 'production') {
+  data = JSON.parse(window.resData)
+} else {
+  data = require('./devMock.json')
+}
+window.realData = data
+
+const getInitData = ({ testResults = [] }) => testResults.reduce((pre, item) => {
+  pre[item.testFilePath] = false
+  return pre
+}, {})
+
 const { Header, Content, Footer } = Layout
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      expand: [],
+      expand: getInitData(data),
       toggleExpand: this.toggleExpand,
     }
   }

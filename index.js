@@ -4,9 +4,9 @@ const localTemplatePath = path.resolve(__dirname, './dist/index.html')
 
 function mkdirs(dirpath) {
   if (!fs.existsSync(path.dirname(dirpath))) {
-    mkdirs(path.dirname(dirpath));
+    mkdirs(path.dirname(dirpath))
   }
-  fs.mkdirSync(dirpath);
+  fs.mkdirSync(dirpath)
 }
 
 // my-custom-reporter.js
@@ -19,11 +19,11 @@ class MyCustomReporter {
   onRunComplete(contexts, results) {
     results.config = this._globalConfig
     results.endTime = Date.now()
+    results._reporterOptions = this._options
     const data = JSON.stringify(results)
-
     const {
       publicPath = process.cwd(),
-      filename = 'jest_html_reporters.html'
+      filename = 'jest_html_reporters.html',
     } = this._options
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)
     const filePath = path.resolve(publicPath, filename)

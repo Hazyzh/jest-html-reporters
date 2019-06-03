@@ -112,7 +112,7 @@ const getColumns = (rootDir) => [
   },
 ]
 
-const TableItem = ({ testResults, config: { rootDir } }) =>
+const TableItem = ({ testResults, config: { rootDir }, globalExpandState }) =>
   <Consumer>
     {
       ({ expand, toggleExpand }) =>
@@ -130,7 +130,7 @@ const TableItem = ({ testResults, config: { rootDir } }) =>
           expandedRowRender={
             ({ testResults }) => <DetailTable data={testResults} />
           }
-          expandedRowKeys={getExistKeys(expand)}
+          expandedRowKeys={getExistKeys(expand, globalExpandState)}
           onExpand={(state, { testFilePath }) => toggleExpand({ key: testFilePath, state })}
           columns={getColumns(rootDir)}
           dataSource={testResults} />

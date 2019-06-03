@@ -93,10 +93,11 @@ export function scrollTo(id, expandFunc = () => {}) {
 
 /**
  * @param {Object} obj
+ * @param {Bool}
  * @return {Array} object exist keys list
  */
-export const getExistKeys = (obj = {}) => {
-  return Object.entries(obj).filter(item => item[1]).map(item => item[0])
+export const getExistKeys = (obj = {}, globalExpandState) => {
+  return Object.entries(obj).filter(item => (globalExpandState || item[1])).map(item => item[0])
 }
 
 /**
