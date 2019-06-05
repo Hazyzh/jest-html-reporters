@@ -1,6 +1,6 @@
 import React from 'react'
 const TABLE_EXPAND = {
-  expand: [],
+  expand: {},
   toggleExpand: () => {},
 }
 

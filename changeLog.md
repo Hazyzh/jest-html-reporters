@@ -36,3 +36,8 @@
   
   - fix bug [fixing typo `Passd` -> `All Passed`  `#8`].
   - Nested describes [Separate tests by their respective `describe` blocks `#9`].
+
+### 1.1.6
+  
+  - add expand all feature.
+
