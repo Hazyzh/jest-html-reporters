@@ -24,6 +24,12 @@ const renderStatus = (status) => {
         <span className='detail_status_text'>{status}</span>
       </span>
       break
+    case 'todo':
+      info = <span style={{ color: '#950098' }} >
+        <Icon type='pushpin' theme='outlined' />
+        <span className='detail_status_text'>{status}</span>
+      </span>
+      break
   }
   return info
 }

@@ -28,5 +28,5 @@ module.exports = {
   setupFiles: [
     '<rootDir>/test/setup.js'
   ],
-  setupTestFrameworkScriptFile: 'jest-enzyme'
+  setupFilesAfterEnv: ['jest-enzyme']
 }
