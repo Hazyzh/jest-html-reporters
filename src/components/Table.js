@@ -12,6 +12,7 @@ const renderStatus = ({
   numPassingTests,
   numFailingTests,
   numPendingTests,
+  numTodoTests,
   testExecError,
 }) => {
   let tagsInfo
@@ -38,6 +39,7 @@ const renderStatus = ({
       <Tag color='#52c41a'>{numPassingTests}</Tag>
       {!!numFailingTests && <Tag color='#cf1322'>{numFailingTests}</Tag>}
       {!!numPendingTests && <Tag color='#faad14'>{numPendingTests}</Tag>}
+      {!!numTodoTests && <Tag color='#d466d6'>{numTodoTests}</Tag>}
     </span>
   }
 
@@ -87,11 +89,12 @@ const getColumns = (rootDir) => [
       { text: 'Passed', value: 'passed' },
       { text: 'Failed', value: 'failed' },
       { text: 'Pending', value: 'pending' },
+      { text: 'Todo', value: 'todo' },
       { text: 'Not Passed', value: 'noPass' },
     ],
     filterMultiple: false,
     onFilter: (value, { numFailingTests,
-      numPendingTests, testExecError }) => {
+      numPendingTests, testExecError, numTodoTests }) => {
       switch (value) {
         case 'passed':
           return !(testExecError || numFailingTests > 0 || numPendingTests > 0)
@@ -99,6 +102,8 @@ const getColumns = (rootDir) => [
           return testExecError || numFailingTests > 0
         case 'pending':
           return numPendingTests > 0
+        case 'todo':
+          return numTodoTests > 0
         case 'noPass':
           return (testExecError || numFailingTests > 0 || numPendingTests > 0)
       }
@@ -120,11 +125,12 @@ const TableItem = ({ testResults, config: { rootDir }, globalExpandState }) =>
           size='small'
           pagination={false}
           rowKey='testFilePath'
-          rowClassName={({ numFailingTests, numPendingTests, testExecError }, index) => {
+          rowClassName={({ numFailingTests, numPendingTests, numTodoTests, testExecError }, index) => {
             let status = ''
             if (testExecError) status = 'failed'
-            if (numFailingTests) status = 'failed'
-            if (numPendingTests) status = 'pending'
+            else if (numFailingTests) status = 'failed'
+            else if (numPendingTests) status = 'pending'
+            else if (numTodoTests) status = 'todo'
             return getRecordClass(status, index)
           }}
           expandedRowRender={

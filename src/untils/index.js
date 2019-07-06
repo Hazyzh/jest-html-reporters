@@ -11,6 +11,7 @@ import { TimeIcon } from './icons'
 export const getRecordClass = (status, index) => {
   if (status === 'failed') return 'row_fail'
   if (status === 'pending') return 'row_pending'
+  if (status === 'todo') return 'row_todo'
   if (index % 2) return 'row_pass_even'
   return 'row_pass_odd'
 }

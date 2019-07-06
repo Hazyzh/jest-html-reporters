@@ -29,11 +29,13 @@ const DashBoard = ({
   numFailedTests,
   numPendingTestSuites,
   numPendingTests,
+  numTodoTests,
   numRuntimeErrorTestSuites,
   testResults,
 }) => {
   const failedTest = testResults.find(({ numFailingTests }) => numFailingTests)
   const pendingTest = testResults.find(({ numPendingTests }) => numPendingTests)
+  const todoTest = testResults.find(({ numTodoTests }) => numTodoTests)
   const execErrorTest = testResults.find(({ testExecError }) => testExecError)
 
   const TotalTestSuites = {
@@ -61,7 +63,7 @@ const DashBoard = ({
   const PendingTestSuites = {
     title: numPendingTestSuites,
     content: 'Pending Suites',
-    label: `${getPercentage(numPendingTestSuites, numTotalTests)} %`,
+    label: `${getPercentage(numPendingTestSuites, numTotalTestSuites)} %`,
     labelColor: '#faad14',
     clickHander: getScrollDownFunc(pendingTest),
   }
@@ -72,7 +74,18 @@ const DashBoard = ({
     labelColor: '#faad14',
     clickHander: getScrollDownFunc(pendingTest),
   }
-  const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites, PendingTests]
+  const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites,
+    PendingTests]
+  if (numTodoTests) {
+    const TodoTests = {
+      title: numTodoTests,
+      content: 'Todo Tests',
+      label: `${getPercentage(numTodoTests, numTotalTests)} %`,
+      labelColor: '#d466d6',
+      clickHander: getScrollDownFunc(todoTest),
+    }
+    cardsList.push(TodoTests)
+  }
   if (numRuntimeErrorTestSuites) {
     const RuntimeErrorTestSuites = {
       title: numRuntimeErrorTestSuites,
