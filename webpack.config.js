@@ -51,7 +51,6 @@ module.exports = {
         cache: true,
         uglifyOptions: {
           compress: {
-            warnings: false,
             drop_console: true,
             drop_debugger: true
           }
