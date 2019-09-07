@@ -34,7 +34,7 @@ class MyCustomReporter {
     const outPutContext = htmlTemplate
       .replace('$resultData', JSON.stringify(data))
     fs.writeFileSync(filePath, outPutContext, 'utf-8')
-    console.log('📦 reporter is created one:', filePath)
+    console.log('📦 reporter is created on:', filePath)
   }
 }
 
