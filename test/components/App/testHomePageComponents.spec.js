@@ -16,6 +16,11 @@ const homePage = wrapper.find(HomePage)
 
 
 describe('test home page component info', () => {
+
+  test('there should be default page title', () => {
+    expect(document.title).toBe("Report");
+  })
+
   test('there should have a BackTop in homePage', () => {
     const homePageBackTop = homePage.find(BackTop)
     expect(homePageBackTop.length).toBe(1)
