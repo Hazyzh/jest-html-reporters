@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 window.realData = data.testResult
 document.title = data.config.pageTitle || ''
-console.log(data)
 const getInitData = ({ testResults = [] }) => testResults.reduce((pre, item) => {
   pre[item.testFilePath] = false
   return pre
@@ -31,7 +30,6 @@ const { Header, Content, Footer } = Layout
 class App extends Component {
   constructor(props) {
     super(props)
-    console.log(data)
     this.state = {
       expand: getInitData(data),
       toggleExpand: this.toggleExpand
