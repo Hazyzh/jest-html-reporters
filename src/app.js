@@ -19,8 +19,9 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   data = require('./devMock.json')
 }
-window.realData = data
-
+window.realData = data.testResult
+document.title = data.config.pageTitle || ''
+console.log(data)
 const getInitData = ({ testResults = [] }) => testResults.reduce((pre, item) => {
   pre[item.testFilePath] = false
   return pre
@@ -30,9 +31,10 @@ const { Header, Content, Footer } = Layout
 class App extends Component {
   constructor(props) {
     super(props)
+    console.log(data)
     this.state = {
       expand: getInitData(data),
-      toggleExpand: this.toggleExpand,
+      toggleExpand: this.toggleExpand
     }
   }
 
@@ -40,14 +42,15 @@ class App extends Component {
     this.setState(({ expand }) => ({ expand: { ...expand, [key]: state } }))
   }
 
-  render () {
+  render() {
+    const { hideIcon, pageTitle } = data.config
+    const IconComp = hideIcon ? null : <a target='_blank' className='icon' href='https://github.com/Hazyzh/jest-html-reporter'><Icon type='github' theme='filled' /></a>
     return (
       <Provider value={this.state}>
         <Layout className='layout'>
           <Header className='header'>
-            <a target='_blank' href='https://github.com/Hazyzh/jest-html-reporters'>
-              <Icon type='github' theme='filled' />
-            </a>
+            <span>{pageTitle}</span>
+            {IconComp}
           </Header>
           <Content style={{ padding: '0 50px' }}>
             <HomePage />
