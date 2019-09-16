@@ -41,6 +41,8 @@ The options below are specific to the reporter.
 | `publicPath` | string  | ''                       | specify the base path                                         |
 | `filename`   | string  | jest_html_reporters.html | Filename of saved report <br> *Applies to the generated html* |
 | `expand`     | Boolean | false                    | specify whether default expand all data                       |
+| `pageTitle`  | string  | Report                   | specify header and page title                                 |
+| `hideIcon`   | Boolean | false                    | hide default icon                                             |
 #### example add config options 
 ```json
 ...,

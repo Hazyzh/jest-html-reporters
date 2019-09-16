@@ -20,15 +20,18 @@ class MyCustomReporter {
     results.config = this._globalConfig
     results.endTime = Date.now()
     results._reporterOptions = this._options
-    const data = JSON.stringify(results)
+    let data = JSON.stringify(results)
     const {
       publicPath = process.cwd(),
       filename = 'jest_html_reporters.html',
+      hideIcon = false,
+      pageTitle = 'Report'
     } = this._options
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)
     const filePath = path.resolve(publicPath, filename)
     // fs.writeFileSync('./src/devMock.json', data)
     const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8')
+    data = JSON.stringify({ testResult: results, config: { pageTitle, hideIcon } });
     const outPutContext = htmlTemplate
       .replace('$resultData', JSON.stringify(data))
     fs.writeFileSync(filePath, outPutContext, 'utf-8')
