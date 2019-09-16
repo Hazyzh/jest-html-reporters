@@ -44,3 +44,7 @@
 ### 1.1.8
   
   - add support display`todo` test.
+
+### 1.1.9
+  
+  - add custom header/title for report.
