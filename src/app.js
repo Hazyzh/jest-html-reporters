@@ -19,8 +19,9 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   data = require('./devMock.json')
 }
-window.realData = data.testResult
-document.title = data.config.pageTitle || ''
+const defaultTitle = 'Report'
+window.realData = data
+document.title = data._reporterOptions.pageTitle || defaultTitle
 const getInitData = ({ testResults = [] }) => testResults.reduce((pre, item) => {
   pre[item.testFilePath] = false
   return pre
@@ -41,7 +42,7 @@ class App extends Component {
   }
 
   render() {
-    const { hideIcon, pageTitle } = data.config
+    const { hideIcon, pageTitle = defaultTitle } = data._reporterOptions
     const IconComp = hideIcon ? null : <a target='_blank' className='icon' href='https://github.com/Hazyzh/jest-html-reporter'><Icon type='github' theme='filled' /></a>
     return (
       <Provider value={this.state}>
