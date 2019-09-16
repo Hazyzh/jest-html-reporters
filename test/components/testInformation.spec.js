@@ -29,8 +29,8 @@ describe('test Information component', () => {
   })
 
   test('main information area shoule container stuff informations', () => {
-    // start time 
-    expect(wrapper.find('div.main_information')).toIncludeText('2018-09-29 11:28:51')
+    // start time
+    expect(wrapper.find('div.main_information')).toIncludeText('2018-09-29 13:58:51')
     // time
     expect(wrapper.find('div.main_information')).toIncludeText('00:02.930')
     // root dir
