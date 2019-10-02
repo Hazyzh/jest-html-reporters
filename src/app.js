@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { Layout, Icon } from 'antd'
+import { Layout, Icon, Avatar } from 'antd'
 import HomePage from './pages/Home'
 import FooterInfo from './components/FooterInfo'
 import './styles/app.less'
@@ -22,6 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 const defaultTitle = 'Report'
 window.realData = data
 document.title = data._reporterOptions.pageTitle || defaultTitle
+const { logoImg } = data._reporterOptions
 const getInitData = ({ testResults = [] }) => testResults.reduce((pre, item) => {
   pre[item.testFilePath] = false
   return pre
@@ -48,6 +49,9 @@ class App extends Component {
       <Provider value={this.state}>
         <Layout className='layout'>
           <Header className='header'>
+            {logoImg &&
+              <Avatar src={logoImg} shape='square' size='large' style={{ marginRight: '1em' }} />
+            }
             <span>{pageTitle}</span>
             {IconComp}
           </Header>
