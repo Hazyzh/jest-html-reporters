@@ -48,3 +48,7 @@
 ### 1.1.9
   
   - add custom header/title for report.
+
+### 1.2.0
+  
+  - add custom logo for report.
