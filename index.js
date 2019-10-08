@@ -9,6 +9,15 @@ function mkdirs(dirpath) {
   fs.mkdirSync(dirpath)
 }
 
+function imgToBase64(imgPath) {
+  const fileName = path.resolve(imgPath)
+  if (fs.statSync(fileName).isFile()) {
+    const fileData = fs.readFileSync(fileName).toString('base64')
+    return `data:image/${fileName.split('.').pop()};base64,${fileData}`
+  }
+  return undefined
+}
+
 // my-custom-reporter.js
 class MyCustomReporter {
   constructor(globalConfig, options) {
@@ -17,14 +26,17 @@ class MyCustomReporter {
   }
 
   onRunComplete(contexts, results) {
-    results.config = this._globalConfig
-    results.endTime = Date.now()
-    results._reporterOptions = this._options
-    const data = JSON.stringify(results)
     const {
       publicPath = process.cwd(),
       filename = 'jest_html_reporters.html',
+      logoImgPath,
     } = this._options
+    const logoImg = logoImgPath ? imgToBase64(logoImgPath) : undefined
+    results.config = this._globalConfig
+    results.endTime = Date.now()
+    results._reporterOptions = { ...this._options, logoImg }
+    const data = JSON.stringify(results)
+
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)
     const filePath = path.resolve(publicPath, filename)
     // fs.writeFileSync('./src/devMock.json', data)
