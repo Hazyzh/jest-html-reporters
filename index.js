@@ -56,7 +56,7 @@ class MyCustomReporter {
 
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)
     const filePath = path.resolve(publicPath, filename)
-    fs.writeFileSync('./src/devMock.json', data)
+    // fs.writeFileSync('./src/devMock.json', data)
     const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8')
     const outPutContext = htmlTemplate
       .replace('$resultData', JSON.stringify(data))
