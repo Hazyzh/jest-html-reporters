@@ -3,6 +3,7 @@ import { BackTop, Icon, Switch } from 'antd'
 import TableItem from '../components/Table'
 import DashBoard from '../components/DashBoard'
 import Information from '../components/Information'
+import CustomInformation from '../components/CustomInformation'
 
 class HomePage extends Component {
   state = {
@@ -10,11 +11,22 @@ class HomePage extends Component {
     globalExpandState: window.realData._reporterOptions.expand || false,
   }
   render () {
+    const { customInfos } = window.realData._reporterOptions
+    let CustomInfoComp
+    if (customInfos && customInfos.length > 0) {
+      CustomInfoComp = (
+        <>
+          <h3 className='area_subject'><Icon type='gold' theme='outlined' />Custom Information</h3>
+          <CustomInformation customInfos={customInfos} />
+        </>
+      )
+    }
     return (
       <div>
         <BackTop />
         <h3 className='area_subject'><Icon type='appstore' theme='outlined' />Dashboard</h3>
         <DashBoard {...this.state} />
+        {CustomInfoComp}
         <h3 className='area_subject'><Icon type='pie-chart' theme='outlined' />Information</h3>
         <Information {...this.state} />
         <h3 className='area_subject expand_box'>
