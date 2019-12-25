@@ -36,14 +36,16 @@ As you run Jest from within the terminal, a file called `jest_html_reporters.htm
 ### Available Options
 The options below are specific to the reporter.
 
-| Option Name   | Type    | Default                  | Description                                                                 |
-| :------------ | :------ | :----------------------- | :-------------------------------------------------------------------------- |
-| `publicPath`  | string  | ''                       | specify the base path                                                       |
-| `filename`    | string  | jest_html_reporters.html | Filename of saved report <br> *Applies to the generated html*               |
-| `expand`      | Boolean | false                    | specify whether default expand all data                                     |
-| `pageTitle`   | string  | Report                   | specify header and page title                                               |
-| `logoImgPath` | string  | undefined                | specify path of the image that will be displayed to the right of page title |
-| `hideIcon`    | Boolean | false                    | hide default icon                                                           |
+| Option Name   | Type    | Default                  | Description                                                                                                                                                                                                                                                                                          |
+| :------------ | :------ | :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `publicPath`  | string  | ''                       | specify the base path                                                                                                                                                                                                                                                                                |
+| `filename`    | string  | jest_html_reporters.html | Filename of saved report <br> *Applies to the generated html*                                                                                                                                                                                                                                        |
+| `expand`      | Boolean | false                    | specify whether default expand all data                                                                                                                                                                                                                                                              |
+| `pageTitle`   | string  | Report                   | specify header and page title                                                                                                                                                                                                                                                                        |
+| `logoImgPath` | string  | undefined                | specify path of the image that will be displayed to the right of page title                                                                                                                                                                                                                          |
+| `hideIcon`    | Boolean | false                    | hide default icon                                                                                                                                                                                                                                                                                    |
+| `customInfos` | array   | undefined                | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) |
+
 #### example add config options
 ```json
 ...,
