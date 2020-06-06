@@ -37,7 +37,7 @@
     "@babel/runtime": "^7.0.0",
     "@svgr/webpack": "^2.3.0",
     "ansi-to-html": "^0.6.6",
-    "antd": "^3.8.4",
+    "antd": "^4.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.4.2",
@@ -71,8 +71,8 @@
     "less-loader": "^4.1.0",
     "moment": "^2.22.2",
     "randomcolor": "^0.5.3",
-    "react": "^16.4.2",
-    "react-dom": "^16.7.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.3.5",
     "react-router-dom": "^4.3.1",
     "recharts": "^1.2.0",
@@ -89,5 +89,8 @@
     "index.js",
     "readme.md",
     "dist/index.html"
-  ]
+  ],
+  "dependencies": {
+    "@ant-design/icons": "^4.0.6"
+  }
 }

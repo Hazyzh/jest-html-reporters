@@ -1,5 +1,11 @@
 import React from 'react'
-import { Table, Icon, Tooltip } from 'antd'
+import { Table, Tooltip } from 'antd'
+import {
+  CheckOutlined,
+  Loading3QuartersOutlined,
+  CloseOutlined,
+  PushpinOutlined
+} from '@ant-design/icons'
 import { getRecordClass, getFormatTime } from '@/untils'
 import ErrorButton from './ErrorButton'
 
@@ -8,25 +14,25 @@ const renderStatus = (status) => {
   switch (status) {
     case 'passed':
       info = <span style={{ color: 'green' }} >
-        <Icon type='check' theme='outlined' />
+        <CheckOutlined />
         <span className='detail_status_text'>{status}</span>
       </span>
       break
     case 'pending':
       info = <span style={{ color: '#faad14' }} >
-        <Icon type='loading-3-quarters' theme='outlined' />
+        <Loading3QuartersOutlined />
         <span className='detail_status_text'>{status}</span>
       </span>
       break
     case 'failed' :
       info = <span style={{ color: '#fafafa' }} >
-        <Icon type='close' theme='outlined' />
+        <CloseOutlined />
         <span className='detail_status_text'>{status}</span>
       </span>
       break
     case 'todo':
       info = <span style={{ color: '#950098' }} >
-        <Icon type='pushpin' theme='outlined' />
+        <PushpinOutlined />
         <span className='detail_status_text'>{status}</span>
       </span>
       break

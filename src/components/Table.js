@@ -1,10 +1,14 @@
 import React from 'react'
-import { Table, Icon, Tag, message } from 'antd'
+import { Table, Tag, message } from 'antd'
 import copy from 'copy-to-clipboard'
 import { getRecordClass, getFormatTime, getExistKeys } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
-
+import {
+  CloseOutlined,
+  CheckOutlined,
+  FileTwoTone,
+} from '@ant-design/icons'
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 import { Consumer } from '../contexts/expand'
 
@@ -23,7 +27,7 @@ const renderStatus = ({
       <Tag color='#cf1322' className='one_tag'>
         Exec Error
         <span />
-        <Icon type='close' theme='outlined' />
+        <CloseOutlined />
       </Tag>
     </span>
   } else if (numFailingTests === 0 && numPendingTests === 0) {
@@ -31,7 +35,7 @@ const renderStatus = ({
       <Tag color='#52c41a' className='one_tag'>
         All Passed
         <span>{numPassingTests}</span>
-        <Icon type='check' theme='outlined' />
+        <CheckOutlined />
       </Tag>
     </span>
   } else {
@@ -63,7 +67,7 @@ const getColumns = (rootDir) => [
       const relativePath = text.replace(new RegExp('^' + rootDir), '')
       return <span>
         <span className='copy_icon' title='click to copy path to clipborad'>
-          <Icon type='file' theme='twoTone'
+          <FileTwoTone
             onClick={() => {
               const execCommand = 'npx jest .' + relativePath
               copy(execCommand)
