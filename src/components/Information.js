@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Card, Icon } from 'antd'
+import { Row, Col, Card } from 'antd'
 import randomColor from 'randomcolor'
 import { getFormatTime, getFormatData, scrollTo, formatDate } from '@/untils'
 import { BarChart, Bar, Brush, ReferenceLine,
@@ -9,6 +9,17 @@ import { BarChart, Bar, Brush, ReferenceLine,
 } from 'recharts'
 import { TimeIcon } from '@/untils/icons'
 import { Consumer } from '../contexts/expand'
+import {
+  FileOutlined,
+  CheckOutlined,
+  CloseOutlined,
+  Loading3QuartersOutlined,
+  PieChartFilled,
+  BoxPlotFilled,
+  ClockCircleFilled,
+  FolderFilled,
+  CompassFilled,
+} from '@ant-design/icons'
 
 const colors = [...new Array(40)].map(d => randomColor())
 
@@ -18,10 +29,10 @@ const CustomTooltip = ({ active, payload, label, rootDir }) => {
     const relativePath = name.replace(new RegExp('^' + rootDir), '')
     const lists = [
       { icon: <TimeIcon />, title: 'Time', content: `${time} S` },
-      { icon: <Icon type='file' theme='outlined' />, title: 'Name', content: relativePath },
-      { icon: <Icon type='check' theme='outlined' style={{ color: 'green' }} />, title: 'Passed', content: numPassingTests },
-      { icon: <Icon type='close' theme='outlined' style={{ color: '#ff4d4f' }} />, title: 'Failed', content: numFailingTests },
-      { icon: <Icon type='loading-3-quarters' theme='outlined' style={{ color: '#faad14' }} />, title: 'Pending', content: numPendingTests },
+      { icon: <FileOutlined />, title: 'Name', content: relativePath },
+      { icon: <CheckOutlined style={{ color: 'green' }} />, title: 'Passed', content: numPassingTests },
+      { icon: <CloseOutlined style={{ color: '#ff4d4f' }} />, title: 'Failed', content: numFailingTests },
+      { icon: <Loading3QuartersOutlined style={{ color: '#faad14' }} />, title: 'Pending', content: numPendingTests },
     ]
 
     return (
@@ -124,7 +135,7 @@ const Information = ({
           </Col>
           <Col span={6}>
             <p className='chart_title'>
-              <Icon type='pie-chart' theme='filled' style={{ marginRight: '5px' }} />
+              <PieChartFilled style={{ marginRight: '5px' }} />
             Ratio
             </p>
             <ResponsiveContainer width={'100%'} height={300}>
@@ -150,12 +161,12 @@ const Information = ({
             <Card>
               <Row span={24}>
                 <Col span={16}>
-                  <LabelInfo title='StartTime' context={formatDate(startTime)} icon={<Icon type='box-plot' theme='filled' />} />
-                  <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<Icon type='clock-circle' theme='filled' />} />
-                  <LabelInfo title='RootDir' context={rootDir} icon={<Icon type='folder' theme='filled' />} />
+                  <LabelInfo title='StartTime' context={formatDate(startTime)} icon={<BoxPlotFilled />} />
+                  <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<ClockCircleFilled />} />
+                  <LabelInfo title='RootDir' context={rootDir} icon={<FolderFilled />} />
                 </Col>
                 <Col span={8}>
-                  <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<Icon type='compass' theme='filled' />} />
+                  <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<CompassFilled />} />
                 </Col>
               </Row>
             </Card>

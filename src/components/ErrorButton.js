@@ -1,6 +1,7 @@
 
 import React from 'react'
-import { Row, Col, Icon, Modal } from 'antd'
+import { Row, Col, Modal } from 'antd'
+import { ExclamationCircleFilled } from '@ant-design/icons'
 import ErrorInfoItem from './ErrorInfoItem'
 
 function info(data) {
@@ -23,7 +24,7 @@ const ErrorButton = ({ failureMessage }) => {
   return <div
     className='error_button'
     onClick={() => info(failureMessage)}>
-    <Icon type='exclamation-circle' theme='filled' /> Info
+    <ExclamationCircleFilled /> Info
   </div>
 }
 

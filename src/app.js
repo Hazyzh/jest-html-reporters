@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { Layout, Icon, Avatar } from 'antd'
+import { Layout, Avatar } from 'antd'
 import HomePage from './pages/Home'
 import FooterInfo from './components/FooterInfo'
 import './styles/app.less'
@@ -9,6 +9,7 @@ import './styles/index.less'
 import './styles/dashBoard.less'
 import './styles/information.less'
 import './styles/footer.less'
+import { GithubFilled } from '@ant-design/icons'
 
 // context
 import { Provider } from './contexts/expand'
@@ -44,7 +45,7 @@ class App extends Component {
 
   render() {
     const { hideIcon, pageTitle = defaultTitle } = data._reporterOptions
-    const IconComp = hideIcon ? null : <a target='_blank' className='icon' href='https://github.com/Hazyzh/jest-html-reporters'><Icon type='github' theme='filled' /></a>
+    const IconComp = hideIcon ? null : <a target='_blank' className='icon' href='https://github.com/Hazyzh/jest-html-reporters'><GithubFilled /></a>
     return (
       <Provider value={this.state}>
         <Layout className='layout'>
