@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Tag, message } from 'antd'
 import copy from 'copy-to-clipboard'
-import { getRecordClass, getFormatTime, getExistKeys } from '@/untils'
+import { renderRootRowClass, getFormatTime, getExistKeys } from '@/untils'
 import DetailTable from './DetailTable'
 import ErrorButton from './ErrorButton'
 import {
@@ -12,7 +12,7 @@ import {
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 import { Consumer } from '../contexts/expand'
 
-const renderStatus = ({
+export const renderStatus = ({
   numPassingTests,
   numFailingTests,
   numPendingTests,
@@ -129,14 +129,7 @@ const TableItem = ({ testResults, config: { rootDir }, globalExpandState }) =>
           size='small'
           pagination={false}
           rowKey='testFilePath'
-          rowClassName={({ numFailingTests, numPendingTests, numTodoTests, testExecError }, index) => {
-            let status = ''
-            if (testExecError) status = 'failed'
-            else if (numFailingTests) status = 'failed'
-            else if (numPendingTests) status = 'pending'
-            else if (numTodoTests) status = 'todo'
-            return getRecordClass(status, index)
-          }}
+          rowClassName={renderRootRowClass}
           expandedRowRender={
             ({ testResults }) => <DetailTable data={testResults} />
           }
