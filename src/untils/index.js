@@ -125,7 +125,7 @@ export const formatCollapsableData = (data, groupLevel = 1) => {
       rootArry.push(item)
     } else {
       const mapKey = ancestorTitles.slice(0, groupLevel).join(mySpecialText)
-      ancestorMap.set(mapKey, [...ancestorMap.get(mapKey) || [], item])
+      ancestorMap.set(mapKey, [...ancestorMap.get(mapKey) || [], { ...item, ancestorTitles: item.ancestorTitles.slice(groupLevel) }])
     }
   })
   for (const ancestorKey of ancestorMap.keys()) {
