@@ -30,13 +30,13 @@ class HomePage extends Component {
     return (
       <div>
         <BackTop />
-        <h3 className='area_subject'><AppstoreOutlined />Dashboard</h3>
+        <h3 className='area_subject'><AppstoreOutlined /> Dashboard</h3>
         <DashBoard {...this.state} />
         {CustomInfoComp}
-        <h3 className='area_subject'><PieChartOutlined />Information</h3>
+        <h3 className='area_subject'><PieChartOutlined /> Information</h3>
         <Information {...this.state} />
         <h3 className='area_subject expand_box'>
-          <span><ProfileOutlined />Details</span>
+          <span><ProfileOutlined /> Details</span>
           <span className='expand_title'>
             <span className='text'>Expand All</span>
             <Switch

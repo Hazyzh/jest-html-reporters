@@ -24,7 +24,8 @@ const ErrorButton = ({ failureMessage }) => {
   return <div
     className='error_button'
     onClick={() => info(failureMessage)}>
-    <ExclamationCircleFilled /> Info
+    <ExclamationCircleFilled />
+    Info
   </div>
 }
 

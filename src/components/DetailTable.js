@@ -1,15 +1,16 @@
-import React from 'react'
-import { Table, Tooltip } from 'antd'
+import React, { useState } from 'react'
+import { Table, Tooltip, Checkbox, InputNumber } from 'antd'
 import {
   CheckOutlined,
   Loading3QuartersOutlined,
   CloseOutlined,
   PushpinOutlined
 } from '@ant-design/icons'
-import { getRecordClass, getFormatTime } from '@/untils'
+import { getRecordClass, renderRootRowClass, getFormatTime, formatCollapsableData } from '@/untils'
 import ErrorButton from './ErrorButton'
+import { renderStatus as parentRowRenderStatus } from './Table'
 
-const renderStatus = (status) => {
+const renderStatus = ({ status }) => {
   let info
   switch (status) {
     case 'passed':
@@ -41,8 +42,9 @@ const renderStatus = (status) => {
 }
 
 const renderTime = ({
-  duration
-}) => getFormatTime(0, duration)
+  duration,
+  subGroups
+}) => !subGroups && getFormatTime(0, duration)
 
 const MAX_TITLE_LENGTH = 85
 const renderTitleContent = (title = '') => {
@@ -53,11 +55,13 @@ const renderTitleContent = (title = '') => {
   return title
 }
 
-const renderTitle = ({ ancestorTitles = [], title, fullName }) => {
+const renderTitle = ({ ancestorTitles = [], subGroups, subTitle, title, fullName }) => {
   const sep = ' > '
-  const nestedTitle = [...ancestorTitles, title].join(sep)
+  const nestedTitle = subGroups ? subTitle : [...ancestorTitles, title].join(sep)
+  const tooltip = subGroups ? subTitle : fullName
+
   return (
-    <Tooltip overlayStyle={{ maxWidth: '800px' }} title={fullName}>
+    <Tooltip overlayStyle={{ maxWidth: '800px' }} title={tooltip}>
       <span className='inner_path_text'>{renderTitleContent(nestedTitle)}</span>
     </Tooltip>
   )
@@ -66,12 +70,16 @@ const renderTitle = ({ ancestorTitles = [], title, fullName }) => {
 const columns = [
   { title: 'title', key: 'Name', render: renderTitle },
   { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
-  { title: 'status', dataIndex: 'status', render: renderStatus, align: 'center', width: '150px' },
+  { title: 'status',
+    align: 'center',
+    width: '150px',
+    render: (item) => item.subGroups ? parentRowRenderStatus(item) : renderStatus(item)
+  },
   {
     width: '100px',
     title: 'action',
     key: 'operation',
-    render: ({ failureMessages }) => <ErrorButton failureMessage={failureMessages[0]} />
+    render: ({ failureMessages, subGroups }) => !subGroups && <ErrorButton failureMessage={failureMessages[0]} />
   }
 ]
 
@@ -86,4 +94,40 @@ const DetailTable = ({ data }) =>
     columns={columns}
     pagination={false} />
 
-export default DetailTable
+const RootTable = ({ data }) => {
+  const [isMergence, setIsMergence] = useState(false)
+  const [mergeLevel, setMergeLevel] = useState(1)
+
+  return (
+    <div>
+      {data.length > 8 && (
+        <div className='merge-box'>
+          <Checkbox checked={isMergence} onChange={e => setIsMergence(e.target.checked)}>
+            Merge Data
+          </Checkbox>
+          {isMergence && (
+            <span>| Merge Level: <InputNumber size='small' min={1} max={10} value={mergeLevel} onChange={setMergeLevel} /></span>
+          )}
+        </div>
+      )}
+
+      <Table
+        bordered
+        size='small'
+        showHeader={false}
+        rowKey={(_, index) => `${index}`}
+        expandable={{
+          expandedRowRender: ({ tests }) => <DetailTable data={tests} />,
+          rowExpandable: record => record.subGroups,
+        }}
+        rowClassName={({ status, subGroups, ...rest }, index) => subGroups
+          ? renderRootRowClass({ ...rest }) : getRecordClass(status, index)
+        }
+        dataSource={isMergence ? formatCollapsableData(data, mergeLevel) : data}
+        columns={columns}
+        pagination={false} />
+    </div>
+  )
+}
+
+export default RootTable
