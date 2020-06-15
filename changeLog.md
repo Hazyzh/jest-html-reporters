@@ -56,3 +56,8 @@
 ### 1.2.1
 
 - add the ability to show custom Infos in report.
+
+### 2.0.0
+
+- add collapsable Test Groups feature.
+- add attach screenshot to report feature.
