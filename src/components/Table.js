@@ -121,7 +121,7 @@ const getColumns = (rootDir) => [
   },
 ]
 
-const TableItem = ({ testResults, config: { rootDir }, globalExpandState }) =>
+const TableItem = ({ testResults, config: { rootDir }, globalExpandState, attachInfos }) =>
   <Consumer>
     {
       ({ expand, toggleExpand }) =>
@@ -131,7 +131,7 @@ const TableItem = ({ testResults, config: { rootDir }, globalExpandState }) =>
           rowKey='testFilePath'
           rowClassName={renderRootRowClass}
           expandedRowRender={
-            ({ testResults }) => <DetailTable data={testResults} />
+            ({ testResults, testFilePath }) => <DetailTable data={testResults.map(item => ({ ...item, fileAttachInfos: attachInfos[testFilePath] }))} />
           }
           expandedRowKeys={getExistKeys(expand, globalExpandState)}
           onExpand={(state, { testFilePath }) => toggleExpand({ key: testFilePath, state })}

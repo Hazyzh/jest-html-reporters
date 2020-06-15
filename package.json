@@ -83,14 +83,16 @@
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.7"
+    "webpack-dev-server": "^3.1.7",
+    "@ant-design/icons": "^4.0.6"
   },
   "files": [
     "index.js",
+    "helper.js",
     "readme.md",
     "dist/index.html"
   ],
   "dependencies": {
-    "@ant-design/icons": "^4.0.6"
+    "fs-extra": "^9.0.1"
   }
 }

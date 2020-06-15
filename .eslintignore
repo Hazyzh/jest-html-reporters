@@ -2,3 +2,4 @@ build/*.js
 config/*.js
 *.test.js
 test/*.js
+*.spec.js

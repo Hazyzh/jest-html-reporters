@@ -18,7 +18,10 @@ module.exports = {
   },
   reporters: [
     'default',
-    '<rootDir>/index.js'
+    ['<rootDir>/index.js', {
+      'publicPath': './html-report',
+      'filename': 'report.html',
+    }]
     // '<rootDir>/index.dev.js',
   ],
   collectCoverageFrom: [
