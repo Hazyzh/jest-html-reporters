@@ -79,7 +79,7 @@ const columns = [
     width: '100px',
     title: 'action',
     key: 'operation',
-    render: ({ failureMessages, subGroups }) => !subGroups && <ErrorButton failureMessage={failureMessages[0]} />
+    render: ({ failureMessages, fullName, fileAttachInfos, subGroups }) => !subGroups && <ErrorButton caseAttachInfos={fileAttachInfos[fullName]} failureMessage={failureMessages[0]} />
   }
 ]
 

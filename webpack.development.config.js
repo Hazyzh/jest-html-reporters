@@ -24,7 +24,7 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: resolve('dist'),
+    contentBase: resolve('./'),
     compress: true,
     port: 8080,
     open: true,
