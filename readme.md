@@ -91,7 +91,7 @@ const addAttach = async (attach, description) => { ... }
 There are two params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
 Here is an Example with [puppeteer](https://github.com/puppeteer/puppeteer).
 
-```
+```javascript
 // Example attach with **buffer**
 const { addAttach } = require('jest-html-reporters/helper')
 const puppeteer = require('puppeteer')
@@ -110,7 +110,7 @@ describe('just examples', () => {
 })
 ```
 
-```
+```javascript
 // Example attach with **string**
 const { addAttach } = require('jest-html-reporters/helper')
 const puppeteer = require('puppeteer')
