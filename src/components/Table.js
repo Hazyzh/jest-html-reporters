@@ -131,7 +131,7 @@ const TableItem = ({ testResults, config: { rootDir }, globalExpandState, attach
           rowKey='testFilePath'
           rowClassName={renderRootRowClass}
           expandedRowRender={
-            ({ testResults, testFilePath }) => <DetailTable data={testResults.map(item => ({ ...item, fileAttachInfos: attachInfos[testFilePath] }))} />
+            ({ testResults, testFilePath }) => <DetailTable data={testResults.map(item => ({ ...item, fileAttachInfos: attachInfos[testFilePath] || {} }))} />
           }
           expandedRowKeys={getExistKeys(expand, globalExpandState)}
           onExpand={(state, { testFilePath }) => toggleExpand({ key: testFilePath, state })}
