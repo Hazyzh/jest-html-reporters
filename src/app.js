@@ -16,7 +16,8 @@ import { Provider } from './contexts/expand'
 
 let data
 if (process.env.NODE_ENV === 'production') {
-  data = JSON.parse(window.resData)
+  const resData = document.getElementById('resData').innerText
+  data = JSON.parse(JSON.parse(resData))
 } else {
   data = require('./devMock.json')
 }
