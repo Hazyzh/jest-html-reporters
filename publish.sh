@@ -1,6 +1,6 @@
 # Get variable
 function setParams() {
-  read -p "Are you sure to publish to npm(1->yes, 2->no)" answer
+  read -p "Are you sure to publish to npm(1->yes, 2->no),tip: need bump the package.json version" answer
     case $answer in
       "1") env="y";;
       "2") env="n";;
