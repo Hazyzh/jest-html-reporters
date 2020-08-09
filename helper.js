@@ -68,8 +68,8 @@ const readAttachInfos = async (publicPath) => {
       if (!result[testPath][testName]) result[testPath][testName] = []
 
       result[testPath][testName].push({
-        filePath: fileName ? path.resolve(outPutDir, fileName) : filePath,
-        description,
+        filePath: fileName ? `${distDirName}/${fileName}` : filePath,
+        description: description || '',
       })
     })
   } catch (err) {
