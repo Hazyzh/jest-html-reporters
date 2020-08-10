@@ -3,6 +3,7 @@ import Information, { SimpleBarChart } from '@/components/Information'
 import { PieChart, BarChart } from 'recharts'
 import { mount } from 'enzyme'
 import '../__mocks__/matchMedia.mock';
+import moment from 'moment';
 
 const mockProps = {
   config: {
@@ -30,9 +31,8 @@ describe('test Information component', () => {
   })
 
   test('main information area shoule container stuff informations', () => {
-    // start time
-    expect(wrapper.find('div.main_information')).toIncludeText('2018-09-29')
-    expect(wrapper.find('div.main_information')).toIncludeText(':58:51')
+    // start time (will differ due to timezone)
+    expect(wrapper.find('div.main_information')).toIncludeText(moment(parseInt(mockProps.startTime, 10)).format('YYYY-MM-DD HH:mm:ss'))
     // time
     expect(wrapper.find('div.main_information')).toIncludeText('00:02.930')
     // root dir
