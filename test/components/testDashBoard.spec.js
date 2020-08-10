@@ -1,6 +1,7 @@
 import React from 'react'
 import DashBoard, { MyCardItem } from '@/components/DashBoard'
 import { mount } from 'enzyme'
+import '../__mocks__/matchMedia.mock';
 
 describe('test Dashboard item number', () => {
   test('if there have all type test there should has 7 MyCardItem items', () => {

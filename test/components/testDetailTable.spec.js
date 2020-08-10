@@ -4,6 +4,7 @@ import DetailTable from '@/components/DetailTable'
 import ErrorButton from '@/components/ErrorButton'
 
 import { mount } from 'enzyme'
+import '../__mocks__/matchMedia.mock';
 
 describe('test DetailTable ', () => {
   test('should return antd table component', () => {
@@ -12,9 +13,16 @@ describe('test DetailTable ', () => {
   })
 
   test('if there had failed item, should had a error button item', () => {
+    const title = 'should have an error button item'
     const mockProps = {
       data: [
-        { failureMessages: 'failed' }
+        { 
+          failureMessages: 'failed',
+          fileAttachInfos: {
+            [title]: 'image01.jpg'
+          },
+          fullName: title
+        }
       ]
     }
     const wrapper = mount(<DetailTable {...mockProps} />)
@@ -28,6 +36,9 @@ test('Top level test in a file', () => {
     data: [
       {
         ancestorTitles: [],
+        fileAttachInfos: {
+          [title]: 'image01.jpg'
+        },
         fullName: title,
         title,
         status: 'passed',
@@ -41,7 +52,7 @@ test('Top level test in a file', () => {
 })
 
 describe('Nested describes', () => {
-  test('Tope level test in a describe should be prepended by describe name', () => {
+  test('Top level test in a describe should be prepended by describe name', () => {
     const describeTitle = 'Nested describes'
     const title = 'top level describe test'
     const mockProps = {
@@ -49,7 +60,10 @@ describe('Nested describes', () => {
         {
           ancestorTitles: [describeTitle],
           fullName: `${describeTitle} > ${title}`,
-          title,
+          failureMessages: 'failed',
+          fileAttachInfos: {
+            [title]: 'image01.jpg'
+          },
           status: 'passed',
           duration: 2,
           failureMessages: [],
@@ -71,7 +85,10 @@ describe('Nested describes', () => {
         {
           ancestorTitles: [describeTitle1, describeTitle2],
           fullName: [describeTitle1, describeTitle2, title].join(' '),
-          title,
+          failureMessages: 'failed',
+          fileAttachInfos: {
+            [title]: 'image01.jpg'
+          },
           status: 'passed',
           duration: 2,
           failureMessages: [],
