@@ -3,6 +3,7 @@ node_modules/
 src/
 static/
 test/
+html-report/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

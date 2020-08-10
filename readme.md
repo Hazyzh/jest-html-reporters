@@ -133,3 +133,47 @@ describe('just examples', () => {
 
 it will show like this
 ![example](./attach-example.jpg)
+
+
+- Attach a message to the report
+
+This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporters/issues/63) & [#64](https://github.com/Hazyzh/jest-html-reporters/issues/64). It allows you to add a message or log something to the html report with `addMsg()`
+
+```
+/**
+ *
+ * @param {string} message
+ */
+const addMsg = async (message) => { ... }
+```
+
+Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified
+
+Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
+
+```javascript
+const { addAttach, addMsg } = require('jest-html-reporters/helper')
+const Nightmare = require('nightmare')
+ 
+describe('Yet another example', () => {
+  test('Both addAttach & addMsg with failure', async () => {
+    const nightmare = Nightmare({ show: true })
+    await addMsg(JSON.stringify({won: 1, too: 2}, null, 2))
+    await nightmare
+      .goto('https://duckduckgo.com')
+    const s1 = await nightmare.screenshot();  
+    await addAttach(s1, 'test duckduckgo 1')
+    await nightmare.end();
+    await addMsg(JSON.stringify(process, null, 2))
+    expect(2).toEqual(1);
+  }, 20000);  
+  test('addMsg with success', async () => {
+    await addMsg(JSON.stringify({free: 3, for: 4}, null, 2))
+    expect(2).toEqual(2);
+  });    
+});
+```
+![example](./addMsg-example1.jpg)
+
+Message still displays without screenshots and with a successful test
+![example](./addMsg-example2.jpg)
