@@ -3,6 +3,7 @@ import { Table as AntTabel } from 'antd'
 import Table from '@/components/Table'
 
 import { mount } from 'enzyme'
+import '../__mocks__/matchMedia.mock';
 
 const mockProps = {
   testResults: [],

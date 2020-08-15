@@ -8,6 +8,7 @@ import HomePage from '@/pages/Home'
 import TableItem from '@/components/Table'
 import DashBoard from '@/components/DashBoard'
 import Information from '@/components/Information'
+import '../../__mocks__/matchMedia.mock';
 
 const wrapper = mount(<App />, {
   disableLifecycleMethods: false

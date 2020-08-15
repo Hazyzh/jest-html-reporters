@@ -50,7 +50,7 @@ const MAX_TITLE_LENGTH = 85
 const renderTitleContent = (title = '') => {
   const len = title.length
   if (len > MAX_TITLE_LENGTH) {
-    return title.substr(0, 85) + '...'
+    return title.substr(0, MAX_TITLE_LENGTH) + '...'
   }
   return title
 }
@@ -94,7 +94,7 @@ const DetailTable = ({ data }) =>
     columns={columns}
     pagination={false} />
 
-const RootTable = ({ data }) => {
+const RootTable = ({ data = [] }) => {
   const [isMergence, setIsMergence] = useState(false)
   const [mergeLevel, setMergeLevel] = useState(1)
 
