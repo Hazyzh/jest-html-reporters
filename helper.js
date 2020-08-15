@@ -68,7 +68,6 @@ const readAttachInfos = async (publicPath) => {
     const dataList = await Promise.all(attachData.map(data => fs.readJSON(`${dataDirPath}/${data}`, { throws: false })))
     const outPutDir = path.resolve(publicPath, distDirName)
     const attachFiles = await fs.readdir(attachDirPath)
-    console.log(attachFiles, outPutDir)
     if (attachFiles.length) await fs.copy(attachDirPath, outPutDir)
 
     dataList.forEach(attachObject => {

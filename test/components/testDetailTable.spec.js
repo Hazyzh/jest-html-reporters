@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'antd'
-import DetailTable from '@/components/DetailTable'
+import { DetailTable } from '@/components/DetailTable'
 import ErrorButton from '@/components/ErrorButton'
 
 import { mount } from 'enzyme'
@@ -64,6 +64,7 @@ describe('Nested describes', () => {
           fileAttachInfos: {
             [title]: 'image01.jpg'
           },
+          title,
           status: 'passed',
           duration: 2,
           failureMessages: [],
@@ -89,6 +90,7 @@ describe('Nested describes', () => {
           fileAttachInfos: {
             [title]: 'image01.jpg'
           },
+          title,
           status: 'passed',
           duration: 2,
           failureMessages: [],
