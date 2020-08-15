@@ -35,6 +35,17 @@ const addAttach = async (attach, description) => {
   }
 }
 
+/**
+ *
+ * @param {string} message
+ */
+const addMsg = async (message) => {
+  const { testPath, testName } = getJestGlobalData()
+  const fileName = generateRandomString()
+  const attachObject = { testPath, testName, description: message }
+  await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject)
+}
+
 const getJestGlobalData = () => {
   let testPath = ''
   let currentTestName = ''
@@ -82,6 +93,7 @@ const readAttachInfos = async (publicPath) => {
 
 module.exports = {
   addAttach,
+  addMsg,
   readAttachInfos,
   dataDirPath,
   attachDirPath,
