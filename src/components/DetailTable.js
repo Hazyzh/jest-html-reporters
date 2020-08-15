@@ -83,7 +83,7 @@ const columns = [
   }
 ]
 
-const DetailTable = ({ data }) =>
+export const DetailTable = ({ data }) =>
   <Table
     bordered
     size='small'
