@@ -90,7 +90,61 @@ const readAttachInfos = async (publicPath) => {
   return result
 }
 
+// For options
+const PUBLIC_PATH = 'publicPath'
+const FILE_NAME = 'filename'
+const EXPAND = 'expand'
+const PAGE_TITLE = 'pageTitle'
+const LOGO_IMG_PATH = 'logoImgPath'
+const HIDE_ICON = 'hideIcon'
+const CUSTOM_INFOS = 'customInfos'
+const TEST_COMMAND = 'testCommand'
+
+
+const constants = {
+  ENVIRONMENT_CONFIG_MAP: {
+    JEST_HTML_REPORTERS_PUBLIC_PATH: PUBLIC_PATH,
+    JEST_HTML_REPORTERS_FILE_NAME: FILE_NAME,
+    JEST_HTML_REPORTERS_EXPAND: EXPAND,
+    JEST_HTML_REPORTERS_PAGE_TITLE: PAGE_TITLE,
+    JEST_HTML_REPORTERS_LOGO_IMG_PATH: LOGO_IMG_PATH,
+    JEST_HTML_REPORTERS_HIDE_ICON: HIDE_ICON,
+    JEST_HTML_REPORTERS_CUSTOM_INFOS: CUSTOM_INFOS,
+    JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
+  },
+  DEFAULT_OPTIONS: {
+    [PUBLIC_PATH]: process.cwd(),
+    [FILE_NAME]: 'jest_html_reporters.html',
+    [EXPAND]: false,
+    [PAGE_TITLE]: 'Report',
+    [LOGO_IMG_PATH]: undefined,
+    [HIDE_ICON]: false,
+    [CUSTOM_INFOS]: undefined,
+    [TEST_COMMAND]: 'npx jest',
+  },
+};
+
+function getEnvOptions() {
+  const options = {};
+  for (const name in constants.ENVIRONMENT_CONFIG_MAP) {
+    if (process.env[name]) {
+      options[constants.ENVIRONMENT_CONFIG_MAP[name]] = process.env[name];
+    }
+  }
+  return options;
+}
+
+const getOptions = (reporterOptions = {}) =>
+  Object.assign(
+    {},
+    constants.DEFAULT_OPTIONS,
+    reporterOptions,
+    getEnvOptions()
+  )
+
+
 module.exports = {
+  getOptions,
   addAttach,
   addMsg,
   readAttachInfos,

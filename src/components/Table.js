@@ -58,7 +58,7 @@ const renderTime = ({
   perfStats: { start, end }
 }) => getFormatTime(start, end)
 
-const getColumns = (rootDir) => [
+const getColumns = (rootDir, execCommand) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
@@ -69,8 +69,8 @@ const getColumns = (rootDir) => [
         <span className='copy_icon' title='click to copy path to clipborad'>
           <FileTwoTone
             onClick={() => {
-              const execCommand = 'npx jest .' + relativePath
-              copy(execCommand)
+              const command = `${execCommand} .${relativePath}`
+              copy(command)
               message.success('Copy succeed! The command has been copied to the clipboard.')
             }} />
         </span>
@@ -121,7 +121,7 @@ const getColumns = (rootDir) => [
   },
 ]
 
-const TableItem = ({ testResults, config: { rootDir }, globalExpandState, attachInfos }) =>
+const TableItem = ({ _reporterOptions, testResults, config: { rootDir }, globalExpandState, attachInfos }) =>
   <Consumer>
     {
       ({ expand, toggleExpand }) =>
@@ -135,7 +135,7 @@ const TableItem = ({ testResults, config: { rootDir }, globalExpandState, attach
           }
           expandedRowKeys={getExistKeys(expand, globalExpandState)}
           onExpand={(state, { testFilePath }) => toggleExpand({ key: testFilePath, state })}
-          columns={getColumns(rootDir)}
+          columns={getColumns(rootDir, _reporterOptions.testCommand)}
           dataSource={testResults} />
     }
   </Consumer>

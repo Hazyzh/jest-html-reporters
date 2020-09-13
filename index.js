@@ -2,7 +2,7 @@ const fs = require('fs')
 const fse = require('fs-extra')
 
 const path = require('path')
-const { dataDirPath, attachDirPath, distDirName, readAttachInfos } = require('./helper')
+const { dataDirPath, attachDirPath, distDirName, readAttachInfos, getOptions } = require('./helper')
 const localTemplatePath = path.resolve(__dirname, './dist/index.html')
 
 function mkdirs(dirpath) {
@@ -22,17 +22,16 @@ function imgToBase64(imgPath) {
 }
 
 // for #32
-const getCustomInfosFromEnv = () => {
-  const { JEST_HTML_REPORTERS_CUSTOM_INFOS } = process.env
-  if (JEST_HTML_REPORTERS_CUSTOM_INFOS) {
-    try {
-      const infos = JSON.parse(JEST_HTML_REPORTERS_CUSTOM_INFOS)
-      if (infos) {
-        return Object.entries(infos).map(([key, value]) => ({ title: key, value }))
-      }
-    } catch (err) {
-      console.warn('the value of Custom info env must be a json string')
+const formatCustomInfo = (customInfos) => {
+  if (typeof customInfos !== 'string') return customInfos
+
+  try {
+    const infos = JSON.parse(JEST_HTML_REPORTERS_CUSTOM_INFOS)
+    if (infos) {
+      return Object.entries(infos).map(([key, value]) => ({ title: key, value }))
     }
+  } catch (err) {
+    console.warn('the value of Custom info env must be a json string point to an Object')
   }
   return undefined
 }
@@ -41,21 +40,25 @@ const getCustomInfosFromEnv = () => {
 class MyCustomReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig
-    this._options = options
+    this._options = getOptions(options)
     this.init()
   }
 
   async onRunComplete(contexts, results) {
     const {
-      publicPath = process.cwd(),
-      filename = 'jest_html_reporters.html',
+      publicPath,
+      filename,
       logoImgPath,
-      customInfos = getCustomInfosFromEnv(),
+      customInfos,
     } = this._options
     const logoImg = logoImgPath ? imgToBase64(logoImgPath) : undefined
     results.config = this._globalConfig
     results.endTime = Date.now()
-    results._reporterOptions = { ...this._options, logoImg, customInfos }
+    results._reporterOptions = { 
+      ...this._options,
+      logoImg,
+      customInfos: formatCustomInfo(customInfos)
+    }
     const attachInfos = await readAttachInfos(publicPath)
     results.attachInfos = attachInfos
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath)

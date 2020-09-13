@@ -59,5 +59,10 @@
 
 ### 2.0.0
 
-- add collapsable Test Groups feature.
+- add collapsible Test Groups feature.
 - add attach screenshot to report feature.
+
+### 2.0.4
+
+- add custom command feature.
+- add env config for all option.

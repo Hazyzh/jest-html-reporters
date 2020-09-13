@@ -40,15 +40,18 @@ As you run Jest from within the terminal, a file called `jest_html_reporters.htm
 
 The options below are specific to the reporter.
 
-| Option Name   | Type    | Default                  | Description                                                                                                                                                                                                                                                                                          |
-| :------------ | :------ | :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `publicPath`  | string  | ''                       | specify the base path                                                                                                                                                                                                                                                                                |
-| `filename`    | string  | jest_html_reporters.html | Filename of saved report <br> _Applies to the generated html_                                                                                                                                                                                                                                        |
-| `expand`      | Boolean | false                    | specify whether default expand all data                                                                                                                                                                                                                                                              |
-| `pageTitle`   | string  | Report                   | specify header and page title                                                                                                                                                                                                                                                                        |
-| `logoImgPath` | string  | undefined                | specify path of the image that will be displayed to the right of page title                                                                                                                                                                                                                          |
-| `hideIcon`    | Boolean | false                    | hide default icon                                                                                                                                                                                                                                                                                    |
-| `customInfos` | array   | undefined                | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) |
+| Option Name   | env variables name                | Type    | Default                  | Description                                                                                                                                                                                                                                                                                          |
+| :------------ | :-------------------------------- | :------ | :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `publicPath`  | JEST_HTML_REPORTERS_PUBLIC_PATH   | string  | ''                       | specify the base path                                                                                                                                                                                                                                                                                |
+| `filename`    | JEST_HTML_REPORTERS_FILE_NAME     | string  | jest_html_reporters.html | Filename of saved report <br> _Applies to the generated html_                                                                                                                                                                                                                                        |
+| `expand`      | JEST_HTML_REPORTERS_EXPAND        | Boolean | false                    | specify whether default expand all data                                                                                                                                                                                                                                                              |
+| `pageTitle`   | JEST_HTML_REPORTERS_PAGE_TITLE    | string  | Report                   | specify header and page title                                                                                                                                                                                                                                                                        |
+| `logoImgPath` | JEST_HTML_REPORTERS_LOGO_IMG_PATH | string  | undefined                | specify path of the image that will be displayed to the right of page title                                                                                                                                                                                                                          |
+| `hideIcon`    | JEST_HTML_REPORTERS_HIDE_ICON     | Boolean | false                    | hide default icon                                                                                                                                                                                                                                                                                    |
+| `customInfos` | JEST_HTML_REPORTERS_CUSTOM_INFOS  | array   | undefined                | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) |
+| `testCommand` | JEST_HTML_REPORTERS_TEST_COMMAND  | string  | "npx jest"               | copy command content to quickly run test file                                                                                                                                                                                                                                                        |
+
+---
 
 #### example add config options
 
@@ -93,47 +96,46 @@ Here is an Example with [puppeteer](https://github.com/puppeteer/puppeteer).
 
 ```javascript
 // Example attach with **buffer**
-const { addAttach } = require('jest-html-reporters/helper')
-const puppeteer = require('puppeteer')
+const { addAttach } = require("jest-html-reporters/helper");
+const puppeteer = require("puppeteer");
 
-describe('just examples', () => {
-  test('test buffer', async () => {
-    const browser = await puppeteer.launch()
-    const page = await browser.newPage()
-    await page.goto('https://www.google.com')
-    const data = await page.screenshot()
-    await browser.close()
-    await addAttach(data, 'test google 1')
+describe("just examples", () => {
+  test("test buffer", async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto("https://www.google.com");
+    const data = await page.screenshot();
+    await browser.close();
+    await addAttach(data, "test google 1");
 
-    expect(1).toBe(1)
-  })
-})
+    expect(1).toBe(1);
+  });
+});
 ```
 
 ```javascript
 // Example attach with **string**
-const { addAttach } = require('jest-html-reporters/helper')
-const puppeteer = require('puppeteer')
-const path = require('path')
+const { addAttach } = require("jest-html-reporters/helper");
+const puppeteer = require("puppeteer");
+const path = require("path");
 
-describe('just examples', () => {
-  test('case string', async () => {
-    const browser = await puppeteer.launch()
-    const page = await browser.newPage()
-    const filePath = path.resolve(__dirname, './test.jpg')
-    await page.goto('https://www.google.com')
-    const data = await page.screenshot({path: filePath})
-    await browser.close()
-    await addAttach(filePath, 'test google 2')
+describe("just examples", () => {
+  test("case string", async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    const filePath = path.resolve(__dirname, "./test.jpg");
+    await page.goto("https://www.google.com");
+    const data = await page.screenshot({ path: filePath });
+    await browser.close();
+    await addAttach(filePath, "test google 2");
 
-    expect(1).toBe(2)
-  })
-})
+    expect(1).toBe(2);
+  });
+});
 ```
 
 it will show like this
 ![example](./attach-example.jpg)
-
 
 - Attach a message to the report
 
@@ -152,27 +154,27 @@ Only one parameter is required. If you stringify an object like this `JSON.strin
 Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
 
 ```javascript
-const { addAttach, addMsg } = require('jest-html-reporters/helper')
-const Nightmare = require('nightmare')
- 
-describe('Yet another example', () => {
-  test('Both addAttach & addMsg with failure', async () => {
-    const nightmare = Nightmare({ show: true })
-    await addMsg(JSON.stringify({won: 1, too: 2}, null, 2))
-    await nightmare
-      .goto('https://duckduckgo.com')
-    const s1 = await nightmare.screenshot();  
-    await addAttach(s1, 'test duckduckgo 1')
+const { addAttach, addMsg } = require("jest-html-reporters/helper");
+const Nightmare = require("nightmare");
+
+describe("Yet another example", () => {
+  test("Both addAttach & addMsg with failure", async () => {
+    const nightmare = Nightmare({ show: true });
+    await addMsg(JSON.stringify({ won: 1, too: 2 }, null, 2));
+    await nightmare.goto("https://duckduckgo.com");
+    const s1 = await nightmare.screenshot();
+    await addAttach(s1, "test duckduckgo 1");
     await nightmare.end();
-    await addMsg(JSON.stringify(process, null, 2))
+    await addMsg(JSON.stringify(process, null, 2));
     expect(2).toEqual(1);
-  }, 20000);  
-  test('addMsg with success', async () => {
-    await addMsg(JSON.stringify({free: 3, for: 4}, null, 2))
+  }, 20000);
+  test("addMsg with success", async () => {
+    await addMsg(JSON.stringify({ free: 3, for: 4 }, null, 2));
     expect(2).toEqual(2);
-  });    
+  });
 });
 ```
+
 ![example](./addMsg-example1.jpg)
 
 Message still displays without screenshots and with a successful test
