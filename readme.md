@@ -6,7 +6,7 @@
 
 Jest test results processor for generating a summary in HTML
 
-![example picture](./show.gif)
+![example picture](./readmeStatic/show.gif)
 
 ### Installation
 
@@ -135,7 +135,7 @@ describe("just examples", () => {
 ```
 
 it will show like this
-![example](./attach-example.jpg)
+![example](./readmeStatic/attach-example.jpg)
 
 - Attach a message to the report
 
@@ -175,7 +175,7 @@ describe("Yet another example", () => {
 });
 ```
 
-![example](./addMsg-example1.jpg)
+![example](./readmeStatic/addMsg-example1.jpg)
 
 Message still displays without screenshots and with a successful test
-![example](./addMsg-example2.jpg)
+![example](./readmeStatic/addMsg-example2.jpg)
