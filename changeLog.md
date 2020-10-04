@@ -66,3 +66,7 @@
 
 - add custom command feature.
 - add env config for all option.
+
+### 2.1.0
+
+- add multiple result unite report support

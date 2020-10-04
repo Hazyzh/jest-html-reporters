@@ -19,8 +19,9 @@ module.exports = {
   reporters: [
     'default',
     ['<rootDir>/index.js', {
-      'publicPath': './html-report',
+      'publicPath': './html-reports',
       'filename': 'report.html',
+      'multipleReportsUnitePath': './html-reports'
     }]
     // '<rootDir>/index.dev.js',
   ],
