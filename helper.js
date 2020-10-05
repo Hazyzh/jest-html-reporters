@@ -1,9 +1,10 @@
 const fs = require("fs-extra");
-const dataDirPath = `./temp/data`;
-const attachDirPath = `./temp/images`;
-const distDirName = `./jest-html-reporters-attach`;
-
 const path = require("path");
+
+const dataDirPath = path.resolve(__dirname, "./temp/data");
+const attachDirPath = path.resolve(__dirname, "./temp/images");
+
+const distDirName = `./jest-html-reporters-attach`;
 
 /**
  *

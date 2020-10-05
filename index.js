@@ -1,3 +1,4 @@
+const { promises } = require("dns");
 const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
@@ -13,6 +14,7 @@ const multipleLocalTemplatePath = path.resolve(
   __dirname,
   "./dist/multipleIndex.html"
 );
+const timeOut = (timer) => new Promise((r) => setTimeout(() => r(true), timer));
 
 function mkdirs(dirpath) {
   if (!fs.existsSync(path.dirname(dirpath))) {
@@ -97,7 +99,8 @@ class MyCustomReporter {
         multipleReportsUnitePath,
         "./multiple-html-unite-report.html"
       );
-      this.addMultipleReportsData(multipleReportsUnitePath, results);
+      fse.mkdirpSync(multipleReportsUnitePath);
+      await this.addMultipleReportsData(multipleReportsUnitePath, results);
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
     }
@@ -116,7 +119,7 @@ class MyCustomReporter {
   }
 
   removeTempDir() {
-    fse.removeSync("./temp");
+    fse.removeSync(path.resolve(__dirname, "./temp"));
   }
 
   removeAttachDir() {
@@ -127,7 +130,7 @@ class MyCustomReporter {
     }
   }
 
-  addMultipleReportsData(multipleReportsUnitePath, data) {
+  async addMultipleReportsData(multipleReportsUnitePath, data) {
     const flag = "./jest-html-reports-multiple-flag";
     const resultDataFileName = "./jest-html-reports-unite-data.json";
 
@@ -135,29 +138,36 @@ class MyCustomReporter {
     const dataPath = path.resolve(multipleReportsUnitePath, resultDataFileName);
 
     let hasFlag = false;
-    const addHandle = () => {
-      fse.open(flagPath, "wx", async (err) => {
-        if (err) return setTimeout(addHandle, 1000);
-
+    const addHandle = async () => {
+      try {
+        await fse.open(flagPath, "wx");
         hasFlag = true;
-        const savedData = (await fse.pathExists(dataPath))
-          ? await fse.readJson(dataPath)
-          : [];
-        savedData.push(data);
-        fse
-          .writeJSON(dataPath, savedData)
-          .then(() => {
-            fse.removeSync(flagPath);
-            hasFlag = false;
-          })
-          .catch((err) => {
-            console.error(err);
-            fse.removeSync(flagPath);
-            hasFlag = false;
-          });
-      });
+      } catch (err) {
+        if (err) {
+          if (err.code === "EEXIST") {
+            await timeOut(1000);
+            return addHandle();
+          } else {
+            console.log(err);
+            return;
+          }
+        }
+      }
+      const savedData = (await fse.pathExists(dataPath))
+        ? await fse.readJson(dataPath)
+        : [];
+      savedData.push(data);
+      try {
+        await fse.writeJSON(dataPath, savedData);
+        fse.removeSync(flagPath);
+        hasFlag = false;
+      } catch (err) {
+        console.error(err);
+        fse.removeSync(flagPath);
+        hasFlag = false;
+      }
     };
-    addHandle();
+    await addHandle();
 
     process.on("exit", () => {
       if (hasFlag) fse.removeSync(flagPath);
