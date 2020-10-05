@@ -33,8 +33,11 @@ exports.cssLoaders = function (options) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
+          lessOptions: {
+            javascriptEnabled: true,
+            modifyVars: theme,
+          },
           sourceMap: options.sourceMap,
-          modifyVars: theme
         })
       })
     }

@@ -16,11 +16,12 @@ describe('get options ', () => {
       publicPath: process.cwd(),
       filename: 'jest_html_reporters.html',
       expand: false,
-      pageTitle: 'Report',
+      pageTitle: '',
       logoImgPath: undefined,
       hideIcon: false,
       customInfos: undefined,
-      testCommand: 'npx jest'
+      testCommand: 'npx jest',
+      multipleReportsUnitePath: '',
     };
     expect(getOptions()).toEqual(defaultOption)
   })
@@ -34,7 +35,8 @@ describe('get options ', () => {
       logoImgPath: './logo.svg',
       hideIcon: true,
       customInfos: '{a: 1}',
-      testCommand: 'yarn test'
+      testCommand: 'yarn test',
+      multipleReportsUnitePath: '../test'
     }
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: './test',
@@ -45,6 +47,7 @@ describe('get options ', () => {
       JEST_HTML_REPORTERS_HIDE_ICON: true,
       JEST_HTML_REPORTERS_CUSTOM_INFOS: '{a: 1}',
       JEST_HTML_REPORTERS_TEST_COMMAND: 'yarn test',
+      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: '../test'
     }
     expect(getOptions()).toEqual(envOptions)
   })

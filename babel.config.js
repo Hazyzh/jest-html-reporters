@@ -7,9 +7,7 @@ const plugins = [
 ]
 
 module.exports = function(api) {
-  const envOptions = {
-    useBuiltIns: 'usage'
-  }
+  const envOptions = {}
   if (api.env('production')) {
     envOptions.targets = {
       edge: '17',
