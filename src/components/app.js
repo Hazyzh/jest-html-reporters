@@ -49,18 +49,19 @@ class App extends Component {
     return (
       <Provider value={this.state}>
         <Layout className="layout">
-          <Header className="header">
-            {logoImg && (
-              <Avatar
-                src={logoImg}
-                shape="square"
-                size="large"
-                style={{ marginRight: "1em" }}
-              />
-            )}
-            <span>{pageTitle}</span>
-            {IconComp}
-          </Header>
+          {(logoImg || pageTitle || IconComp) &&
+              <Header className='header'>
+                {logoImg && (
+                  <Avatar
+                    src={logoImg}
+                    shape='square'
+                    size='large'
+                    style={{ marginRight: '1em' }}
+                  />
+                )}
+                <span>{pageTitle}</span>
+                {IconComp}
+              </Header>}
           <Content style={{ padding: "0 50px" }}>
             <HomePage realData={data} />
           </Content>
