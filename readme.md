@@ -88,7 +88,7 @@ This feature regrading to [#36](https://github.com/Hazyzh/jest-html-reporters/is
  *
  * @param {Buffer | string} attach
  * @param {string} description of the picture
- * @param {object} description of the picture
+ * @param {object} custom context (optional)
  */
 const addAttach = async (attach, description, context) => { ... }
 ```
@@ -149,6 +149,7 @@ This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporter
 /**
  *
  * @param {string} message
+ * @param {object} custom context (optional)
  */
 const addMsg = async (message, context) => { ... }
 ```
