@@ -88,11 +88,14 @@ This feature regrading to [#36](https://github.com/Hazyzh/jest-html-reporters/is
  *
  * @param {Buffer | string} attach
  * @param {string} description of the picture
+ * @param {object} description of the picture
  */
-const addAttach = async (attach, description) => { ... }
+const addAttach = async (attach, description, context) => { ... }
 ```
 
-There are two params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
+There are three params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
+`context` is optional parameter if you need add a specific context to attachment(like test path or name).
+
 Here is an Example with [puppeteer](https://github.com/puppeteer/puppeteer).
 
 ```javascript
@@ -147,10 +150,11 @@ This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporter
  *
  * @param {string} message
  */
-const addMsg = async (message) => { ... }
+const addMsg = async (message, context) => { ... }
 ```
 
-Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified
+Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
+`context` is optional parameter if you need add a specific context to message(like test path or name).
 
 Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
 

@@ -11,8 +11,8 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {Buffer | string} attach
  * @param {string} description
  */
-const addAttach = async (attach, description) => {
-  const { testPath, testName } = getJestGlobalData();
+const addAttach = async (attach, description, context) => {
+  const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
     console.error(
@@ -50,19 +50,20 @@ const addAttach = async (attach, description) => {
  *
  * @param {string} message
  */
-const addMsg = async (message) => {
-  const { testPath, testName } = getJestGlobalData();
+const addMsg = async (message, context) => {
+  const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
-const getJestGlobalData = () => {
+const getJestGlobalData = (globalContext) => {
   let testPath = "";
   let currentTestName = "";
-  [...Object.getOwnPropertySymbols(global)].forEach((key) => {
-    if (global[key].state && global[key].matchers) {
-      const state = global[key].state || {};
+  const context = globalContext || global;
+  [...Object.getOwnPropertySymbols(context)].forEach((key) => {
+    if (context[key].state && context[key].matchers) {
+      const state = context[key].state || {};
       testPath = state.testPath;
       currentTestName = state.currentTestName;
     }
