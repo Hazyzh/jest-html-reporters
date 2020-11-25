@@ -99,7 +99,7 @@ export const SimpleBarChart = ({ data, rootDir }) => {
               <Brush height={20} stroke='#8884d8' />
               <Bar
                 dataKey='time'
-                name='Time'
+                name='Suite Time'
                 fill='#0ebf8c'
                 onClick={({ name }) => { scrollTo(name, toggleExpand) }} />
             </BarChart>
@@ -114,7 +114,7 @@ export const SimpleBarChart = ({ data, rootDir }) => {
 const LabelInfo = ({ title, icon, context }) =>
   <p>
     <span className='label_title'>{icon} {title}</span>
-    <span>{context}</span>
+    <span className='label_value'>{context}</span>
   </p>
 
 const Information = ({
@@ -136,7 +136,7 @@ const Information = ({
           <Col span={6}>
             <p className='chart_title'>
               <PieChartFilled style={{ marginRight: '5px' }} />
-            Ratio
+            Timing Ratio
             </p>
             <ResponsiveContainer width={'100%'} height={300}>
               <PieChart>
@@ -147,13 +147,16 @@ const Information = ({
                   cy='50%'
                   outerRadius={'90%'}
                   onClick={({ name }) => { scrollTo(name, toggleExpand) }}
-                  animationDuration={500} >
+                  animationDuration={500}
+                  >
                   {
                     testResults.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={colors[index % 40]} />
                     ))
                   }
                 </Pie>
+                <Tooltip
+                    content={<CustomTooltip rootDir={rootDir} />} />
               </PieChart>
             </ResponsiveContainer>
           </Col>
@@ -161,12 +164,12 @@ const Information = ({
             <Card>
               <Row span={24}>
                 <Col span={16}>
-                  <LabelInfo title='StartTime' context={formatDate(startTime)} icon={<BoxPlotFilled />} />
-                  <LabelInfo title='Time' context={getFormatTime(startTime, endTime)} icon={<ClockCircleFilled />} />
-                  <LabelInfo title='RootDir' context={rootDir} icon={<FolderFilled />} />
+                  <LabelInfo className='StartTime' title='StartTime' context={formatDate(startTime)} icon={<BoxPlotFilled />} />
+                  <LabelInfo className='Time' title='Time' context={getFormatTime(startTime, endTime)} icon={<ClockCircleFilled />} />
+                  <LabelInfo className='RootDir' title='RootDir' context={rootDir} icon={<FolderFilled />} />
                 </Col>
                 <Col span={8}>
-                  <LabelInfo title='MaxWorkers' context={maxWorkers} icon={<CompassFilled />} />
+                  <LabelInfo className='MaxWorkers' title='MaxWorkers' context={maxWorkers} icon={<CompassFilled />} />
                 </Col>
               </Row>
             </Card>

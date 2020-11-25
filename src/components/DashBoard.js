@@ -8,9 +8,9 @@ export const MyCardItem = ({
   label,
   title,
   content,
-  clickHander,
+  clickHandler,
 }) => <Card
-  onClick={clickHander}
+  onClick={clickHandler}
   bodyStyle={{ padding: '12px' }}
   hoverable>
   <p className='card_item_label' style={{ color: labelColor }}>
@@ -51,28 +51,28 @@ const DashBoard = ({
     content: 'Failed Suites',
     label: `${getPercentage(numFailedTestSuites, numTotalTestSuites)} %`,
     labelColor: '#cf1322',
-    clickHander: getScrollDownFunc(failedTest),
+    clickHandler: getScrollDownFunc(failedTest),
   }
   const FailedTests = {
     title: numFailedTests,
     content: 'Failed Tests',
     label: `${getPercentage(numFailedTests, numTotalTests)} %`,
     labelColor: '#cf1322',
-    clickHander: getScrollDownFunc(failedTest),
+    clickHandler: getScrollDownFunc(failedTest),
   }
   const PendingTestSuites = {
     title: numPendingTestSuites,
     content: 'Pending Suites',
     label: `${getPercentage(numPendingTestSuites, numTotalTestSuites)} %`,
     labelColor: '#faad14',
-    clickHander: getScrollDownFunc(pendingTest),
+    clickHandler: getScrollDownFunc(pendingTest),
   }
   const PendingTests = {
     title: numPendingTests,
     content: 'Pending Tests',
     label: `${getPercentage(numPendingTests, numTotalTests)} %`,
     labelColor: '#faad14',
-    clickHander: getScrollDownFunc(pendingTest),
+    clickHandler: getScrollDownFunc(pendingTest),
   }
   const cardsList = [TotalTestSuites, TotalTests, FailedTestSuites, FailedTests, PendingTestSuites,
     PendingTests]
@@ -82,7 +82,7 @@ const DashBoard = ({
       content: 'Todo Tests',
       label: `${getPercentage(numTodoTests, numTotalTests)} %`,
       labelColor: '#d466d6',
-      clickHander: getScrollDownFunc(todoTest),
+      clickHandler: getScrollDownFunc(todoTest),
     }
     cardsList.push(TodoTests)
   }
@@ -92,7 +92,7 @@ const DashBoard = ({
       content: 'Runtime Error Suites',
       label: `${getPercentage(numRuntimeErrorTestSuites, numTotalTestSuites)} %`,
       labelColor: '#cf1322',
-      clickHander: getScrollDownFunc(execErrorTest),
+      clickHandler: getScrollDownFunc(execErrorTest),
     }
     cardsList.push(RuntimeErrorTestSuites)
   }
@@ -111,7 +111,7 @@ const DashBoard = ({
                 <Col key={item.content} span={Math.floor(24 / length)}>
                   <MyCardItem
                     {...item}
-                    clickHander={item.clickHander && item.clickHander(toggleExpand)} />
+                    clickHandler={item.clickHandler && item.clickHandler(toggleExpand)} />
                 </Col>
               )
             }

@@ -30,14 +30,20 @@ describe('test Information component', () => {
     expect(wrapper.find(PieChart)).toExist()
   })
 
-  test('main information area shoule container stuff informations', () => {
+  test('main information area should contain run information', () => {
     // start time (will differ due to timezone)
-    expect(wrapper.find('div.main_information')).toIncludeText(moment(parseInt(mockProps.startTime, 10)).format('YYYY-MM-DD HH:mm:ss'))
+    expect(wrapper.find('div.main_information')).toContainMatchingElement('.StartTime')
+
     // time
-    expect(wrapper.find('div.main_information')).toIncludeText('00:02.930')
+    expect(wrapper.find('div.main_information')).toContainMatchingElement('.Time')
+    expect(wrapper.find('div.main_information .Time .label_value').text()).toBe('00:02.930')
+
     // root dir
-    expect(wrapper.find('div.main_information')).toIncludeText('/root/dir/name')
-    // max worker
-    expect(wrapper.find('div.main_information')).toIncludeText(7)
+    expect(wrapper.find('div.main_information')).toContainMatchingElement('.RootDir')
+    expect(wrapper.find('div.main_information .RootDir .label_value').text()).toBe('/root/dir/name')
+
+    // max workers
+    expect(wrapper.find('div.main_information')).toContainMatchingElement('.MaxWorkers')
+    expect(wrapper.find('div.main_information .MaxWorkers .label_value').text()).toBe('7')
   })
 })
