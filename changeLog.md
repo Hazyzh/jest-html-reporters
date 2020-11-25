@@ -70,3 +70,9 @@
 ### 2.1.0
 
 - add multiple result unite report support
+
+### 2.1.1
+
+- change chart tooltip and labels (community contribute)
+- empty header when there is no config (community contribute)
+- custom *context* to addAttach and addMsg(community contribute)

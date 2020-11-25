@@ -1,20 +1,20 @@
 .time_box {
   color: gray;
-  >i {
+  > i {
     margin-right: 5px;
   }
-  >span {
+  > span {
     font-size: 0.9em;
   }
   .time_minor {
-    color: #929292
+    color: #929292;
   }
-  .time_active{
+  .time_active {
     font-weight: 500;
   }
 }
 
-.intro{
+.intro {
   text-overflow: ellipsis;
   width: 100%;
 }
@@ -36,16 +36,14 @@
     flex-shrink: 0;
     text-align: left;
   }
-  .symbol{
+  .symbol {
     margin: 0 5px;
   }
   .content {
     text-indent: 1em;
     flex-shrink: 1;
     flex: auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; 
+    word-break: break-all;
   }
 }
 
@@ -56,6 +54,9 @@
   color: #929292;
 }
 
+.chart_content_box {
+  overflow: hidden;
+}
 
 .main_information {
   .label_title {
