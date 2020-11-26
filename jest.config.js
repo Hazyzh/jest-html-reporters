@@ -22,7 +22,6 @@ module.exports = {
       {
         publicPath: "./html-report",
         filename: "report.html",
-        multipleReportsUnitePath: "./html-reports",
       },
     ],
     // '<rootDir>/index.dev.js',
