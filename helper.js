@@ -7,11 +7,11 @@ const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString(
 const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
 
-await(async function initFolders() {
+async function initFolders() {
   await fs.mkdir(tempFolder);
   await fs.mkdir(dataDirPath);
   await fs.mkdir(attachDirPath);
-})();
+};
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -29,6 +29,9 @@ const addAttach = async (attach, description, context) => {
     );
     return;
   }
+
+  await initFolders();
+
   const fileName = generateRandomString();
   if (typeof attach === "string") {
     const attachObject = { testPath, testName, filePath: attach, description };
@@ -63,6 +66,7 @@ const addMsg = async (message, context) => {
   const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
+  await initFolders();
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
