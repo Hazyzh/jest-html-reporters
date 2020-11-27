@@ -6,6 +6,9 @@ const generateRandomString = () => `${Date.now()}${Math.random()}`;
 const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString()}`);
 const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
+await fs.mkdir(tempFolder);
+await fs.mkdir(dataDirPath);
+await fs.mkdir(attachDirPath);
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -26,14 +29,12 @@ const addAttach = async (attach, description, context) => {
   const fileName = generateRandomString();
   if (typeof attach === "string") {
     const attachObject = { testPath, testName, filePath: attach, description };
-    await fs.mkdir(dataDirPath);
     await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
   }
 
   if (Buffer.isBuffer(attach)) {
     const path = `${attachDirPath}/${fileName}.jpg`;
     try {
-      await fs.mkdir(attachDirPath);
       await fs.writeFile(path, attach);
       const attachObject = {
         testPath,
@@ -41,7 +42,6 @@ const addAttach = async (attach, description, context) => {
         fileName: `${fileName}.jpg`,
         description,
       };
-      await fs.mkdir(dataDirPath);
       await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
     } catch (err) {
       console.error(err);
@@ -60,7 +60,6 @@ const addMsg = async (message, context) => {
   const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
-  await fs.mkdir(dataDirPath);
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
