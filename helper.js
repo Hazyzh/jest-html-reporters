@@ -7,7 +7,7 @@ const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString(
 const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
 
-async function initFolders() {
+async function createTempFolders() {
   await fs.mkdirs(tempFolder);
   await fs.mkdirs(dataDirPath);
   await fs.mkdirs(attachDirPath);
@@ -30,8 +30,7 @@ const addAttach = async (attach, description, context) => {
     return;
   }
 
-  await initFolders();
-
+  await createTempFolders();
   const fileName = generateRandomString();
   if (typeof attach === "string") {
     const attachObject = { testPath, testName, filePath: attach, description };
@@ -66,7 +65,7 @@ const addMsg = async (message, context) => {
   const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
-  await initFolders();
+  await createTempFolders();
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
