@@ -8,9 +8,9 @@ const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
 
 async function initFolders() {
-  await fs.mkdir(tempFolder);
-  await fs.mkdir(dataDirPath);
-  await fs.mkdir(attachDirPath);
+  await fs.mkdirs(tempFolder);
+  await fs.mkdirs(dataDirPath);
+  await fs.mkdirs(attachDirPath);
 };
 
 const distDirName = `./jest-html-reporters-attach`;
