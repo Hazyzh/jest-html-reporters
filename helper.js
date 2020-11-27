@@ -1,7 +1,9 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const tempFolder = path.resolve(__dirname, "./../../temp");
+const generateRandomString = () => `${Date.now()}${Math.random()}`;
+
+const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString()}`);
 const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
 
@@ -71,8 +73,6 @@ const getJestGlobalData = (globalContext) => {
   });
   return { testPath, testName: currentTestName };
 };
-
-const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
 const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
   const result = {};
