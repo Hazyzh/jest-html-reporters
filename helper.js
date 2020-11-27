@@ -1,8 +1,9 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const dataDirPath = path.resolve(__dirname, "./temp/data");
-const attachDirPath = path.resolve(__dirname, "./temp/images");
+const tempFolder = path.resolve(__dirname, "./../../temp");
+const dataDirPath = `${tempFolder}/data`;
+const attachDirPath = `${tempFolder}/images`;
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -115,6 +116,9 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description: description || "",
       });
     });
+
+    fs.remove(tempFolder);
+
   } catch (err) {
     console.error(err);
     console.error(`[jest-html-reporters]: parse attach failed!`);
