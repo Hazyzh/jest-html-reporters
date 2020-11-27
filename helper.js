@@ -6,9 +6,12 @@ const generateRandomString = () => `${Date.now()}${Math.random()}`;
 const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString()}`);
 const dataDirPath = `${tempFolder}/data`;
 const attachDirPath = `${tempFolder}/images`;
-await fs.mkdir(tempFolder);
-await fs.mkdir(dataDirPath);
-await fs.mkdir(attachDirPath);
+
+await(async function initFolders() {
+  await fs.mkdir(tempFolder);
+  await fs.mkdir(dataDirPath);
+  await fs.mkdir(attachDirPath);
+})();
 
 const distDirName = `./jest-html-reporters-attach`;
 
