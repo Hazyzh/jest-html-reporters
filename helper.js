@@ -3,14 +3,13 @@ const path = require("path");
 
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
-const tempFolder = path.resolve(__dirname, `./../../temp_${generateRandomString()}`);
-const dataDirPath = `${tempFolder}/data`;
-const attachDirPath = `${tempFolder}/images`;
+let dataDirPath = '';
+let attachDirPath = '';
 
-async function createTempFolders() {
-  await fs.mkdirs(tempFolder);
-  await fs.mkdirs(dataDirPath);
-  await fs.mkdirs(attachDirPath);
+function setUpPath(pathToDirictory) {
+  const directory = pathToDirictory || __dirname;
+  dataDirPath = path.resolve(directory, "./temp/data");
+  attachDirPath = path.resolve(directory, "./temp/images");
 };
 
 const distDirName = `./jest-html-reporters-attach`;
@@ -19,9 +18,11 @@ const distDirName = `./jest-html-reporters-attach`;
  *
  * @param {Buffer | string} attach
  * @param {string} description
+ * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving attachments
  */
 const addAttach = async (attach, description, context) => {
-  const { testPath, testName } = getJestGlobalData(context);
+  setUpPath(context.path);
+  const { testPath, testName } = getJestGlobalData(context.context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
     console.error(
@@ -30,7 +31,6 @@ const addAttach = async (attach, description, context) => {
     return;
   }
 
-  await createTempFolders();
   const fileName = generateRandomString();
   if (typeof attach === "string") {
     const attachObject = { testPath, testName, filePath: attach, description };
@@ -60,12 +60,13 @@ const addAttach = async (attach, description, context) => {
 /**
  *
  * @param {string} message
+ * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving messages
  */
 const addMsg = async (message, context) => {
-  const { testPath, testName } = getJestGlobalData(context);
+  setUpPath(context.path);
+  const { testPath, testName } = getJestGlobalData(context.context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
-  await createTempFolders();
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
@@ -125,8 +126,6 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description: description || "",
       });
     });
-
-    await fs.remove(tempFolder);
 
   } catch (err) {
     console.error(err);
