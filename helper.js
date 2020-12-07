@@ -3,11 +3,14 @@ const path = require("path");
 
 let dataDirPath = '';
 let attachDirPath = '';
+let tempDirPath = path.resolve(__dirname, "./temp");
 
-function setUpPath(pathToDirectory) {
-  const directory = pathToDirectory || __dirname;
-  dataDirPath = path.resolve(directory, "./temp/data");
-  attachDirPath = path.resolve(directory, "./temp/images");
+async function setUpPath(pathToDirectory) {
+  tempDirPath = path.resolve(pathToDirectory || __dirname, "./temp");
+  dataDirPath = path.resolve(tempDirPath, "./data");
+  attachDirPath = path.resolve(tempDirPath, "./images");
+  await fs.mkdirs(dataDirPath);
+  await fs.mkdirs(attachDirPath);
 };
 
 const distDirName = `./jest-html-reporters-attach`;
@@ -19,7 +22,7 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving attachments
  */
 const addAttach = async (attach, description, context) => {
-  setUpPath(context.path);
+  await setUpPath(context.path);
   const { testPath, testName } = getJestGlobalData(context.context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
@@ -61,7 +64,7 @@ const addAttach = async (attach, description, context) => {
  * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving messages
  */
 const addMsg = async (message, context) => {
-  setUpPath(context.path);
+  await setUpPath(context.path);
   const { testPath, testName } = getJestGlobalData(context.context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
@@ -193,7 +196,6 @@ module.exports = {
   addAttach,
   addMsg,
   readAttachInfos,
-  dataDirPath,
-  attachDirPath,
+  tempDirPath,
   distDirName,
 };
