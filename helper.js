@@ -24,7 +24,7 @@ const distDirName = `./jest-html-reporters-attach`;
  *
  * @param {Buffer | string} attach
  * @param {string} description
- * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving attachments
+ * @param {object} context. Optional. It contains custom configs
  */
 const addAttach = async (attach, description, context) => {
   await setUpPaths(context.path);
@@ -66,7 +66,7 @@ const addAttach = async (attach, description, context) => {
 /**
  *
  * @param {string} message
- * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving messages
+ * @param {object} context. Optional. It contains custom configs
  */
 const addMsg = async (message, context) => {
   await setUpPaths(context.path);
@@ -204,6 +204,5 @@ module.exports = {
   addAttach,
   addMsg,
   readAttachInfos,
-  tempDirPath,
   distDirName,
 };
