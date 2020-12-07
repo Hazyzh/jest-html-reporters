@@ -5,10 +5,15 @@ let dataDirPath = '';
 let attachDirPath = '';
 let tempDirPath = path.resolve(__dirname, "./temp");
 
-async function setUpPath(pathToDirectory) {
-  tempDirPath = path.resolve(pathToDirectory || __dirname, "./temp");
+async function setUpPaths(pathToDirectory) {
+  if (pathToDirectory !== undefined) {
+    tempDirPath = path.resolve(pathToDirectory, "./temp");
+  }
+
   dataDirPath = path.resolve(tempDirPath, "./data");
   attachDirPath = path.resolve(tempDirPath, "./images");
+
+  await fs.remove(tempDirPath);
   await fs.mkdirs(dataDirPath);
   await fs.mkdirs(attachDirPath);
 };
@@ -22,7 +27,7 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving attachments
  */
 const addAttach = async (attach, description, context) => {
-  await setUpPath(context.path);
+  await setUpPaths(context.path);
   const { testPath, testName } = getJestGlobalData(context.context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
@@ -64,7 +69,7 @@ const addAttach = async (attach, description, context) => {
  * @param {object} context. Optional. It contains custom context and custom path to temp directory for saving messages
  */
 const addMsg = async (message, context) => {
-  await setUpPath(context.path);
+  await setUpPaths(context.path);
   const { testPath, testName } = getJestGlobalData(context.context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
@@ -129,6 +134,9 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description: description || "",
       });
     });
+
+    await fs.remove(tempDirPath);
+
   } catch (err) {
     console.error(err);
     console.error(`[jest-html-reporters]: parse attach failed!`);

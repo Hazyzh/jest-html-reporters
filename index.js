@@ -102,7 +102,6 @@ class MyCustomReporter {
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
     }
-    this.removeTempDir();
   }
 
   init() {
@@ -110,12 +109,7 @@ class MyCustomReporter {
   }
 
   initAttachDir() {
-    this.removeTempDir();
     this.removeAttachDir();
-  }
-
-  removeTempDir() {
-    fse.removeSync(tempDirPath);
   }
 
   removeAttachDir() {
