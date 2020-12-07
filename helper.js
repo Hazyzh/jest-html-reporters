@@ -1,13 +1,11 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const generateRandomString = () => `${Date.now()}${Math.random()}`;
-
 let dataDirPath = '';
 let attachDirPath = '';
 
-function setUpPath(pathToDirictory) {
-  const directory = pathToDirictory || __dirname;
+function setUpPath(pathToDirectory) {
+  const directory = pathToDirectory || __dirname;
   dataDirPath = path.resolve(directory, "./temp/data");
   attachDirPath = path.resolve(directory, "./temp/images");
 };
@@ -84,6 +82,8 @@ const getJestGlobalData = (globalContext) => {
   return { testPath, testName: currentTestName };
 };
 
+const generateRandomString = () => `${Date.now()}${Math.random()}`;
+
 const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
   const result = {};
   try {
@@ -126,7 +126,6 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description: description || "",
       });
     });
-
   } catch (err) {
     console.error(err);
     console.error(`[jest-html-reporters]: parse attach failed!`);
