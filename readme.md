@@ -94,7 +94,7 @@ const addAttach = async (attach, description, context) => { ... }
 ```
 
 There are three params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
-`context` is an optional parameter if you need to add specific configs(context, the path to temporary data) to the attachment(like path or name).
+`context` is an optional parameter. Here can be specifeded **context** (default is this.global) or **tempDirPath** (default is node_modules/jest-html-reportres/temp).
 
 Here is an Example with [puppeteer](https://github.com/puppeteer/puppeteer).
 
@@ -110,7 +110,7 @@ describe("just examples", () => {
     await page.goto("https://www.google.com");
     const data = await page.screenshot();
     await browser.close();
-    await addAttach(data, "test google 1", { path: ''});
+    await addAttach(data, "test google 1", { tempDirPath: ''});
 
     expect(1).toBe(1);
   });
@@ -155,7 +155,7 @@ const addMsg = async (message, context) => { ... }
 ```
 
 Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
-`context` is an optional parameter if you need to add specific configs(context, the path to temporary data) to the attachment(like path or name).
+`context` is an optional parameter. Here can be specifeded **context** (default is this.global) or **tempDirPath** (default is node_modules/jest-html-reportres/temp).
 
 Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
 

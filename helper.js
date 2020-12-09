@@ -27,7 +27,7 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {object} context. Optional. It contains custom configs
  */
 const addAttach = async (attach, description, context) => {
-  await setUpPaths(context.path);
+  await setUpPaths(context.tempDirPath);
   const { testPath, testName } = getJestGlobalData(context.context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
@@ -69,7 +69,7 @@ const addAttach = async (attach, description, context) => {
  * @param {object} context. Optional. It contains custom configs
  */
 const addMsg = async (message, context) => {
-  await setUpPaths(context.path);
+  await setUpPaths(context.tempDirPath);
   const { testPath, testName } = getJestGlobalData(context.context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
