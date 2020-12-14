@@ -15,6 +15,10 @@ function _setTempDirPathVariable(pathToDirectory) {
   }
 }
 
+/**
+ *
+ * @param {string} pathToDirectory. Need to init this path once here or at removeTempDir
+ */
 function setUpTempDir(pathToDirectory) {
   _setTempDirPathVariable(pathToDirectory);
   dataDirPath = path.resolve(tempDirPath, "./data");
@@ -24,6 +28,10 @@ function setUpTempDir(pathToDirectory) {
   fs.mkdirpSync(attachDirPath);
 };
 
+/**
+ *
+ * @param {string} pathToDirectory. Need to init this path once here or at setUpTempDir
+ */
 function removeTempDir(pathToDirectory) {
   _setTempDirPathVariable(pathToDirectory);
   fs.removeSync(tempDirPath);
