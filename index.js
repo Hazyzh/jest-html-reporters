@@ -5,6 +5,8 @@ const {
   distDirName,
   readAttachInfos,
   getOptions,
+  removeTempDir,
+  setUpTempDir
 } = require("./helper");
 const localTemplatePath = path.resolve(__dirname, "./dist/index.html");
 const multipleLocalTemplatePath = path.resolve(
@@ -101,9 +103,13 @@ class MyCustomReporter {
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
     }
+
+    removeTempDir();
   }
 
   init() {
+    removeTempDir();
+    setUpTempDir();
     this.initAttachDir();
   }
 

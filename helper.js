@@ -1,22 +1,33 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-let dataDirPath = '';
-let attachDirPath = '';
-let tempDirPath = path.resolve(__dirname, "./temp");
+let dataDirPath;
+let attachDirPath;
+let tempDirPath;
 
-async function setUpPaths(pathToDirectory) {
-  if (pathToDirectory !== undefined) {
-    tempDirPath = path.resolve(pathToDirectory, "./temp");
+function _setTempDirPathVariable(pathToDirectory) {
+  if (!tempDirPath) {
+    if (pathToDirectory !== undefined) {
+      tempDirPath = path.resolve(pathToDirectory, "./temp");
+    } else {
+      tempDirPath = path.resolve(__dirname, "./temp");
+    }
   }
+}
 
+function setUpTempDir(pathToDirectory) {
+  _setTempDirPathVariable(pathToDirectory);
   dataDirPath = path.resolve(tempDirPath, "./data");
   attachDirPath = path.resolve(tempDirPath, "./images");
 
-  await fs.remove(tempDirPath);
-  await fs.mkdirs(dataDirPath);
-  await fs.mkdirs(attachDirPath);
+  fs.mkdirpSync(dataDirPath);
+  fs.mkdirpSync(attachDirPath);
 };
+
+function removeTempDir(pathToDirectory) {
+  _setTempDirPathVariable(pathToDirectory);
+  fs.removeSync(tempDirPath);
+}
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -27,7 +38,6 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {object} context. Optional. It contains custom configs
  */
 const addAttach = async (attach, description, context) => {
-  await setUpPaths(context.tempDirPath);
   const { testPath, testName } = getJestGlobalData(context.context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
@@ -69,7 +79,6 @@ const addAttach = async (attach, description, context) => {
  * @param {object} context. Optional. It contains custom configs
  */
 const addMsg = async (message, context) => {
-  await setUpPaths(context.tempDirPath);
   const { testPath, testName } = getJestGlobalData(context.context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
@@ -135,8 +144,6 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
       });
     });
 
-    await fs.remove(tempDirPath);
-
   } catch (err) {
     console.error(err);
     console.error(`[jest-html-reporters]: parse attach failed!`);
@@ -155,6 +162,7 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
+const TEMP_DIR_PATH = "tempdirpath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -167,6 +175,7 @@ const constants = {
     JEST_HTML_REPORTERS_CUSTOM_INFOS: CUSTOM_INFOS,
     JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
+    JEST_HTML_REPORTERS_TEMP_DIR_PATH: TEMP_DIR_PATH,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -178,6 +187,7 @@ const constants = {
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
+    [TEMP_DIR_PATH]: path.resolve(__dirname, "./temp"),
   },
 };
 
@@ -205,4 +215,6 @@ module.exports = {
   addMsg,
   readAttachInfos,
   distDirName,
+  removeTempDir,
+  setUpTempDir
 };
