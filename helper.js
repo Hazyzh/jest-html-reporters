@@ -159,7 +159,7 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
-const TEMP_DIR_PATH = "tempdirpath";
+const TEMP_DIR_PATH = "tempDirPath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
