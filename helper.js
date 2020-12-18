@@ -46,7 +46,7 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {object} context. Optional. It contains custom configs
  */
 const addAttach = async (attach, description, context) => {
-  const { testPath, testName } = getJestGlobalData(context.context);
+  const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
     console.error(
@@ -87,7 +87,7 @@ const addAttach = async (attach, description, context) => {
  * @param {object} context. Optional. It contains custom configs
  */
 const addMsg = async (message, context) => {
-  const { testPath, testName } = getJestGlobalData(context.context);
+  const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
   const attachObject = { testPath, testName, description: message };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
@@ -170,7 +170,7 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
-const TEMP_DIR_PATH = "tempdirpath";
+const TEMP_DIR_PATH = "tempDirPath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {

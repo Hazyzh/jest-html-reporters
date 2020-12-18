@@ -108,7 +108,7 @@ class MyCustomReporter {
   }
 
   init() {
-    removeTempDir();
+    removeTempDir(this._options.tempDirPath);
     setUpTempDir();
     this.initAttachDir();
   }

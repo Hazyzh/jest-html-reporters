@@ -110,7 +110,7 @@ describe("just examples", () => {
     await page.goto("https://www.google.com");
     const data = await page.screenshot();
     await browser.close();
-    await addAttach(data, "test google 1", { context: this.global });
+    await addAttach(data, "test google 1", this.global);
 
     expect(1).toBe(1);
   });
