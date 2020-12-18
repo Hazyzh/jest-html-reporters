@@ -6,7 +6,7 @@ let attachDirPath;
 
 /**
  *
- * @param {string} pathToDirectory. Need to init this path once here or at removeTempDir
+ * @param {string} pathToDirectory. Path to the temporary directory to store temporary files
  */
 function setUpTempDir(pathToDirectory) {
   const tempDirPath = path.resolve(pathToDirectory, "./temp");
@@ -19,7 +19,7 @@ function setUpTempDir(pathToDirectory) {
 
 /**
  *
- * @param {string} pathToDirectory. Need to init this path once here or at setUpTempDir
+ * @param {string} pathToDirectory. Path to the temporary directory to store temporary files
  */
 function removeTempDir(pathToDirectory) {
   const tempDirPath = path.resolve(pathToDirectory, "./temp");
