@@ -104,12 +104,12 @@ class MyCustomReporter {
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
     }
 
-    removeTempDir();
+    removeTempDir(this._options.tempDirPath);
   }
 
   init() {
     removeTempDir(this._options.tempDirPath);
-    setUpTempDir();
+    setUpTempDir(this._options.tempDirPath);
     this.initAttachDir();
   }
 

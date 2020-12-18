@@ -3,24 +3,13 @@ const path = require("path");
 
 let dataDirPath;
 let attachDirPath;
-let tempDirPath;
-
-function _setTempDirPathVariable(pathToDirectory) {
-  if (!tempDirPath) {
-    if (pathToDirectory !== undefined) {
-      tempDirPath = path.resolve(pathToDirectory, "./temp");
-    } else {
-      tempDirPath = path.resolve(__dirname, "./temp");
-    }
-  }
-}
 
 /**
  *
  * @param {string} pathToDirectory. Need to init this path once here or at removeTempDir
  */
 function setUpTempDir(pathToDirectory) {
-  _setTempDirPathVariable(pathToDirectory);
+  const tempDirPath = path.resolve(pathToDirectory, "./temp");
   dataDirPath = path.resolve(tempDirPath, "./data");
   attachDirPath = path.resolve(tempDirPath, "./images");
 
@@ -33,7 +22,7 @@ function setUpTempDir(pathToDirectory) {
  * @param {string} pathToDirectory. Need to init this path once here or at setUpTempDir
  */
 function removeTempDir(pathToDirectory) {
-  _setTempDirPathVariable(pathToDirectory);
+  const tempDirPath = path.resolve(pathToDirectory, "./temp");
   fs.removeSync(tempDirPath);
 }
 
@@ -170,7 +159,7 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
-const TEMP_DIR_PATH = "tempDirPath";
+const TEMP_DIR_PATH = "tempdirpath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -195,7 +184,7 @@ const constants = {
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
-    [TEMP_DIR_PATH]: path.resolve(__dirname, "./temp"),
+    [TEMP_DIR_PATH]: __dirname,
   },
 };
 
