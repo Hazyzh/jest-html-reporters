@@ -1,30 +1,12 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-let dataDirPath;
-let attachDirPath;
-
-/**
- *
- * @param {string} pathToDirectory. Path to the temporary directory to store temporary files
- */
-function setUpTempDir(pathToDirectory) {
-  const tempDirPath = path.resolve(pathToDirectory, "./temp");
-  dataDirPath = path.resolve(tempDirPath, "./data");
-  attachDirPath = path.resolve(tempDirPath, "./images");
-
-  fs.mkdirpSync(dataDirPath);
-  fs.mkdirpSync(attachDirPath);
-};
-
-/**
- *
- * @param {string} pathToDirectory. Path to the temporary directory to store temporary files
- */
-function removeTempDir(pathToDirectory) {
-  const tempDirPath = path.resolve(pathToDirectory, "./temp");
-  fs.removeSync(tempDirPath);
-}
+const tempDirPath = path.resolve(
+  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || __dirname,
+  "temp"
+);
+const dataDirPath = path.resolve(tempDirPath, "./data");
+const attachDirPath = path.resolve(tempDirPath, "./images");
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -140,7 +122,6 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description: description || "",
       });
     });
-
   } catch (err) {
     console.error(err);
     console.error(`[jest-html-reporters]: parse attach failed!`);
@@ -159,7 +140,6 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
-const TEMP_DIR_PATH = "tempDirPath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -172,7 +152,6 @@ const constants = {
     JEST_HTML_REPORTERS_CUSTOM_INFOS: CUSTOM_INFOS,
     JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
-    JEST_HTML_REPORTERS_TEMP_DIR_PATH: TEMP_DIR_PATH,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -184,7 +163,6 @@ const constants = {
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
-    [TEMP_DIR_PATH]: __dirname,
   },
 };
 
@@ -211,7 +189,8 @@ module.exports = {
   addAttach,
   addMsg,
   readAttachInfos,
+  dataDirPath,
+  attachDirPath,
   distDirName,
-  removeTempDir,
-  setUpTempDir
+  tempDirPath,
 };
