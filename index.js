@@ -1,8 +1,8 @@
-const { promises } = require("dns");
 const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
 const {
+  tempDirPath,
   dataDirPath,
   attachDirPath,
   distDirName,
@@ -119,7 +119,7 @@ class MyCustomReporter {
   }
 
   removeTempDir() {
-    fse.removeSync(path.resolve(__dirname, "./temp"));
+    fse.removeSync(tempDirPath);
   }
 
   removeAttachDir() {

@@ -51,7 +51,7 @@ The options below are specific to the reporter.
 | `customInfos`              | JEST_HTML_REPORTERS_CUSTOM_INFOS                | array   | undefined                | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) |
 | `testCommand`              | JEST_HTML_REPORTERS_TEST_COMMAND                | string  | "npx jest"               | copy command content to quickly run test file                                                                                                                                                                                                                                                        |
 | `multipleReportsUnitePath` | JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH | string  | ""                       | the unite folder path for single page(show multiple test result). see detail in [Single Page for multiple reports](https://github.com/Hazyzh/jest-html-reporters/wiki/Single-Page-for-multiple-reports)                                                                                              |
-
+|`env variable support only`              | JEST_HTML_REPORTERS_TEMP_DIR_PATH                  | string  | __dirname                   | path to a temporary folder with attachments  title                                                                                                                                                                                                                                                                        |
 ---
 
 #### example add config options
@@ -94,7 +94,7 @@ const addAttach = async (attach, description, context) => { ... }
 ```
 
 There are three params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
-`context` is optional parameter if you need add a specific context to attachment(like test path or name).
+`context` is an optional parameter. Here can be specifeded **context** (default is this.global).
 
 Here is an Example with [puppeteer](https://github.com/puppeteer/puppeteer).
 
@@ -110,7 +110,7 @@ describe("just examples", () => {
     await page.goto("https://www.google.com");
     const data = await page.screenshot();
     await browser.close();
-    await addAttach(data, "test google 1");
+    await addAttach(data, "test google 1", this.global);
 
     expect(1).toBe(1);
   });
@@ -155,7 +155,7 @@ const addMsg = async (message, context) => { ... }
 ```
 
 Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
-`context` is optional parameter if you need add a specific context to message(like test path or name).
+`context` is an optional parameter. Here can be specifeded **context** (default is this.global).
 
 Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
 

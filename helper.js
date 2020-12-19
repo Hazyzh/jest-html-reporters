@@ -1,8 +1,12 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const dataDirPath = path.resolve(__dirname, "./temp/data");
-const attachDirPath = path.resolve(__dirname, "./temp/images");
+const tempDirPath = path.resolve(
+  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || __dirname,
+  "temp"
+);
+const dataDirPath = path.resolve(tempDirPath, "./data");
+const attachDirPath = path.resolve(tempDirPath, "./images");
 
 const distDirName = `./jest-html-reporters-attach`;
 
@@ -10,6 +14,7 @@ const distDirName = `./jest-html-reporters-attach`;
  *
  * @param {Buffer | string} attach
  * @param {string} description
+ * @param {object} context. Optional. It contains custom configs
  */
 const addAttach = async (attach, description, context) => {
   const { testPath, testName } = getJestGlobalData(context);
@@ -20,6 +25,7 @@ const addAttach = async (attach, description, context) => {
     );
     return;
   }
+
   const fileName = generateRandomString();
   if (typeof attach === "string") {
     const attachObject = { testPath, testName, filePath: attach, description };
@@ -49,6 +55,7 @@ const addAttach = async (attach, description, context) => {
 /**
  *
  * @param {string} message
+ * @param {object} context. Optional. It contains custom configs
  */
 const addMsg = async (message, context) => {
   const { testPath, testName } = getJestGlobalData(context);
@@ -185,4 +192,5 @@ module.exports = {
   dataDirPath,
   attachDirPath,
   distDirName,
+  tempDirPath,
 };
