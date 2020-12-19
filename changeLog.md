@@ -76,3 +76,7 @@
 - change chart tooltip and labels (community contribute)
 - empty header when there is no config (community contribute)
 - custom *context* to addAttach and addMsg(community contribute)
+
+### 2.1.2
+
+- custom temp dir path (community contribute)
