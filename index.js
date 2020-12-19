@@ -108,14 +108,14 @@ class MyCustomReporter {
   }
 
   init() {
+    this.initAttachDir();
+  }
+
+  initAttachDir() {
     this.removeTempDir();
     this.removeAttachDir();
     fse.mkdirpSync(dataDirPath);
     fse.mkdirpSync(attachDirPath);
-  }
-
-  initAttachDir() {
-    this.removeAttachDir();
   }
 
   removeTempDir() {

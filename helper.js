@@ -140,7 +140,6 @@ const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
-const TEMP_DIR_PATH = "tempDirPath";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -153,7 +152,6 @@ const constants = {
     JEST_HTML_REPORTERS_CUSTOM_INFOS: CUSTOM_INFOS,
     JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
-    JEST_HTML_REPORTERS_TEMP_DIR_PATH: TEMP_DIR_PATH,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -165,7 +163,6 @@ const constants = {
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
-    [TEMP_DIR_PATH]: __dirname,
   },
 };
 
@@ -192,8 +189,8 @@ module.exports = {
   addAttach,
   addMsg,
   readAttachInfos,
-  distDirName,
   dataDirPath,
   attachDirPath,
+  distDirName,
   tempDirPath,
 };
