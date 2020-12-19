@@ -2,11 +2,12 @@ const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
 const {
+  tempDirPath,
+  dataDirPath,
+  attachDirPath,
   distDirName,
   readAttachInfos,
   getOptions,
-  removeTempDir,
-  setUpTempDir
 } = require("./helper");
 const localTemplatePath = path.resolve(__dirname, "./dist/index.html");
 const multipleLocalTemplatePath = path.resolve(
@@ -103,18 +104,22 @@ class MyCustomReporter {
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
     }
-
-    removeTempDir(this._options.tempDirPath);
+    this.removeTempDir();
   }
 
   init() {
-    removeTempDir(this._options.tempDirPath);
-    setUpTempDir(this._options.tempDirPath);
-    this.initAttachDir();
+    this.removeTempDir();
+    this.removeAttachDir();
+    fse.mkdirpSync(dataDirPath);
+    fse.mkdirpSync(attachDirPath);
   }
 
   initAttachDir() {
     this.removeAttachDir();
+  }
+
+  removeTempDir() {
+    fse.removeSync(tempDirPath);
   }
 
   removeAttachDir() {
