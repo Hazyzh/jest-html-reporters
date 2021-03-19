@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import App from "@/components/app.js";
-import HomePage from "@/pages/Home";
+import HomePage from "@/pages/HomePage";
 import FooterInfo from "@/components/FooterInfo";
 
 const wrapper = shallow(<App data={{ _reporterOptions: {} }} />);
