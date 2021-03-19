@@ -139,6 +139,7 @@ const LOGO_IMG_PATH = "logoImgPath";
 const HIDE_ICON = "hideIcon";
 const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
+const OPEN_REPORT = "openReport";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
 
 const constants = {
@@ -151,6 +152,7 @@ const constants = {
     JEST_HTML_REPORTERS_HIDE_ICON: HIDE_ICON,
     JEST_HTML_REPORTERS_CUSTOM_INFOS: CUSTOM_INFOS,
     JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
+    JEST_HTML_REPORTERS_OPEN_REPORT: OPEN_REPORT,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
   },
   DEFAULT_OPTIONS: {
@@ -162,6 +164,7 @@ const constants = {
     [HIDE_ICON]: false,
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
+    [OPEN_REPORT]: process.env.NODE_ENV === 'development',
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
   },
 };
