@@ -30,4 +30,5 @@ module.exports = {
   testURL: "http://localhost/",
   setupFiles: ["<rootDir>/test/setup.js"],
   setupFilesAfterEnv: ["jest-enzyme"],
+  globalSetup: "<rootDir>/test/globalSetup.js",
 };

@@ -38,7 +38,7 @@ const formatCustomInfo = (customInfos) => {
   if (typeof customInfos !== "string") return customInfos;
 
   try {
-    const infos = JSON.parse(JEST_HTML_REPORTERS_CUSTOM_INFOS);
+    const infos = JSON.parse(customInfos);
     if (infos) {
       return Object.entries(infos).map(([key, value]) => ({
         title: key,
@@ -47,7 +47,8 @@ const formatCustomInfo = (customInfos) => {
     }
   } catch (err) {
     console.warn(
-      "the value of Custom info env must be a json string point to an Object"
+      "the value of Custom info env must be a json string point to an Object",
+      err
     );
   }
   return undefined;
