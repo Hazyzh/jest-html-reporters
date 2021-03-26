@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Layout, Avatar } from "antd";
-import HomePage from "../pages/Home";
+import HomePage from "../pages/HomePage";
 import FooterInfo from "./FooterInfo";
 import "../styles/app.less";
 import "../styles/index.less";
@@ -59,7 +59,7 @@ class App extends Component {
                     style={{ marginRight: '1em' }}
                   />
                 )}
-                <span>{pageTitle}</span>
+                <span data-testid='page-title'>{pageTitle}</span>
                 {IconComp}
               </Header>}
           <Content style={{ padding: "0 50px" }}>

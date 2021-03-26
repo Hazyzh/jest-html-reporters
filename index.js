@@ -1,6 +1,7 @@
 const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
+const open = require("open");
 const {
   tempDirPath,
   dataDirPath,
@@ -67,6 +68,7 @@ class MyCustomReporter {
       logoImgPath,
       customInfos,
       multipleReportsUnitePath,
+      openReport
     } = this._options;
     const logoImg = logoImgPath ? imgToBase64(logoImgPath) : undefined;
     results.config = this._globalConfig;
@@ -80,6 +82,11 @@ class MyCustomReporter {
       publicPath,
       multipleReportsUnitePath
     );
+    const openIfRequested = (filePath) => {
+      if (openReport) {
+        open(filePath, openReport === true ? {} : openReport);
+      }
+    }
     results.attachInfos = attachInfos;
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath);
 
@@ -94,6 +101,7 @@ class MyCustomReporter {
       );
       fs.writeFileSync(filePath, outPutContext, "utf-8");
       console.log("📦 reporter is created on:", filePath);
+      openIfRequested(filePath)
     } else {
       const multipleReportFilePath = path.resolve(
         multipleReportsUnitePath,
@@ -103,6 +111,7 @@ class MyCustomReporter {
       await this.addMultipleReportsData(multipleReportsUnitePath, results);
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
+      openIfRequested(multipleReportsUnitePath)
     }
     this.removeTempDir();
   }

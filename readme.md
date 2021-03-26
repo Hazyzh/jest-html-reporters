@@ -50,8 +50,9 @@ The options below are specific to the reporter.
 | `hideIcon`                 | JEST_HTML_REPORTERS_HIDE_ICON                   | Boolean | false                    | hide default icon                                                                                                                                                                                                                                                                                    |
 | `customInfos`              | JEST_HTML_REPORTERS_CUSTOM_INFOS                | array   | undefined                | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) |
 | `testCommand`              | JEST_HTML_REPORTERS_TEST_COMMAND                | string  | "npx jest"               | copy command content to quickly run test file                                                                                                                                                                                                                                                        |
+| `openReport`               | JEST_HTML_REPORTERS_OPEN_REPORT                 | json    | in dev=true, rest=false  | options for npm package `open`                                                                                                                                                                                                                                                                       |
 | `multipleReportsUnitePath` | JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH | string  | ""                       | the unite folder path for single page(show multiple test result). see detail in [Single Page for multiple reports](https://github.com/Hazyzh/jest-html-reporters/wiki/Single-Page-for-multiple-reports)                                                                                              |
-|`env variable support only`              | JEST_HTML_REPORTERS_TEMP_DIR_PATH                  | string  | __dirname                   | path to a temporary folder with attachments  title                                                                                                                                                                                                                                                                        |
+|`env variable support only` | JEST_HTML_REPORTERS_TEMP_DIR_PATH               | string  | __dirname                | path to a temporary folder with attachments  title                                                                                                                                                                                                                                                   |
 ---
 
 #### example add config options
@@ -63,7 +64,8 @@ The options below are specific to the reporter.
   ["jest-html-reporters", {
     "publicPath": "./html-report",
     "filename": "report.html",
-    "expand": true
+    "expand": true,
+    "openReport": true
   }]
 ]
 ```

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BackTop, Switch } from "antd";
+import { BackTop, Col, Row, Switch } from 'antd'
 import TableItem from "../components/Table";
 import DashBoard from "../components/DashBoard";
 import Information from "../components/Information";
@@ -7,6 +7,7 @@ import CustomInformation from "../components/CustomInformation";
 import {
   GoldOutlined,
   AppstoreOutlined,
+  PercentageOutlined,
   PieChartOutlined,
   ProfileOutlined,
 } from "@ant-design/icons";
@@ -21,27 +22,30 @@ class HomePage extends Component {
   }
 
   render() {
-    const { customInfos } = this.props.realData._reporterOptions;
-    let CustomInfoComp;
-    if (customInfos && customInfos.length > 0) {
-      CustomInfoComp = (
-        <>
-          <h3 className="area_subject">
-            <GoldOutlined />
-            Custom Information
-          </h3>
-          <CustomInformation customInfos={customInfos} />
-        </>
-      );
-    }
+    const { _reporterOptions: { customInfos }, config } = this.props.realData;
+
     return (
       <div>
         <BackTop />
-        <h3 className="area_subject">
-          <AppstoreOutlined /> Dashboard
-        </h3>
+        <Row justify="space-between" align="bottom">
+          <Col>
+            <h3 className="area_subject">
+              <AppstoreOutlined /> Dashboard
+            </h3>
+          </Col>
+          {config.collectCoverage &&
+            <Col>
+              <h3>
+                <a href={`${config.coverageDirectory}/lcov-report/index.html`} data-testid="coverage-link"><PercentageOutlined /> Coverage</a>
+              </h3>
+            </Col>}
+        </Row>
         <DashBoard {...this.state} />
-        {CustomInfoComp}
+        {customInfos && customInfos.length > 0 &&
+          <>
+            <h3 className="area_subject"><GoldOutlined /> Custom Information</h3>
+            <CustomInformation customInfos={customInfos} />
+          </>}
         <h3 className="area_subject">
           <PieChartOutlined /> Information
         </h3>
