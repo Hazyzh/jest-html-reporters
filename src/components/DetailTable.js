@@ -105,6 +105,7 @@ const columns = [
         <ErrorButton
           caseAttachInfos={fileAttachInfos[fullName]}
           failureMessage={failureMessages[0]}
+          fullName={fullName}
         />
       ),
   },

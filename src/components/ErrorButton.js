@@ -5,13 +5,13 @@ import ErrorInfoItem from "./ErrorInfoItem";
 
 const { Meta } = Card;
 
-function info(data, caseAttachInfos) {
+function info(data, caseAttachInfos, title) {
   Modal.warning({
-    title: "Case Infos",
+    title: `INFO FOR --> ${title}`,
     width: "80%",
     maskClosable: true,
     content: (
-      <Row style={{ "flex-direction": "column" }}>
+      <Row style={{ flexDirection: "column" }}>
         <Col span={24}>
           <ErrorInfoItem data={data} caseAttachInfos={caseAttachInfos} />
         </Col>
@@ -48,12 +48,18 @@ function info(data, caseAttachInfos) {
   });
 }
 
-const ErrorButton = ({ failureMessage, caseAttachInfos = [] }) => {
+const ErrorButton = ({
+  fullName,
+  testFilePath,
+  failureMessage,
+  caseAttachInfos = [],
+}) => {
   if (!failureMessage && !caseAttachInfos.length) return null;
+  const title = fullName || testFilePath;
   return (
     <div
       className="error_button"
-      onClick={() => info(failureMessage, caseAttachInfos)}
+      onClick={() => info(failureMessage, caseAttachInfos, title)}
     >
       <ExclamationCircleFilled />
       Info
