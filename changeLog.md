@@ -80,3 +80,9 @@
 ### 2.1.2
 
 - custom temp dir path (community contribute)
+
+### 2.1.3
+
+- open browser and show link to coverage (community contribute)
+- fix custom info parse issue
+- add case info to error popup
