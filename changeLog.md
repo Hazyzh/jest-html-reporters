@@ -86,3 +86,7 @@
 - open browser and show link to coverage (community contribute)
 - fix custom info parse issue
 - add case info to error popup
+
+### 2.1.4
+
+- show failure test suites messages only in HTML report (community idea)
