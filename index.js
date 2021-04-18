@@ -69,7 +69,8 @@ class MyCustomReporter {
       logoImgPath,
       customInfos,
       multipleReportsUnitePath,
-      openReport
+      openReport,
+      failureMessageOnly,
     } = this._options;
     const logoImg = logoImgPath ? imgToBase64(logoImgPath) : undefined;
     results.config = this._globalConfig;
@@ -87,9 +88,16 @@ class MyCustomReporter {
       if (openReport) {
         open(filePath, openReport === true ? {} : openReport);
       }
-    }
+    };
     results.attachInfos = attachInfos;
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath);
+
+    // filter normal case on failure message only mode
+    if (failureMessageOnly) {
+      results.testResults = results.testResults.filter(
+        (i) => !!i.failureMessage
+      );
+    }
 
     const data = JSON.stringify(results);
     const filePath = path.resolve(publicPath, filename);
@@ -102,7 +110,7 @@ class MyCustomReporter {
       );
       fs.writeFileSync(filePath, outPutContext, "utf-8");
       console.log("📦 reporter is created on:", filePath);
-      openIfRequested(filePath)
+      openIfRequested(filePath);
     } else {
       const multipleReportFilePath = path.resolve(
         multipleReportsUnitePath,
@@ -112,7 +120,7 @@ class MyCustomReporter {
       await this.addMultipleReportsData(multipleReportsUnitePath, results);
       fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
       console.log("📦 reporter is created on:", multipleReportsUnitePath);
-      openIfRequested(multipleReportsUnitePath)
+      openIfRequested(multipleReportsUnitePath);
     }
     this.removeTempDir();
   }

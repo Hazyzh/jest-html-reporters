@@ -141,6 +141,7 @@ const CUSTOM_INFOS = "customInfos";
 const TEST_COMMAND = "testCommand";
 const OPEN_REPORT = "openReport";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
+const FAILURE_MESSAGE_ONLY = "failureMessageOnly";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -154,6 +155,7 @@ const constants = {
     JEST_HTML_REPORTERS_TEST_COMMAND: TEST_COMMAND,
     JEST_HTML_REPORTERS_OPEN_REPORT: OPEN_REPORT,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
+    JEST_HTML_REPORTERS_FAILURE_MESSAGE_ONLY: FAILURE_MESSAGE_ONLY,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -164,8 +166,9 @@ const constants = {
     [HIDE_ICON]: false,
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: "npx jest",
-    [OPEN_REPORT]: process.env.NODE_ENV === 'development',
+    [OPEN_REPORT]: process.env.NODE_ENV === "development",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
+    [FAILURE_MESSAGE_ONLY]: false,
   },
 };
 
