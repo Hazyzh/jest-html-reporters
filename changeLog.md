@@ -90,3 +90,9 @@
 ### 2.1.4
 
 - show failure test suites messages only in HTML report (community idea)
+
+### 2.1.5
+
+- use system's temp dir for attach temp folder (community idea)
+- merge feature and merge level config option (community idea)
+- support attach log for before all hook (community idea)

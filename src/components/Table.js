@@ -52,7 +52,7 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTime(start, end);
 
-const getColumns = (rootDir, execCommand) => [
+const getColumns = (rootDir, execCommand, attachInfos) => [
   {
     title: "File",
     dataIndex: "testFilePath",
@@ -129,6 +129,11 @@ const getColumns = (rootDir, execCommand) => [
       <ErrorButton
         failureMessage={failureMessage}
         testFilePath={testFilePath.replace(new RegExp("^" + rootDir), "")}
+        caseAttachInfos={
+          (attachInfos[testFilePath] &&
+            attachInfos[testFilePath]["jest-html-reporters-file-attach"]) ||
+          []
+        }
       />
     ),
   },
@@ -162,7 +167,7 @@ const TableItem = ({
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })
         }
-        columns={getColumns(rootDir, _reporterOptions.testCommand)}
+        columns={getColumns(rootDir, _reporterOptions.testCommand, attachInfos)}
         dataSource={testResults}
       />
     )}
