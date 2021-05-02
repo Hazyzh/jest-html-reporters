@@ -144,6 +144,8 @@ const TEST_COMMAND = "testCommand";
 const OPEN_REPORT = "openReport";
 const MULTIPLE_REPORTS_UNITE_PATH = "multipleReportsUnitePath";
 const FAILURE_MESSAGE_ONLY = "failureMessageOnly";
+const ENABLE_MERGE_DATA = "enableMergeData";
+const DATA_MERGE_LEVEL = "dataMergeLevel";
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -158,6 +160,8 @@ const constants = {
     JEST_HTML_REPORTERS_OPEN_REPORT: OPEN_REPORT,
     JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: MULTIPLE_REPORTS_UNITE_PATH,
     JEST_HTML_REPORTERS_FAILURE_MESSAGE_ONLY: FAILURE_MESSAGE_ONLY,
+    JEST_HTML_REPORTERS_ENABLE_MERGE_DATA: ENABLE_MERGE_DATA,
+    JEST_HTML_REPORTERS_DATA_MERGE_LEVEL: DATA_MERGE_LEVEL,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -171,6 +175,8 @@ const constants = {
     [OPEN_REPORT]: process.env.NODE_ENV === "development",
     [MULTIPLE_REPORTS_UNITE_PATH]: "",
     [FAILURE_MESSAGE_ONLY]: false,
+    [ENABLE_MERGE_DATA]: false,
+    [DATA_MERGE_LEVEL]: 1,
   },
 };
 

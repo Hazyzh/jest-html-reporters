@@ -34,7 +34,7 @@ module.exports = {
     hot: true,
     quiet: true,
   },
-  devtool: "eval-source-map",
+  devtool: "inline-source-map",
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {

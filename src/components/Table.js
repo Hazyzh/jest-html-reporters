@@ -154,6 +154,8 @@ const TableItem = ({
               ...item,
               fileAttachInfos: attachInfos[testFilePath] || {},
             }))}
+            defaultMerge={_reporterOptions.enableMergeData}
+            defaultMergeLevel={_reporterOptions.dataMergeLevel}
           />
         )}
         expandedRowKeys={getExistKeys(expand, globalExpandState)}
