@@ -116,10 +116,13 @@ const readAttachInfos = async (publicPath, multipleReportsUnitePath) => {
         description,
         fileName,
       } = attachObject;
-      if (!result[testPath]) result[testPath] = {};
-      if (!result[testPath][testName]) result[testPath][testName] = [];
+      let attachMappingName = testName || "jest-html-reporters-file-attach";
 
-      result[testPath][testName].push({
+      if (!result[testPath]) result[testPath] = {};
+      if (!result[testPath][attachMappingName])
+        result[testPath][attachMappingName] = [];
+
+      result[testPath][attachMappingName].push({
         filePath: fileName ? `${distDirName}/${fileName}` : filePath,
         description: description || "",
       });
