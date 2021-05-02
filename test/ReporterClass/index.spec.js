@@ -1,54 +1,62 @@
-import { getOptions } from '../../helper'
+import { getOptions } from "../../helper";
 
-describe('get options ', () => {
+describe("get options ", () => {
   const OLD_ENV = process.env;
   beforeEach(() => {
-    jest.resetModules()
-    process.env = { ...OLD_ENV } // make a copy
+    jest.resetModules();
+    process.env = { ...OLD_ENV }; // make a copy
   });
 
   afterAll(() => {
-    process.env = OLD_ENV // restore old env
-  })
+    process.env = OLD_ENV; // restore old env
+  });
 
-  test('should return default option with no config', () => {
+  test("should return default option with no config", () => {
     const defaultOption = {
       publicPath: process.cwd(),
-      filename: 'jest_html_reporters.html',
+      filename: "jest_html_reporters.html",
       expand: false,
-      pageTitle: '',
+      pageTitle: "",
       logoImgPath: undefined,
       hideIcon: false,
       customInfos: undefined,
-      testCommand: 'npx jest',
-      multipleReportsUnitePath: '',
+      failureMessageOnly: false,
+      openReport: false,
+      testCommand: "npx jest",
+      multipleReportsUnitePath: "",
+      enableMergeData: false,
+      dataMergeLevel: 1,
     };
-    expect(getOptions()).toEqual(defaultOption)
-  })
+    expect(getOptions()).toEqual(defaultOption);
+  });
 
-  test('env option should works for option', () => {
+  test("env option should works for option", () => {
     const envOptions = {
-      publicPath: './test',
-      filename: 'file.html',
+      publicPath: "./test",
+      filename: "file.html",
       expand: true,
-      pageTitle: 'hello',
-      logoImgPath: './logo.svg',
+      pageTitle: "hello",
+      logoImgPath: "./logo.svg",
       hideIcon: true,
-      customInfos: '{a: 1}',
-      testCommand: 'yarn test',
-      multipleReportsUnitePath: '../test'
-    }
+      customInfos: "{a: 1}",
+      testCommand: "yarn test",
+      multipleReportsUnitePath: "../test",
+      openReport: false,
+      failureMessageOnly: false,
+      enableMergeData: false,
+      dataMergeLevel: 1,
+    };
     process.env = {
-      JEST_HTML_REPORTERS_PUBLIC_PATH: './test',
-      JEST_HTML_REPORTERS_FILE_NAME: 'file.html',
+      JEST_HTML_REPORTERS_PUBLIC_PATH: "./test",
+      JEST_HTML_REPORTERS_FILE_NAME: "file.html",
       JEST_HTML_REPORTERS_EXPAND: true,
-      JEST_HTML_REPORTERS_PAGE_TITLE: 'hello',
-      JEST_HTML_REPORTERS_LOGO_IMG_PATH: './logo.svg',
+      JEST_HTML_REPORTERS_PAGE_TITLE: "hello",
+      JEST_HTML_REPORTERS_LOGO_IMG_PATH: "./logo.svg",
       JEST_HTML_REPORTERS_HIDE_ICON: true,
-      JEST_HTML_REPORTERS_CUSTOM_INFOS: '{a: 1}',
-      JEST_HTML_REPORTERS_TEST_COMMAND: 'yarn test',
-      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: '../test'
-    }
-    expect(getOptions()).toEqual(envOptions)
-  })
-})
+      JEST_HTML_REPORTERS_CUSTOM_INFOS: "{a: 1}",
+      JEST_HTML_REPORTERS_TEST_COMMAND: "yarn test",
+      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: "../test",
+    };
+    expect(getOptions()).toEqual(envOptions);
+  });
+});

@@ -22,6 +22,8 @@ module.exports = {
       {
         publicPath: "./html-report",
         filename: "report.html",
+        enableMergeData: true,
+        dataMergeLevel: 2,
       },
     ],
     // '<rootDir>/index.dev.js',

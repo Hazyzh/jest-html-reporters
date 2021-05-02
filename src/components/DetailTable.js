@@ -124,13 +124,13 @@ export const DetailTable = ({ data }) => (
   />
 );
 
-const RootTable = ({ data = [] }) => {
-  const [isMergence, setIsMergence] = useState(false);
-  const [mergeLevel, setMergeLevel] = useState(1);
-
+const RootTable = ({ data = [], defaultMerge, defaultMergeLevel }) => {
+  const numerousTests = data.length > 8;
+  const [isMergence, setIsMergence] = useState(numerousTests && defaultMerge);
+  const [mergeLevel, setMergeLevel] = useState(defaultMergeLevel);
   return (
     <div>
-      {data.length > 8 && (
+      {numerousTests && (
         <div className="merge-box">
           <Checkbox
             checked={isMergence}
@@ -157,7 +157,7 @@ const RootTable = ({ data = [] }) => {
         bordered
         size="small"
         showHeader={false}
-        rowKey={(_, index) => `${index}`}
+        rowKey={() => `${Math.random()}`}
         expandable={{
           expandedRowRender: ({ tests }) => <DetailTable data={tests} />,
           rowExpandable: (record) => record.subGroups,
