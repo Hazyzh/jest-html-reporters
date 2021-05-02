@@ -1,10 +1,12 @@
 const fs = require("fs-extra");
 const path = require("path");
+const os = require("os");
 
 const tempDirPath = path.resolve(
-  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || __dirname,
-  "temp"
+  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
+  "jest-html-reporters-temp"
 );
+
 const dataDirPath = path.resolve(tempDirPath, "./data");
 const attachDirPath = path.resolve(tempDirPath, "./images");
 
