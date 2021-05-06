@@ -157,7 +157,7 @@ const RootTable = ({ data = [], defaultMerge, defaultMergeLevel }) => {
         bordered
         size="small"
         showHeader={false}
-        rowKey={() => `${Math.random()}`}
+        rowKey={(_, index) => `${index}`}
         expandable={{
           expandedRowRender: ({ tests }) => <DetailTable data={tests} />,
           rowExpandable: (record) => record.subGroups,
