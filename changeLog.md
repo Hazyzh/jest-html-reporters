@@ -96,3 +96,7 @@
 - use system's temp dir for attach temp folder (community idea)
 - merge feature and merge level config option (community idea)
 - support attach log for before all hook (community idea)
+
+### 2.1.6
+
+- fix table can not expend issue.
