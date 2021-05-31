@@ -7,7 +7,6 @@
 Jest test results processor for generating a summary in HTML
 
 ![example picture](./readmeStatic/show.gif)
-
 ### Installation
 
 ---
