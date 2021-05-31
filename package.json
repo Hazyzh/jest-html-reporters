@@ -1,7 +1,7 @@
 {
   "name": "jest-html-reporters-custom",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Jest test results processor for generating a summary in HTML",
   "main": "index.js",
   "scripts": {
