@@ -52,14 +52,15 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTime(start, end);
 
-const getColumns = (rootDir, execCommand, attachInfos, describeTitle) => [
+const getColumns = (rootDir, execCommand, attachInfos, results) => [
   {
     title: "File",
     dataIndex: "testFilePath",
     key: "name",
     render: (text) => {
       // const relativePath = text.replace(new RegExp("^" + rootDir), "");
-      const relativePath = describeTitle
+      console.log(results[0].testResults[0].ancestorTitles[0])
+      const relativePath = results[0].testResults[0].ancestorTitles[0]
       return (
         <span>
           <span className="copy_icon" title="click to copy path to clipborad">
@@ -168,7 +169,7 @@ const TableItem = ({
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })
         }
-        columns={getColumns(rootDir, _reporterOptions.testCommand, attachInfos, testResults.testResults[0].ancestorTitles[0])}
+        columns={getColumns(rootDir, _reporterOptions.testCommand, attachInfos, testResults)}
         dataSource={testResults}
       />
     )}
