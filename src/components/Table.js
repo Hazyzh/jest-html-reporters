@@ -52,15 +52,17 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTime(start, end);
 
-const getColumns = (rootDir, execCommand, attachInfos, results) => [
+const getColumns = (rootDir, execCommand, attachInfos) => [
   {
     title: "File",
     dataIndex: "testFilePath",
     key: "name",
-    render: (text) => {
-      // const relativePath = text.replace(new RegExp("^" + rootDir), "");
-      console.log(results[0].testResults[0].ancestorTitles[0])
-      const relativePath = results[0].testResults[0].ancestorTitles[0]
+    render: (text, results) => {
+      let caseTitle = `Test title not found. Path: ${text}`
+      if(results.testResults.length && results.testResults[0].ancestorTitles.length) {
+          caseTitle = results.testResults[0].ancestorTitles[0] || 'Title error'
+      }
+      const relativePath = text
       return (
         <span>
           <span className="copy_icon" title="click to copy path to clipborad">
@@ -76,7 +78,7 @@ const getColumns = (rootDir, execCommand, attachInfos, results) => [
           </span>
           <span className="path_text" id={text}>
             {" "}
-            {relativePath}
+            {caseTitle}
           </span>
         </span>
       );
