@@ -1,12 +1,9 @@
 ### Jest reporter
 
-[![npm](https://img.shields.io/npm/v/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters)
-[![NPM downloads](http://img.shields.io/npm/dm/jest-html-reporters.svg)](http://npmjs.com/jest-html-reporters)
-[![license](https://img.shields.io/npm/l/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters)
+[![npm](https://img.shields.io/npm/v/jest-html-reporters-custom.svg)](https://www.npmjs.com/package/jest-html-reporters-custom)
+[![NPM downloads](http://img.shields.io/npm/dm/jest-html-reporters-custom.svg)](http://npmjs.com/jest-html-reporters-custom)
+[![license](https://img.shields.io/npm/l/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters-custom)
 
-Jest test results processor for generating a summary in HTML
-
-![example picture](./readmeStatic/show.gif)
 ### Installation
 
 ---
