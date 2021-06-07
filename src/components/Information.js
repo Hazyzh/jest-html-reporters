@@ -34,7 +34,7 @@ import {
 const colors = [...new Array(40)].map((d) => randomColor());
 
 const CustomTooltip = ({ active, payload, label, rootDir, chartTooltip }) => {
-  if (active) {
+  if (active && Array.isArray(payload) && !!payload[0] && !!payload[0].payload) {
     const {
       time,
       name,
