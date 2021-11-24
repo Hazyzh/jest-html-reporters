@@ -1,9 +1,8 @@
 const fs = require("fs-extra");
 const path = require("path");
-const os = require("os");
 
 const tempDirPath = path.resolve(
-  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
+  process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || "./",
   "jest-html-reporters-temp"
 );
 
