@@ -41,11 +41,14 @@ const InsuranceNumber = (number, minLength = 2) => {
  */
 export const getFormatTime = (start, end) => {
   const duration = moment.duration(end - start)
+  const hour = InsuranceNumber(duration.hours())
   const min = InsuranceNumber(duration.minutes())
   const sec = InsuranceNumber(duration.seconds())
   const msec = InsuranceNumber(duration.milliseconds(), 3)
   let node
-  if (min !== '00') {
+  if (hour !== '00') {
+    node = <span className='time_active'>{`${hour}:${min}:${sec}.${msec}`}</span>
+  } else if (min !== '00') {
     node = <span className='time_active'>{`${min}:${sec}.${msec}`}</span>
   } else if (sec !== '00') {
     node = <span>
