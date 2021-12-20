@@ -2,8 +2,16 @@ const fs = require("fs-extra");
 const path = require("path");
 const os = require("os");
 
+let username = '';
+try {
+  username = os.userInfo().username;
+} catch (err) {
+  console.log(err);
+}
+
 const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
+  `${username}-${process.ppid}`,
   "jest-html-reporters-temp"
 );
 
