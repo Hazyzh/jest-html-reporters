@@ -104,8 +104,7 @@ class MyCustomReporter {
     // fs.writeFileSync('./src/devMock.json', data)
     if (!multipleReportsUnitePath) {
       const htmlTemplate = fs.readFileSync(localTemplatePath, "utf-8");
-      const outPutContext = htmlTemplate.replace(
-        "$resultData",
+      const outPutContext = htmlTemplate.replace("$resultData", () =>
         JSON.stringify(data)
       );
       fs.writeFileSync(filePath, outPutContext, "utf-8");
