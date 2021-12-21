@@ -26,7 +26,7 @@ const distDirName = `./jest-html-reporters-attach`;
  * @param {string} description
  * @param {object} context. Optional. It contains custom configs
  */
-const addAttach = async (attach, description, context) => {
+const addAttach = async (attach, description, context, bufferFormat) => {
   const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
@@ -43,16 +43,17 @@ const addAttach = async (attach, description, context) => {
   }
 
   if (Buffer.isBuffer(attach)) {
-    const path = `${attachDirPath}/${fileName}.jpg`;
+    bufferFormat = bufferFormat || 'jpg'
+    const path = `${attachDirPath}/${fileName}.${bufferFormat}`;
     try {
       await fs.writeFile(path, attach);
       const attachObject = {
         testPath,
         testName,
-        fileName: `${fileName}.jpg`,
+        fileName: `${fileName}.${bufferFormat}`,
         description,
       };
-      await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
+      await fs.writeJSON(`${dataDirPath}/${fileName}.${bufferFormat}`, attachObject);
     } catch (err) {
       console.error(err);
       console.error(
