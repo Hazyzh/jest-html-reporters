@@ -11,10 +11,7 @@ const {
   getOptions,
 } = require("./helper");
 const localTemplatePath = path.resolve(__dirname, "./dist/index.html");
-const multipleLocalTemplatePath = path.resolve(
-  __dirname,
-  "./dist/multipleIndex.html"
-);
+
 const timeOut = (timer) => new Promise((r) => setTimeout(() => r(true), timer));
 
 function mkdirs(dirpath) {
@@ -68,7 +65,6 @@ class MyCustomReporter {
       filename,
       logoImgPath,
       customInfos,
-      multipleReportsUnitePath,
       openReport,
       failureMessageOnly,
     } = this._options;
@@ -82,7 +78,6 @@ class MyCustomReporter {
     };
     const attachInfos = await readAttachInfos(
       publicPath,
-      multipleReportsUnitePath
     );
     const openIfRequested = (filePath) => {
       if (openReport) {
@@ -102,25 +97,14 @@ class MyCustomReporter {
     const data = JSON.stringify(results);
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data)
-    if (!multipleReportsUnitePath) {
-      const htmlTemplate = fs.readFileSync(localTemplatePath, "utf-8");
-      const outPutContext = htmlTemplate.replace("$resultData", () =>
-        JSON.stringify(data)
-      );
-      fs.writeFileSync(filePath, outPutContext, "utf-8");
-      console.log("📦 reporter is created on:", filePath);
-      openIfRequested(filePath);
-    } else {
-      const multipleReportFilePath = path.resolve(
-        multipleReportsUnitePath,
-        "./multiple-html-unite-report.html"
-      );
-      fse.mkdirpSync(multipleReportsUnitePath);
-      await this.addMultipleReportsData(multipleReportsUnitePath, results);
-      fs.copyFileSync(multipleLocalTemplatePath, multipleReportFilePath);
-      console.log("📦 reporter is created on:", multipleReportsUnitePath);
-      openIfRequested(multipleReportsUnitePath);
-    }
+    const htmlTemplate = fs.readFileSync(localTemplatePath, "utf-8");
+    const outPutContext = htmlTemplate.replace("$resultData", () =>
+      JSON.stringify(data)
+    );
+    fs.writeFileSync(filePath, outPutContext, "utf-8");
+    console.log("📦 reporter is created on:", filePath);
+    openIfRequested(filePath);
+
     this.removeTempDir();
   }
 
@@ -140,59 +124,9 @@ class MyCustomReporter {
   }
 
   removeAttachDir() {
-    if (!this._options.multipleReportsUnitePath) {
-      fse.removeSync(
-        path.resolve(this._options.publicPath || process.cwd(), distDirName)
-      );
-    }
-  }
-
-  async addMultipleReportsData(multipleReportsUnitePath, data) {
-    const flag = "./jest-html-reports-multiple-flag";
-    const resultDataFileName = "./jest-html-reports-unite-data.json";
-
-    const flagPath = path.resolve(multipleReportsUnitePath, flag);
-    const dataPath = path.resolve(multipleReportsUnitePath, resultDataFileName);
-
-    let hasFlag = false;
-    const addHandle = async () => {
-      try {
-        await fse.open(flagPath, "wx");
-        hasFlag = true;
-      } catch (err) {
-        if (err) {
-          if (err.code === "EEXIST") {
-            await timeOut(1000);
-            return addHandle();
-          } else {
-            console.log(err);
-            return;
-          }
-        }
-      }
-      const savedData = (await fse.pathExists(dataPath))
-        ? await fse.readJson(dataPath)
-        : [];
-      savedData.push(data);
-      try {
-        await fse.writeJSON(dataPath, savedData);
-        fse.removeSync(flagPath);
-        hasFlag = false;
-      } catch (err) {
-        console.error(err);
-        fse.removeSync(flagPath);
-        hasFlag = false;
-      }
-    };
-    await addHandle();
-
-    process.on("exit", () => {
-      if (hasFlag) fse.removeSync(flagPath);
-    });
-
-    process.on("SIGINT", () => {
-      if (hasFlag) fse.removeSync(flagPath);
-    });
+    fse.removeSync(
+      path.resolve(this._options.publicPath || process.cwd(), distDirName)
+    );
   }
 }
 

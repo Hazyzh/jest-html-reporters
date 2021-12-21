@@ -89,8 +89,7 @@
     "index.js",
     "helper.js",
     "readme.md",
-    "dist/index.html",
-    "dist/multipleIndex.html"
+    "dist/index.html"
   ],
   "dependencies": {
     "fs-extra": "^9.0.1",
