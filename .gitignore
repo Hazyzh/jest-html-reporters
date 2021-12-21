@@ -16,4 +16,4 @@ yarn-error.log*
 jest_html_reporters.html
 test/Examples/*
 jest-html-reporters-attach
-html-reports/*
+html-report/*
