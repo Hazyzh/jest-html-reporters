@@ -14,7 +14,6 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
-    multipleIndex: "./src/multipleIndex.js",
   },
   output: {
     path: resolve("dist"),
@@ -42,9 +41,8 @@ module.exports = {
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new FriendlyErrorsPlugin(),
-    ...["index", "multipleIndex"].map(
+    ...["index"].map(
       (name) =>
         new HtmlWebpackPlugin({
           filename: `${name}.html`,

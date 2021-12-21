@@ -1,4 +1,4 @@
-import { getOptions } from "../../helper";
+import { getOptions } from '../../helper';
 
 describe("get options ", () => {
   const OLD_ENV = process.env;
@@ -23,7 +23,6 @@ describe("get options ", () => {
       failureMessageOnly: false,
       openReport: false,
       testCommand: "npx jest",
-      multipleReportsUnitePath: "",
       enableMergeData: false,
       dataMergeLevel: 1,
     };
@@ -40,7 +39,6 @@ describe("get options ", () => {
       hideIcon: true,
       customInfos: "{a: 1}",
       testCommand: "yarn test",
-      multipleReportsUnitePath: "../test",
       openReport: false,
       failureMessageOnly: false,
       enableMergeData: false,
@@ -55,7 +53,6 @@ describe("get options ", () => {
       JEST_HTML_REPORTERS_HIDE_ICON: true,
       JEST_HTML_REPORTERS_CUSTOM_INFOS: "{a: 1}",
       JEST_HTML_REPORTERS_TEST_COMMAND: "yarn test",
-      JEST_HTML_REPORTERS_MULTIPLE_REPORTS_UNITE_PATH: "../test",
     };
     expect(getOptions()).toEqual(envOptions);
   });

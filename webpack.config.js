@@ -17,7 +17,6 @@ module.exports = {
   mode: "production",
   entry: {
     index: "./src/index.js",
-    multipleIndex: "./src/multipleIndex.js",
   },
   output: {
     path: resolve("dist"),
@@ -38,8 +37,7 @@ module.exports = {
       },
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.NoEmitOnErrorsPlugin(),
-    ...["index", "multipleIndex"].map(
+    ...["index"].map(
       (name) =>
         new HtmlWebpackPlugin({
           filename: `${name}.html`,
