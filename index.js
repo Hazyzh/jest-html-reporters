@@ -1,7 +1,7 @@
-const fs = require("fs");
-const fse = require("fs-extra");
-const path = require("path");
-const open = require("open");
+const fs = require('fs');
+const fse = require('fs-extra');
+const path = require('path');
+const open = require('open');
 const {
   tempDirPath,
   dataDirPath,
@@ -9,30 +9,28 @@ const {
   distDirName,
   readAttachInfos,
   getOptions,
-} = require("./helper");
-const localTemplatePath = path.resolve(__dirname, "./dist/index.html");
+} = require('./helper');
+const localTemplatePath = path.resolve(__dirname, './dist/index.html');
 
-const timeOut = (timer) => new Promise((r) => setTimeout(() => r(true), timer));
-
-function mkdirs(dirpath) {
-  if (!fs.existsSync(path.dirname(dirpath))) {
-    mkdirs(path.dirname(dirpath));
+function mkdirs(dirPath) {
+  if (!fs.existsSync(path.dirname(dirPath))) {
+    mkdirs(path.dirname(dirPath));
   }
-  fs.mkdirSync(dirpath);
+  fs.mkdirSync(dirPath);
 }
 
 function imgToBase64(imgPath) {
   const fileName = path.resolve(imgPath);
   if (fs.statSync(fileName).isFile()) {
-    const fileData = fs.readFileSync(fileName).toString("base64");
-    return `data:image/${fileName.split(".").pop()};base64,${fileData}`;
+    const fileData = fs.readFileSync(fileName).toString('base64');
+    return `data:image/${fileName.split('.').pop()};base64,${fileData}`;
   }
   return undefined;
 }
 
 // for #32
 const formatCustomInfo = (customInfos) => {
-  if (typeof customInfos !== "string") return customInfos;
+  if (typeof customInfos !== 'string') return customInfos;
 
   try {
     const infos = JSON.parse(customInfos);
@@ -44,7 +42,7 @@ const formatCustomInfo = (customInfos) => {
     }
   } catch (err) {
     console.warn(
-      "the value of Custom info env must be a json string point to an Object",
+      'the value of Custom info env must be a json string point to an Object',
       err
     );
   }
@@ -55,6 +53,7 @@ const formatCustomInfo = (customInfos) => {
 class MyCustomReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig;
+    console.log(globalConfig);
     this._options = getOptions(options);
     this.init();
   }
@@ -97,12 +96,12 @@ class MyCustomReporter {
     const data = JSON.stringify(results);
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data)
-    const htmlTemplate = fs.readFileSync(localTemplatePath, "utf-8");
-    const outPutContext = htmlTemplate.replace("$resultData", () =>
+    const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8');
+    const outPutContext = htmlTemplate.replace('$resultData', () =>
       JSON.stringify(data)
     );
-    fs.writeFileSync(filePath, outPutContext, "utf-8");
-    console.log("📦 reporter is created on:", filePath);
+    fs.writeFileSync(filePath, outPutContext, 'utf-8');
+    console.log('📦 reporter is created on:', filePath);
     openIfRequested(filePath);
 
     this.removeTempDir();

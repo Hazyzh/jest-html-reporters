@@ -15,7 +15,7 @@ module.exports = {
     'html'
   ],
   // add your custom rules here
-  'rules': {
+  rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
@@ -25,11 +25,12 @@ module.exports = {
     // space-before-function-paren
     'space-before-function-paren': 0,
     // camelcase
-    'camelcase': 0,
+    camelcase: 0,
     // comma-dangle
     'comma-dangle': 0,
     // no-callback-literal
     'no-callback-literal': 0,
 
+    semi: [2, 'always'],
   }
 }

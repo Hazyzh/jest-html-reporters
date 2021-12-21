@@ -1,6 +1,6 @@
-const fs = require("fs-extra");
-const path = require("path");
-const os = require("os");
+const fs = require('fs-extra');
+const path = require('path');
+const os = require('os');
 
 let username = '';
 try {
@@ -12,13 +12,13 @@ try {
 const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
   `${username}-${process.ppid}`,
-  "jest-html-reporters-temp"
+  'jest-html-reporters-temp'
 );
 
-const dataDirPath = path.resolve(tempDirPath, "./data");
-const attachDirPath = path.resolve(tempDirPath, "./images");
+const dataDirPath = path.resolve(tempDirPath, './data');
+const attachDirPath = path.resolve(tempDirPath, './images');
 
-const distDirName = `./jest-html-reporters-attach`;
+const distDirName = './jest-html-reporters-attach';
 
 /**
  *
@@ -29,7 +29,7 @@ const distDirName = `./jest-html-reporters-attach`;
 const addAttach = async (attach, description, context, bufferFormat) => {
   const { testPath, testName } = getJestGlobalData(context);
   // type check
-  if (typeof attach !== "string" && !Buffer.isBuffer(attach)) {
+  if (typeof attach !== 'string' && !Buffer.isBuffer(attach)) {
     console.error(
       `[jest-html-reporters]: Param attach error, not a buffer or string, pic ${testName} - ${description} log failed.`
     );
@@ -37,13 +37,13 @@ const addAttach = async (attach, description, context, bufferFormat) => {
   }
 
   const fileName = generateRandomString();
-  if (typeof attach === "string") {
+  if (typeof attach === 'string') {
     const attachObject = { testPath, testName, filePath: attach, description };
     await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
   }
 
   if (Buffer.isBuffer(attach)) {
-    bufferFormat = bufferFormat || 'jpg'
+    bufferFormat = bufferFormat || 'jpg';
     const path = `${attachDirPath}/${fileName}.${bufferFormat}`;
     try {
       await fs.writeFile(path, attach);
@@ -53,7 +53,7 @@ const addAttach = async (attach, description, context, bufferFormat) => {
         fileName: `${fileName}.${bufferFormat}`,
         description,
       };
-      await fs.writeJSON(`${dataDirPath}/${fileName}.${bufferFormat}`, attachObject);
+      await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
     } catch (err) {
       console.error(err);
       console.error(
@@ -76,8 +76,8 @@ const addMsg = async (message, context) => {
 };
 
 const getJestGlobalData = (globalContext) => {
-  let testPath = "";
-  let currentTestName = "";
+  let testPath = '';
+  let currentTestName = '';
   const context = globalContext || global;
   [...Object.getOwnPropertySymbols(context)].forEach((key) => {
     if (context[key].state && context[key].matchers) {
@@ -98,7 +98,7 @@ const readAttachInfos = async (publicPath) => {
 
     if (!exist) {
       console.info(
-        "Temp folder not exist, means that attach Infos may append unsuccessful"
+        'Temp folder not exist, means that attach Infos may append unsuccessful'
       );
       return result;
     }
@@ -123,38 +123,37 @@ const readAttachInfos = async (publicPath) => {
         description,
         fileName,
       } = attachObject;
-      let attachMappingName = testName || "jest-html-reporters-file-attach";
+      const attachMappingName = testName || 'jest-html-reporters-file-attach';
 
       if (!result[testPath]) result[testPath] = {};
-      if (!result[testPath][attachMappingName])
-        result[testPath][attachMappingName] = [];
+      if (!result[testPath][attachMappingName]) { result[testPath][attachMappingName] = []; }
 
       result[testPath][attachMappingName].push({
         filePath: fileName ? `${distDirName}/${fileName}` : filePath,
-        description: description || "",
+        description: description || '',
       });
     });
   } catch (err) {
     console.error(err);
-    console.error(`[jest-html-reporters]: parse attach failed!`);
+    console.error('[jest-html-reporters]: parse attach failed!');
   }
 
   return result;
 };
 
 // For options
-const PUBLIC_PATH = "publicPath";
-const FILE_NAME = "filename";
-const EXPAND = "expand";
-const PAGE_TITLE = "pageTitle";
-const LOGO_IMG_PATH = "logoImgPath";
-const HIDE_ICON = "hideIcon";
-const CUSTOM_INFOS = "customInfos";
-const TEST_COMMAND = "testCommand";
-const OPEN_REPORT = "openReport";
-const FAILURE_MESSAGE_ONLY = "failureMessageOnly";
-const ENABLE_MERGE_DATA = "enableMergeData";
-const DATA_MERGE_LEVEL = "dataMergeLevel";
+const PUBLIC_PATH = 'publicPath';
+const FILE_NAME = 'filename';
+const EXPAND = 'expand';
+const PAGE_TITLE = 'pageTitle';
+const LOGO_IMG_PATH = 'logoImgPath';
+const HIDE_ICON = 'hideIcon';
+const CUSTOM_INFOS = 'customInfos';
+const TEST_COMMAND = 'testCommand';
+const OPEN_REPORT = 'openReport';
+const FAILURE_MESSAGE_ONLY = 'failureMessageOnly';
+const ENABLE_MERGE_DATA = 'enableMergeData';
+const DATA_MERGE_LEVEL = 'dataMergeLevel';
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -173,14 +172,14 @@ const constants = {
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
-    [FILE_NAME]: "jest_html_reporters.html",
+    [FILE_NAME]: 'jest_html_reporters.html',
     [EXPAND]: false,
-    [PAGE_TITLE]: "",
+    [PAGE_TITLE]: '',
     [LOGO_IMG_PATH]: undefined,
     [HIDE_ICON]: false,
     [CUSTOM_INFOS]: undefined,
-    [TEST_COMMAND]: "npx jest",
-    [OPEN_REPORT]: process.env.NODE_ENV === "development",
+    [TEST_COMMAND]: 'npx jest',
+    [OPEN_REPORT]: process.env.NODE_ENV === 'development',
     [FAILURE_MESSAGE_ONLY]: false,
     [ENABLE_MERGE_DATA]: false,
     [DATA_MERGE_LEVEL]: 1,
