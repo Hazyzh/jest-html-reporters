@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
 dist/*
+coverage/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -14,6 +15,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 jest_html_reporters.html
-test/Examples/*
 jest-html-reporters-attach
+test/Examples/*
 html-report/*
+*.d.ts
+helper.js
+index.js

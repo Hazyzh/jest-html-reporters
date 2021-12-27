@@ -1,18 +1,9 @@
-import React from 'react'
-import { hot } from 'react-hot-loader'
-import App from './components/app'
+import React from 'react';
 
-let data
-if (process.env.NODE_ENV === 'production') {
-  const resData = document.getElementById('resData').innerText
-  data = JSON.parse(JSON.parse(resData))
-} else {
-  data = require('./devMock.json')
-}
-const defaultTitle = 'Report'
-window.realData = data
-document.title = data._reporterOptions.pageTitle || defaultTitle
+import { hot } from 'react-hot-loader';
 
-const SingleReportApp = () => <App data={data} />
+import App from './components/app';
 
-export default hot(module)(SingleReportApp)
+const SingleReportApp = ({ data }) => <App data={data} />;
+
+export default hot(module)(SingleReportApp);

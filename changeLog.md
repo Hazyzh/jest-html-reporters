@@ -100,3 +100,13 @@
 ### 2.1.6
 
 - fix table can not expend issue.
+
+### 3.0.1
+
+- remove multiple related logic.
+- fix multiple user test temp dir error issue.
+- Add hour data while displaying time duration.
+- using ts for index file to generate d.ts file.
+- Added fourth option to `addAttach` to allow specifying attachment filetype. 
+- refactor helper `addAttach` and `addMsg` function, using object as a parameters.
+- refactor build script, remove inline `script` code.

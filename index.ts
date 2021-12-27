@@ -1,25 +1,29 @@
-const fs = require('fs');
-const fse = require('fs-extra');
-const path = require('path');
-const open = require('open');
-const {
-  tempDirPath,
-  dataDirPath,
-  attachDirPath,
-  distDirName,
-  readAttachInfos,
-  getOptions,
-} = require('./helper');
-const localTemplatePath = path.resolve(__dirname, './dist/index.html');
+import fs from 'fs';
+import fse from 'fs-extra';
+import openBrowser from 'open';
+import path from 'path';
 
-function mkdirs(dirPath) {
+import {
+  attachDirPath,
+  dataDirPath,
+  getOptions,
+  pickData,
+  readAttachInfos,
+  resourceDirName,
+  tempDirPath,
+} from './helper';
+
+const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
+const localTemplateJSPath = path.resolve(__dirname, './dist/index.js');
+
+function mkdirs(dirPath: string) {
   if (!fs.existsSync(path.dirname(dirPath))) {
     mkdirs(path.dirname(dirPath));
   }
   fs.mkdirSync(dirPath);
 }
 
-function imgToBase64(imgPath) {
+function imgToBase64(imgPath: string) {
   const fileName = path.resolve(imgPath);
   if (fs.statSync(fileName).isFile()) {
     const fileData = fs.readFileSync(fileName).toString('base64');
@@ -29,7 +33,7 @@ function imgToBase64(imgPath) {
 }
 
 // for #32
-const formatCustomInfo = (customInfos) => {
+const formatCustomInfo = (customInfos: string) => {
   if (typeof customInfos !== 'string') return customInfos;
 
   try {
@@ -49,12 +53,34 @@ const formatCustomInfo = (customInfos) => {
   return undefined;
 };
 
+const removeUnusedData = (result) => {
+  const res = pickData(result, ['coverageMap', 'openHandles', 'snapshot']);
+  const testResults = result.testResults.map(item => pickData(item, ['openHandles', 'snapshot']));
+  return { ...res, testResults };
+};
+
+const filenameErrorWordings = `
+jest-html-reporters error: 
+    config error for 【filename】option!
+    this config just for filename, should not including the char */*
+    if you want put out report result to specific path,
+    please using 【publicPath】. 
+`;
+
 // my-custom-reporter.js
 class MyCustomReporter {
+  _globalConfig;
+  _options;
+  _publishResourceDir: string;
+
   constructor(globalConfig, options) {
+    const { filename = '' } = options;
+    if (filename.includes('/')) {
+      throw new Error(filenameErrorWordings);
+    }
     this._globalConfig = globalConfig;
-    console.log(globalConfig);
     this._options = getOptions(options);
+    this._publishResourceDir = path.resolve(path.resolve(this._options.publicPath, resourceDirName));
     this.init();
   }
 
@@ -80,7 +106,7 @@ class MyCustomReporter {
     );
     const openIfRequested = (filePath) => {
       if (openReport) {
-        open(filePath, openReport === true ? {} : openReport);
+        openBrowser(filePath, openReport === true ? {} : openReport);
       }
     };
     results.attachInfos = attachInfos;
@@ -93,14 +119,12 @@ class MyCustomReporter {
       );
     }
 
-    const data = JSON.stringify(results);
+    const data = JSON.stringify(removeUnusedData(results));
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data)
-    const htmlTemplate = fs.readFileSync(localTemplatePath, 'utf-8');
-    const outPutContext = htmlTemplate.replace('$resultData', () =>
-      JSON.stringify(data)
-    );
-    fs.writeFileSync(filePath, outPutContext, 'utf-8');
+    fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`, 'utf-8');
+    fs.copyFileSync(localTemplateHTMLPath, filePath);
+    fs.copyFileSync(localTemplateJSPath, path.resolve(this._publishResourceDir, 'index.js'));
     console.log('📦 reporter is created on:', filePath);
     openIfRequested(filePath);
 
@@ -116,6 +140,7 @@ class MyCustomReporter {
     this.removeAttachDir();
     fse.mkdirpSync(dataDirPath);
     fse.mkdirpSync(attachDirPath);
+    fse.mkdirpSync(this._publishResourceDir);
   }
 
   removeTempDir() {
@@ -124,7 +149,7 @@ class MyCustomReporter {
 
   removeAttachDir() {
     fse.removeSync(
-      path.resolve(this._options.publicPath || process.cwd(), distDirName)
+      this._publishResourceDir
     );
   }
 }

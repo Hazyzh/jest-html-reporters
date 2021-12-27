@@ -1,32 +1,41 @@
-const fs = require('fs-extra');
-const path = require('path');
-const os = require('os');
+import fs from 'fs-extra';
+import os from 'os';
+import path from 'path';
 
-let username = '';
+let username: string = '';
 try {
   username = os.userInfo().username;
 } catch (err) {
   console.log(err);
 }
 
-const tempDirPath = path.resolve(
+export const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
   `${username}-${process.ppid}`,
   'jest-html-reporters-temp'
 );
 
-const dataDirPath = path.resolve(tempDirPath, './data');
-const attachDirPath = path.resolve(tempDirPath, './images');
+export const dataDirPath = path.resolve(tempDirPath, './data');
+export const attachDirPath = path.resolve(tempDirPath, './images');
 
-const distDirName = './jest-html-reporters-attach';
+export const resourceDirName = './jest-html-reporters-attach';
 
-/**
- *
- * @param {Buffer | string} attach
- * @param {string} description
- * @param {object} context. Optional. It contains custom configs
- */
-const addAttach = async (attach, description, context, bufferFormat) => {
+interface IAddAttachParams {
+  attach: string | Buffer;
+  description: string;
+  context: any;
+  bufferFormat: string;
+}
+
+type TAttachObject = {
+  testPath: string;
+  testName: string;
+  description: string;
+  filePath?: string;
+  fileName?: string;
+};
+
+export const addAttach = async ({ attach, description, context, bufferFormat = 'jpg' } : IAddAttachParams) => {
   const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== 'string' && !Buffer.isBuffer(attach)) {
@@ -38,16 +47,15 @@ const addAttach = async (attach, description, context, bufferFormat) => {
 
   const fileName = generateRandomString();
   if (typeof attach === 'string') {
-    const attachObject = { testPath, testName, filePath: attach, description };
+    const attachObject: TAttachObject = { testPath, testName, filePath: attach, description };
     await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
   }
 
   if (Buffer.isBuffer(attach)) {
-    bufferFormat = bufferFormat || 'jpg';
     const path = `${attachDirPath}/${fileName}.${bufferFormat}`;
     try {
       await fs.writeFile(path, attach);
-      const attachObject = {
+      const attachObject: TAttachObject = {
         testPath,
         testName,
         fileName: `${fileName}.${bufferFormat}`,
@@ -63,15 +71,19 @@ const addAttach = async (attach, description, context, bufferFormat) => {
   }
 };
 
+interface IAddMsgParams {
+  message: string;
+  context: any;
+}
 /**
  *
  * @param {string} message
  * @param {object} context. Optional. It contains custom configs
  */
-const addMsg = async (message, context) => {
+export const addMsg = async ({ message, context }: IAddMsgParams) => {
   const { testPath, testName } = getJestGlobalData(context);
   const fileName = generateRandomString();
-  const attachObject = { testPath, testName, description: message };
+  const attachObject: TAttachObject = { testPath, testName, description: message };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
@@ -91,7 +103,7 @@ const getJestGlobalData = (globalContext) => {
 
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
-const readAttachInfos = async (publicPath) => {
+export const readAttachInfos = async (publicPath: string) => {
   const result = {};
   try {
     const exist = await fs.pathExists(dataDirPath);
@@ -104,12 +116,12 @@ const readAttachInfos = async (publicPath) => {
     }
 
     const attachData = await fs.readdir(dataDirPath);
-    const dataList = await Promise.all(
+    const dataList: TAttachObject[] = await Promise.all(
       attachData.map((data) =>
         fs.readJSON(`${dataDirPath}/${data}`, { throws: false })
       )
     );
-    const outPutDir = path.resolve(publicPath, distDirName);
+    const outPutDir = path.resolve(publicPath, resourceDirName);
     const attachFiles = await fs.readdir(attachDirPath);
     if (attachFiles.length) await fs.copy(attachDirPath, outPutDir);
 
@@ -129,7 +141,7 @@ const readAttachInfos = async (publicPath) => {
       if (!result[testPath][attachMappingName]) { result[testPath][attachMappingName] = []; }
 
       result[testPath][attachMappingName].push({
-        filePath: fileName ? `${distDirName}/${fileName}` : filePath,
+        filePath: fileName ? `${resourceDirName}/${fileName}` : filePath,
         description: description || '',
       });
     });
@@ -196,7 +208,7 @@ function getEnvOptions() {
   return options;
 }
 
-const getOptions = (reporterOptions = {}) =>
+export const getOptions = (reporterOptions = {}) =>
   Object.assign(
     {},
     constants.DEFAULT_OPTIONS,
@@ -204,13 +216,12 @@ const getOptions = (reporterOptions = {}) =>
     getEnvOptions()
   );
 
-module.exports = {
-  getOptions,
-  addAttach,
-  addMsg,
-  readAttachInfos,
-  dataDirPath,
-  attachDirPath,
-  distDirName,
-  tempDirPath,
+export const pickData = (obj: Object, filterKeys: string[]) => {
+  const res = {};
+  Object.keys(obj).forEach(key => {
+    if (!filterKeys.includes(key)) {
+      res[key] = obj[key];
+    }
+  });
+  return res;
 };
