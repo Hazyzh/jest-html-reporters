@@ -1,7 +1,9 @@
-import React from 'react'
-import moment from 'moment'
-import jump from 'jump.js'
-import { TimeIcon } from './icons'
+import React from 'react';
+
+import jump from 'jump.js';
+import moment from 'moment';
+
+import { TimeIcon } from './icons';
 
 /**
  * return calss name
@@ -155,3 +157,44 @@ export const renderRootRowClass = ({ numFailingTests, numPendingTests, numTodoTe
   else if (numTodoTests) status = 'todo'
   return getRecordClass(status, index)
 }
+
+
+const callback = 'jest_html_reporters_callback__';
+const RUNTIME = {
+  lastPromise: null,
+};
+export const fetchWithJsonp = (url) => {
+  const lastPromise = RUNTIME.lastPromise;
+  const promise = (async () => {
+    try {
+      // if there is already ongoing request, wait for it to be done
+      // before replacing the window.__rc_config_data_callback__ function
+      await lastPromise;
+    } catch (error) {
+      // ignore last error
+    }
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.onerror = () => {
+        document.body.removeChild(script);
+        window[callback] = null;
+        if (RUNTIME.lastPromise === promise) {
+          RUNTIME.lastPromise = null;
+        }
+        reject(new Error(`'${url}' jsonp fetch failed`));
+      };
+      (window)[callback] = (data) => {
+        document.body.removeChild(script);
+        (window)[callback] = null;
+        if (RUNTIME.lastPromise === promise) {
+          RUNTIME.lastPromise = null;
+        }
+        resolve(data);
+      };
+      document.body.appendChild(script);
+    });
+  })();
+  RUNTIME.lastPromise = promise;
+  return promise;
+};
