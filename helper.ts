@@ -31,6 +31,8 @@ type TAttachObject = {
   testPath: string;
   testName: string;
   description: string;
+  createTime: number;
+  extName?: string;
   filePath?: string;
   fileName?: string;
 };
@@ -44,10 +46,10 @@ export const addAttach = async ({ attach, description, context, bufferFormat = '
     );
     return;
   }
-
+  const createTime = Date.now();
   const fileName = generateRandomString();
   if (typeof attach === 'string') {
-    const attachObject: TAttachObject = { testPath, testName, filePath: attach, description };
+    const attachObject: TAttachObject = { createTime, testPath, testName, filePath: attach, description, extName: path.extname(attach) };
     await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
   }
 
@@ -56,10 +58,12 @@ export const addAttach = async ({ attach, description, context, bufferFormat = '
     try {
       await fs.writeFile(path, attach);
       const attachObject: TAttachObject = {
+        createTime,
         testPath,
         testName,
         fileName: `${fileName}.${bufferFormat}`,
         description,
+        extName: `.${bufferFormat}`,
       };
       await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
     } catch (err) {
@@ -82,8 +86,9 @@ interface IAddMsgParams {
  */
 export const addMsg = async ({ message, context }: IAddMsgParams) => {
   const { testPath, testName } = getJestGlobalData(context);
+  const createTime = Date.now();
   const fileName = generateRandomString();
-  const attachObject: TAttachObject = { testPath, testName, description: message };
+  const attachObject: TAttachObject = { createTime, testPath, testName, description: message };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
@@ -134,6 +139,8 @@ export const readAttachInfos = async (publicPath: string) => {
         filePath,
         description,
         fileName,
+        createTime,
+        extName,
       } = attachObject;
       const attachMappingName = testName || 'jest-html-reporters-file-attach';
 
@@ -143,6 +150,8 @@ export const readAttachInfos = async (publicPath: string) => {
       result[testPath][attachMappingName].push({
         filePath: fileName ? `${resourceDirName}/${fileName}` : filePath,
         description: description || '',
+        createTime,
+        extName,
       });
     });
   } catch (err) {

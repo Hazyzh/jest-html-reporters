@@ -121,7 +121,7 @@ class MyCustomReporter {
 
     const data = JSON.stringify(removeUnusedData(results));
     const filePath = path.resolve(publicPath, filename);
-    // fs.writeFileSync('./src/devMock.json', data)
+    // fs.writeFileSync('./src/devMock.json', data);
     fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`, 'utf-8');
     fs.copyFileSync(localTemplateHTMLPath, filePath);
     fs.copyFileSync(localTemplateJSPath, path.resolve(this._publishResourceDir, 'index.js'));
