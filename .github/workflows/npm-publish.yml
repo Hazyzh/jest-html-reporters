@@ -25,9 +25,8 @@ jobs:
       - name: build
         uses: borales/actions-yarn@v2.3.0
         with:
-          cmd: build
+          cmd: buildCi
       # npm publish
-      - run: npm ci
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
