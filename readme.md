@@ -66,7 +66,6 @@ The options below are specific to the reporter.
   ["jest-html-reporters", {
     "publicPath": "./html-report",
     "filename": "report.html",
-    "expand": true,
     "openReport": true
   }]
 ]
@@ -74,7 +73,7 @@ The options below are specific to the reporter.
 
 ---
 
-### 2.x updates
+### some features.
 
 - Collapsable Test Groups
 
@@ -88,13 +87,12 @@ For Example
 This feature regrading to [#36](https://github.com/Hazyzh/jest-html-reporters/issues/36), this package will a new method named `addAttach`.
 
 ```
-/**
- *
- * @param {Buffer | string} attach
- * @param {string} description of the picture
- * @param {object} custom context (optional)
- */
-const addAttach = async (attach, description, context) => { ... }
+interface IAddAttachParams {
+    attach: string | Buffer;
+    description: string;
+    context: any;
+    bufferFormat: string;
+}
 ```
 
 There are three params of this method, `description` is easy to understand. The param **`attach`** referring to the image, you can pass a `buffer` or `string`, if it was a buffer the package will help you create a dir named `jest-html-reporters-attach` and save that `buffer` as a `jpg` image in it under the `publicPath`. if you have already saved the image, just pass the image's path as the `attach` param.
@@ -114,8 +112,15 @@ describe("just examples", () => {
     await page.goto("https://www.google.com");
     const data = await page.screenshot();
     await browser.close();
-    await addAttach(data, "test google 1", this.global);
-
+    await addAttach({
+      attach: data,
+      description: 'img 1',
+    });
+    await addAttach({
+      attach: await fs.readFileSync('./test.mp4'),
+      description: 'img 1',
+      bufferFormat: 'mp4',
+    });
     expect(1).toBe(1);
   });
 });
@@ -129,14 +134,17 @@ const path = require("path");
 
 describe("just examples", () => {
   test("case string", async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
     const filePath = path.resolve(__dirname, "./test.jpg");
-    await page.goto("https://www.google.com");
-    const data = await page.screenshot({ path: filePath });
     await browser.close();
-    await addAttach(filePath, "test google 2");
+    await addAttach({
+      attach: filePath,
+      description: 'test google 2',
+    });
 
+    await addAttach({
+      attach: 'www.example.com/test.mp4',
+      description: 'test video 2',
+    });
     expect(1).toBe(2);
   });
 });

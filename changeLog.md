@@ -110,3 +110,4 @@
 - Added fourth option to `addAttach` to allow specifying attachment filetype. 
 - refactor helper `addAttach` and `addMsg` function, using object as a parameters.
 - refactor build script, remove inline `script` code.
+- add html support for custom info section.
