@@ -23,7 +23,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     # install yarn
     - name: Add yarn
       uses: borales/actions-yarn@v2.3.0
