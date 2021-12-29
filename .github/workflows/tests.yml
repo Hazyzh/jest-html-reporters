@@ -24,5 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install
+    # install yarn
+    - name: Add yarn
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: install
     - run: npm run testCi
