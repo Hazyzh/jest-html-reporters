@@ -29,4 +29,4 @@ jobs:
       uses: borales/actions-yarn@v2.3.0
       with:
         cmd: install
-    - run: npm test
+    - run: npm testCi
