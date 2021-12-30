@@ -26,8 +26,9 @@ function mkdirs(dirPath: string) {
 function imgToBase64(imgPath: string) {
   const fileName = path.resolve(imgPath);
   if (fs.statSync(fileName).isFile()) {
+    const fileMimeType = path.extname(imgPath).toLowerCase();
     const fileData = fs.readFileSync(fileName).toString('base64');
-    return `data:image/${fileName.split('.').pop()};base64,${fileData}`;
+    return `data:image/${fileMimeType === 'svg' ? 'svg+xml' : fileMimeType};base64,${fileData}`;
   }
   return undefined;
 }
