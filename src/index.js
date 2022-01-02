@@ -8,7 +8,8 @@ import { fetchWithJsonp } from './untils/index';
   let data;
   if (process.env.NODE_ENV === 'production') {
     // data = require('./jest-html-reporters-attach/result.json');
-    data = await fetchWithJsonp('./jest-html-reporters-attach/result.js');
+    const pathPlaceholder = process.env.PLACEHOLDER;
+    data = await fetchWithJsonp(`./${pathPlaceholder}/result.js`);
   } else {
     data = require('./devMock.json');
   }

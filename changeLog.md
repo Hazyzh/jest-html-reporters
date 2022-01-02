@@ -111,3 +111,7 @@
 - refactor helper `addAttach` and `addMsg` function, using object as a parameters.
 - refactor build script, remove inline `script` code.
 - add html support for custom info section.
+
+### 3.0.2
+
+- fix bug fix: 🐛 fix resource dir overwrite issue when multiple project(#180).

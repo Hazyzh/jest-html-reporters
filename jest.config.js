@@ -20,7 +20,7 @@ module.exports = {
     [
       '<rootDir>/index.js',
       {
-        // publicPath: './html-report',
+        publicPath: './html-report',
         filename: 'report.html',
         enableMergeData: true,
         dataMergeLevel: 2,

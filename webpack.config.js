@@ -12,6 +12,8 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
+const packageReplaceString = '<<<JEST-HTML-REPLACE-PLACEHOLDER>>>';
+
 module.exports = {
   mode: 'production',
   entry: {
@@ -19,7 +21,7 @@ module.exports = {
   },
   output: {
     path: resolve('dist'),
-    publicPath: './jest-html-reporters-attach',
+    publicPath: packageReplaceString,
     filename: '[name].js',
   },
   resolve: {
@@ -34,6 +36,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         VERSIONS: JSON.stringify(packageInfo.version),
+        PLACEHOLDER: JSON.stringify(packageReplaceString),
       },
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
