@@ -14,7 +14,6 @@ export const tempDirPath = path.resolve(
   `${username}-${Buffer.from(process.cwd()).toString('base64')}`,
   'jest-html-reporters-temp'
 );
-console.log('main', process.ppid, process.cwd());
 
 export const dataDirPath = path.resolve(tempDirPath, './data');
 export const attachDirPath = path.resolve(tempDirPath, './images');
@@ -231,7 +230,6 @@ export const copyAndReplace = ({ tmpPath, outPutPath, pattern, newSubstr }: {
   pattern: string | RegExp;
   newSubstr: string;
 }) => {
-  console.log(tmpPath, outPutPath);
   const data = fs.readFileSync(tmpPath, { encoding: 'utf8' });
   const res = data.replace(pattern, newSubstr);
   fs.writeFileSync(outPutPath, res);

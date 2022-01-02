@@ -163,9 +163,6 @@ class MyCustomReporter {
   initAttachDir() {
     this.removeTempDir();
     this.removeAttachDir();
-    console.log(dataDirPath);
-    console.log(attachDirPath);
-    console.log('index', process.ppid, process.cwd());
     fse.mkdirpSync(dataDirPath);
     fse.mkdirpSync(attachDirPath);
     fse.mkdirpSync(this._publishResourceDir);
