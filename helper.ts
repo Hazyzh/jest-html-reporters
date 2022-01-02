@@ -11,9 +11,10 @@ try {
 
 export const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
-  `${username}-${process.ppid}`,
+  `${username}-${Buffer.from(process.cwd()).toString('base64')}`,
   'jest-html-reporters-temp'
 );
+console.log('main', process.ppid, process.cwd());
 
 export const dataDirPath = path.resolve(tempDirPath, './data');
 export const attachDirPath = path.resolve(tempDirPath, './images');
@@ -108,7 +109,7 @@ const getJestGlobalData = (globalContext) => {
 
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
-export const readAttachInfos = async (publicPath: string) => {
+export const readAttachInfos = async (publicPath: string, publicRelativePath: string) => {
   const result = {};
   try {
     const exist = await fs.pathExists(dataDirPath);
@@ -126,9 +127,8 @@ export const readAttachInfos = async (publicPath: string) => {
         fs.readJSON(`${dataDirPath}/${data}`, { throws: false })
       )
     );
-    const outPutDir = path.resolve(publicPath, resourceDirName);
     const attachFiles = await fs.readdir(attachDirPath);
-    if (attachFiles.length) await fs.copy(attachDirPath, outPutDir);
+    if (attachFiles.length) await fs.copy(attachDirPath, publicPath);
 
     dataList.forEach((attachObject) => {
       if (!attachObject) return;
@@ -148,7 +148,7 @@ export const readAttachInfos = async (publicPath: string) => {
       if (!result[testPath][attachMappingName]) { result[testPath][attachMappingName] = []; }
 
       result[testPath][attachMappingName].push({
-        filePath: fileName ? `${resourceDirName}/${fileName}` : filePath,
+        filePath: fileName ? `${publicRelativePath}/${fileName}` : filePath,
         description: description || '',
         createTime,
         extName,
@@ -224,6 +224,18 @@ export const getOptions = (reporterOptions = {}) =>
     reporterOptions,
     getEnvOptions()
   );
+
+export const copyAndReplace = ({ tmpPath, outPutPath, pattern, newSubstr }: {
+  tmpPath: string;
+  outPutPath: string;
+  pattern: string | RegExp;
+  newSubstr: string;
+}) => {
+  console.log(tmpPath, outPutPath);
+  const data = fs.readFileSync(tmpPath, { encoding: 'utf8' });
+  const res = data.replace(pattern, newSubstr);
+  fs.writeFileSync(outPutPath, res);
+};
 
 export const pickData = (obj: Object, filterKeys: string[]) => {
   const res = {};

@@ -5,6 +5,7 @@ import path from 'path';
 
 import {
   attachDirPath,
+  copyAndReplace,
   dataDirPath,
   getOptions,
   pickData,
@@ -15,6 +16,7 @@ import {
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
 const localTemplateJSPath = path.resolve(__dirname, './dist/index.js');
+const packageReplaceReg = /<<<JEST-HTML-REPLACE-PLACEHOLDER>>>/g;
 
 function mkdirs(dirPath: string) {
   if (!fs.existsSync(path.dirname(dirPath))) {
@@ -73,6 +75,7 @@ class MyCustomReporter {
   _globalConfig;
   _options;
   _publishResourceDir: string;
+  _resourceRelativePath: string;
 
   constructor(globalConfig, options) {
     const { filename = '' } = options;
@@ -81,7 +84,8 @@ class MyCustomReporter {
     }
     this._globalConfig = { ...globalConfig };
     this._options = getOptions(options);
-    this._publishResourceDir = path.resolve(path.resolve(this._options.publicPath, resourceDirName));
+    this._resourceRelativePath = path.join(resourceDirName, path.basename(this._options.filename, '.html'));
+    this._publishResourceDir = path.resolve(this._options.publicPath, this._resourceRelativePath);
     this.init();
   }
 
@@ -103,7 +107,8 @@ class MyCustomReporter {
       customInfos: formatCustomInfo(customInfos),
     };
     const attachInfos = await readAttachInfos(
-      publicPath,
+      this._publishResourceDir,
+      this._resourceRelativePath,
     );
     const openIfRequested = (filePath) => {
       if (openReport) {
@@ -123,9 +128,21 @@ class MyCustomReporter {
     const data = JSON.stringify(removeUnusedData(results));
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data);
-    fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`, 'utf-8');
-    fs.copyFileSync(localTemplateHTMLPath, filePath);
-    fs.copyFileSync(localTemplateJSPath, path.resolve(this._publishResourceDir, 'index.js'));
+    fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`);
+    // html
+    copyAndReplace({
+      tmpPath: localTemplateHTMLPath,
+      outPutPath: filePath,
+      pattern: packageReplaceReg,
+      newSubstr: this._resourceRelativePath
+    });
+    // js
+    copyAndReplace({
+      tmpPath: localTemplateJSPath,
+      outPutPath: path.resolve(this._publishResourceDir, 'index.js'),
+      pattern: packageReplaceReg,
+      newSubstr: this._resourceRelativePath
+    });
     console.log('📦 reporter is created on:', filePath);
     openIfRequested(filePath);
 
@@ -146,6 +163,9 @@ class MyCustomReporter {
   initAttachDir() {
     this.removeTempDir();
     this.removeAttachDir();
+    console.log(dataDirPath);
+    console.log(attachDirPath);
+    console.log('index', process.ppid, process.cwd());
     fse.mkdirpSync(dataDirPath);
     fse.mkdirpSync(attachDirPath);
     fse.mkdirpSync(this._publishResourceDir);
