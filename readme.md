@@ -163,7 +163,7 @@ This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporter
  * @param {string} options.message - message string
  * @param {any} [options.context] - custom context (optional)
  */
-const addMsg: ({ message, context }) => { ... }
+const addMsg = async ({ message, context }) => { ... }
 ```
 
 Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
