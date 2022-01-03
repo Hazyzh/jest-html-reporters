@@ -159,11 +159,11 @@ This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporter
 
 ```
 /**
- *
- * @param {string} message
- * @param {object} custom context (optional)
+ * @param {object} options - options object
+ * @param {string} options.message - message string
+ * @param {any} [options.context] - custom context (optional)
  */
-const addMsg = async (message, context) => { ... }
+const addMsg: ({ message, context }) => { ... }
 ```
 
 Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
@@ -178,16 +178,16 @@ const Nightmare = require("nightmare");
 describe("Yet another example", () => {
   test("Both addAttach & addMsg with failure", async () => {
     const nightmare = Nightmare({ show: true });
-    await addMsg(JSON.stringify({ won: 1, too: 2 }, null, 2));
+    await addMsg({ message: JSON.stringify({ won: 1, too: 2 }, null, 2) });
     await nightmare.goto("https://duckduckgo.com");
     const s1 = await nightmare.screenshot();
     await addAttach(s1, "test duckduckgo 1");
     await nightmare.end();
-    await addMsg(JSON.stringify(process, null, 2));
+    await addMsg({ message: JSON.stringify(process, null, 2) });
     expect(2).toEqual(1);
   }, 20000);
   test("addMsg with success", async () => {
-    await addMsg(JSON.stringify({ free: 3, for: 4 }, null, 2));
+    await addMsg({ message: JSON.stringify({ free: 3, for: 4 }, null, 2) });
     expect(2).toEqual(2);
   });
 });
