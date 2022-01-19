@@ -115,3 +115,7 @@
 ### 3.0.2
 
 - fix bug fix: 🐛 fix resource dir overwrite issue when multiple project(#180).
+
+### 3.0.4
+
+- support global root dir variable.

@@ -10,6 +10,7 @@ import {
   getOptions,
   pickData,
   readAttachInfos,
+  replaceRootDirVariable,
   resourceDirName,
   tempDirPath,
 } from './helper';
@@ -84,6 +85,7 @@ class MyCustomReporter {
     }
     this._globalConfig = { ...globalConfig };
     this._options = getOptions(options);
+    this._options.publicPath = replaceRootDirVariable(this._options.publicPath, globalConfig.rootDir);
     this._resourceRelativePath = `${resourceDirName}/${path.basename(this._options.filename, '.html')}`;
     this._publishResourceDir = path.resolve(this._options.publicPath, this._resourceRelativePath);
     this.init();
