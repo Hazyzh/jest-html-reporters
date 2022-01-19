@@ -1,4 +1,7 @@
-import { getOptions } from '../../helper';
+import {
+  getOptions,
+  replaceRootDirVariable,
+} from '../../helper';
 
 describe("get options ", () => {
   const OLD_ENV = process.env;
@@ -56,4 +59,19 @@ describe("get options ", () => {
     };
     expect(getOptions()).toEqual(envOptions);
   });
+});
+
+describe('test replaceRootDirVariable function', () => {
+  test.each`
+   publicPath                                       | rootDirPath           | result
+    ${'<rootDir>/html-report'}                      | ${'/Users/harry'}     | ${'/Users/harry/html-report'}
+    ${'./html-report'}                              | ${'/Users/harry'}     | ${'./html-report'}
+    ${'/html-report/<rootDir>'}                     | ${'/Users/harry'}     | ${'/html-report/<rootDir>'}
+    ${'<rootDir>/html-report<rootDir>/html-report'} | ${'/Users/harry'}     | ${'/Users/harry/html-report<rootDir>/html-report'}
+  `('should return correct value', (
+    { publicPath, rootDirPath, result }
+  ) => {
+    const execResult = replaceRootDirVariable(publicPath, rootDirPath);
+    expect(execResult).toBe(result);
+  })
 });

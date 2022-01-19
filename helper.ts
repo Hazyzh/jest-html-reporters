@@ -244,3 +244,12 @@ export const pickData = (obj: Object, filterKeys: string[]) => {
   });
   return res;
 };
+
+const rootDirVariable = '<rootDir>';
+export const replaceRootDirVariable = (publicPath: string, rootDirPath: string) => {
+  if (!publicPath.startsWith(rootDirVariable)) {
+    return publicPath;
+  };
+
+  return publicPath.replace(rootDirVariable, rootDirPath);
+};
