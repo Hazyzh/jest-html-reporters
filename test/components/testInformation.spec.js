@@ -3,7 +3,6 @@ import Information, { SimpleBarChart } from '@/components/Information'
 import { PieChart, BarChart } from 'recharts'
 import { mount } from 'enzyme'
 import '../__mocks__/matchMedia.mock';
-import moment from 'moment';
 
 const mockProps = {
   config: {
@@ -13,6 +12,7 @@ const mockProps = {
   startTime: '1538200731831',
   endTime: '1538200734761',
   testResults: [],
+  customInfos: [{title: "abc", value: "123"}]
 }
 
 describe('test Information component', () => {
@@ -45,5 +45,22 @@ describe('test Information component', () => {
     // max workers
     expect(wrapper.find('div.main_information')).toContainMatchingElement('.MaxWorkers')
     expect(wrapper.find('div.main_information .MaxWorkers .label_value').text()).toBe('7')
+  })
+
+  test('main information area should contain custom information', () => {
+    expect(wrapper.find('div.main_information')).toContainMatchingElement('.CustomInfo')
+  })
+
+  test('main information area should not contain custom information', () => {
+    const wrapper = mount(<Information {... {
+      config: {
+        rootDir: '/root/dir/name',
+        maxWorkers: 7
+      },
+      startTime: '1538200731831',
+      endTime: '1538200734761',
+      testResults: [],
+    }} />)
+    expect(wrapper.find('div.main_information')).not.toContainMatchingElement('.CustomInfo')
   })
 })

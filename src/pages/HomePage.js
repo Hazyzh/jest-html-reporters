@@ -9,13 +9,11 @@ import {
 
 import {
   AppstoreOutlined,
-  GoldOutlined,
   PercentageOutlined,
   PieChartOutlined,
   ProfileOutlined,
 } from '@ant-design/icons';
 
-import CustomInformation from '../components/CustomInformation';
 import DashBoard from '../components/DashBoard';
 import Information from '../components/Information';
 import TableItem from '../components/Table';
@@ -49,15 +47,10 @@ class HomePage extends Component {
             </Col>}
         </Row>
         <DashBoard {...this.state} />
-        {customInfos && customInfos.length > 0 &&
-          <>
-            <h3 className='area_subject'><GoldOutlined /> Custom Information</h3>
-            <CustomInformation customInfos={customInfos} />
-          </>}
         <h3 className='area_subject'>
           <PieChartOutlined /> Information
         </h3>
-        <Information {...this.state} />
+        <Information {...this.state} customInfos={customInfos || []} />
         <h3 className='area_subject expand_box'>
           <span>
             <ProfileOutlined /> Details
