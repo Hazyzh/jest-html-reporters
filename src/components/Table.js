@@ -96,8 +96,8 @@ const getColumns = (rootDir, execCommand, attachInfos) => [
     },
   },
   {
-    title: 'UseTime',
-    key: 'UseTime',
+    title: 'ExecTime',
+    key: 'ExecTime',
     render: renderTime,
     width: '150px',
     sorter: (a, b) =>

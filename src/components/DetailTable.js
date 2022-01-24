@@ -89,7 +89,7 @@ const renderTitle = ({
 
 const columns = [
   { title: 'title', key: 'Name', ellipsis: true, render: renderTitle },
-  { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
+  { title: 'ExecTime', key: 'ExecTime', render: renderTime, width: '150px' },
   {
     title: 'status',
     align: 'center',
