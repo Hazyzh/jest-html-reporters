@@ -76,7 +76,7 @@ const renderTitle = ({
   const nestedTitle = subGroups
     ? subTitle
     : [...ancestorTitles, title].join(sep);
-  const tooltip = subGroups ? subTitle : fullName;
+  const tooltip = subGroups ? subTitle : nestedTitle;
 
   return (
     <Tooltip overlayStyle={{ maxWidth: '800px' }} title={tooltip}>
