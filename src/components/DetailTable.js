@@ -9,7 +9,6 @@ import {
 
 import {
   formatCollapsableData,
-  getFormatTime,
   getRecordClass,
   renderRootRowClass,
 } from '@/untils';
@@ -22,6 +21,7 @@ import {
 
 import ErrorButton from './ErrorButton';
 import { renderStatus as parentRowRenderStatus } from './Table';
+import { getFormatTimeDisplay } from '../untils';
 
 const renderStatus = ({ status }) => {
   let info;
@@ -63,7 +63,7 @@ const renderStatus = ({ status }) => {
 };
 
 const renderTime = ({ duration, subGroups }) =>
-  !subGroups && getFormatTime(0, duration);
+  !subGroups && getFormatTimeDisplay(0, duration);
 
 const renderTitle = ({
   ancestorTitles = [],
@@ -76,7 +76,7 @@ const renderTitle = ({
   const nestedTitle = subGroups
     ? subTitle
     : [...ancestorTitles, title].join(sep);
-  const tooltip = subGroups ? subTitle : fullName;
+  const tooltip = subGroups ? subTitle : nestedTitle;
 
   return (
     <Tooltip overlayStyle={{ maxWidth: '800px' }} title={tooltip}>
@@ -89,7 +89,7 @@ const renderTitle = ({
 
 const columns = [
   { title: 'title', key: 'Name', ellipsis: true, render: renderTitle },
-  { title: 'UseTime', key: 'UseTime', render: renderTime, width: '150px' },
+  { title: 'ExecTime', key: 'ExecTime', render: renderTime, width: '150px' },
   {
     title: 'status',
     align: 'center',

@@ -41,7 +41,27 @@ const InsuranceNumber = (number, minLength = 2) => {
  * @param {Timestamp} start
  * @param {Timestamp} end
  */
-export const getFormatTime = (start, end) => {
+export const getFormattedTime = (start, end) => {
+  const duration = moment.duration(end - start)
+  const hour = InsuranceNumber(duration.hours())
+  const min = InsuranceNumber(duration.minutes())
+  const sec = InsuranceNumber(duration.seconds())
+  const msec = InsuranceNumber(duration.milliseconds(), 3)
+  let node
+  if (hour !== '00') {
+    node = `${hour}:${min}:${sec}.${msec}`
+  } else if (min !== '00') {
+    node = `${min}:${sec}.${msec}`
+  } else if (sec !== '00') {
+    node = `${min}:${sec}.${msec}`
+  } else {
+    node = `${min}:${sec}.${msec}`
+  }
+  return node
+}
+
+export const getFormatTimeDisplay = (start, end) =>
+{
   const duration = moment.duration(end - start)
   const hour = InsuranceNumber(duration.hours())
   const min = InsuranceNumber(duration.minutes())

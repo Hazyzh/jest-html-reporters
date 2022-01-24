@@ -9,7 +9,6 @@ import copy from 'copy-to-clipboard';
 
 import {
   getExistKeys,
-  getFormatTime,
   renderRootRowClass,
 } from '@/untils';
 import {
@@ -22,6 +21,7 @@ import {
 import { Consumer } from '../contexts/expand';
 import DetailTable from './DetailTable';
 import ErrorButton from './ErrorButton';
+import { getFormatTimeDisplay } from '../untils';
 
 export const renderStatus = ({
   numPassingTests,
@@ -65,7 +65,7 @@ export const renderStatus = ({
   return <div className='mian_table_tags'>{tagsInfo}</div>;
 };
 
-const renderTime = ({ perfStats: { start, end } }) => getFormatTime(start, end);
+const renderTime = ({ perfStats: { start, end } }) => getFormatTimeDisplay(start, end);
 
 const getColumns = (rootDir, execCommand, attachInfos) => [
   {
@@ -96,8 +96,8 @@ const getColumns = (rootDir, execCommand, attachInfos) => [
     },
   },
   {
-    title: 'UseTime',
-    key: 'UseTime',
+    title: 'ExecTime',
+    key: 'ExecTime',
     render: renderTime,
     width: '150px',
     sorter: (a, b) =>
