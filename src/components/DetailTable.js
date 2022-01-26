@@ -9,6 +9,7 @@ import {
 
 import {
   formatCollapsableData,
+  getFormatTimeDisplay,
   getRecordClass,
   renderRootRowClass,
 } from '@/untils';
@@ -21,7 +22,6 @@ import {
 
 import ErrorButton from './ErrorButton';
 import { renderStatus as parentRowRenderStatus } from './Table';
-import { getFormatTimeDisplay } from '../untils';
 
 const renderStatus = ({ status }) => {
   let info;
