@@ -46,7 +46,7 @@ const FileNode = ({ description, filePath, extName }) => {
 
 function info(data, caseAttachInfos, title) {
   Modal.warning({
-    title: `FAILURE INFO FOR --> ${title}`,
+    title: title,
     width: '80%',
     maskClosable: true,
     content: (
@@ -58,7 +58,7 @@ function info(data, caseAttachInfos, title) {
           <List
             header='Attach'
             bordered
-            grid={{ gutter: 8, column: 3 }}
+            itemLayout='horizontal'
             dataSource={caseAttachInfos}
             sort='createTime'
             renderItem={(item) => (
@@ -73,7 +73,7 @@ function info(data, caseAttachInfos, title) {
                   </Card>
                 ) : (
                   <Card className='ant-col-24' bordered={false}>
-                    <pre style={{ 'max-height': '200px', overflow: 'auto' }}>
+                    <pre style={{ overflow: 'auto' }}>
                       {item.description}
                     </pre>
                   </Card>
@@ -94,9 +94,12 @@ const ErrorButton = ({
   caseAttachInfos = [],
 }) => {
   if (!failureMessage && !caseAttachInfos.length) return null;
-  const title = fullName || testFilePath;
+  let title = `INFO FOR --> ${fullName || testFilePath}`;
+  if (failureMessage) title = 'ERROR ' + title;
+  const color = failureMessage ? undefined : '#52c41a';
   return (
     <div
+      style={{ background: color }}
       className='error_button'
       onClick={() => info(failureMessage, caseAttachInfos, title)}
     >
