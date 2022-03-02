@@ -39,10 +39,10 @@ class HomePage extends Component {
               <AppstoreOutlined /> Dashboard
             </h3>
           </Col>
-          {config.collectCoverage &&
+          {config.coverageLinkPath &&
             <Col>
               <h3>
-                <a href={`${config.coverageDirectory}/lcov-report/index.html`} data-testid='coverage-link'><PercentageOutlined /> Coverage</a>
+                <a href={`${config.coverageLinkPath}`} data-testid='coverage-link'><PercentageOutlined /> Coverage</a>
               </h3>
             </Col>}
         </Row>
