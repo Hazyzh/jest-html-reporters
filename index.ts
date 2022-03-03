@@ -157,8 +157,18 @@ class MyCustomReporter {
   }
 
   initCoverageDirectory() {
-    if (this._globalConfig.collectCoverage && this._globalConfig.coverageDirectory) {
-      this._globalConfig.coverageDirectory = path.relative(this._options.publicPath, this._globalConfig.coverageDirectory);
+    const { collectCoverage, coverageDirectory, coverageReporters } = this._globalConfig;
+    if (collectCoverage && coverageDirectory) {
+      const coverageDirectoryPath = path.relative(this._options.publicPath, this._globalConfig.coverageDirectory);
+
+      if (coverageReporters.find(type => type === 'lcov')) {
+        this._globalConfig.coverageLinkPath = path.join(coverageDirectoryPath, './lcov-report/index.html');
+        return;
+      }
+
+      if (coverageReporters.find(type => type === 'html')) {
+        this._globalConfig.coverageLinkPath = path.join(coverageDirectoryPath, './index.html');
+      }
     }
   }
 

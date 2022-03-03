@@ -1,14 +1,15 @@
-import React from "react";
-import { shallow } from "enzyme";
+import '../../__mocks__/matchMedia.mock';
 
-import App from "@/components/app.js";
+import React from 'react';
 
-import { BackTop } from "antd";
-import HomePage from "@/pages/HomePage";
-import TableItem from "@/components/Table";
-import DashBoard from "@/components/DashBoard";
-import Information from "@/components/Information";
-import "../../__mocks__/matchMedia.mock";
+import { BackTop } from 'antd';
+import { shallow } from 'enzyme';
+
+import App from '@/components/app.js';
+import DashBoard from '@/components/DashBoard';
+import Information from '@/components/Information';
+import TableItem from '@/components/Table';
+import HomePage from '@/pages/HomePage';
 
 describe('test home page', () => {
   describe('via app', () => {
@@ -47,7 +48,7 @@ describe('test home page', () => {
 
   describe("test coverage link", () => {
     test("there should a link if coverage has been activated", () => {
-      const homePage = shallow(<HomePage realData={{ _reporterOptions: {}, config: { collectCoverage: true, coverageDirectory: 'test' } }} />);
+      const homePage = shallow(<HomePage realData={{ _reporterOptions: {}, config: { coverageLinkPath: 'test/index.html' } }} />);
 
       const link = homePage.find("[data-testid='coverage-link']");
       expect(link.length).toBe(1);
