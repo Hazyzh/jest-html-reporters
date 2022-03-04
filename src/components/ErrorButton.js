@@ -6,6 +6,7 @@ import {
   List,
   Modal,
   Row,
+  Typography,
 } from 'antd';
 
 import { ExclamationCircleFilled } from '@ant-design/icons';
@@ -53,35 +54,35 @@ function info(data, caseAttachInfos, title) {
       <Row style={{ flexDirection: 'column' }}>
         <Col span={24}>
           <ErrorInfoItem data={data} caseAttachInfos={caseAttachInfos} />
+
         </Col>
-        {!!caseAttachInfos.length && (
-          <List
-            header='Attach'
-            bordered
-            grid={{ gutter: 8, column: 3 }}
-            dataSource={caseAttachInfos}
-            sort='createTime'
-            renderItem={(item) => (
-              <List.Item>
-                {item.filePath ? (
-                  <Card
-                    hoverable
-                    bordered
-                    cover={<FileNode {...item} />}
-                  >
-                    <Meta title={<a href={item.filePath} target='_blank' rel='noreferrer'>Detail</a>} description={item.description} />
-                  </Card>
-                ) : (
-                  <Card className='ant-col-24' bordered={false}>
-                    <pre style={{ 'max-height': '200px', overflow: 'auto' }}>
+        <Col span={24}>
+          {!!caseAttachInfos.length && (
+            <List
+              header='Attach'
+              bordered
+              dataSource={caseAttachInfos}
+              sort='createTime'
+              renderItem={(item) => (
+                <List.Item>
+                  {item.filePath ? (
+                    <Card
+                      hoverable
+                      bordered
+                      cover={<FileNode {...item} />}
+                    >
+                      <Meta title={<a href={item.filePath} target='_blank' rel='noreferrer'>Detail</a>} description={item.description} />
+                    </Card>
+                  ) : (
+                    <Typography.Paragraph className='test-log-message' code copyable>
                       {item.description}
-                    </pre>
-                  </Card>
-                )}
-              </List.Item>
-            )}
-          />
-        )}
+                    </Typography.Paragraph>
+                  )}
+                </List.Item>
+              )}
+            />
+          )}
+        </Col>
       </Row>
     ),
   });
