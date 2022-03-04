@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils');
 const theme = require('./build/theme');
+const HtmlWebpackInlineSourcePlugin = require('./build/InlineChunkHtmlPlugin');
 
 const packageInfo = require('./package.json');
 function resolve(dir) {
@@ -40,18 +41,19 @@ module.exports = {
       },
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    ...['index'].map(
+    ...['index', 'singleFile'].map(
       (name) =>
         new HtmlWebpackPlugin({
           filename: `${name}.html`,
-          chunks: [name],
-          template: 'index.html',
-          inlineSource: '.(js|css)$',
+          chunks: 'index',
+          template: `./templates/${name}.html`,
+          inlineSource: name === 'singleFile' ? '.(js|css)$' : undefined,
         })
     ),
     // Copyright
     new webpack.BannerPlugin('Copyright Harry All rights reserved.'),
     // new BundleAnalyzerPlugin(),
+    new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin, [/s/]),
   ],
   optimization: {
     minimizer: [

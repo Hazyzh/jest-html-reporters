@@ -119,3 +119,9 @@
 ### 3.0.4
 
 - support global root dir variable.
+
+### 3.0.6
+
+- support inline resource option (community required).
+- fix message layout issue.
+- fix coverage report path error issue.

@@ -7,9 +7,14 @@ import { fetchWithJsonp } from './untils/index';
 (async () => {
   let data;
   if (process.env.NODE_ENV === 'production') {
-    // data = require('./jest-html-reporters-attach/result.json');
-    const pathPlaceholder = process.env.PLACEHOLDER;
-    data = await fetchWithJsonp(`./${pathPlaceholder}/result.js`);
+    const singleDataEle = document.getElementById('jest-html-reports-result-data');
+    if (singleDataEle) {
+      const resData = singleDataEle.innerText;
+      data = JSON.parse(resData);
+    } else {
+      const pathPlaceholder = process.env.PLACEHOLDER;
+      data = await fetchWithJsonp(`./${pathPlaceholder}/result.js`);
+    }
   } else {
     data = require('./devMock.json');
   }

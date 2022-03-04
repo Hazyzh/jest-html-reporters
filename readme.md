@@ -55,6 +55,7 @@ The options below are specific to the reporter.
 | `failureMessageOnly`       | JEST_HTML_REPORTERS_FAILURE_MESSAGE_ONLY        | boolean | false                              | show failure test suites messages only in HTML report                                                                                                                                                                                                                                                |
 | `enableMergeData`               | JEST_HTML_REPORTERS_ENABLE_MERGE_DATA                 | boolean    | false            | for default enable merge test data feature                                                                                                                                                                                                                                                    |
 | `dataMergeLevel`               | JEST_HTML_REPORTERS_DATA_MERGE_LEVEL                 | number    | 1            |  default merge test data level                                                                                                                                      |
+| `inlineSource`       | JEST_HTML_REPORTERS_INLINE_SOURCE                 | boolean    | false          |  Option to save report in a single combined HTML file [#184](https://github.com/Hazyzh/jest-html-reporters/issues/184)                                                                                                                        |
 ---
 
 #### example add config options

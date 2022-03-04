@@ -28,6 +28,7 @@ describe("get options ", () => {
       testCommand: "npx jest",
       enableMergeData: false,
       dataMergeLevel: 1,
+      inlineSource: false,
     };
     expect(getOptions()).toEqual(defaultOption);
   });
@@ -46,6 +47,7 @@ describe("get options ", () => {
       failureMessageOnly: false,
       enableMergeData: false,
       dataMergeLevel: 1,
+      inlineSource: true,
     };
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: "./test",
@@ -56,6 +58,7 @@ describe("get options ", () => {
       JEST_HTML_REPORTERS_HIDE_ICON: true,
       JEST_HTML_REPORTERS_CUSTOM_INFOS: "{a: 1}",
       JEST_HTML_REPORTERS_TEST_COMMAND: "yarn test",
+      JEST_HTML_REPORTERS_INLINE_SOURCE: true, 
     };
     expect(getOptions()).toEqual(envOptions);
   });

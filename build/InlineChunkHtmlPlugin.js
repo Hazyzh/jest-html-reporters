@@ -42,8 +42,10 @@ class InlineChunkHtmlPlugin {
 
       const hooks = this.htmlWebpackPlugin.getHooks(compilation);
       hooks.alterAssetTagGroups.tap("InlineChunkHtmlPlugin", (assets) => {
-        assets.headTags = assets.headTags.map(tagFunction);
-        assets.bodyTags = assets.bodyTags.map(tagFunction);
+        if (assets.outputName === 'singleFile.html') {
+          assets.headTags = assets.headTags.map(tagFunction);
+          assets.bodyTags = assets.bodyTags.map(tagFunction);
+        }
       });
 
       // Still emit the runtime chunk for users who do not use our generated
