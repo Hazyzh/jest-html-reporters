@@ -174,6 +174,7 @@ const OPEN_REPORT = 'openReport';
 const FAILURE_MESSAGE_ONLY = 'failureMessageOnly';
 const ENABLE_MERGE_DATA = 'enableMergeData';
 const DATA_MERGE_LEVEL = 'dataMergeLevel';
+const INLINE_SOURCE = 'inlineSource';
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -189,6 +190,7 @@ const constants = {
     JEST_HTML_REPORTERS_FAILURE_MESSAGE_ONLY: FAILURE_MESSAGE_ONLY,
     JEST_HTML_REPORTERS_ENABLE_MERGE_DATA: ENABLE_MERGE_DATA,
     JEST_HTML_REPORTERS_DATA_MERGE_LEVEL: DATA_MERGE_LEVEL,
+    JEST_HTML_REPORTERS_INLINE_SOURCE: INLINE_SOURCE,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -203,6 +205,7 @@ const constants = {
     [FAILURE_MESSAGE_ONLY]: false,
     [ENABLE_MERGE_DATA]: false,
     [DATA_MERGE_LEVEL]: 1,
+    [INLINE_SOURCE]: false,
   },
 };
 
@@ -231,7 +234,7 @@ export const copyAndReplace = ({ tmpPath, outPutPath, pattern, newSubstr }: {
   newSubstr: string;
 }) => {
   const data = fs.readFileSync(tmpPath, { encoding: 'utf8' });
-  const res = data.replace(pattern, newSubstr);
+  const res = data.replace(pattern, () => newSubstr);
   fs.writeFileSync(outPutPath, res);
 };
 

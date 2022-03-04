@@ -25,6 +25,7 @@ module.exports = {
         enableMergeData: true,
         dataMergeLevel: 2,
         openReport: true,
+        // inlineSource: true,
       },
     ],
     // '<rootDir>/index.dev.js',

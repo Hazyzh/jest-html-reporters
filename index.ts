@@ -16,8 +16,10 @@ import {
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
+const localTemplateSingleHTMLPath = path.resolve(__dirname, './dist/singleFile.html');
 const localTemplateJSPath = path.resolve(__dirname, './dist/index.js');
 const packageReplaceReg = /<<<JEST-HTML-REPLACE-PLACEHOLDER>>>/g;
+const packageSingleReplaceReg = /&JEST-HTML-REPLACE-Single-PLACEHOLDER&/g;
 
 function mkdirs(dirPath: string) {
   if (!fs.existsSync(path.dirname(dirPath))) {
@@ -130,21 +132,32 @@ class MyCustomReporter {
     const data = JSON.stringify(removeUnusedData(results));
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data);
-    fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`);
-    // html
-    copyAndReplace({
-      tmpPath: localTemplateHTMLPath,
-      outPutPath: filePath,
-      pattern: packageReplaceReg,
-      newSubstr: this._resourceRelativePath
-    });
-    // js
-    copyAndReplace({
-      tmpPath: localTemplateJSPath,
-      outPutPath: path.resolve(this._publishResourceDir, 'index.js'),
-      pattern: packageReplaceReg,
-      newSubstr: this._resourceRelativePath
-    });
+    if (!this._options.inlineSource) {
+      fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`);
+      // html
+      copyAndReplace({
+        tmpPath: localTemplateHTMLPath,
+        outPutPath: filePath,
+        pattern: packageReplaceReg,
+        newSubstr: this._resourceRelativePath
+      });
+      // js
+      copyAndReplace({
+        tmpPath: localTemplateJSPath,
+        outPutPath: path.resolve(this._publishResourceDir, 'index.js'),
+        pattern: packageReplaceReg,
+        newSubstr: this._resourceRelativePath
+      });
+    } else {
+      // html
+      copyAndReplace({
+        tmpPath: localTemplateSingleHTMLPath,
+        outPutPath: filePath,
+        pattern: packageSingleReplaceReg,
+        newSubstr: data
+      });
+    }
+
     console.log('📦 reporter is created on:', filePath);
     openIfRequested(filePath);
 
