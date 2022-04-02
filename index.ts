@@ -13,6 +13,7 @@ import {
   replaceRootDirVariable,
   resourceDirName,
   tempDirPath,
+  deepClone,
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
@@ -93,7 +94,8 @@ class MyCustomReporter {
     this.init();
   }
 
-  async onRunComplete(contexts, results) {
+  async onRunComplete(contexts, originalResults) {
+    const results = deepClone(originalResults);
     const {
       publicPath,
       filename,
