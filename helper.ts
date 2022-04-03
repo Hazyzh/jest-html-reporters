@@ -248,6 +248,10 @@ export const pickData = (obj: Object, filterKeys: string[]) => {
   return res;
 };
 
+export const deepClone = <T>(obj: T): T => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
 const rootDirVariable = '<rootDir>';
 export const replaceRootDirVariable = (publicPath: string, rootDirPath: string) => {
   if (!publicPath.startsWith(rootDirVariable)) {
