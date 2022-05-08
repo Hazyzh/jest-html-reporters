@@ -23,8 +23,8 @@ export const resourceDirName = './jest-html-reporters-attach';
 interface IAddAttachParams {
   attach: string | Buffer;
   description: string;
-  context: any;
-  bufferFormat: string;
+  context?: any;
+  bufferFormat?: string;
 }
 
 type TAttachObject = {
