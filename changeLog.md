@@ -125,3 +125,9 @@
 - support inline resource option (community required).
 - fix message layout issue.
 - fix coverage report path error issue.
+
+### 3.0.7
+
+- deep clone result.
+- fix add message display style.
+- fix addMsg type.
