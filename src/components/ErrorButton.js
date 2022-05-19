@@ -6,7 +6,6 @@ import {
   List,
   Modal,
   Row,
-  Typography,
 } from 'antd';
 
 import { ExclamationCircleFilled } from '@ant-design/icons';
@@ -16,12 +15,36 @@ import ErrorInfoItem from './ErrorInfoItem';
 const { Meta } = Card;
 
 const imgSupportedFormats = [
-  '.apng', '.avif', '.gif', '.jpg', '.jpeg', '.jfif',
-  '.pjpeg', '.pjp', '.png', '.svg', '.webp', '.bmp',
-  '.ico', '.cur', '.tiff', '.tif'
+  '.apng',
+  '.avif',
+  '.gif',
+  '.jpg',
+  '.jpeg',
+  '.jfif',
+  '.pjpeg',
+  '.pjp',
+  '.png',
+  '.svg',
+  '.webp',
+  '.bmp',
+  '.ico',
+  '.cur',
+  '.tiff',
+  '.tif',
 ];
 
-const videoSupportFormats = ['.3gp', '.mpg', '.mpeg', '.mp4', '.m4v', '.m4p', '.ogv', '.ogg', '.mov', '.webm'];
+const videoSupportFormats = [
+  '.3gp',
+  '.mpg',
+  '.mpeg',
+  '.mp4',
+  '.m4v',
+  '.m4p',
+  '.ogv',
+  '.ogg',
+  '.mov',
+  '.webm',
+];
 
 const IMG_TYPE = 'IMG_TYPE';
 const VIDEO_TYPE = 'VIDEO_TYPE';
@@ -41,20 +64,23 @@ const FileNode = ({ description, filePath, extName }) => {
     case VIDEO_TYPE:
       return <video controls alt={description} src={filePath} />;
     case UNKNOWN_TYPE:
-      return <a target='_blank' rel='noreferrer' alt={description} href={filePath}>file</a>;
+      return (
+        <a target='_blank' rel='noreferrer' alt={description} href={filePath}>
+          file
+        </a>
+      );
   }
 };
 
 function info(data, caseAttachInfos, title) {
   Modal.warning({
-    title: `FAILURE INFO FOR --> ${title}`,
+    title: `INFO FOR --> ${title}`,
     width: '80%',
     maskClosable: true,
     content: (
       <Row style={{ flexDirection: 'column' }}>
         <Col span={24}>
-          <ErrorInfoItem data={data} caseAttachInfos={caseAttachInfos} />
-
+          <ErrorInfoItem data={data} />
         </Col>
         <Col span={24}>
           {!!caseAttachInfos.length && (
@@ -66,17 +92,22 @@ function info(data, caseAttachInfos, title) {
               renderItem={(item) => (
                 <List.Item>
                   {item.filePath ? (
-                    <Card
-                      hoverable
-                      bordered
-                      cover={<FileNode {...item} />}
-                    >
-                      <Meta title={<a href={item.filePath} target='_blank' rel='noreferrer'>Detail</a>} description={item.description} />
+                    <Card hoverable bordered cover={<FileNode {...item} />}>
+                      <Meta
+                        title={
+                          <a
+                            href={item.filePath}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            Detail
+                          </a>
+                        }
+                        description={item.description}
+                      />
                     </Card>
                   ) : (
-                    <Typography.Paragraph className='test-log-message' code copyable>
-                      {item.description}
-                    </Typography.Paragraph>
+                    <pre style={{ width: '100%' }}>{item.description}</pre>
                   )}
                 </List.Item>
               )}

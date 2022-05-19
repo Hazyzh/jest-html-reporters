@@ -7,13 +7,13 @@ import {
   attachDirPath,
   copyAndReplace,
   dataDirPath,
+  deepClone,
   getOptions,
   pickData,
   readAttachInfos,
   replaceRootDirVariable,
   resourceDirName,
   tempDirPath,
-  deepClone,
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
@@ -133,7 +133,7 @@ class MyCustomReporter {
 
     const data = JSON.stringify(removeUnusedData(results));
     const filePath = path.resolve(publicPath, filename);
-    // fs.writeFileSync('./src/devMock.json', data);
+    fs.writeFileSync('./src/devMock.json', data);
     if (!this._options.inlineSource) {
       fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`);
       // html
