@@ -7,13 +7,13 @@ import {
   attachDirPath,
   copyAndReplace,
   dataDirPath,
+  deepClone,
   getOptions,
   pickData,
   readAttachInfos,
   replaceRootDirVariable,
   resourceDirName,
   tempDirPath,
-  deepClone,
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
