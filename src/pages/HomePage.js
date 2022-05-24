@@ -33,7 +33,6 @@ class HomePage extends Component {
     const { _reporterOptions: { customInfos }, config } = this.props.realData;
     const { testResults, usingExecutionTime } = this.state;
     const comProps = { ...this.state, testResults: usingExecutionTime ? getExecutionResult(testResults) : testResults };
-    console.log(comProps);
     return (
       <div>
         <BackTop />
