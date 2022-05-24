@@ -91,7 +91,7 @@ export const getFormatTimeDisplay = (start, end) =>
 
 export const getFormatData = (data = []) => {
   return data.map(({ numFailingTests, numPassingTests, numPendingTests,
-    testResults, testFilePath, perfStats: { end, start } }) => ({
+    testResults, testFilePath, perfStats: { end, start, duration } }) => ({
     name: testFilePath,
     time: (end - start) / 1000,
     numFailingTests,
@@ -218,3 +218,19 @@ export const fetchWithJsonp = (url) => {
   RUNTIME.lastPromise = promise;
   return promise;
 };
+
+
+export const getExecutionResult = (testestResultst = []) => {
+  try {
+    const data = JSON.parse(JSON.stringify(testestResultst));
+    data.forEach((item) => {
+      const countDuration = item.testResults.reduce((pre, item) => { return pre + (item.duration ? item.duration : 0)}, 0);
+      item.perfStats.runtime = countDuration;
+      item.perfStats.end = item.perfStats.start + countDuration;
+    });
+    return data;
+  } catch(err) {
+    console.log(err);
+    return testestResultst;
+  }
+}

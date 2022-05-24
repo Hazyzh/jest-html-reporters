@@ -1,4 +1,8 @@
-import { getRecordClass, getExistKeys } from './index'
+import {
+  getExecutionResult,
+  getExistKeys,
+  getRecordClass,
+} from './index';
 
 describe('Test Func  ==> `getRecordClass` :', () => {
   test('should return `row_fail` is state is failed', () => {
@@ -47,5 +51,20 @@ describe('Test Func  ==> `getExistKeys` :', () => {
     }
     const res = getExistKeys(emptyObject)
     expect(res).toEqual(['true', 'string'])
+  })
+})
+
+describe('Test Func  ==> `getExecutionResult` :', () => {
+  test('should return count duration and end time', () => {
+    const originData = [{
+      perfStats: { start: 1000, runtime: 2000, end: 3000},
+      testResults: [{ duration: 1000 }]
+    }];
+    const emptyObject = [{
+      perfStats: { start: 1000, runtime: 1000, end: 2000},
+      testResults: [{ duration: 1000 }]
+    }];
+    const res = getExecutionResult(originData)
+    expect(res).toEqual(emptyObject);
   })
 })

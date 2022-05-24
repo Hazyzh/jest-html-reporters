@@ -32,5 +32,7 @@ module.exports = {
     'no-callback-literal': 0,
 
     semi: [2, 'always'],
+
+    'quotes': 'single',
   }
 }
