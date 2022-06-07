@@ -135,3 +135,8 @@
 ### 3.0.8
 
 - add case exec time count toggle button.
+
+### 3.0.9
+
+- fix inlineSource create dir issue.
+- improve failureMessageOnly option to support not create report request.
