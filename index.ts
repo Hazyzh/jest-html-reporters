@@ -129,6 +129,13 @@ class MyCustomReporter {
       results.testResults = results.testResults.filter(
         (i) => !!i.failureMessage
       );
+
+      if (failureMessageOnly === 2 && results.testResults.length === 0) {
+        this.removeTempDir();
+        this.removeResourceDir();
+        console.log('🛑 report was not created due to no failed case. [failureMessageOnly]');
+        return;
+      }
     }
 
     const data = JSON.stringify(removeUnusedData(results));
@@ -159,15 +166,13 @@ class MyCustomReporter {
         newSubstr: data
       });
 
-      // remove temp dir
+      // remove resource dir
       if (!attachInfos.hasAttachFiles) {
-        fse.removeSync(
-          path.resolve(this._options.publicPath, resourceDirName)
-        );
+        this.removeResourceDir();
       }
     }
 
-    console.log('📦 reporter is created on:', filePath);
+    console.log('📦 report is created on:', filePath);
     openIfRequested(filePath);
 
     this.removeTempDir();
@@ -204,6 +209,12 @@ class MyCustomReporter {
 
   removeTempDir() {
     fse.removeSync(tempDirPath);
+  }
+
+  removeResourceDir() {
+    fse.removeSync(
+      path.resolve(this._options.publicPath, resourceDirName)
+    );
   }
 
   removeAttachDir() {

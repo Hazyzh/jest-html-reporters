@@ -205,7 +205,7 @@ const constants = {
     [CUSTOM_INFOS]: undefined,
     [TEST_COMMAND]: 'npx jest',
     [OPEN_REPORT]: process.env.NODE_ENV === 'development',
-    [FAILURE_MESSAGE_ONLY]: false,
+    [FAILURE_MESSAGE_ONLY]: 0,
     [ENABLE_MERGE_DATA]: false,
     [DATA_MERGE_LEVEL]: 1,
     [INLINE_SOURCE]: false,
