@@ -109,7 +109,7 @@ const getJestGlobalData = (globalContext) => {
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
 export const readAttachInfos = async (publicPath: string, publicRelativePath: string) => {
-  const result = {};
+  const result: any = {};
   try {
     const exist = await fs.pathExists(dataDirPath);
 
@@ -127,7 +127,10 @@ export const readAttachInfos = async (publicPath: string, publicRelativePath: st
       )
     );
     const attachFiles = await fs.readdir(attachDirPath);
-    if (attachFiles.length) await fs.copy(attachDirPath, publicPath);
+    if (attachFiles.length) {
+      result.hasAttachFiles = true;
+      await fs.copy(attachDirPath, publicPath)
+    };
 
     dataList.forEach((attachObject) => {
       if (!attachObject) return;

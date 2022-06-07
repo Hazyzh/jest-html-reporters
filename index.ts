@@ -158,6 +158,13 @@ class MyCustomReporter {
         pattern: packageSingleReplaceReg,
         newSubstr: data
       });
+
+      // remove temp dir
+      if (!attachInfos.hasAttachFiles) {
+        fse.removeSync(
+          path.resolve(this._options.publicPath, resourceDirName)
+        );
+      }
     }
 
     console.log('📦 reporter is created on:', filePath);
