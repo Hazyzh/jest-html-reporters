@@ -121,6 +121,7 @@ class MyCustomReporter {
         openBrowser(filePath, openReport === true ? {} : openReport);
       }
     };
+    console.log('attachInfos', attachInfos);
     results.attachInfos = attachInfos;
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath);
 
@@ -158,6 +159,13 @@ class MyCustomReporter {
         pattern: packageSingleReplaceReg,
         newSubstr: data
       });
+
+      // remove temp dir
+      if (!attachInfos.hasAttachFiles) {
+        fse.removeSync(
+          path.resolve(this._options.publicPath, resourceDirName)
+        );
+      }
     }
 
     console.log('📦 reporter is created on:', filePath);
