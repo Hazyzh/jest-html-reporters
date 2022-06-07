@@ -121,7 +121,6 @@ class MyCustomReporter {
         openBrowser(filePath, openReport === true ? {} : openReport);
       }
     };
-    console.log('attachInfos', attachInfos);
     results.attachInfos = attachInfos;
     fs.existsSync(publicPath) === false && publicPath && mkdirs(publicPath);
 
