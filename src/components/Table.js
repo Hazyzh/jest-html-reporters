@@ -15,6 +15,7 @@ import {
   CheckOutlined,
   CloseOutlined,
   FileTwoTone,
+  SelectOutlined
 } from '@ant-design/icons';
 
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
@@ -67,7 +68,7 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTimeDisplay(start, end);
 
-const getColumns = (rootDir, execCommand, attachInfos) => [
+const getColumns = (rootDir, execCommand, remoteUrlForTestFiles, attachInfos) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
@@ -91,6 +92,11 @@ const getColumns = (rootDir, execCommand, attachInfos) => [
             {' '}
             {relativePath}
           </span>
+          {remoteUrlForTestFiles && (
+            <a className='go_to_file_icon' title='click to see the test file in a web browser.' href={`${remoteUrlForTestFiles}/${relativePath}`} target="_blank">
+              <SelectOutlined />
+            </a>
+          )}
         </span>
       );
     },
@@ -181,7 +187,7 @@ const TableItem = ({
         expandedRowKeys={getExistKeys(expand, globalExpandState)}
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })}
-        columns={getColumns(rootDir, _reporterOptions.testCommand, attachInfos)}
+        columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.remoteUrlForTestFiles, attachInfos)}
         dataSource={testResults}
       />
     )}
