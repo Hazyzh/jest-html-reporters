@@ -68,13 +68,14 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTimeDisplay(start, end);
 
-const getColumns = (rootDir, execCommand, remoteUrlForTestFiles, attachInfos) => [
+const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
     key: 'name',
     render: (text) => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '');
+      console.log(urlForTestFiles);
       return (
         <span>
           <span className='copy_icon' title='click to copy path to clipborad'>
@@ -92,8 +93,8 @@ const getColumns = (rootDir, execCommand, remoteUrlForTestFiles, attachInfos) =>
             {' '}
             {relativePath}
           </span>
-          {remoteUrlForTestFiles && (
-            <a className='go_to_file_icon' title='click to see the test file in a web browser.' href={`${remoteUrlForTestFiles}/${relativePath}`} target="_blank">
+          {urlForTestFiles && (
+            <a className='go_to_file_icon' title='click to see the test file in a web browser.' href={`${urlForTestFiles}/${relativePath}`} target="_blank">
               <SelectOutlined />
             </a>
           )}
@@ -187,7 +188,7 @@ const TableItem = ({
         expandedRowKeys={getExistKeys(expand, globalExpandState)}
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })}
-        columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.remoteUrlForTestFiles, attachInfos)}
+        columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.urlForTestFiles, attachInfos)}
         dataSource={testResults}
       />
     )}

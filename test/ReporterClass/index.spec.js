@@ -29,7 +29,7 @@ describe("get options ", () => {
       enableMergeData: false,
       dataMergeLevel: 1,
       inlineSource: false,
-      remoteUrlForTestFiles: "",
+      urlForTestFiles: "",
     };
     expect(getOptions()).toEqual(defaultOption);
   });
@@ -49,7 +49,7 @@ describe("get options ", () => {
       enableMergeData: false,
       dataMergeLevel: 1,
       inlineSource: true,
-      remoteUrlForTestFiles: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
+      urlForTestFiles: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
     };
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: "./test",
@@ -61,7 +61,7 @@ describe("get options ", () => {
       JEST_HTML_REPORTERS_CUSTOM_INFOS: "{a: 1}",
       JEST_HTML_REPORTERS_TEST_COMMAND: "yarn test",
       JEST_HTML_REPORTERS_INLINE_SOURCE: true,
-      JEST_HTML_REPORTERS_REMOTE_URL_FOR_TEST_FILES: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
+      JEST_HTML_REPORTERS_URL_FOR_TEST_FILES: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
     };
     expect(getOptions()).toEqual(envOptions);
   });
