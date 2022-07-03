@@ -18,12 +18,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
       # install yarn
       - name: Add yarn
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install
       # build
       - name: build
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v3.0.0
         with:
           cmd: buildCi
       # npm publish

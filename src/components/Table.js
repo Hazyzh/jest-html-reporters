@@ -15,6 +15,7 @@ import {
   CheckOutlined,
   CloseOutlined,
   FileTwoTone,
+  SelectOutlined
 } from '@ant-design/icons';
 
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
@@ -67,13 +68,14 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTimeDisplay(start, end);
 
-const getColumns = (rootDir, execCommand, attachInfos) => [
+const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
     key: 'name',
     render: (text) => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '');
+      console.log(urlForTestFiles);
       return (
         <span>
           <span className='copy_icon' title='click to copy path to clipborad'>
@@ -91,6 +93,11 @@ const getColumns = (rootDir, execCommand, attachInfos) => [
             {' '}
             {relativePath}
           </span>
+          {urlForTestFiles && (
+            <a className='go_to_file_icon' title='click to see the test file in a web browser.' href={`${urlForTestFiles}/${relativePath}`} target="_blank">
+              <SelectOutlined />
+            </a>
+          )}
         </span>
       );
     },
@@ -181,7 +188,7 @@ const TableItem = ({
         expandedRowKeys={getExistKeys(expand, globalExpandState)}
         onExpand={(state, { testFilePath }) =>
           toggleExpand({ key: testFilePath, state })}
-        columns={getColumns(rootDir, _reporterOptions.testCommand, attachInfos)}
+        columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.urlForTestFiles, attachInfos)}
         dataSource={testResults}
       />
     )}

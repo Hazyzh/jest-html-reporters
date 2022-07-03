@@ -56,6 +56,7 @@ The options below are specific to the reporter.
 | `enableMergeData`               | JEST_HTML_REPORTERS_ENABLE_MERGE_DATA                 | boolean    | false            | for default enable merge test data feature                                                                                                                                                                                                                                                    |
 | `dataMergeLevel`               | JEST_HTML_REPORTERS_DATA_MERGE_LEVEL                 | number    | 1            |  default merge test data level                                                                                                                                      |
 | `inlineSource`       | JEST_HTML_REPORTERS_INLINE_SOURCE                 | boolean    | false          |  Option to save report in a single combined HTML file [#184](https://github.com/Hazyzh/jest-html-reporters/issues/184)                                                                                                                        |
+| `urlForTestFiles`       | JEST_HTML_REPORTERS_URL_FOR_TEST_FILES                 | string    | ''          |  url for test files. If user set this value, Details table shows an icon link to each rows. The link is constructed by joining urlForTestFiles and relativePath (like `/src/utils/index.test.js`) for each tests. See the detail in [#221](https://github.com/Hazyzh/jest-html-reporters/issues/221)                                                                                                                        |
 ---
 
 #### example add config options
@@ -198,3 +199,9 @@ describe("Yet another example", () => {
 
 Message still displays without screenshots and with a successful test
 ![example](./readmeStatic/addMsg-example2.jpg)
+
+- Show a link for each test file
+
+If user set some value to `urlForTestFiles`, Details table shows an icon link to each rows. The link is constructed by joining urlForTestFiles (ex: `https://github.com/Hazyzh/jest-html-reporters/blob/master`) and relativePath (ex: `/src/utils/index.test.js`) for each tests.
+
+![Details Table shows an icon link to each rows.](./readmeStatic/show_a_link_for_each_test_file.png)
