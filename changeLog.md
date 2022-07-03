@@ -140,3 +140,7 @@
 
 - fix inlineSource create dir issue.
 - improve failureMessageOnly option to support not create report request.
+
+### 3.0.10
+
+- add a test file link to each row (community contribute).

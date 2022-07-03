@@ -15,14 +15,14 @@ import {
   CheckOutlined,
   CloseOutlined,
   FileTwoTone,
-  SelectOutlined
+  SelectOutlined,
 } from '@ant-design/icons';
 
 // export const file = '/Users/harry.hou/Desktop/harry/salesforce/salesforce-cti-widget/'
 import { Consumer } from '../contexts/expand';
+import { getFormatTimeDisplay } from '../untils';
 import DetailTable from './DetailTable';
 import ErrorButton from './ErrorButton';
-import { getFormatTimeDisplay } from '../untils';
 
 export const renderStatus = ({
   numPassingTests,
@@ -75,7 +75,6 @@ const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
     key: 'name',
     render: (text) => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '');
-      console.log(urlForTestFiles);
       return (
         <span>
           <span className='copy_icon' title='click to copy path to clipborad'>
