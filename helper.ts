@@ -1,3 +1,4 @@
+import stringify from 'fast-safe-stringify';
 import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
@@ -255,7 +256,7 @@ export const pickData = (obj: Object, filterKeys: string[]) => {
 };
 
 export const deepClone = <T>(obj: T): T => {
-  return JSON.parse(JSON.stringify(obj));
+  return JSON.parse(stringify(obj));
 };
 
 const rootDirVariable = '<rootDir>';
