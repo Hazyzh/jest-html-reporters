@@ -144,3 +144,8 @@
 ### 3.0.10
 
 - add a test file link to each row (community contribute).
+
+### 3.0.11
+
+- fix: apply break-word to each table cell by @nissy-dev in https://github.com/Hazyzh/jest-html-reporters/pull/227
+-  fix: report fails on circular object clone by @OleksandrMartyniuk in https://github.com/Hazyzh/jest-html-reporters/pull/230
