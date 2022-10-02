@@ -1,35 +1,48 @@
 import React from 'react';
-import { Row, Col, Card } from 'antd';
-import randomColor from 'randomcolor';
-import { getFormattedTime, getFormatData, scrollTo, formatDate } from '@/untils';
+
 import {
-  BarChart,
+  Card,
+  Col,
+  Row,
+} from 'antd';
+import randomColor from 'randomcolor';
+import {
   Bar,
+  BarChart,
   Brush,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
   ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
 } from 'recharts';
-import { TimeIcon } from '@/untils/icons';
-import { Consumer } from '../contexts/expand';
+
 import {
-  FileOutlined,
+  formatDate,
+  getFormatData,
+  getFormattedTime,
+  scrollTo,
+} from '@/untils';
+import { TimeIcon } from '@/untils/icons';
+import {
+  BoxPlotFilled,
   CheckOutlined,
+  ClockCircleFilled,
   CloseOutlined,
+  CompassFilled,
+  FileOutlined,
+  FolderFilled,
+  InfoCircleOutlined,
   Loading3QuartersOutlined,
   PieChartFilled,
-  BoxPlotFilled,
-  ClockCircleFilled,
-  FolderFilled,
-  CompassFilled, InfoCircleOutlined,
 } from '@ant-design/icons';
+
+import { Consumer } from '../contexts/expand';
 
 const colors = [...new Array(40)].map((d) => randomColor());
 const createMarkup = (text) => ({

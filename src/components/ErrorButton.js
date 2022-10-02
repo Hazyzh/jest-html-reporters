@@ -130,6 +130,7 @@ const ErrorButton = ({
   return (
     <div
       className='error_button'
+      data-sign='ErrorButton'
       onClick={() => info(failureMessage, caseAttachInfos, title)}
     >
       <ExclamationCircleFilled />
