@@ -1,7 +1,17 @@
-import React from 'react'
-import { Row, Col, Card } from 'antd'
-import { getPercentage, scrollTo } from '@/untils'
-import { Consumer } from '../contexts/expand'
+import React from 'react';
+
+import {
+  Card,
+  Col,
+  Row,
+} from 'antd';
+
+import {
+  getPercentage,
+  scrollTo,
+} from '@/untils';
+
+import { Consumer } from '../contexts/expand';
 
 export const MyCardItem = ({
   labelColor,
@@ -9,7 +19,8 @@ export const MyCardItem = ({
   title,
   content,
   clickHandler,
-}) => <Card
+}) => (<Card
+  data-sign="MyCardItem"
   onClick={clickHandler}
   bodyStyle={{ padding: '12px' }}
   hoverable>
@@ -18,8 +29,9 @@ export const MyCardItem = ({
   </p>
   <p className='card_item_title' style={{ color: labelColor }}>{title}</p>
   <p className='card_item_content'>{content}</p>
-</Card>
-// todo: Refactor with react hooks(need update to React 16.6)
+</Card>);
+
+
 const getScrollDownFunc = test => toggleExpand => () => test && scrollTo(test.testFilePath, toggleExpand)
 
 const DashBoard = ({

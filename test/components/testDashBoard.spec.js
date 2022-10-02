@@ -2,9 +2,11 @@ import '../__mocks__/matchMedia.mock';
 
 import React from 'react';
 
-import { mount } from 'enzyme';
-
-import DashBoard, { MyCardItem } from '@/components/DashBoard';
+import DashBoard from '@/components/DashBoard';
+import {
+  render,
+  screen,
+} from '@testing-library/react';
 
 describe('test Dashboard item number', () => {
   test('if there have all type test there should has 7 MyCardItem items', () => {
@@ -18,8 +20,8 @@ describe('test Dashboard item number', () => {
       numRuntimeErrorTestSuites: 1,
       testResults: [],
     }
-    const wrapper = mount(<DashBoard {...mockProps} />)
-    const myCardItems = wrapper.find(MyCardItem)
+    render(<DashBoard {...mockProps} />)
+    const myCardItems = screen.getAllByTestId('MyCardItem')
     expect(myCardItems.length).toEqual(7)
   })
 
@@ -34,8 +36,8 @@ describe('test Dashboard item number', () => {
       numRuntimeErrorTestSuites: 0,
       testResults: [],
     }
-    const wrapper = mount(<DashBoard {...mockProps} />)
-    const myCardItems = wrapper.find(MyCardItem)
+    render(<DashBoard {...mockProps} />)
+    const myCardItems = screen.getAllByTestId('MyCardItem')
     expect(myCardItems.length).toEqual(6)
   })
 })

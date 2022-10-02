@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils');
@@ -57,13 +57,10 @@ module.exports = {
   ],
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        uglifyOptions: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          },
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          ecma: 6,
         },
       }),
     ],

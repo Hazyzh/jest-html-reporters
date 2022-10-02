@@ -24,7 +24,7 @@ module.exports = {
         filename: 'report.html',
         enableMergeData: true,
         dataMergeLevel: 2,
-        openReport: true,
+        // openReport: true,
         // inlineSource: true,
       },
     ],
@@ -32,7 +32,9 @@ module.exports = {
   ],
   collectCoverageFrom: ['<rootDir>/src/*.{js,jsx}'],
   testURL: 'http://localhost/',
-  setupFiles: ['<rootDir>/test/setup.js'],
-  setupFilesAfterEnv: ['jest-enzyme'],
+  setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
   globalSetup: '<rootDir>/test/globalSetup.js',
+  transformIgnorePatterns: [
+    "node_modules/(recharts)"
+  ]
 };

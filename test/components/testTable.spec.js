@@ -1,23 +1,26 @@
-import React from "react";
-import { Table as AntTabel } from "antd";
-import Table from "@/components/Table";
+import '../__mocks__/matchMedia.mock';
 
-import { mount } from "enzyme";
-import "../__mocks__/matchMedia.mock";
+import React from 'react';
+
+import Table from '@/components/Table';
+import {
+  render,
+  screen,
+} from '@testing-library/react';
 
 const mockProps = {
   testResults: [],
   config: {
-    rootDir: "/root/dir",
+    rootDir: '/root/dir',
   },
   _reporterOptions: {
-    testCommand: "npx test",
+    testCommand: 'npx test',
   },
 };
 
-describe("test table ", () => {
-  test("should return antd table component", () => {
-    const wrapper = mount(<Table {...mockProps} />);
-    expect(wrapper.find(AntTabel)).toExist();
+describe('test table ', () => {
+  test('should return antd table component', () => {
+    render(<Table {...mockProps} />);
+    expect(screen.queryByTestId('tableBox')).toBeInTheDocument();
   });
 });

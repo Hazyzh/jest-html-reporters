@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import {
   message,
@@ -9,6 +9,7 @@ import copy from 'copy-to-clipboard';
 
 import {
   getExistKeys,
+  getMaxTitleWidth,
   renderRootRowClass,
 } from '@/untils';
 import {
@@ -68,7 +69,7 @@ export const renderStatus = ({
 
 const renderTime = ({ perfStats: { start, end } }) => getFormatTimeDisplay(start, end);
 
-const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
+const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos, titleMaxWidth) => [
   {
     title: 'File',
     dataIndex: 'testFilePath',
@@ -76,7 +77,7 @@ const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
     render: (text) => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '');
       return (
-        <span>
+        <div style={{maxWidth: `${titleMaxWidth}px`}}>
           <span className='copy_icon' title='click to copy path to clipborad'>
             <FileTwoTone
               onClick={() => {
@@ -97,7 +98,7 @@ const getColumns = (rootDir, execCommand, urlForTestFiles, attachInfos) => [
               <SelectOutlined />
             </a>
           )}
-        </span>
+        </div>
       );
     },
   },
@@ -166,32 +167,37 @@ const TableItem = ({
   config: { rootDir },
   globalExpandState,
   attachInfos,
-}) => (
+}) => {
+  const box = useRef();
+  const titleMaxWidth = getMaxTitleWidth(box);
+  return (
   <Consumer>
     {({ expand, toggleExpand }) => (
-      <Table
-        size='small'
-        pagination={false}
-        rowKey='testFilePath'
-        rowClassName={renderRootRowClass}
-        expandedRowRender={({ testResults, testFilePath }) => (
-          <DetailTable
-            data={testResults.map((item) => ({
-              ...item,
-              fileAttachInfos: attachInfos[testFilePath] || {},
-            }))}
-            defaultMerge={_reporterOptions.enableMergeData}
-            defaultMergeLevel={_reporterOptions.dataMergeLevel}
-          />
-        )}
-        expandedRowKeys={getExistKeys(expand, globalExpandState)}
-        onExpand={(state, { testFilePath }) =>
-          toggleExpand({ key: testFilePath, state })}
-        columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.urlForTestFiles, attachInfos)}
-        dataSource={testResults}
-      />
+      <div ref={box} data-sign='tableBox'>
+        <Table
+          size='small'
+          pagination={false}
+          rowKey='testFilePath'
+          rowClassName={renderRootRowClass}
+          expandedRowRender={({ testResults, testFilePath }) => (
+            <DetailTable
+              data={testResults.map((item) => ({
+                ...item,
+                fileAttachInfos: attachInfos[testFilePath] || {},
+              }))}
+              defaultMerge={_reporterOptions.enableMergeData}
+              defaultMergeLevel={_reporterOptions.dataMergeLevel}
+            />
+          )}
+          expandedRowKeys={getExistKeys(expand, globalExpandState)}
+          onExpand={(state, { testFilePath }) =>
+            toggleExpand({ key: testFilePath, state })}
+          columns={getColumns(rootDir, _reporterOptions.testCommand, _reporterOptions.urlForTestFiles, attachInfos, titleMaxWidth)}
+          dataSource={testResults}
+        />
+      </div>
     )}
   </Consumer>
-);
+)};
 
 export default TableItem;

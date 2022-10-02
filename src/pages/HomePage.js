@@ -74,7 +74,7 @@ class HomePage extends Component {
             />
           </span>
         </h3>
-        <div style={{ background: '#fff', padding: 12 }}>
+        <div style={{ background: '#fff', padding: 12, overflowY: 'auto' }}>
           <TableItem {...comProps} />
         </div>
       </div>

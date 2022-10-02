@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import jump from 'jump.js';
 import moment from 'moment';
@@ -233,4 +236,18 @@ export const getExecutionResult = (testestResultst = []) => {
     console.log(err);
     return testestResultst;
   }
+}
+
+export const getMaxTitleWidth = (ref) => {
+  const getMaxWidth = () => Math.max(ref.current.clientWidth - 400, 150);
+  const [width, setWidth] = useState(400);
+  useEffect(() => {
+    console.log(ref && ref.current);
+    const resizeHandler = () => setWidth(getMaxWidth());
+    window.addEventListener('resize', resizeHandler);
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    }
+  }, []);
+  return width;
 }
