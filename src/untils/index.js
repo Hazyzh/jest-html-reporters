@@ -242,7 +242,6 @@ export const getMaxTitleWidth = (ref) => {
   const getMaxWidth = () => Math.max(ref.current.clientWidth - 400, 150);
   const [width, setWidth] = useState(400);
   useEffect(() => {
-    console.log(ref && ref.current);
     const resizeHandler = () => setWidth(getMaxWidth());
     window.addEventListener('resize', resizeHandler);
     return () => {
