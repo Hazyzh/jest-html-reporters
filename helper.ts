@@ -98,7 +98,7 @@ const getJestGlobalData = (globalContext) => {
   let currentTestName = '';
   const context = globalContext || global;
   [...Object.getOwnPropertySymbols(context)].forEach((key) => {
-    if (context[key].state && context[key].matchers) {
+    if (context[key] && context[key].state && context[key].matchers) {
       const state = context[key].state || {};
       testPath = state.testPath;
       currentTestName = state.currentTestName;
