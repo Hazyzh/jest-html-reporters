@@ -149,3 +149,8 @@
 
 - fix: apply break-word to each table cell by @nissy-dev in https://github.com/Hazyzh/jest-html-reporters/pull/227
 -  fix: report fails on circular object clone by @OleksandrMartyniuk in https://github.com/Hazyzh/jest-html-reporters/pull/230
+
+### 3.0.12
+
+* Fix long path names causing table overflow by @danielduong8 in https://github.com/Hazyzh/jest-html-reporters/pull/251
+* Add check context[key] is defined before accessing it. by @devinea in https://github.com/Hazyzh/jest-html-reporters/pull/252
