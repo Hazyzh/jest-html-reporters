@@ -9,7 +9,7 @@
     "build": "yarn tsc && webpack --progress",
     "buildCi": "yarn tsc && webpack",
     "start": "yarn tsc && npm run dev",
-    "test": "yarn tsc && yarn jest",
+    "test": "yarn tsc -p build.tsconfig.json && yarn jest",
     "testCi": "yarn tsc && yarn jest --reporters=default"
   },
   "keywords": [
