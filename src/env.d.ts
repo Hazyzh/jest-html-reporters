@@ -1,5 +1,6 @@
 interface Window {
   realData: any;
+  jest_html_reporters_callback__: any;
 }
 
 declare module '*.svg' {

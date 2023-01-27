@@ -66,12 +66,12 @@ const FileNode = ({ description, filePath, extName }: any) => {
   }
 };
 
-function info(
+function getModalConfig(
   data: string | undefined,
   caseAttachInfos: IAttachInfosItem[],
   title: string | undefined
 ) {
-  Modal.warning({
+  return {
     title: `INFO FOR --> ${title}`,
     width: '80%',
     maskClosable: true,
@@ -113,7 +113,7 @@ function info(
         </Col>
       </Row>
     ),
-  });
+  };
 }
 
 export const ErrorButton = ({
@@ -129,15 +129,22 @@ export const ErrorButton = ({
 }) => {
   if (!failureMessage && !caseAttachInfos.length) return null;
   const title = fullName || testFilePath;
+  const [modal, contextHolder] = Modal.useModal();
+
   return (
-    <Button
-      data-sign='ErrorButton'
-      danger
-      type='primary'
-      onClick={() => info(failureMessage, caseAttachInfos, title)}
-    >
-      <InfoCircleFilled />
-      Info
-    </Button>
+    <>
+      {contextHolder}
+      <Button
+        data-sign='ErrorButton'
+        danger
+        type='primary'
+        onClick={() =>
+          modal.warning(getModalConfig(failureMessage, caseAttachInfos, title))
+        }
+      >
+        <InfoCircleFilled />
+        Info
+      </Button>
+    </>
   );
 };

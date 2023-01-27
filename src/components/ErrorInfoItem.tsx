@@ -1,22 +1,35 @@
 import React from 'react';
-
+import { theme } from 'antd'
 import Convert from 'ansi-to-html';
 import escapeHtml from 'escape-html';
 
-const convert = new Convert({
-  fg: '#595959',
-});
+interface ConverterOptions {
+  /** The default foreground color used when reset color codes are encountered. */
+  fg?: string
+  /** The default background color used when reset color codes are encountered. */
+  bg?: string
+}
 
-const createMarkup = (text: string) => ({
-  __html: convert.toHtml(escapeHtml(text)),
-});
-
+const createMarkup = (text: string, convertOptions: ConverterOptions) => {
+  const convert = new Convert(convertOptions);
+  return  ({
+    __html: convert.toHtml(escapeHtml(text)),
+  });
+  
+}
 const ErrorInfoItem = ({ data }: { data: string | undefined }) => {
+  const { token } = theme.useToken();
+  console.log('token', token);
+  const { colorText, colorBgElevated } = token;
+  const options = {
+    fg: colorText,
+    bg: colorBgElevated,
+  }
   if (!data) return null;
   return (
     <pre
       data-sign='ErrorInfoItem'
-      dangerouslySetInnerHTML={createMarkup(data)}
+      dangerouslySetInnerHTML={createMarkup(data, options)}
       style={{ padding: '10px' }}
     />
   );
