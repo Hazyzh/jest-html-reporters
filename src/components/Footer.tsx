@@ -4,7 +4,7 @@ import { Divider, Row, Layout, Space } from 'antd';
 const Github = 'https://github.com/Hazyzh/jest-html-reporters';
 const Issues = 'https://github.com/Hazyzh/jest-html-reporters/issues';
 
-const versions = '1.0.0';
+const versions = process.env.VERSIONS || '1.0.0';
 
 export const Footer = () => (
   <Layout.Footer>
