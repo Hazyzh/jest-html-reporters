@@ -18,7 +18,7 @@ jest_html_reporters.html
 jest-html-reporters-attach
 test/Examples/*
 html-report/*
-*.d.ts
+/*.d.ts
 /helper.js
 /index.js
 

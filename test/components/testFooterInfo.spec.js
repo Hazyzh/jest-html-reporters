@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FooterInfo from '@/components/FooterInfo';
+import { FooterInfo } from '@/components/FooterInfo';
 import { render } from '@testing-library/react';
 
 let container;

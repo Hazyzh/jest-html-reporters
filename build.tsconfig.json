@@ -3,11 +3,8 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
-  "files": [
-    "./index.ts",
-    "./helper.ts"
-  ],
-  "outDir": "testbuild"
+  "include": ["./index.ts", "./helper.ts"]
 }
