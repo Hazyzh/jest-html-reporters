@@ -206,7 +206,7 @@ const constants = {
     [LOGO_IMG_PATH]: undefined,
     [HIDE_ICON]: false,
     [CUSTOM_INFOS]: undefined,
-    [TEST_COMMAND]: 'npx jest',
+    [TEST_COMMAND]: '',
     [OPEN_REPORT]: process.env.NODE_ENV === 'development',
     [FAILURE_MESSAGE_ONLY]: 0,
     [ENABLE_MERGE_DATA]: false,
