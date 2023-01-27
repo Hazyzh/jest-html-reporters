@@ -7,15 +7,15 @@
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "noEmit": true,
     "jsx": "react-jsx",
     "composite": true,
   },
-  "exclude": ["src"],
-  "files": ["index.ts", "helper.ts"]
+  "include": ["src"]
 }
