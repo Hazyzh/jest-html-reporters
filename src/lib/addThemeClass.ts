@@ -6,9 +6,7 @@ type RowKeys = keyof typeof RowClassNames;
 const idMap = new Map<number, boolean>();
 
 export const addThemeClass = (token: GlobalToken, id: number) => {
-  console.log('id', id);
   if (idMap.get(id)) return;
-  console.log('init css id', id);
   const code = generateCode(token, id);
   addStyle(code);
   idMap.set(id, true);

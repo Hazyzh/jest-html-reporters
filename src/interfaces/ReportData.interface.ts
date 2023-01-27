@@ -34,6 +34,7 @@ interface IReportOptions {
   testCommand?: string;
   logoImg?: string;
   urlForTestFiles?: string;
+  darkTheme?: boolean;
 }
 
 export interface IReportData extends AggregatedResult {

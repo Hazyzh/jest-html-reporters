@@ -27,6 +27,7 @@ module.exports = {
         dataMergeLevel: 2,
         // openReport: true,
         // inlineSource: true,
+        darkTheme: true,
       },
     ],
     // '<rootDir>/index.dev.js',

@@ -57,6 +57,7 @@ The options below are specific to the reporter.
 | `dataMergeLevel`               | JEST_HTML_REPORTERS_DATA_MERGE_LEVEL                 | number    | 1            |  default merge test data level                                                                                                                                      |
 | `inlineSource`       | JEST_HTML_REPORTERS_INLINE_SOURCE                 | boolean    | false          |  Option to save report in a single combined HTML file [#184](https://github.com/Hazyzh/jest-html-reporters/issues/184)                                                                                                                        |
 | `urlForTestFiles`       | JEST_HTML_REPORTERS_URL_FOR_TEST_FILES                 | string    | ''          |  url for test files. If user set this value, Details table shows an icon link to each rows. The link is constructed by joining urlForTestFiles and relativePath (like `/src/utils/index.test.js`) for each tests. See the detail in [#221](https://github.com/Hazyzh/jest-html-reporters/issues/221)                                                                                                                        |
+| `darkTheme`               | JEST_HTML_REPORTERS_DARK_THEME                 | boolean    | false            | set `true` to generate dark theme report page|
 ---
 
 #### example add config options

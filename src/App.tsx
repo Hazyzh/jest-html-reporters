@@ -20,7 +20,7 @@ import { useState } from 'react';
 
 const App = ({ data }: { data: IReportData }) => {
   const providerValue = getProviderValue(data);
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(!!data._reporterOptions.darkTheme);
 
   return (
     <ConfigProvider

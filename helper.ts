@@ -180,6 +180,8 @@ const ENABLE_MERGE_DATA = 'enableMergeData';
 const DATA_MERGE_LEVEL = 'dataMergeLevel';
 const INLINE_SOURCE = 'inlineSource';
 const URL_FOR_TEST_FILES = 'urlForTestFiles';
+const DARK_THEME = 'darkTheme';
+
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -197,6 +199,7 @@ const constants = {
     JEST_HTML_REPORTERS_DATA_MERGE_LEVEL: DATA_MERGE_LEVEL,
     JEST_HTML_REPORTERS_INLINE_SOURCE: INLINE_SOURCE,
     JEST_HTML_REPORTERS_URL_FOR_TEST_FILES: URL_FOR_TEST_FILES,
+    JEST_HTML_REPORTERS_DARK_THEME: DARK_THEME,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -212,7 +215,8 @@ const constants = {
     [ENABLE_MERGE_DATA]: false,
     [DATA_MERGE_LEVEL]: 1,
     [INLINE_SOURCE]: false,
-    [URL_FOR_TEST_FILES]: ''
+    [URL_FOR_TEST_FILES]: '',
+    [DARK_THEME]: false,
   },
 };
 
