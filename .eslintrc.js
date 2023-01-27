@@ -10,7 +10,7 @@ module.exports = {
     browser: true,
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-  extends: ['standard', 'standard-jsx'],
+  extends: ['ts-standard', 'ts-standard-jsx'],
   plugins: [
     'html'
   ],

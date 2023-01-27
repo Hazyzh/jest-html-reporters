@@ -21,3 +21,5 @@ html-report/*
 *.d.ts
 helper.js
 index.js
+
+tsconfig.tsbuildinfo
