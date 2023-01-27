@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config=webpack.development.config.js",
-    "build": "yarn tsc && webpack --progress",
-    "buildCi": "yarn tsc && webpack",
+    "build": "yarn tsc -p build && webpack --progress",
+    "buildCi": "yarn tsc -p build && webpack",
     "start": "yarn tsc && npm run dev",
-    "test": "yarn tsc -p build.tsconfig.json && yarn jest",
-    "testCi": "yarn tsc && yarn jest --reporters=default"
+    "test": "yarn tsc -p build && yarn jest",
+    "testCi": "yarn tsc -p build && yarn jest --reporters=default"
   },
   "keywords": [
     "jest",

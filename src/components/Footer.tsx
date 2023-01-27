@@ -15,7 +15,7 @@ export const Footer = () => (
         <a href={Issues}>Feedback</a>
       </Space>
       <Divider />
-      <p>Versions _ V{versions}</p>
+      <p>Versions _ {versions}</p>
     </Row>
   </Layout.Footer>
 );
