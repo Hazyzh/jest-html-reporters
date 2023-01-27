@@ -12,13 +12,10 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
     "composite": true,
   },
-  "include": ["src"],
-  "files": [
-    "index.ts",
-    "helper.ts",
-  ]
+  "exclude": ["src"],
+  "files": ["index.ts", "helper.ts"]
 }
