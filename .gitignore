@@ -19,7 +19,7 @@ jest-html-reporters-attach
 test/Examples/*
 html-report/*
 *.d.ts
-helper.js
-index.js
+./helper.js
+./index.js
 
 tsconfig.tsbuildinfo
