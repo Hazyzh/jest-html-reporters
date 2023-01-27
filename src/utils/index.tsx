@@ -217,24 +217,6 @@ export const getExistKeys = (obj = {}, globalExpandState: boolean) => {
     .map((item) => item[0]);
 };
 
-export const getMaxTitleWidth = (ref: RefObject<HTMLDivElement>) => {
-  const [width, setWidth] = useState(400);
-  const getMaxWidth = () => {
-    if (ref.current) {
-      return Math.max(ref.current.clientWidth - 400, 150);
-    }
-    return width;
-  };
-  useEffect(() => {
-    const resizeHandler = () => setWidth(getMaxWidth());
-    window.addEventListener('resize', resizeHandler);
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    };
-  }, []);
-  return width;
-};
-
 const callback = 'jest_html_reporters_callback__';
 const RUNTIME: {lastPromise: null | Promise<any> } = {
   lastPromise: null,

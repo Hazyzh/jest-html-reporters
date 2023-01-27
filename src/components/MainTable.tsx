@@ -9,7 +9,6 @@ import type { ColumnsType } from 'antd/es/table';
 
 import {
   getExistKeys,
-  getMaxTitleWidth,
   renderRootRowClass,
   getFormatTimeDisplay,
 } from '../utils/index';
@@ -80,7 +79,6 @@ const getColumns = (
   execCommand: string | undefined,
   urlForTestFiles: string | undefined,
   attachInfos: IMainTableProps['attachInfos'],
-  titleMaxWidth: number,
   colorToken: GlobalToken,
 ): ColumnsType<ITestItem> => [
   {
@@ -92,7 +90,7 @@ const getColumns = (
       const command = (execCommand ? execCommand  : '') + `.${relativePath}`;
 
       return (
-        <div style={{ maxWidth: `${titleMaxWidth}px` }}>
+        <div>
           <Text id={text} strong copyable={{text: command}}>
             {' '}
             {relativePath}
@@ -183,7 +181,6 @@ export const MainTable = ({
     token: colorToken,
     theme: { id: themeId },
   } = theme.useToken();
-  const titleMaxWidth = getMaxTitleWidth(box);
   return (
     <ExpandContext.Consumer>
       {({ expand, toggleExpand }) => (
@@ -212,7 +209,6 @@ export const MainTable = ({
               _reporterOptions.testCommand,
               _reporterOptions.urlForTestFiles,
               attachInfos,
-              titleMaxWidth,
               colorToken,
             )}
             dataSource={testResults}
