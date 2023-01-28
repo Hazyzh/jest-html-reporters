@@ -1,10 +1,9 @@
 import 'normalize.css';
 
-import './styles/app.less';
-import './styles/index.less';
-import './styles/dashBoard.less';
-import './styles/information.less';
-import './styles/errorButton.less';
+import './styles/index.scss';
+import './styles/dashBoard.scss';
+import './styles/information.scss';
+import './styles/errorButton.scss';
 
 import { Layout, ConfigProvider, theme } from 'antd';
 import type { IReportData } from './interfaces/ReportData.interface';
