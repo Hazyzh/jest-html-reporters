@@ -6,20 +6,19 @@ import './styles/dashBoard.less';
 import './styles/information.less';
 import './styles/errorButton.less';
 
-import React from 'react';
 import { Layout, ConfigProvider, theme } from 'antd';
 import type { IReportData } from './interfaces/ReportData.interface';
 
 import { ExpandContext } from './contexts/expand';
 import { ThemeToken, ComponentsToken } from './theme';
 import { Header, Footer } from './components';
-import { getProviderValue } from './lib/expand';
+import { useProviderValue } from './lib/expand';
 
 import { HomePage } from './pages/HomePage';
 import { useState } from 'react';
 
 const App = ({ data }: { data: IReportData }) => {
-  const providerValue = getProviderValue(data);
+  const providerValue = useProviderValue(data);
   const [darkTheme, setDarkTheme] = useState(!!data._reporterOptions.darkTheme);
 
   return (

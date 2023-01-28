@@ -5,9 +5,7 @@ import { RowClassNames } from '../enums/rowClassNames';
 export const getTableColors = (token: GlobalToken): ITableRowClassMap => {
   const {
     // failed
-    colorErrorOutline,
     colorErrorBorder,
-    colorErrorBgHover,
     colorErrorTextHover,
     // pending
     colorWarningBg,

@@ -6,7 +6,7 @@ const getInitData = ({ testResults = [] }: { testResults: any[] }) =>
     return pre;
   }, {});
 
-export const getProviderValue = (data: any) => {
+export const useProviderValue = (data: any) => {
   const [expand, setExpand] = useState(getInitData(data));
 
   const providerValue = useMemo(

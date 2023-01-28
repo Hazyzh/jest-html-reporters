@@ -5,7 +5,6 @@ import type {
   IDetailTableProps,
   IDetailTableItem,
   IColumnsType,
-  IFormatCollapsibleItem,
 } from '../interfaces/Table.interface';
 import type { ColumnsType } from 'antd/es/table';
 import type { GlobalToken } from 'antd/es/theme/interface';

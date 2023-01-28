@@ -1,10 +1,10 @@
 import React from 'react';
 import { Avatar, Layout, Button, Row, Col, Space, Switch } from 'antd';
-import { GithubFilled, SlackOutlined, SkinTwoTone } from '@ant-design/icons';
+import { GithubFilled } from '@ant-design/icons';
 import type { IReportData } from '../interfaces/ReportData.interface';
 
-import DarkMode from '../assets/imgs/darkMode.svg';
-import LightMode from '../assets/imgs/lightMode.svg';
+import { ReactComponent as DarkMode } from '../assets/imgs/darkMode.svg';
+import { ReactComponent as LightMode} from '../assets/imgs/lightMode.svg';
 import Icon from '@ant-design/icons';
 
 const defaultTitle = 'Report';
@@ -44,7 +44,7 @@ export const Header = ({
         <Col span={4} style={{ textAlign: 'right' }}>
           <Space size='large'>
             <Switch
-              className="them-switch"
+              className='them-switch'
               checked={darkTheme}
               onChange={toggleDarkTheme}
               checkedChildren={<Icon component={LightMode} />}

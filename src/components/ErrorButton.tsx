@@ -127,10 +127,10 @@ export const ErrorButton = ({
   failureMessage?: string;
   caseAttachInfos?: IAttachInfosItem[];
 }) => {
-  if (!failureMessage && !caseAttachInfos.length) return null;
-  const title = fullName || testFilePath;
   const [modal, contextHolder] = Modal.useModal();
-
+  const title = fullName || testFilePath;
+  
+  if (!failureMessage && !caseAttachInfos.length) return null;
   return (
     <>
       {contextHolder}

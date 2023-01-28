@@ -1,9 +1,7 @@
-import React from 'react';
-
 import randomColor from 'randomcolor';
 import type { IReportData } from '../interfaces/ReportData.interface';
 
-import { Card, Col, Row, Typography, Space } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 import {
   Bar,
   BarChart,
@@ -20,16 +18,6 @@ import {
   YAxis,
 } from 'recharts';
 
-const { Text } = Typography;
-
-import {
-  formatDate,
-  getFormatData,
-  getFormattedTime,
-  scrollTo,
-} from '../utils/index';
-
-import { TimeIcon } from '../utils/icons';
 
 import {
   BoxPlotFilled,
@@ -45,7 +33,16 @@ import {
 } from '@ant-design/icons';
 
 import { ExpandContext } from '../contexts/expand';
-import { ReactComponentElement, ReactElement } from 'react';
+import { ReactElement } from 'react';
+import {
+  formatDate,
+  getFormatData,
+  getFormattedTime,
+  scrollTo,
+} from '../utils/index';
+
+import { TimeIcon } from '../utils/icons';
+const { Text } = Typography;
 
 const colors = [...new Array(40)].map((d) => randomColor());
 const createMarkup = (text: string) => ({
@@ -198,7 +195,7 @@ const LabelInfo = ({
   icon: ReactElement;
   context: string | number;
 }) => (
-  <div  className='label_box'>
+  <div className='label_box'>
     <Text className='label_title' type='secondary'>
       {icon} {title}
     </Text>
