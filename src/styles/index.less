@@ -1,7 +1,4 @@
-@import "colors.less";
-
 .path_text {
-  color: cadetblue;
   overflow-wrap: anywhere;
 }
 
@@ -18,73 +15,16 @@
 .inner_path_text {
   overflow-wrap: break-word;
   white-space: normal;
-  color: #a7a6a6;
 }
 // code modal
 pre {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  background: url(../../static/imgs/blueprint.png) #f6f6f6;
   border-radius: 10px;
-  text-shadow: 0 1px white;
-}
-// table
-.row_fail {
-  background: @failColor;
-  &:hover td {
-    background: @failColor_hover !important;
-  }
-  .path_text {
-    color: @failTextColor;
-  }
-  .inner_path_text {
-    color: @failTextColor;
-  }
-  .time_box {
-    color: @failTextColor;
-    span {
-      color: @failTextColor;
-    }
-  }
-}
-.row_pass_odd {
-  background: @passOddColor;
-  &:hover td {
-    background: @passColor_hover !important;
-  }
-}
-.row_pass_even {
-  background: @passEvenColor;
-  &:hover td {
-    background: @passColor_hover !important;
-  }
-}
-.row_pending {
-  background: @pending;
-  &:hover td {
-    background: @pending_hover !important;
-  }
+  box-shadow: 0px 1px 1px 1px #eee;
 }
 
-.row_todo {
-  background: @todo;
-  &:hover td {
-    background: @todo_hover !important;
-  }
-  .path_text {
-    color: @failTextColor;
-  }
-  .inner_path_text {
-    color: @failTextColor;
-  }
-  .time_box {
-    color: @failTextColor;
-    span {
-      color: @failTextColor;
-    }
-  }
-}
 
-.mian_table_tags {
+.main_table_tags {
   text-align: center;
   .ant-tag {
     width: 40px;
@@ -106,20 +46,7 @@ pre {
     }
   }
 }
-// home title
-.area_subject {
-  font-size: 24px;
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
-  font-weight: 300;
-  color: @titleTextColor;
-  line-height: 3rem;
-  margin: 20px 0;
-  i {
-    color: #9aa0ac;
-    margin-right: 20px;
-  }
-}
+
 .expand_box {
   display: flex;
   justify-content: space-between;
@@ -131,17 +58,7 @@ pre {
     }
   }
 }
-// detail table
-.ant-table-expanded-row {
-  &:hover > td {
-    background: #fff !important;
-  }
-  > td {
-    table {
-      padding: 0px !important;
-    }
-  }
-}
+
 .detail_status_text {
   text-transform: capitalize;
   font-size: 0.8em;
@@ -152,23 +69,8 @@ pre {
   margin: -4px 10px 3px 10px;
   border-radius: 3px;
   padding: 0px 10px;
-  background: #dcf5d7;
 }
 
-.error_button {
-  background: tomato;
-  cursor: pointer;
-  color: @failTextColor;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  & > span {
-    margin-right: 10px;
-  }
-  border: 2px groove white;
-  border-radius: 10%;
-  box-shadow: 1px -1px @failTextColor inset;
-  &:hover {
-    color: bisque;
-  }
+.them-switch {
+  box-shadow: 1px 1px #eee;
 }

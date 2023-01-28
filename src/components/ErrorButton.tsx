@@ -1,14 +1,8 @@
 import React from 'react';
+import { Card, Col, List, Modal, Row, Button } from 'antd';
 
-import {
-  Card,
-  Col,
-  List,
-  Modal,
-  Row,
-} from 'antd';
-
-import { ExclamationCircleFilled } from '@ant-design/icons';
+import { InfoCircleFilled } from '@ant-design/icons';
+import type { IAttachInfosItem } from '../interfaces/ReportData.interface';
 
 import ErrorInfoItem from './ErrorInfoItem';
 
@@ -50,30 +44,34 @@ const IMG_TYPE = 'IMG_TYPE';
 const VIDEO_TYPE = 'VIDEO_TYPE';
 const UNKNOWN_TYPE = 'UNKNOWN_TYPE';
 
-const getFileType = (extName) => {
+const getFileType = (extName: string) => {
   if (imgSupportedFormats.includes(extName)) return IMG_TYPE;
   if (videoSupportFormats.includes(extName)) return VIDEO_TYPE;
   return UNKNOWN_TYPE;
 };
 
-const FileNode = ({ description, filePath, extName }) => {
+const FileNode = ({ description, filePath, extName }: any) => {
   const fileType = getFileType(extName.toLowerCase());
   switch (fileType) {
     case IMG_TYPE:
       return <img alt={description} src={filePath} />;
     case VIDEO_TYPE:
-      return <video controls alt={description} src={filePath} />;
+      return <video controls title={description} src={filePath} />;
     case UNKNOWN_TYPE:
       return (
-        <a target='_blank' rel='noreferrer' alt={description} href={filePath}>
+        <a target='_blank' rel='noreferrer' title={description} href={filePath}>
           file
         </a>
       );
   }
 };
 
-function info(data, caseAttachInfos, title) {
-  Modal.warning({
+function getModalConfig(
+  data: string | undefined,
+  caseAttachInfos: IAttachInfosItem[],
+  title: string | undefined
+) {
+  return {
     title: `INFO FOR --> ${title}`,
     width: '80%',
     maskClosable: true,
@@ -88,7 +86,6 @@ function info(data, caseAttachInfos, title) {
               header='Attach'
               bordered
               dataSource={caseAttachInfos}
-              sort='createTime'
               renderItem={(item) => (
                 <List.Item>
                   {item.filePath ? (
@@ -116,27 +113,38 @@ function info(data, caseAttachInfos, title) {
         </Col>
       </Row>
     ),
-  });
+  };
 }
 
-const ErrorButton = ({
+export const ErrorButton = ({
   fullName,
   testFilePath,
   failureMessage,
   caseAttachInfos = [],
+}: {
+  testFilePath?: string;
+  fullName?: string;
+  failureMessage?: string;
+  caseAttachInfos?: IAttachInfosItem[];
 }) => {
   if (!failureMessage && !caseAttachInfos.length) return null;
   const title = fullName || testFilePath;
+  const [modal, contextHolder] = Modal.useModal();
+
   return (
-    <div
-      className='error_button'
-      data-sign='ErrorButton'
-      onClick={() => info(failureMessage, caseAttachInfos, title)}
-    >
-      <ExclamationCircleFilled />
-      Info
-    </div>
+    <>
+      {contextHolder}
+      <Button
+        data-sign='ErrorButton'
+        danger
+        type='primary'
+        onClick={() =>
+          modal.warning(getModalConfig(failureMessage, caseAttachInfos, title))
+        }
+      >
+        <InfoCircleFilled />
+        Info
+      </Button>
+    </>
   );
 };
-
-export default ErrorButton;

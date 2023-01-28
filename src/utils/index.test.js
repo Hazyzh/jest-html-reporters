@@ -5,40 +5,32 @@ import {
 } from './index';
 
 describe('Test Func  ==> `getRecordClass` :', () => {
+
   test('should return `row_fail` is state is failed', () => {
     const state = 'failed'
-    expect(getRecordClass(state, 0)).toBe('row_fail')
-    expect(getRecordClass(state, 1)).toBe('row_fail')
-    expect(getRecordClass(state, 9)).toBe('row_fail')
-    expect(getRecordClass(state, 16)).toBe('row_fail')
+    expect(getRecordClass(state, 0)).toBe('row_failed-0')
+    expect(getRecordClass(state, 1)).toBe('row_failed-1')
+    expect(getRecordClass(state, 9)).toBe('row_failed-9')
   })
   test('should return `row_pending` is state is pending', () => {
     const state = 'pending'
-    expect(getRecordClass(state, 0)).toBe('row_pending')
-    expect(getRecordClass(state, 3)).toBe('row_pending')
-    expect(getRecordClass(state, 8)).toBe('row_pending')
-    expect(getRecordClass(state, 11)).toBe('row_pending')
+    expect(getRecordClass(state, 0)).toBe('row_pending-0')
+    expect(getRecordClass(state, 3)).toBe('row_pending-3')
+    expect(getRecordClass(state, 8)).toBe('row_pending-8')
   })
-  test('should return `row_pass_even` is state not failed nor pending and index is even', () => {
-    const state = 'passed'
-    expect(getRecordClass(state, 0)).toBe('row_pass_odd')
-    expect(getRecordClass(state, 2)).toBe('row_pass_odd')
-    expect(getRecordClass(state, 8)).toBe('row_pass_odd')
-    expect(getRecordClass(state, 16)).toBe('row_pass_odd')
-  })
-  test('should return `row_pass_odd` is state not failed nor pending and index is odd', () => {
-    const state = 'passed'
-    expect(getRecordClass(state, 1)).toBe('row_pass_even')
-    expect(getRecordClass(state, 5)).toBe('row_pass_even')
-    expect(getRecordClass(state, 7)).toBe('row_pass_even')
-    expect(getRecordClass(state, 11)).toBe('row_pass_even')
+
+  test('should return `row_todo` is state is todo', () => {
+    const state = 'todo'
+    expect(getRecordClass(state, 0)).toBe('row_todo-0')
+    expect(getRecordClass(state, 1)).toBe('row_todo-1')
+    expect(getRecordClass(state, 8)).toBe('row_todo-8')
   })
 })
 
 describe('Test Func  ==> `getExistKeys` :', () => {
   test('empty object should return []', () => {
     const emptyObject = {}
-    const res = getExistKeys(emptyObject)
+    const res = getExistKeys(emptyObject, false)
     expect(res).toEqual([])
   })
   test('object should return keys which is not falsy value as an array', () => {
@@ -49,7 +41,7 @@ describe('Test Func  ==> `getExistKeys` :', () => {
       'undefined': undefined,
       'false': false,
     }
-    const res = getExistKeys(emptyObject)
+    const res = getExistKeys(emptyObject, false)
     expect(res).toEqual(['true', 'string'])
   })
 })

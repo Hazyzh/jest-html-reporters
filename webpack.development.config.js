@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const utils = require('./build/utils');
-const theme = require('./build/theme');
 const packageInfo = require('./package.json');
 
 function resolve(dir) {
@@ -13,16 +12,16 @@ function resolve(dir) {
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
+    index: './src/index.tsx',
   },
   output: {
     path: resolve('dist'),
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.js', '.json', '.ts', '.tsx'],
     alias: {
-      '@': resolve('src'),
+      '@interfaces': resolve('src/interfaces'),
     },
   },
   devServer: {
@@ -54,7 +53,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(ts|tsx|js|jsx)$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')],
       },
@@ -72,7 +71,6 @@ module.exports = {
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-                modifyVars: theme,
               },
             },
           },

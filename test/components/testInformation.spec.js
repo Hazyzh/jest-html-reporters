@@ -2,7 +2,7 @@ import '../__mocks__/matchMedia.mock';
 
 import React from 'react';
 
-import Information from '@/components/Information';
+import { Information } from '@/components/Information';
 import { render } from '@testing-library/react';
 
 const mockProps = {
@@ -13,7 +13,9 @@ const mockProps = {
   startTime: '1538200731831',
   endTime: '1538200734761',
   testResults: [],
-  customInfos: [{title: "abc", value: "123"}]
+  _reporterOptions: {
+    customInfos: [{title: "abc", value: "123"}]
+  }
 }
 
 class ResizeObserver {

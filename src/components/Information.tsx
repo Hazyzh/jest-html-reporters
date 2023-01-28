@@ -1,11 +1,9 @@
 import React from 'react';
 
-import {
-  Card,
-  Col,
-  Row,
-} from 'antd';
 import randomColor from 'randomcolor';
+import type { IReportData } from '../interfaces/ReportData.interface';
+
+import { Card, Col, Row, Typography, Space } from 'antd';
 import {
   Bar,
   BarChart,
@@ -22,13 +20,17 @@ import {
   YAxis,
 } from 'recharts';
 
+const { Text } = Typography;
+
 import {
   formatDate,
   getFormatData,
   getFormattedTime,
   scrollTo,
-} from '@/untils';
-import { TimeIcon } from '@/untils/icons';
+} from '../utils/index';
+
+import { TimeIcon } from '../utils/icons';
+
 import {
   BoxPlotFilled,
   CheckOutlined,
@@ -42,15 +44,33 @@ import {
   PieChartFilled,
 } from '@ant-design/icons';
 
-import { Consumer } from '../contexts/expand';
+import { ExpandContext } from '../contexts/expand';
+import { ReactComponentElement, ReactElement } from 'react';
 
 const colors = [...new Array(40)].map((d) => randomColor());
-const createMarkup = (text) => ({
-  __html: text
+const createMarkup = (text: string) => ({
+  __html: text,
 });
 
-const CustomTooltip = ({ active, payload, label, rootDir, chartTooltip }) => {
-  if (active && Array.isArray(payload) && !!payload[0] && !!payload[0].payload) {
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+  rootDir,
+  chartTooltip,
+}: {
+  active?: boolean;
+  label?: string;
+  rootDir?: string;
+  chartTooltip?: boolean;
+  payload?: any;
+}) => {
+  if (
+    active &&
+    Array.isArray(payload) &&
+    !!payload[0] &&
+    !!payload[0].payload
+  ) {
     const {
       time,
       name,
@@ -118,7 +138,7 @@ const CustomTooltip = ({ active, payload, label, rootDir, chartTooltip }) => {
                   outerRadius={50}
                   animationDuration={500}
                 >
-                  {testResults.map((entry, index) => (
+                  {testResults.map((_: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={colors[index % 40]} />
                   ))}
                 </Pie>
@@ -132,9 +152,15 @@ const CustomTooltip = ({ active, payload, label, rootDir, chartTooltip }) => {
   return null;
 };
 
-export const SimpleBarChart = ({ data, rootDir }) => {
+export const SimpleBarChart = ({
+  data,
+  rootDir,
+}: {
+  data: IReportData['testResults'];
+  rootDir: string;
+}) => {
   return (
-    <Consumer>
+    <ExpandContext.Consumer>
       {({ toggleExpand }) => (
         <ResponsiveContainer width='100%' height={300}>
           <BarChart
@@ -159,27 +185,37 @@ export const SimpleBarChart = ({ data, rootDir }) => {
           </BarChart>
         </ResponsiveContainer>
       )}
-    </Consumer>
+    </ExpandContext.Consumer>
   );
 };
 
-const LabelInfo = ({ title, icon, context }) => (
-  <p>
-    <span className='label_title'>
+const LabelInfo = ({
+  title,
+  icon,
+  context,
+}: {
+  title: string;
+  icon: ReactElement;
+  context: string | number;
+}) => (
+  <div  className='label_box'>
+    <Text className='label_title' type='secondary'>
       {icon} {title}
-    </span>
-    <span className='label_value' dangerouslySetInnerHTML={createMarkup(context)}></span>
-  </p>
+    </Text>
+    <Text>
+      <span dangerouslySetInnerHTML={createMarkup(`${context}`)}></span>
+    </Text>
+  </div>
 );
 
-const Information = ({
+export const Information = ({
   config: { rootDir, maxWorkers },
   startTime,
   endTime,
   testResults,
-  customInfos
-}) => (
-  <Consumer>
+  _reporterOptions: { customInfos = [] },
+}: IReportData) => (
+  <ExpandContext.Consumer>
     {({ toggleExpand }) => (
       <Row>
         <Col span={18}>
@@ -219,22 +255,19 @@ const Information = ({
         </Col>
         <Col span={24} className='main_information'>
           <Card>
-            <Row span={24}>
+            <Row>
               <Col span={16}>
                 <LabelInfo
-                  className='StartTime'
                   title='StartTime'
                   context={formatDate(startTime)}
                   icon={<BoxPlotFilled />}
                 />
                 <LabelInfo
-                  className='Time'
                   title='Time'
                   context={getFormattedTime(startTime, endTime)}
                   icon={<ClockCircleFilled />}
                 />
                 <LabelInfo
-                  className='RootDir'
                   title='RootDir'
                   context={rootDir}
                   icon={<FolderFilled />}
@@ -242,27 +275,25 @@ const Information = ({
               </Col>
               <Col span={8}>
                 <LabelInfo
-                  className='MaxWorkers'
                   title='MaxWorkers'
                   context={maxWorkers}
                   icon={<CompassFilled />}
                 />
               </Col>
-              {customInfos && customInfos.map(({ title, value }) => (
-                <Col span={8}>
-                  <LabelInfo
-                    className='CustomInfo'
-                    title={title}
-                    context={value}
-                    icon={<InfoCircleOutlined />}
-                  />
-                </Col>
-              ))}
+              {customInfos &&
+                customInfos.map(({ title, value }) => (
+                  <Col span={8} key={title}>
+                    <LabelInfo
+                      title={title}
+                      context={value}
+                      icon={<InfoCircleOutlined />}
+                    />
+                  </Col>
+                ))}
             </Row>
           </Card>
         </Col>
       </Row>
     )}
-  </Consumer>
+  </ExpandContext.Consumer>
 );
-export default Information;

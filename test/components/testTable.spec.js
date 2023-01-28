@@ -2,7 +2,7 @@ import '../__mocks__/matchMedia.mock';
 
 import React from 'react';
 
-import Table from '@/components/Table';
+import { MainTable } from '@/components/MainTable';
 import {
   render,
   screen,
@@ -20,7 +20,7 @@ const mockProps = {
 
 describe('test table ', () => {
   test('should return antd table component', () => {
-    render(<Table {...mockProps} />);
+    render(<MainTable {...mockProps} />);
     expect(screen.queryByTestId('tableBox')).toBeInTheDocument();
   });
 });

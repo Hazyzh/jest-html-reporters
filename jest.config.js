@@ -1,6 +1,7 @@
 // jest.config.js
 module.exports = {
   verbose: true,
+  testEnvironment: "jsdom",
   globals: {
     NODE_ENV: 'test',
   },
@@ -13,7 +14,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '\\.[jt]sx?$': 'babel-jest',
   },
   reporters: [
     'default',
@@ -26,15 +27,19 @@ module.exports = {
         dataMergeLevel: 2,
         // openReport: true,
         // inlineSource: true,
+        darkTheme: true,
       },
     ],
     // '<rootDir>/index.dev.js',
   ],
   collectCoverageFrom: ['<rootDir>/src/*.{js,jsx}'],
-  testURL: 'http://localhost/',
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
   setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
   globalSetup: '<rootDir>/test/globalSetup.js',
   transformIgnorePatterns: [
-    "node_modules/(recharts)"
+    "node_modules/(recharts)",
+    "jest-runner"
   ]
 };

@@ -25,11 +25,12 @@ describe("get options ", () => {
       customInfos: undefined,
       failureMessageOnly: 0,
       openReport: false,
-      testCommand: "npx jest",
+      testCommand: "",
       enableMergeData: false,
       dataMergeLevel: 1,
       inlineSource: false,
       urlForTestFiles: "",
+      darkTheme: false,
     };
     expect(getOptions()).toEqual(defaultOption);
   });
@@ -50,6 +51,7 @@ describe("get options ", () => {
       dataMergeLevel: 1,
       inlineSource: true,
       urlForTestFiles: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
+      darkTheme: false,
     };
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: "./test",

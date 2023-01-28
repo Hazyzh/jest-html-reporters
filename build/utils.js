@@ -2,7 +2,6 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const theme = require('./theme.js')
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -35,7 +34,6 @@ exports.cssLoaders = function (options) {
         options: Object.assign({}, loaderOptions, {
           lessOptions: {
             javascriptEnabled: true,
-            modifyVars: theme,
           },
           sourceMap: options.sourceMap,
         })

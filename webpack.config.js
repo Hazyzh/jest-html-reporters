@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils');
-const theme = require('./build/theme');
 const HtmlWebpackInlineSourcePlugin = require('./build/InlineChunkHtmlPlugin');
 
 const packageInfo = require('./package.json');
@@ -18,7 +17,7 @@ const packageReplaceString = '<<<JEST-HTML-REPLACE-PLACEHOLDER>>>';
 module.exports = {
   mode: 'production',
   entry: {
-    index: './src/index.js',
+    index: './src/index.tsx',
   },
   output: {
     path: resolve('dist'),
@@ -26,9 +25,9 @@ module.exports = {
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.js', '.json', '.ts', '.tsx'],
     alias: {
-      '@': resolve('src'),
+      '@interfaces': resolve('src/interfaces'),
     },
   },
   plugins: [
@@ -68,7 +67,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(ts|tsx|js|jsx)$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')],
       },
@@ -86,7 +85,6 @@ module.exports = {
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-                modifyVars: theme,
               },
             },
           },

@@ -2,8 +2,8 @@ import React from 'react';
 
 import { createRoot } from 'react-dom/client';
 
-import App from './SingleReportApp';
-import { fetchWithJsonp } from './untils/index';
+import App from './App';
+import { fetchWithJsonp } from './utils/index';
 
 (async () => {
   let data;
@@ -23,6 +23,6 @@ import { fetchWithJsonp } from './untils/index';
   window.realData = data;
   document.title = data._reporterOptions.pageTitle || defaultTitle;
 
-  const root = createRoot(document.getElementById('app')); 
+  const root = createRoot(document.getElementById('app') as HTMLDivElement); 
   root.render(<App data={data} />);
 })();
