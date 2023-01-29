@@ -19,6 +19,8 @@ const jest = require('jest');
 const execSync = require('child_process').execSync;
 let argv = process.argv.slice(2);
 
+console.log('argv', argv);
+
 function isInGitRepository() {
   try {
     execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' });
@@ -38,15 +40,15 @@ function isInMercurialRepository() {
 }
 
 // Watch unless on CI or explicitly running all tests
-if (
-  !process.env.CI &&
-  argv.indexOf('--watchAll') === -1 &&
-  argv.indexOf('--watchAll=false') === -1
-) {
-  // https://github.com/facebook/create-react-app/issues/5210
-  const hasSourceControl = isInGitRepository() || isInMercurialRepository();
-  argv.push(hasSourceControl ? '--watch' : '--watchAll');
-}
+// if (
+//   !process.env.CI &&
+//   argv.indexOf('--watchAll') === -1 &&
+//   argv.indexOf('--watchAll=false') === -1
+// ) {
+//   // https://github.com/facebook/create-react-app/issues/5210
+//   const hasSourceControl = isInGitRepository() || isInMercurialRepository();
+//   argv.push(hasSourceControl ? '--watch' : '--watchAll');
+// }
 
 
 jest.run(argv);
