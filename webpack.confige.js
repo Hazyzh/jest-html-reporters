@@ -5,7 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const utils = require('./build/utils');
-const HtmlWebpackInlineSourcePlugin = require('./build/InlineChunkHtmlPlugin');
+const HtmlWebpackInlineSourcePlugin = require('./config/InlineChunkHtmlPlugin');
 
 const packageInfo = require('./package.json');
 function resolve(dir) {

@@ -25,6 +25,7 @@ const ForkTsCheckerWebpackPlugin =
     ? require('react-dev-utils/ForkTsCheckerWarningWebpackPlugin')
     : require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('./InlineChunkHtmlPlugin');
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 const packageReplaceString = require('./packageReplaceString');
@@ -202,7 +203,7 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? '[name].js'
+        ? 'index.js'
         : isEnvDevelopment && 'static/js/bundle.js',
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
@@ -557,31 +558,36 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
-      new HtmlWebpackPlugin(
+      !isEnvProduction && new HtmlWebpackPlugin(
         Object.assign(
           {},
           {
             inject: true,
-            template: paths.appHtml,
+            template: `${paths.appHtml}/index.html`,
           },
-          isEnvProduction
-            ? {
-                minify: {
-                  removeComments: true,
-                  collapseWhitespace: true,
-                  removeRedundantAttributes: true,
-                  useShortDoctype: true,
-                  removeEmptyAttributes: true,
-                  removeStyleLinkTypeAttributes: true,
-                  keepClosingSlash: true,
-                  minifyJS: true,
-                  minifyCSS: true,
-                  minifyURLs: true,
-                },
-              }
-            : undefined
         )
       ),
+      ...(isEnvProduction ? ['index', 'singleFile'].map(
+        (name) =>
+          new HtmlWebpackPlugin({
+            filename: `${name}.html`,
+            chunks: 'index',
+            template: `${paths.appHtml}/${name}.html`,
+            inlineSource: name === 'singleFile' ? '.(js|css)$' : undefined,
+            minify: {
+              removeComments: true,
+              collapseWhitespace: true,
+              removeRedundantAttributes: true,
+              useShortDoctype: true,
+              removeEmptyAttributes: true,
+              removeStyleLinkTypeAttributes: true,
+              keepClosingSlash: true,
+              minifyJS: true,
+              minifyCSS: true,
+              minifyURLs: true,
+            },
+          })
+      ) : []),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358
@@ -734,7 +740,8 @@ module.exports = function (webpackEnv) {
           },
         }),
       // Copyright
-      new webpack.BannerPlugin('Copyright Hazyzh All rights reserved.'),
+      isEnvProduction && new webpack.BannerPlugin('Copyright Hazyzh All rights reserved.'),
+      isEnvProduction && new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin, [/s/]),
     ].filter(Boolean),
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
