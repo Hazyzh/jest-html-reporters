@@ -19,7 +19,6 @@ const jest = require('jest');
 const execSync = require('child_process').execSync;
 let argv = process.argv.slice(2);
 
-console.log('argv', argv);
 
 function isInGitRepository() {
   try {
