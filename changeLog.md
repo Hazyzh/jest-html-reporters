@@ -154,3 +154,9 @@
 
 * Fix long path names causing table overflow by @danielduong8 in https://github.com/Hazyzh/jest-html-reporters/pull/251
 * Add check context[key] is defined before accessing it. by @devinea in https://github.com/Hazyzh/jest-html-reporters/pull/252
+
+### 3.1.0
+
+* Support Dark Theme. by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/254
+* bump package version, using create react app to build resource by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/255
+
