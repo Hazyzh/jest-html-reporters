@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const packageReplaceString = require('./packageReplaceString');
+const packageInfo = require('../package.json');
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -88,6 +90,8 @@ function getClientEnvironment(publicUrl) {
         // Whether or not react-refresh is enabled.
         // It is defined here so it is available in the webpackHotDevClient.
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
+        VERSIONS: JSON.stringify(packageInfo.version),
+        PLACEHOLDER: JSON.stringify(packageReplaceString),
       }
     );
   // Stringify all values so we can feed into webpack DefinePlugin

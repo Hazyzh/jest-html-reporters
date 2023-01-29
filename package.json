@@ -5,9 +5,8 @@
   "description": "Jest test results processor for generating a summary in HTML",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config=webpack.development.config.js",
-    "build": "yarn tsc -p build && webpack --progress",
-    "buildCi": "yarn tsc -p build && webpack",
+    "build": "yarn tsc -p build && node scripts/build.js",
+    "buildCi": "yarn tsc -p build && node scripts/build.js",
     "start": "node scripts/start.js",
     "test": "yarn tsc -p build && yarn jest",
     "testCi": "yarn tsc -p build && yarn jest --reporters=default"
@@ -95,6 +94,7 @@
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "typescript": "^4.4.2",
+    "url-loader": "^4.1.1",
     "web-vitals": "^2.1.0",
     "webpack": "^5.64.4",
     "webpack-bundle-analyzer": "^3.9.0",
