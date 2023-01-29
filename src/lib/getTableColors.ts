@@ -8,8 +8,8 @@ export const getTableColors = (token: GlobalToken): ITableRowClassMap => {
     colorErrorBorder,
     colorErrorTextHover,
     // pending
-    colorWarningBg,
-    colorWarningBgHover,
+    colorWarningBorder,
+    colorWarningBorderHover,
     // colorTodo
     colorInfoBg,
     colorInfoBgHover,
@@ -20,8 +20,8 @@ export const getTableColors = (token: GlobalToken): ITableRowClassMap => {
       hoverBgColor: colorErrorTextHover,
     },
     [RowClassNames['row_pending']]: {
-      bgColor: colorWarningBg,
-      hoverBgColor: colorWarningBgHover,
+      bgColor: colorWarningBorder,
+      hoverBgColor: colorWarningBorderHover,
     },
     [RowClassNames['row_todo']]: {
       bgColor: colorInfoBg,

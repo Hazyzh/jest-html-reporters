@@ -121,7 +121,7 @@ const getColumns = (
     title: 'Status',
     key: 'status',
     render: (record) => renderStatus({ ...record, colorToken }),
-    width: '150px',
+    width: '200px',
     filters: [
       { text: 'Passed', value: 'passed' },
       { text: 'Failed', value: 'failed' },
@@ -188,17 +188,21 @@ export const MainTable = ({
             pagination={false}
             rowKey='testFilePath'
             rowClassName={(record) => renderRootRowClass(record, themeId)}
-            expandedRowRender={({ testResults, testFilePath }) => (
-              <DetailTable
-                data={testResults.map((item) => ({
-                  ...item,
-                  fileAttachInfos: attachInfos?.[testFilePath] || {},
-                }))}
-                defaultMerge={_reporterOptions.enableMergeData}
-                defaultMergeLevel={_reporterOptions.dataMergeLevel}
-              />
-            )}
-            expandedRowKeys={getExistKeys(expand, globalExpandState)}
+            expandable={{
+              expandedRowRender: ({ testResults, testFilePath }) => (
+                <DetailTable
+                  data={testResults.map((item) => ({
+                    ...item,
+                    fileAttachInfos: attachInfos?.[testFilePath] || {},
+                  }))}
+                  defaultMerge={_reporterOptions.enableMergeData}
+                  defaultMergeLevel={_reporterOptions.dataMergeLevel}
+                />
+              ),
+              expandedRowKeys: getExistKeys(expand, globalExpandState),
+              expandedRowClassName: () => 'main-table-expanded-row',
+            }}
+
             onExpand={(state, { testFilePath }) =>
               toggleExpand({ key: testFilePath, state })
             }

@@ -1,97 +1,578 @@
 {
-  "numFailedTestSuites": 2,
-  "numFailedTests": 2,
-  "numPassedTestSuites": 3,
-  "numPassedTests": 18,
-  "numPendingTestSuites": 0,
-  "numPendingTests": 0,
-  "numRuntimeErrorTestSuites": 0,
-  "numTodoTests": 1,
-  "numTotalTestSuites": 5,
-  "numTotalTests": 21,
-  "startTime": 1640960210294,
+  "numFailedTestSuites": 3,
+  "numFailedTests": 3,
+  "numPassedTestSuites": 6,
+  "numPassedTests": 31,
+  "numPendingTestSuites": 1,
+  "numPendingTests": 3,
+  "numRuntimeErrorTestSuites": 1,
+  "numTodoTests": 2,
+  "numTotalTestSuites": 10,
+  "numTotalTests": 39,
+  "startTime": 1674980519804,
   "success": false,
   "testResults": [
     {
       "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 16,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
+      "numFailingTests": 2,
+      "numPassingTests": 25,
+      "numPendingTests": 2,
+      "numTodoTests": 1,
       "perfStats": {
-        "end": 1640960210563,
-        "runtime": 230,
+        "end": 1674980520127,
+        "runtime": 276,
         "slow": false,
-        "start": 1640960210333
+        "start": 1674980519851
       },
       "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/examples-data-merge.test.js",
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/multipleTests.test.js",
       "testResults": [
         {
+          "rowKey": 0,
           "ancestorTitles": [
-            "examples for data merge test",
-            "title 1"
+            "multiple tests all passed"
+          ],
+          "duration": 2,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 1"
+        },
+        {
+          "rowKey": 1,
+          "ancestorTitles": [
+            "multiple tests all passed"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 2"
+        },
+        {
+          "rowKey": 2,
+          "ancestorTitles": [
+            "multiple tests all passed"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 3"
+        },
+        {
+          "rowKey": 3,
+          "ancestorTitles": [
+            "multiple tests all passed"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 4"
+        },
+        {
+          "rowKey": 4,
+          "ancestorTitles": [
+            "multiple tests all passed"
           ],
           "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for data merge test title 1 a test 0.5042181900569092",
+          "fullName": "multiple tests all passed succeed examples 5",
           "invocations": 1,
           "location": null,
-          "numPassingAsserts": 0,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
           "status": "passed",
-          "title": "a test 0.5042181900569092"
+          "title": "succeed examples 5"
         },
         {
+          "rowKey": 5,
           "ancestorTitles": [
-            "examples for data merge test",
-            "title 1"
+            "multiple tests all passed"
           ],
           "duration": 0,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for data merge test title 1 a test 0.885928131307246",
+          "fullName": "multiple tests all passed succeed examples 6",
           "invocations": 1,
           "location": null,
-          "numPassingAsserts": 0,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
           "status": "passed",
-          "title": "a test 0.885928131307246"
+          "title": "succeed examples 6"
         },
         {
+          "rowKey": 6,
           "ancestorTitles": [
-            "examples for data merge test",
-            "title 1"
+            "multiple tests all passed",
+            "multiple tests all passed inner level"
           ],
           "duration": 0,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for data merge test title 1 a test 0.14506808248417058",
+          "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 1",
           "invocations": 1,
           "location": null,
-          "numPassingAsserts": 0,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
           "status": "passed",
-          "title": "a test 0.14506808248417058"
+          "title": "succeed inner level examples 1"
         },
         {
+          "rowKey": 7,
           "ancestorTitles": [
-            "examples for data merge test",
-            "title 1"
+            "multiple tests all passed",
+            "multiple tests all passed inner level"
           ],
           "duration": 0,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for data merge test title 1 a test 0.7022349183294523",
+          "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 2"
+        },
+        {
+          "rowKey": 8,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 3"
+        },
+        {
+          "rowKey": 9,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 4"
+        },
+        {
+          "rowKey": 10,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 5",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 5"
+        },
+        {
+          "rowKey": 11,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 1"
+        },
+        {
+          "rowKey": 12,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 2"
+        },
+        {
+          "rowKey": 13,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 3"
+        },
+        {
+          "rowKey": 14,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 1,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 4"
+        },
+        {
+          "rowKey": 15,
+          "ancestorTitles": [
+            "multiple tests all passed",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 5",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 5"
+        },
+        {
+          "rowKey": 16,
+          "ancestorTitles": [
+            "multiple tests others"
+          ],
+          "duration": null,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple examples todo",
           "invocations": 1,
           "location": null,
           "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.7022349183294523"
+          "retryReasons": [],
+          "status": "todo",
+          "title": "multiple examples todo"
         },
         {
+          "rowKey": 17,
           "ancestorTitles": [
-            "examples for data merge test",
-            "title 1",
-            "title 2"
+            "multiple tests others"
+          ],
+          "duration": null,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple examples skip",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "pending",
+          "title": "multiple examples skip"
+        },
+        {
+          "rowKey": 18,
+          "ancestorTitles": [
+            "multiple tests others"
+          ],
+          "duration": 2,
+          "failureDetails": [
+            {
+              "matcherResult": {
+                "actual": 1,
+                "expected": 2,
+                "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                "name": "toBe",
+                "pass": false
+              }
+            }
+          ],
+          "failureMessages": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.toBe (/Users/harry.hou/Desktop/harry/report-examples/test/multipleTests.test.js:79:15)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)"
+          ],
+          "fullName": "multiple tests others multiple examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "multiple examples 3"
+        },
+        {
+          "rowKey": 19,
+          "ancestorTitles": [
+            "multiple tests others"
+          ],
+          "duration": 1,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others succeed examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 4"
+        },
+        {
+          "rowKey": 20,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level"
+          ],
+          "duration": null,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level multiple inner level examples 1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "pending",
+          "title": "multiple inner level examples 1"
+        },
+        {
+          "rowKey": 21,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level succeed inner level examples 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 2"
+        },
+        {
+          "rowKey": 22,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level succeed inner level examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 3"
+        },
+        {
+          "rowKey": 23,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level succeed inner level examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 4"
+        },
+        {
+          "rowKey": 24,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level succeed inner level examples 5",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level examples 5"
+        },
+        {
+          "rowKey": 25,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 1,
+          "failureDetails": [
+            {
+              "matcherResult": {
+                "actual": 1,
+                "expected": 2,
+                "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                "name": "toBe",
+                "pass": false
+              }
+            }
+          ],
+          "failureMessages": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.toBe (/Users/harry.hou/Desktop/harry/report-examples/test/multipleTests.test.js:111:17)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)"
+          ],
+          "fullName": "multiple tests others multiple tests all passed inner level 2 multiple inner level 2 examples 1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "multiple inner level 2 examples 1"
+        },
+        {
+          "rowKey": 26,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level 2 succeed inner level 2 examples 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 2"
+        },
+        {
+          "rowKey": 27,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level 2 succeed inner level 2 examples 3",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 3"
+        },
+        {
+          "rowKey": 28,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level 2 succeed inner level 2 examples 4",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 4"
+        },
+        {
+          "rowKey": 29,
+          "ancestorTitles": [
+            "multiple tests others",
+            "multiple tests all passed inner level 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests others multiple tests all passed inner level 2 succeed inner level 2 examples 5",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed inner level 2 examples 5"
+        }
+      ],
+      "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mmultiple tests others › multiple examples 3\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32m2\u001b[39m\n    Received: \u001b[31m1\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 77 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 78 |\u001b[39m   test(\u001b[32m'multiple examples 3'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 79 |\u001b[39m     expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 80 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 81 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 82 |\u001b[39m   test(\u001b[32m'succeed examples 4'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/multipleTests.test.js\u001b[39m\u001b[0m\u001b[2m:79:15)\u001b[22m\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mmultiple tests others › multiple tests all passed inner level 2 › multiple inner level 2 examples 1\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32m2\u001b[39m\n    Received: \u001b[31m1\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 109 |\u001b[39m   describe(\u001b[32m'multiple tests all passed inner level 2'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 110 |\u001b[39m     test(\u001b[32m'multiple inner level 2 examples 1'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 111 |\u001b[39m       expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 112 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 113 |\u001b[39m   \u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 114 |\u001b[39m     test(\u001b[32m'succeed inner level 2 examples 2'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/multipleTests.test.js\u001b[39m\u001b[0m\u001b[2m:111:17)\u001b[22m\u001b[2m\u001b[22m\n"
+    },
+    {
+      "leaks": false,
+      "numFailingTests": 1,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1674980520235,
+        "runtime": 100,
+        "slow": false,
+        "start": 1674980520135
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/failed.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "failed examples"
           ],
           "duration": 3,
           "failureDetails": [
@@ -106,259 +587,99 @@
             }
           ],
           "failureMessages": [
-            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.<anonymous> (/Users/harry.hou/Desktop/harry/test/test/examples-data-merge.test.js:18:19)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/utils.js:390:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/utils.js:315:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:218:40)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n    at _runTest (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:155:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:66:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:60:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:60:9)"
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.toBe (/Users/harry.hou/Desktop/harry/report-examples/test/failed.test.js:3:15)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)"
           ],
-          "fullName": "examples for data merge test title 1 title 2 error",
+          "fullName": "failed examples failed examples",
           "invocations": 1,
           "location": null,
           "numPassingAsserts": 0,
+          "retryReasons": [],
           "status": "failed",
-          "title": "error"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3",
-            "title 4"
-          ],
-          "duration": 1,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 title 4 a test 0.23819716745619535",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.23819716745619535"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3",
-            "title 4"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 title 4 a test 0.916453289630673",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.916453289630673"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3",
-            "title 4"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 title 4 a test 0.89830806272446",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.89830806272446"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3",
-            "title 4"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 title 4 a test 0.763871645973685",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.763871645973685"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 a test 0.4202323322803665",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.4202323322803665"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 a test 0.29825924535484805",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.29825924535484805"
-        },
-        {
-          "ancestorTitles": [
-            "examples for data merge test",
-            "title 3"
-          ],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "examples for data merge test title 3 a test 0.705722281426997",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.705722281426997"
-        },
-        {
-          "ancestorTitles": [],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "a test 0.1047432283531824",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.1047432283531824"
-        },
-        {
-          "ancestorTitles": [],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "a test 0.15374654956756317",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.15374654956756317"
-        },
-        {
-          "ancestorTitles": [],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "a test 0.3479277363990776",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.3479277363990776"
-        },
-        {
-          "ancestorTitles": [],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "a test 0.6762722523021074",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.6762722523021074"
-        },
-        {
-          "ancestorTitles": [],
-          "duration": 0,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "a test 0.758811022360399",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "passed",
-          "title": "a test 0.758811022360399"
+          "title": "failed examples"
         }
       ],
-      "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mexamples for data merge test › title 1 › title 2 › error\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32m2\u001b[39m\n    Received: \u001b[31m1\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 16 |\u001b[39m     describe(\u001b[32m'title 2'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 17 |\u001b[39m       test(\u001b[32m\"error\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 18 |\u001b[39m         expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 19 |\u001b[39m       })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 20 |\u001b[39m     })\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 21 |\u001b[39m   })\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.<anonymous> (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/examples-data-merge.test.js\u001b[39m\u001b[0m\u001b[2m:18:19)\u001b[22m\u001b[2m\u001b[22m\n"
-    },
-    {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "perfStats": {
-        "end": 1640960210619,
-        "runtime": 45,
-        "slow": false,
-        "start": 1640960210574
-      },
-      "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/examples-error.test.js",
-      "testResults": [
-        {
-          "ancestorTitles": [
-            "examples for error test"
-          ],
-          "duration": 1,
-          "failureDetails": [
-            {
-              "matcherResult": {
-                "actual": 1,
-                "expected": 2,
-                "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
-                "name": "toBe",
-                "pass": false
-              }
-            }
-          ],
-          "failureMessages": [
-            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.<anonymous> (/Users/harry.hou/Desktop/harry/test/test/examples-error.test.js:4:15)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/utils.js:390:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/utils.js:315:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:218:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:155:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:66:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:60:9)\n    at run (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/run.js:25:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:167:21)"
-          ],
-          "fullName": "examples for error test error",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 0,
-          "status": "failed",
-          "title": "error"
-        }
-      ],
-      "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mexamples for error test › error\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32m2\u001b[39m\n    Received: \u001b[31m1\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 2 |\u001b[39m describe(\u001b[32m'examples for error test'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 3 |\u001b[39m   test(\u001b[32m\"error\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 4 |\u001b[39m     expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m   |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 5 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 6 |\u001b[39m })\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 7 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.<anonymous> (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/examples-error.test.js\u001b[39m\u001b[0m\u001b[2m:4:15)\u001b[22m\u001b[2m\u001b[22m\n"
+      "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mfailed examples › failed examples\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32m2\u001b[39m\n    Received: \u001b[31m1\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 1 |\u001b[39m describe(\u001b[32m'failed examples'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 2 |\u001b[39m   test(\u001b[32m'failed examples'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 3 |\u001b[39m     expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m   |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 4 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 5 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/failed.test.js\u001b[39m\u001b[0m\u001b[2m:3:15)\u001b[22m\u001b[2m\u001b[22m\n"
     },
     {
       "leaks": false,
       "numFailingTests": 0,
-      "numPassingTests": 1,
-      "numPendingTests": 0,
+      "numPassingTests": 0,
+      "numPendingTests": 1,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1640960210669,
-        "runtime": 38,
+        "end": 1674980520331,
+        "runtime": 85,
         "slow": false,
-        "start": 1640960210631
+        "start": 1674980520246
       },
-      "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/examples-test.test.js",
+      "skipped": true,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/pending.test.js",
       "testResults": [
         {
+          "rowKey": 0,
           "ancestorTitles": [
-            "examples for test"
+            "this will be pending"
           ],
-          "duration": 0,
+          "duration": null,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for test test",
+          "fullName": "this will be pending pending",
           "invocations": 1,
           "location": null,
           "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "pending",
+          "title": "pending"
+        }
+      ],
+      "failureMessage": null
+    },
+    {
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 2,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1674980520483,
+        "runtime": 145,
+        "slow": false,
+        "start": 1674980520338
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/attachLog.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "add log to test"
+          ],
+          "duration": 8,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "add log to test attach logs for 卧龙吟",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
           "status": "passed",
-          "title": "test"
+          "title": "attach logs for 卧龙吟"
+        },
+        {
+          "rowKey": 1,
+          "ancestorTitles": [
+            "add log to test"
+          ],
+          "duration": 3,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "add log to test attach logs for 卧龙吟 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "attach logs for 卧龙吟 2"
         }
       ],
       "failureMessage": null
@@ -370,25 +691,95 @@
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1640960210763,
-        "runtime": 91,
+        "end": 1674980520613,
+        "runtime": 126,
         "slow": false,
-        "start": 1640960210672
+        "start": 1674980520487
       },
       "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/Attach-image.test.js",
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/attach.test.js",
       "testResults": [
         {
+          "rowKey": 0,
           "ancestorTitles": [],
-          "duration": 18,
+          "duration": 19,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "《卧龙吟》",
+          "fullName": "attach《卧龙吟》",
           "invocations": 1,
           "location": null,
-          "numPassingAsserts": 0,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
           "status": "passed",
-          "title": "《卧龙吟》"
+          "title": "attach《卧龙吟》"
+        }
+      ],
+      "failureMessage": null
+    },
+    {
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 1,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1674980520705,
+        "runtime": 89,
+        "slow": false,
+        "start": 1674980520616
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-4.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "succeed examples"
+          ],
+          "duration": 1,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "succeed examples succeed examples",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples"
+        }
+      ],
+      "failureMessage": null
+    },
+    {
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 1,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1674980520797,
+        "runtime": 89,
+        "slow": false,
+        "start": 1674980520708
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "succeed examples"
+          ],
+          "duration": 2,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "succeed examples succeed examples",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples"
         }
       ],
       "failureMessage": null
@@ -400,27 +791,29 @@
       "numPendingTests": 0,
       "numTodoTests": 1,
       "perfStats": {
-        "end": 1640960210804,
-        "runtime": 38,
+        "end": 1674980520888,
+        "runtime": 87,
         "slow": false,
-        "start": 1640960210766
+        "start": 1674980520801
       },
       "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/examples-todo.test.js",
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/todo.test.js",
       "testResults": [
         {
+          "rowKey": 0,
           "ancestorTitles": [
-            "examples for todo test"
+            "todo examples"
           ],
           "duration": null,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for todo test todo",
+          "fullName": "todo examples  going to do this",
           "invocations": 1,
           "location": null,
           "numPassingAsserts": 0,
+          "retryReasons": [],
           "status": "todo",
-          "title": "todo"
+          "title": " going to do this"
         }
       ],
       "failureMessage": null
@@ -428,43 +821,73 @@
     {
       "leaks": false,
       "numFailingTests": 0,
-      "numPassingTests": 0,
-      "numPendingTests": 1,
+      "numPassingTests": 1,
+      "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1640960210804,
-        "runtime": 38,
+        "end": 1674980520975,
+        "runtime": 84,
         "slow": false,
-        "start": 1640960210766
+        "start": 1674980520891
       },
       "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/test/test/examples-pending.test.js",
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-2.test.js",
       "testResults": [
         {
+          "rowKey": 0,
           "ancestorTitles": [
-            "examples for pending test"
+            "succeed examples"
           ],
-          "duration": null,
+          "duration": 2,
           "failureDetails": [],
           "failureMessages": [],
-          "fullName": "examples for pending test todo",
+          "fullName": "succeed examples succeed examples",
           "invocations": 1,
           "location": null,
-          "numPassingAsserts": 0,
-          "status": "pending",
-          "title": "pending"
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples"
         }
       ],
       "failureMessage": null
+    },
+    {
+      "failureMessage": "  \u001b[1m● \u001b[22mTest suite failed to run\n\n    \u001b[1m\u001b[31mJest encountered an unexpected token\u001b[39m\u001b[22m\n\n    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.\n\n    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.\n\n    By default \"node_modules\" folder is ignored by transformers.\n\n    Here's what you can do:\n     • If you are trying to use ECMAScript Modules, see \u001b[4mhttps://jestjs.io/docs/ecmascript-modules\u001b[24m for how to enable it.\n     • If you are trying to use TypeScript, see \u001b[4mhttps://jestjs.io/docs/getting-started#using-typescript\u001b[24m\n     • To have some of your \"node_modules\" files transformed, you can specify a custom \u001b[1m\"transformIgnorePatterns\"\u001b[22m in your config.\n     • If you need a custom transformation specify a \u001b[1m\"transform\"\u001b[22m option in your config.\n     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the \u001b[1m\"moduleNameMapper\"\u001b[22m config option.\n\n    You'll find more details and examples of these config options in the docs:\n    \u001b[36mhttps://jestjs.io/docs/configuration\u001b[39m\n    For information about custom transformations, see:\n    \u001b[36mhttps://jestjs.io/docs/code-transformation\u001b[39m\n\n    \u001b[1m\u001b[31mDetails:\u001b[39m\u001b[22m\n\n    SyntaxError: /Users/harry.hou/Desktop/harry/report-examples/test/execError.test.js: Missing semicolon. (1:8)\n\n    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1 |\u001b[39m unexpect code here\u001b[33m?\u001b[39m what\u001b[32m's this.;\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m   |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\n      \u001b[2mat instantiate (\u001b[22mnode_modules/@babel/parser/src/parse-error/credentials.ts\u001b[2m:62:21)\u001b[22m\n      \u001b[2mat instantiate (\u001b[22mnode_modules/@babel/parser/src/parse-error.ts\u001b[2m:60:12)\u001b[22m\n      \u001b[2mat Parser.toParseError [as raise] (\u001b[22mnode_modules/@babel/parser/src/tokenizer/index.ts\u001b[2m:1456:19)\u001b[22m\n      \u001b[2mat Parser.raise [as semicolon] (\u001b[22mnode_modules/@babel/parser/src/parser/util.ts\u001b[2m:138:10)\u001b[22m\n      \u001b[2mat Parser.semicolon [as parseExpressionStatement] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:1251:10)\u001b[22m\n      \u001b[2mat Parser.parseExpressionStatement [as parseStatementContent] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:630:19)\u001b[22m\n      \u001b[2mat Parser.parseStatementContent [as parseStatementLike] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:406:17)\u001b[22m\n      \u001b[2mat Parser.parseStatementLike [as parseModuleItem] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:351:17)\u001b[22m\n      \u001b[2mat Parser.parseModuleItem [as parseBlockOrModuleBlockBody] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:1331:16)\u001b[22m\n      \u001b[2mat Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:1305:10)\u001b[22m\n      \u001b[2mat Parser.parseBlockBody [as parseProgram] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:224:10)\u001b[22m\n      \u001b[2mat Parser.parseProgram [as parseTopLevel] (\u001b[22mnode_modules/@babel/parser/src/parser/statement.ts\u001b[2m:206:25)\u001b[22m\n      \u001b[2mat Parser.parseTopLevel [as parse] (\u001b[22mnode_modules/@babel/parser/src/parser/index.ts\u001b[2m:45:10)\u001b[22m\n      \u001b[2mat parse (\u001b[22mnode_modules/@babel/parser/src/index.ts\u001b[2m:67:38)\u001b[22m\n      \u001b[2mat parser (\u001b[22mnode_modules/@babel/core/src/parser/index.ts\u001b[2m:28:19)\u001b[22m\n          at parser.next (<anonymous>)\n      \u001b[2mat normalizeFile (\u001b[22mnode_modules/@babel/core/src/transformation/normalize-file.ts\u001b[2m:52:24)\u001b[22m\n          at normalizeFile.next (<anonymous>)\n      \u001b[2mat run (\u001b[22mnode_modules/@babel/core/src/transformation/index.ts\u001b[2m:38:36)\u001b[22m\n          at run.next (<anonymous>)\n      \u001b[2mat transform (\u001b[22mnode_modules/@babel/core/src/transform.ts\u001b[2m:29:20)\u001b[22m\n          at transform.next (<anonymous>)\n      \u001b[2mat evaluateSync (\u001b[22mnode_modules/gensync/index.js\u001b[2m:251:28)\u001b[22m\n      \u001b[2mat sync (\u001b[22mnode_modules/gensync/index.js\u001b[2m:89:14)\u001b[22m\n      \u001b[2mat fn (\u001b[22mnode_modules/@babel/core/src/errors/rewrite-stack-trace.ts\u001b[2m:97:14)\u001b[22m\n      \u001b[2mat transformSync (\u001b[22mnode_modules/@babel/core/src/transform.ts\u001b[2m:66:52)\u001b[22m\n      \u001b[2mat ScriptTransformer.transformSource (\u001b[22mnode_modules/@jest/transform/build/ScriptTransformer.js\u001b[2m:542:31)\u001b[22m\n      \u001b[2mat ScriptTransformer._transformAndBuildScript (\u001b[22mnode_modules/@jest/transform/build/ScriptTransformer.js\u001b[2m:671:40)\u001b[22m\n      \u001b[2mat ScriptTransformer.transform (\u001b[22mnode_modules/@jest/transform/build/ScriptTransformer.js\u001b[2m:723:19)\u001b[22m\n",
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 0,
+        "runtime": 0,
+        "slow": false,
+        "start": 0
+      },
+      "skipped": false,
+      "testExecError": {
+        "code": "BABEL_PARSE_ERROR",
+        "reasonCode": "MissingSemicolon",
+        "loc": {
+          "line": 1,
+          "column": 8,
+          "index": 8
+        },
+        "pos": 8
+      },
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/execError.test.js",
+      "testResults": []
     }
   ],
   "wasInterrupted": false,
   "config": {
     "bail": 0,
     "changedFilesWithAncestor": false,
+    "ci": false,
     "collectCoverage": false,
     "collectCoverageFrom": [],
-    "coverageDirectory": "/Users/harry.hou/Desktop/harry/test/coverage",
+    "coverageDirectory": "/Users/harry.hou/Desktop/harry/report-examples/coverage",
     "coverageProvider": "babel",
     "coverageReporters": [
       "json",
@@ -478,7 +901,7 @@
     "expand": false,
     "findRelatedTests": false,
     "forceExit": false,
-    "globalSetup": "/Users/harry.hou/Desktop/harry/test/test/setup.js",
+    "globalSetup": "/Users/harry.hou/Desktop/harry/report-examples/global.setup.js",
     "json": false,
     "lastCommit": false,
     "listTests": false,
@@ -499,22 +922,31 @@
         {}
       ],
       [
-        "/Users/harry.hou/Desktop/harry/test/node_modules/jest-html-reporters/index.js",
+        "/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-html-reporters/index.js",
         {
-          "publicPath": "./html-report",
-          "filename": "report.html",
-          "openReport": true,
+          "publicPath": "examples",
+          "filename": "index.html",
+          "pageTitle": "时空是个圆圈",
+          "logoImgPath": "./logo.png",
+          "testCommand": "yarn test",
           "enableMergeData": true,
-          "dataMergeLevel": 2
+          "dataMergeLevel": 2,
+          "urlForTestFiles": "https://github.com/Hazyzh/report-examples/blob/master",
+          "darkTheme": true
         }
       ]
     ],
-    "rootDir": "/Users/harry.hou/Desktop/harry/test",
+    "rootDir": "/Users/harry.hou/Desktop/harry/report-examples",
     "runTestsByPath": false,
+    "seed": -1491484634,
     "skipFilter": false,
+    "snapshotFormat": {
+      "escapeString": false,
+      "printBasicPrototype": false
+    },
     "testFailureExitCode": 1,
     "testPathPattern": "",
-    "testSequencer": "/Users/harry.hou/Desktop/harry/test/node_modules/@jest/test-sequencer/build/index.js",
+    "testSequencer": "/Users/harry.hou/Desktop/harry/report-examples/node_modules/@jest/test-sequencer/build/index.js",
     "updateSnapshot": "new",
     "useStderr": false,
     "verbose": true,
@@ -522,12 +954,13 @@
     "watchAll": false,
     "watchman": true
   },
-  "endTime": 1640960210810,
+  "endTime": 1674980521237,
   "_reporterOptions": {
-    "publicPath": "./html-report",
-    "filename": "report.html",
+    "publicPath": "examples",
+    "filename": "index.html",
     "expand": false,
-    "pageTitle": "",
+    "pageTitle": "时空是个圆圈",
+    "logoImgPath": "./logo.png",
     "hideIcon": false,
     "customInfos": [
       {
@@ -543,31 +976,98 @@
         "value": "<a href=\"https://github.com/Hazyzh/jest-html-reporters/issues/166\">github link</>"
       }
     ],
-    "testCommand": "npx jest",
-    "openReport": true,
-    "failureMessageOnly": false,
+    "testCommand": "yarn test",
+    "openReport": false,
+    "failureMessageOnly": 0,
     "enableMergeData": true,
-    "dataMergeLevel": 2
+    "dataMergeLevel": 2,
+    "inlineSource": false,
+    "urlForTestFiles": "https://github.com/Hazyzh/report-examples/blob/master",
+    "darkTheme": true,
+    "logoImg": "data:image/.png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAENUlEQVRoge2ZWUhUYRTHiyDqJYqWpx7qodcgijaifYOiTDAiIwiEKNpNI9ttsyCTHiqCoKysNFpssQUiiBTMRhM1ycomc/Y74yzaOI1z+h+5Izb33vFO8N0hmAN/7iwXvt//3POd7/tmBg1KRSpSkYr/LohoeCAQyIXuQfWQzefzhXElXHvk93VQid/v34b7hyWbuS8AlwM5AEd6BAMsD17fwXVysuFzOcN64WPl9Xq7YaIYr8caDo8yGIHBpX+Fj3kqZiRjpaEGuHTiQQW+V9Ovm2nUfWsuhR4soe63u8lvbY5nJAgjOwwz0NXVVaiZ0R+1FLw8gyJVi4lMy/oUqdtIfq8jXklFJEk6aYgBDHhEC+TXnQyKVP4NH1Xo+5W45dTR0RF2u937jTAwRwsiWKIOz+r5tEPP5PY5nc6FRpioUAMIla/SNtC8t7eVDmTC5XJ9Fm6gs7NzPAZzK55A1TFNAyHLfV2dCaVEeApFwk1gsHQFgMtKv+t3KrPfcogCgYGzH5XD4ZDQrocYYeKJsrf7qLv9AYU/H6ZwyxEK2Z4mBM9CRyK73b7PCAPzEl289AiTmQ18FW5ANmESYcJms4WMKqNzeqGcTY1k2pxFNemrqTZzHX0pOk9et6R6L54AWa1W8S0VrTFD18Q0mahyySKqWziP6vupZV8O+VAyCrNOJ+uccAOo11l6DNRsWE8fY+CjslU8UzWAblRqhIHRegxULV6gCs9qPZGvagBl9Ey4AUy0cXoMvF+6KK6B2FVafgIvhBvQW0JNu7ZrGnC8qFCdxDBQLNwAthVbdHWghgZqzEhXwH89mKe6R0IH4n1RnnADGPya7gXKaiFzUSE1Z22ilm1byVpWSgG/8j7eD1ksFl4LZgo3gBNac6KLlHzA1/wemecn8Bvza7BQeECsTxRej5B5rv86ofCygWrF4C6Jsi49p/n5ZbTibDkdLXtHkrtDNzxOZb3lg+sWofAonQOxg/+0u2hKbjFN2FNCE3NK+5R5+TV5E8g+FBBaPug8U5F9X+zgawvLaUL27b/go7r6pkl39rEGnBIGzwH4D2oA0/LU4VnrLr6OC8+dh1sn+r9LKHwwGEzTgph24K6mgTUXXsXtPLxwIfsRLIyzhRoAxBktiI2XXmoaOP24VtMAOo4xpSMbKNAy8PGbhWbkP1TAzy94Sk6PcsvMJ68oPK7XhcPLBjLj1fIPu0R7Sqpoev4jmnm8nPaXVpNNUofnjiPD3zAEnoP/E8DgloE6CpcL/0+gVjZ8aGdwKAx4434XjQba3SqYCCe6wnKb5E7D8Ji0TW1tbZMMh48GspiN7Pl438JgXBLefkdDbosej6c321znMngEZfMF8MuTBt4/UE5DAZcHoEoAurkk5NLoVXt7ew8+9+L7etx3Fu/HJJt5wOCfQsxm86jW1taRyWZJRSpS8R/FHzdLOT5ImIWaAAAAAElFTkSuQmCC"
   },
   "attachInfos": {
-    "/Users/harry.hou/Desktop/harry/test/test/Attach-image.test.js": {
-      "《卧龙吟》": [
+    "hasAttachFiles": true,
+    "/Users/harry.hou/Desktop/harry/report-examples/test/attachLog.test.js": {
+      "add log to test attach logs for 卧龙吟": [
         {
-          "filePath": "./jest-html-reporters-attach/16409602107470.44635697687670395.jpg",
+          "description": "束发读诗书 修德兼修身",
+          "createTime": 1674980520472
+        },
+        {
+          "description": "仰观与俯察 韬略胸中存",
+          "createTime": 1674980520473
+        },
+        {
+          "description": "躬耕从未忘忧国 谁知热血在山林",
+          "createTime": 1674980520474
+        },
+        {
+          "description": "凤兮凤兮思高举 时乱势危久沉吟",
+          "createTime": 1674980520475
+        },
+        {
+          "description": "茅庐承三顾 促膝纵横论",
+          "createTime": 1674980520475
+        },
+        {
+          "description": "半生遇知己 蛰人感幸甚",
+          "createTime": 1674980520476
+        },
+        {
+          "description": "明朝携剑随君去 羽扇纶巾赴征尘",
+          "createTime": 1674980520477
+        },
+        {
+          "description": "龙兮龙兮风云会 长啸一声抒怀襟",
+          "createTime": 1674980520477
+        },
+        {
+          "description": "归去归去来兮 我宿愿 余年还做垅亩民",
+          "createTime": 1674980520478
+        }
+      ],
+      "add log to test attach logs for 卧龙吟 2": [
+        {
+          "description": "天道常变异 运数杳难寻",
+          "createTime": 1674980520480
+        },
+        {
+          "description": "丈夫在世当有为 为民播下太平春",
+          "createTime": 1674980520481
+        },
+        {
+          "description": "成败在人谋 一诺竭终悃",
+          "createTime": 1674980520481
+        },
+        {
+          "description": "归去归去来兮 我宿愿 余年还做垅亩民",
+          "createTime": 1674980520482
+        },
+        {
+          "description": "清风明月入怀抱 猿鹤听我再抚琴",
+          "createTime": 1674980520482
+        }
+      ]
+    },
+    "/Users/harry.hou/Desktop/harry/report-examples/test/attach.test.js": {
+      "attach《卧龙吟》": [
+        {
+          "filePath": "./jest-html-reporters-attach/index/16749805205970.781264167528948.jpg",
           "description": "清风",
-          "createTime": 1640960210747,
+          "createTime": 1674980520597,
           "extName": ".jpg"
         },
         {
-          "filePath": "./jest-html-reporters-attach/16409602107530.24852350536752632.jpg",
+          "filePath": "./jest-html-reporters-attach/index/16749805206030.827799834647662.jpg",
           "description": "明月",
-          "createTime": 1640960210753,
+          "createTime": 1674980520603,
           "extName": ".jpg"
         },
         {
-          "filePath": "./jest-html-reporters-attach/16409602107600.4421788737705259.jpg",
+          "filePath": "./jest-html-reporters-attach/index/16749805206090.5171552447392991.jpg",
           "description": "入怀抱",
-          "createTime": 1640960210760,
+          "createTime": 1674980520609,
           "extName": ".jpg"
         }
       ]

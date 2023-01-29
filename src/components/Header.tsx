@@ -1,11 +1,12 @@
 import React from 'react';
-import { Avatar, Layout, Button, Row, Col, Space, Switch } from 'antd';
+import { Avatar, Layout, Button, Row, Col, Space, Switch, Typography } from 'antd';
 import { GithubFilled } from '@ant-design/icons';
 import type { IReportData } from '../interfaces/ReportData.interface';
 
 import { ReactComponent as DarkMode } from '../assets/imgs/darkMode.svg';
 import { ReactComponent as LightMode} from '../assets/imgs/lightMode.svg';
 import Icon from '@ant-design/icons';
+const { Title } = Typography;
 
 const defaultTitle = 'Report';
 
@@ -39,7 +40,7 @@ export const Header = ({
           {logoImg && <Avatar src={logoImg} shape='square' size='large' />}
         </Col>
         <Col span={16} style={{ textAlign: 'center' }}>
-          {pageTitle}
+          <Title level={3} type="warning" italic >{pageTitle}</Title>
         </Col>
         <Col span={4} style={{ textAlign: 'right' }}>
           <Space size='large'>

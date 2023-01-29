@@ -1,12 +1,13 @@
 import React from 'react';
-import { Card, Col, List, Modal, Row, Button } from 'antd';
+import { Card, Col, Tag, Modal, Row, Button, Typography } from 'antd';
 
-import { InfoCircleFilled } from '@ant-design/icons';
+import { InfoCircleFilled, FieldTimeOutlined } from '@ant-design/icons';
 import type { IAttachInfosItem } from '../interfaces/ReportData.interface';
 
 import ErrorInfoItem from './ErrorInfoItem';
-
+import { formatDate } from '../utils/index';
 const { Meta } = Card;
+const { Text } = Typography;
 
 const imgSupportedFormats = [
   '.apng',
@@ -82,33 +83,45 @@ function getModalConfig(
         </Col>
         <Col span={24}>
           {!!caseAttachInfos.length && (
-            <List
-              header='Attach'
-              bordered
-              dataSource={caseAttachInfos}
-              renderItem={(item) => (
-                <List.Item>
-                  {item.filePath ? (
+            <Row gutter={24}>
+              {caseAttachInfos.map((item) =>
+                item.filePath ? (
+                  <Col xs={24} sm={12} md={8}>
                     <Card hoverable bordered cover={<FileNode {...item} />}>
                       <Meta
                         title={
-                          <a
-                            href={item.filePath}
-                            target='_blank'
-                            rel='noreferrer'
-                          >
-                            Detail
-                          </a>
+                          <>
+                            <a
+                              href={item.filePath}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              Detail 
+                            </a>
+                            {` `}
+                           <Text italic type="secondary">{formatDate(item.createTime)}</Text>
+                          </>
                         }
                         description={item.description}
                       />
                     </Card>
-                  ) : (
-                    <pre style={{ width: '100%' }}>{item.description}</pre>
-                  )}
-                </List.Item>
+                  </Col>
+                ) : (
+                  <Col span={24}>
+                    <Row align='middle'>
+                      <Col flex='none'>
+                        <Tag icon={<FieldTimeOutlined />}>
+                          {formatDate(item.createTime)}
+                        </Tag>
+                      </Col>
+                      <Col flex='auto'>
+                        <pre className='log_pre'> {item.description}</pre>
+                      </Col>
+                    </Row>
+                  </Col>
+                )
               )}
-            />
+            </Row>
           )}
         </Col>
       </Row>
@@ -129,7 +142,7 @@ export const ErrorButton = ({
 }) => {
   const [modal, contextHolder] = Modal.useModal();
   const title = fullName || testFilePath;
-  
+
   if (!failureMessage && !caseAttachInfos.length) return null;
   return (
     <>

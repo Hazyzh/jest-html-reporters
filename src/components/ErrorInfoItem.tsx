@@ -28,6 +28,7 @@ const ErrorInfoItem = ({ data }: { data: string | undefined }) => {
   return (
     <pre
       data-sign='ErrorInfoItem'
+      className='error_pre'
       dangerouslySetInnerHTML={createMarkup(data, options)}
       style={{ padding: '10px' }}
     />

@@ -17,10 +17,17 @@
   white-space: normal;
 }
 // code modal
-pre {
+.error_pre {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   border-radius: 10px;
   box-shadow: 0px 1px 1px 1px #eee;
+}
+
+.log_pre {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  border-radius: 1px;
+  padding: 10px;
+  border: 1px solid #eee;
 }
 
 
@@ -73,4 +80,14 @@ pre {
 
 .them-switch {
   box-shadow: 1px 1px #eee;
+}
+
+
+.main-table-expanded-row {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  > td {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }

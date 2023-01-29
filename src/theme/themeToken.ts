@@ -9,4 +9,6 @@ export const ThemeToken: ThemeConfig['token'] = {
   sizeUnit: 3,
   sizeStep: 4,
   colorInfo: '#0dbf8d',
+  colorInfoBg: '#c1a6ce',
+  colorInfoBgHover: '#c88be6',
 };

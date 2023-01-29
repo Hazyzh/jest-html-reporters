@@ -105,7 +105,7 @@ const getColumns = ({ colorToken }: { colorToken: GlobalToken }) => {
     {
       title: 'status',
       align: 'center',
-      width: '150px',
+      width: '200px',
       render: (item) =>
         item.subGroups
           ? parentRowRenderStatus({ ...item, colorToken })
