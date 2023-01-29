@@ -2,6 +2,9 @@ import fs from 'fs';
 import fse from 'fs-extra';
 import openBrowser from 'open';
 import path from 'path';
+import type {
+  AggregatedResult,
+} from '@jest/test-result';
 
 import {
   attachDirPath,
@@ -60,9 +63,14 @@ const formatCustomInfo = (customInfos: string) => {
   return undefined;
 };
 
-const removeUnusedData = (result) => {
+const removeUnusedData = (result: AggregatedResult) => {
   const res = pickData(result, ['coverageMap', 'openHandles', 'snapshot']);
-  const testResults = result.testResults.map(item => pickData(item, ['openHandles', 'snapshot']));
+  const testResults = result.testResults.map(item => {
+    return {
+      ...pickData(item, ['openHandles', 'snapshot']),
+      testResults: item.testResults.map((itemRes, index) => ({rowKey: index, ...itemRes}))
+    }
+  });
   return { ...res, testResults };
 };
 

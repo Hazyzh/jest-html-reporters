@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-import { Checkbox, InputNumber, Table, Tooltip, theme } from 'antd';
+import { Checkbox, InputNumber, Table, Tooltip, theme, Typography } from 'antd';
 import type {
   IDetailTableProps,
   IDetailTableItem,
   IColumnsType,
-  IFormatCollapsibleItem,
 } from '../interfaces/Table.interface';
 import type { ColumnsType } from 'antd/es/table';
 import type { GlobalToken } from 'antd/es/theme/interface';
@@ -26,44 +25,45 @@ import {
 
 import { ErrorButton } from './ErrorButton';
 import { renderStatus as parentRowRenderStatus } from './MainTable';
+const { Text } = Typography;
 
 const renderStatus = ({
   status,
   colorToken,
 }: IDetailTableItem & { colorToken: GlobalToken }) => {
-  const { colorSuccess, colorWarning, colorErrorBg } = colorToken;
+  const { colorSuccess, colorWarning, colorErrorTextActive } = colorToken;
   let info;
   switch (status) {
     case 'passed':
       info = (
-        <span style={{ color: colorSuccess }}>
+        <Text style={{ color: colorSuccess }}>
           <CheckOutlined />
           <span className='detail_status_text'>{status}</span>
-        </span>
+        </Text>
       );
       break;
     case 'pending':
       info = (
-        <span style={{ color: colorWarning }}>
+        <Text style={{ color: colorWarning }} strong >
           <Loading3QuartersOutlined />
           <span className='detail_status_text'>{status}</span>
-        </span>
+        </Text>
       );
       break;
     case 'failed':
       info = (
-        <span style={{ color: colorErrorBg }}>
+        <Text style={{ color: colorErrorTextActive }} strong>
           <CloseOutlined />
           <span className='detail_status_text'>{status}</span>
-        </span>
+        </Text>
       );
       break;
     case 'todo':
       info = (
-        <span style={{ color: '#950098' }}>
+        <Text style={{ color: '#950098' }} strong >
           <PushpinOutlined />
           <span className='detail_status_text'>{status}</span>
-        </span>
+        </Text>
       );
       break;
   }
@@ -129,16 +129,16 @@ const getColumns = ({ colorToken }: { colorToken: GlobalToken }) => {
 };
 
 export const DetailTable = ({ data }: { data: IDetailTableItem[] }) => {
-  const { token: colorToken } = theme.useToken();
+  const { token: colorToken, theme: { id: themeId } } = theme.useToken();
 
   return (
     <Table
       bordered
       size='small'
       showHeader={false}
-      rowKey={(_, index) => `${index}`}
+      rowKey="rowKey"
       rowClassName={(record, index) => {
-        return getRecordClass((record as IDetailTableItem).status, index);
+        return getRecordClass((record as IDetailTableItem).status, themeId);
       }}
       dataSource={data}
       columns={getColumns({ colorToken })}
@@ -188,7 +188,7 @@ const RootTable = ({
       <Table
         bordered
         showHeader={false}
-        rowKey={(_, index) => `${index}`}
+        rowKey='rowKey'
         expandable={{
           expandedRowRender: (record) => {
             if ('subGroups' in record) {

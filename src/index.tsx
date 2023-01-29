@@ -1,9 +1,9 @@
-import React from 'react';
 
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
 import { fetchWithJsonp } from './utils/index';
+import pathPlaceholder from '../config/packageReplaceString'
 
 (async () => {
   let data;
@@ -13,7 +13,6 @@ import { fetchWithJsonp } from './utils/index';
       const resData = singleDataEle.innerText;
       data = JSON.parse(resData);
     } else {
-      const pathPlaceholder = process.env.PLACEHOLDER;
       data = await fetchWithJsonp(`./${pathPlaceholder}/result.js`);
     }
   } else {

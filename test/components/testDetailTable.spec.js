@@ -1,5 +1,3 @@
-import '../__mocks__/matchMedia.mock';
-
 import React from 'react';
 
 import { DetailTable } from '@/components/DetailTable';
@@ -15,6 +13,7 @@ describe('test DetailTable ', () => {
     const mockProps = {
       data: [
         { 
+          rowKey: '1',
           failureMessages: 'failed',
           fileAttachInfos: {
             [title]: 'image01.jpg'
@@ -34,6 +33,7 @@ test('Top level test in a file', async () => {
   const mockProps = {
     data: [
       {
+        rowKey: 1213,
         ancestorTitles: [],
         fileAttachInfos: {
           [title]: 'image01.jpg'
@@ -58,6 +58,7 @@ describe('Nested describes', () => {
     const mockProps = {
       data: [
         {
+          rowKey: 121,
           ancestorTitles: [describeTitle],
           fullName: `${describeTitle} > ${title}`,
           failureMessages: 'failed',
@@ -83,6 +84,7 @@ describe('Nested describes', () => {
     const mockProps = {
       data: [
         {
+          rowKey: '12',
           ancestorTitles: [describeTitle1, describeTitle2],
           fullName: [describeTitle1, describeTitle2, title].join(' '),
           failureMessages: 'failed',

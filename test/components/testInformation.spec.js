@@ -1,5 +1,3 @@
-import '../__mocks__/matchMedia.mock';
-
 import React from 'react';
 
 import { Information } from '@/components/Information';

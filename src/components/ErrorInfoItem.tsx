@@ -19,7 +19,6 @@ const createMarkup = (text: string, convertOptions: ConverterOptions) => {
 }
 const ErrorInfoItem = ({ data }: { data: string | undefined }) => {
   const { token } = theme.useToken();
-  console.log('token', token);
   const { colorText, colorBgElevated } = token;
   const options = {
     fg: colorText,
