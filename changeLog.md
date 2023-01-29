@@ -160,3 +160,6 @@
 * Support Dark Theme. by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/254
 * bump package version, using create react app to build resource by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/255
 
+### 3.1.1
+
+* Fix style issue of table and attach file.
