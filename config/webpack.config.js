@@ -8,7 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
@@ -573,6 +572,7 @@ module.exports = function (webpackEnv) {
           new HtmlWebpackPlugin({
             filename: `${name}.html`,
             chunks: 'index',
+            inject: 'body',
             template: `${paths.appHtml}/${name}.html`,
             inlineSource: name === 'singleFile' ? '.(js|css)$' : undefined,
             minify: {

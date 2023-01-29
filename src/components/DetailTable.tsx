@@ -136,7 +136,7 @@ export const DetailTable = ({ data }: { data: IDetailTableItem[] }) => {
       bordered
       size='small'
       showHeader={false}
-      rowKey={(_, index) => `${index}`}
+      rowKey="rowKey"
       rowClassName={(record, index) => {
         return getRecordClass((record as IDetailTableItem).status, themeId);
       }}
@@ -188,7 +188,7 @@ const RootTable = ({
       <Table
         bordered
         showHeader={false}
-        rowKey={(_, index) => `${index}`}
+        rowKey='rowKey'
         expandable={{
           expandedRowRender: (record) => {
             if ('subGroups' in record) {

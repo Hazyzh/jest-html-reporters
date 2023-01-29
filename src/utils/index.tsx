@@ -136,6 +136,7 @@ export const formatCollapsibleData = (
   for (const ancestorKey of ancestorMap.keys() as any) {
     const tests = ancestorMap.get(ancestorKey) as IDetailTableItem[];
     const item = {
+      rowKey: Math.random().toFixed(6),
       subTitle: ancestorKey.replace(new RegExp(mySpecialText, 'g'), ' => '),
       subGroups: true,
       tests,

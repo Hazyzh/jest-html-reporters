@@ -52,7 +52,7 @@ module.exports = {
         enableMergeData: true,
         dataMergeLevel: 2,
         // openReport: true,
-        // inlineSource: true,
+        inlineSource: true,
         darkTheme: true,
       },
     ],

@@ -1,5 +1,3 @@
-import '../__mocks__/matchMedia.mock';
-
 import React from 'react';
 
 import { MainTable } from '@/components/MainTable';
