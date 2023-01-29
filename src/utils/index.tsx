@@ -1,4 +1,3 @@
-import React, { useEffect, useState, RefObject } from 'react';
 import jump from 'jump.js';
 import type { IExpandContext } from '../interfaces/Context.interface';
 import type { IReportData } from '../interfaces/ReportData.interface';
@@ -6,15 +5,14 @@ import type {
   IDetailTableProps,
   IFormatCollapsibleItem,
   IDetailTableItem,
-  IColumnsType,
 } from '../interfaces/Table.interface';
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration';
-dayjs.extend(durationPlugin);
 
 
 import { RowClassNames } from '../enums/rowClassNames';
 import { TimeIcon } from './icons';
+dayjs.extend(durationPlugin);
 
 export const getExecutionResult = (
   testResult: IReportData['testResults'] = []
@@ -120,7 +118,7 @@ export const formatCollapsibleData = (
   data: IDetailTableProps['data'],
   groupLevel = 1
 ): IFormatCollapsibleItem[] => {
-  const ancestorMap = new Map();
+  const ancestorMap = new Map<string, any>();
   const mySpecialText = '@@@@@Report@@@@@';
   const rootArray = [];
   data.forEach((item, index) => {
@@ -135,9 +133,10 @@ export const formatCollapsibleData = (
       ]);
     }
   });
-  for (const ancestorKey of ancestorMap.keys()) {
+  for (const ancestorKey of ancestorMap.keys() as any) {
     const tests = ancestorMap.get(ancestorKey) as IDetailTableItem[];
     const item = {
+      rowKey: Math.random().toFixed(6),
       subTitle: ancestorKey.replace(new RegExp(mySpecialText, 'g'), ' => '),
       subGroups: true,
       tests,

@@ -28,6 +28,7 @@ export const HomePage = ({ data }: { data: IReportData }) => {
   } = theme.useToken();
   useEffect(() => {
     addThemeClass(token, id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   const comProps = {
     ...data,

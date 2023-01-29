@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
-import { message, Table, Tag, theme, Typography } from 'antd';
+import { Table, Tag, theme, Typography } from 'antd';
 import type { GlobalToken } from 'antd/es/theme/interface';
 
 import type { IMainTableProps } from '../interfaces/Table.interface';
@@ -8,17 +8,8 @@ import type { ITestItem } from '../interfaces/ReportData.interface';
 import type { ColumnsType } from 'antd/es/table';
 
 import {
-  getExistKeys,
-  renderRootRowClass,
-  getFormatTimeDisplay,
-} from '../utils/index';
-
-const { Text } = Typography;
-
-import {
   CheckOutlined,
   CloseOutlined,
-  FileTwoTone,
   SelectOutlined,
 } from '@ant-design/icons';
 
@@ -27,6 +18,13 @@ import { ExpandContext } from '../contexts/expand';
 import DetailTable from './DetailTable';
 import { ErrorButton } from './ErrorButton';
 
+import {
+  getExistKeys,
+  renderRootRowClass,
+  getFormatTimeDisplay,
+} from '../utils/index';
+
+const { Text } = Typography;
 export const renderStatus = ({
   numPassingTests,
   numFailingTests,
@@ -79,7 +77,7 @@ const getColumns = (
   execCommand: string | undefined,
   urlForTestFiles: string | undefined,
   attachInfos: IMainTableProps['attachInfos'],
-  colorToken: GlobalToken,
+  colorToken: GlobalToken
 ): ColumnsType<ITestItem> => [
   {
     title: 'File',
@@ -87,11 +85,11 @@ const getColumns = (
     key: 'name',
     render: (text) => {
       const relativePath = text.replace(new RegExp('^' + rootDir), '');
-      const command = (execCommand ? execCommand  : '') + `.${relativePath}`;
+      const command = (execCommand ? execCommand : '') + `.${relativePath}`;
 
       return (
         <div>
-          <Text id={text} strong copyable={{text: command}}>
+          <Text id={text} strong copyable={{ text: command }}>
             {' '}
             {relativePath}
           </Text>
@@ -100,7 +98,7 @@ const getColumns = (
               className='go_to_file_icon'
               title='click to see the test file in a web browser.'
               href={`${urlForTestFiles}/${relativePath}`}
-              target='_blank'
+              target='_blank' rel="noreferrer"
             >
               <SelectOutlined />
             </a>
@@ -122,7 +120,7 @@ const getColumns = (
   {
     title: 'Status',
     key: 'status',
-    render: (record) => renderStatus({...record, colorToken }),
+    render: (record) => renderStatus({ ...record, colorToken }),
     width: '150px',
     filters: [
       { text: 'Passed', value: 'passed' },
@@ -209,7 +207,7 @@ export const MainTable = ({
               _reporterOptions.testCommand,
               _reporterOptions.urlForTestFiles,
               attachInfos,
-              colorToken,
+              colorToken
             )}
             dataSource={testResults}
           />
