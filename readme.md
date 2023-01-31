@@ -4,7 +4,12 @@
 [![NPM downloads](http://img.shields.io/npm/dm/jest-html-reporters.svg)](http://npmjs.com/jest-html-reporters)
 [![license](https://img.shields.io/npm/l/jest-html-reporters.svg)](https://www.npmjs.com/package/jest-html-reporters)
 
+English | [简体中文](./docs/readme.cn.md) 
+
 Jest test results processor for generating a summary in HTML
+
+Example page https://hazyzh.github.io/report.html
+
 
 ![example picture](./readmeStatic/show.gif)
 
@@ -13,6 +18,9 @@ Jest test results processor for generating a summary in HTML
 ---
 
 ```shell
+  # yarn
+  yarn add jest-html-reporters --dev
+  # npm
   npm install jest-html-reporters --save-dev
 ```
 
