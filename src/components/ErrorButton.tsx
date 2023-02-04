@@ -78,8 +78,8 @@ const FileNode = ({ description, filePath, extName }: any) => {
 const LogsInfoView = ({ logsInfo }: { logsInfo: ITestItem['console'] }) => {
   return (
     <Col span={24} className='log-box'>
-      {logsInfo?.map((item) => (
-        <Row>
+      {logsInfo?.map((item, index) => (
+        <Row key={`item.type - ${index}`}>
           <Row
             align='middle'
             wrap={false}
