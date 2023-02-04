@@ -181,6 +181,7 @@ const DATA_MERGE_LEVEL = 'dataMergeLevel';
 const INLINE_SOURCE = 'inlineSource';
 const URL_FOR_TEST_FILES = 'urlForTestFiles';
 const DARK_THEME = 'darkTheme';
+const INCLUDE_CONSOLE_LOG = 'includeConsoleLog';
 
 
 const constants = {
@@ -200,6 +201,7 @@ const constants = {
     JEST_HTML_REPORTERS_INLINE_SOURCE: INLINE_SOURCE,
     JEST_HTML_REPORTERS_URL_FOR_TEST_FILES: URL_FOR_TEST_FILES,
     JEST_HTML_REPORTERS_DARK_THEME: DARK_THEME,
+    JEST_HTML_REPORTERS_INCLUDE_CONSOLE_LOG: INCLUDE_CONSOLE_LOG,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -217,6 +219,7 @@ const constants = {
     [INLINE_SOURCE]: false,
     [URL_FOR_TEST_FILES]: '',
     [DARK_THEME]: false,
+    [INCLUDE_CONSOLE_LOG]: false,
   },
 };
 

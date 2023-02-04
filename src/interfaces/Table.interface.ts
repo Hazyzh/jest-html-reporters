@@ -6,6 +6,7 @@ export interface IMainTableProps {
   config: IReportData['config'];
   globalExpandState: boolean;
   attachInfos?: IReportData['attachInfos'];
+  logInfoMapping: IReportData['logInfoMapping'];
 }
 
 export interface IDetailTableItem extends IDetailItem {

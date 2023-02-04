@@ -30,6 +30,10 @@
   border: 1px solid #eee;
 }
 
+.log_origin {
+  text-indent: -0.5em;
+  box-shadow: 0px 1px 1px 1px rgba(152, 152, 152, 0.347);
+}
 
 .main_table_tags {
   text-align: center;
@@ -90,4 +94,10 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+}
+
+pre {
+  box-sizing: border-box;
+  overflow: auto;
+  width: 100%;
 }

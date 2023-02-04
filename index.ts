@@ -2,9 +2,8 @@ import fs from 'fs';
 import fse from 'fs-extra';
 import openBrowser from 'open';
 import path from 'path';
-import type {
-  AggregatedResult,
-} from '@jest/test-result';
+import { AggregatedResult, TestResult } from '@jest/test-result';
+import { Config } from '@jest/types';
 
 import {
   attachDirPath,
@@ -20,7 +19,10 @@ import {
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
-const localTemplateSingleHTMLPath = path.resolve(__dirname, './dist/singleFile.html');
+const localTemplateSingleHTMLPath = path.resolve(
+  __dirname,
+  './dist/singleFile.html'
+);
 const localTemplateJSPath = path.resolve(__dirname, './dist/index.js');
 const packageReplaceReg = /<<<JEST-HTML-REPLACE-PLACEHOLDER>>>/g;
 const packageSingleReplaceReg = /&JEST-HTML-REPLACE-Single-PLACEHOLDER&/g;
@@ -37,7 +39,9 @@ function imgToBase64(imgPath: string) {
   if (fs.statSync(fileName).isFile()) {
     const fileMimeType = path.extname(imgPath).toLowerCase();
     const fileData = fs.readFileSync(fileName).toString('base64');
-    return `data:image/${fileMimeType === 'svg' ? 'svg+xml' : fileMimeType};base64,${fileData}`;
+    return `data:image/${
+      fileMimeType === 'svg' ? 'svg+xml' : fileMimeType
+    };base64,${fileData}`;
   }
   return undefined;
 }
@@ -65,11 +69,14 @@ const formatCustomInfo = (customInfos: string) => {
 
 const removeUnusedData = (result: AggregatedResult) => {
   const res = pickData(result, ['coverageMap', 'openHandles', 'snapshot']);
-  const testResults = result.testResults.map(item => {
+  const testResults = result.testResults.map((item) => {
     return {
       ...pickData(item, ['openHandles', 'snapshot']),
-      testResults: item.testResults.map((itemRes, index) => ({rowKey: index, ...itemRes}))
-    }
+      testResults: item.testResults.map((itemRes, index) => ({
+        rowKey: index,
+        ...itemRes,
+      })),
+    };
   });
   return { ...res, testResults };
 };
@@ -82,24 +89,44 @@ jest-html-reporters error:
     please using 【publicPath】. 
 `;
 
+type IGlobalConfig = Config.GlobalConfig & { coverageLinkPath?: string };
+
 // my-custom-reporter.js
 class MyCustomReporter {
-  _globalConfig;
+  _globalConfig: IGlobalConfig;
   _options;
   _publishResourceDir: string;
   _resourceRelativePath: string;
+  _logInfoMapping: Record<string, TestResult['console']> = {};
 
-  constructor(globalConfig, options) {
+  constructor(globalConfig: Config.GlobalConfig, options) {
     const { filename = '' } = options;
     if (filename.includes('/')) {
       throw new Error(filenameErrorWordings);
     }
     this._globalConfig = { ...globalConfig };
     this._options = getOptions(options);
-    this._options.publicPath = replaceRootDirVariable(this._options.publicPath, globalConfig.rootDir);
-    this._resourceRelativePath = `${resourceDirName}/${path.basename(this._options.filename, '.html')}`;
-    this._publishResourceDir = path.resolve(this._options.publicPath, this._resourceRelativePath);
+    this._options.publicPath = replaceRootDirVariable(
+      this._options.publicPath,
+      globalConfig.rootDir
+    );
+    this._resourceRelativePath = `${resourceDirName}/${path.basename(
+      this._options.filename,
+      '.html'
+    )}`;
+    this._publishResourceDir = path.resolve(
+      this._options.publicPath,
+      this._resourceRelativePath
+    );
     this.init();
+  }
+
+
+  async onTestResult(data: any, result: TestResult) {
+    // add console logs per test only when Jest is run with verbose=false
+    if (this._options.includeConsoleLog && result.console) {
+      this._logInfoMapping[result.testFilePath] = result.console;
+    }
   }
 
   async onRunComplete(contexts, originalResults) {
@@ -120,9 +147,10 @@ class MyCustomReporter {
       logoImg,
       customInfos: formatCustomInfo(customInfos),
     };
+    results.logInfoMapping = this._logInfoMapping;
     const attachInfos = await readAttachInfos(
       this._publishResourceDir,
-      this._resourceRelativePath,
+      this._resourceRelativePath
     );
     const openIfRequested = (filePath) => {
       if (openReport) {
@@ -141,7 +169,9 @@ class MyCustomReporter {
       if (failureMessageOnly === 2 && results.testResults.length === 0) {
         this.removeTempDir();
         this.removeResourceDir();
-        console.log('🛑 report was not created due to no failed case. [failureMessageOnly]');
+        console.log(
+          '🛑 report was not created due to no failed case. [failureMessageOnly]'
+        );
         return;
       }
     }
@@ -150,20 +180,23 @@ class MyCustomReporter {
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data);
     if (!this._options.inlineSource) {
-      fs.writeFileSync(path.resolve(this._publishResourceDir, 'result.js'), `window.jest_html_reporters_callback__(${data})`);
+      fs.writeFileSync(
+        path.resolve(this._publishResourceDir, 'result.js'),
+        `window.jest_html_reporters_callback__(${data})`
+      );
       // html
       copyAndReplace({
         tmpPath: localTemplateHTMLPath,
         outPutPath: filePath,
         pattern: packageReplaceReg,
-        newSubstr: this._resourceRelativePath
+        newSubstr: this._resourceRelativePath,
       });
       // js
       copyAndReplace({
         tmpPath: localTemplateJSPath,
         outPutPath: path.resolve(this._publishResourceDir, 'index.js'),
         pattern: packageReplaceReg,
-        newSubstr: this._resourceRelativePath
+        newSubstr: this._resourceRelativePath,
       });
     } else {
       // html
@@ -171,7 +204,7 @@ class MyCustomReporter {
         tmpPath: localTemplateSingleHTMLPath,
         outPutPath: filePath,
         pattern: packageSingleReplaceReg,
-        newSubstr: data
+        newSubstr: data,
       });
 
       // remove resource dir
@@ -192,17 +225,27 @@ class MyCustomReporter {
   }
 
   initCoverageDirectory() {
-    const { collectCoverage, coverageDirectory, coverageReporters } = this._globalConfig;
+    const { collectCoverage, coverageDirectory, coverageReporters } =
+      this._globalConfig;
     if (collectCoverage && coverageDirectory) {
-      const coverageDirectoryPath = path.relative(this._options.publicPath, this._globalConfig.coverageDirectory);
+      const coverageDirectoryPath = path.relative(
+        this._options.publicPath,
+        this._globalConfig.coverageDirectory
+      );
 
-      if (coverageReporters.find(type => type === 'lcov')) {
-        this._globalConfig.coverageLinkPath = path.join(coverageDirectoryPath, './lcov-report/index.html');
+      if (coverageReporters.find((type) => type === 'lcov')) {
+        this._globalConfig.coverageLinkPath = path.join(
+          coverageDirectoryPath,
+          './lcov-report/index.html'
+        );
         return;
       }
 
-      if (coverageReporters.find(type => type === 'html')) {
-        this._globalConfig.coverageLinkPath = path.join(coverageDirectoryPath, './index.html');
+      if (coverageReporters.find((type) => type === 'html')) {
+        this._globalConfig.coverageLinkPath = path.join(
+          coverageDirectoryPath,
+          './index.html'
+        );
       }
     }
   }
@@ -220,15 +263,11 @@ class MyCustomReporter {
   }
 
   removeResourceDir() {
-    fse.removeSync(
-      path.resolve(this._options.publicPath, resourceDirName)
-    );
+    fse.removeSync(path.resolve(this._options.publicPath, resourceDirName));
   }
 
   removeAttachDir() {
-    fse.removeSync(
-      this._publishResourceDir
-    );
+    fse.removeSync(this._publishResourceDir);
   }
 }
 

@@ -31,6 +31,7 @@ describe("get options ", () => {
       inlineSource: false,
       urlForTestFiles: "",
       darkTheme: false,
+      includeConsoleLog: false,
     };
     expect(getOptions()).toEqual(defaultOption);
   });
@@ -52,6 +53,7 @@ describe("get options ", () => {
       inlineSource: true,
       urlForTestFiles: "https://github.com/Hazyzh/jest-html-reporters/tree/master",
       darkTheme: false,
+      includeConsoleLog: false,
     };
     process.env = {
       JEST_HTML_REPORTERS_PUBLIC_PATH: "./test",
