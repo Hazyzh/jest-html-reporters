@@ -64,6 +64,8 @@
 | `inlineSource`       | JEST_HTML_REPORTERS_INLINE_SOURCE                 | boolean    | false          |  生成所有内容到一个单独的html文件中 [#184](https://github.com/Hazyzh/jest-html-reporters/issues/184)                                                                                                                        |
 | `urlForTestFiles`       | JEST_HTML_REPORTERS_URL_FOR_TEST_FILES                 | string    | ''          |  测试文件的 url。 如果用户设置此值，详细信息表会显示指向每一行的图标链接。 该链接是通过为每个测试加入 urlForTestFiles 和 relativePath（如 `/src/utils/index.test.js`）来构建的。 参考 [#221](https://github.com/Hazyzh/jest-html-reporters/issues/221)                                                                                                                        |
 | `darkTheme`               | JEST_HTML_REPORTERS_DARK_THEME                 | boolean    | false            | 可以配置是否默认使用黑暗模式|
+| `includeConsoleLog`               | JEST_HTML_REPORTERS_INCLUDE_CONSOLE_LOG                 | boolean    | false            | 设置为`true`可以把console logs 信息包含在测试结果中 **注意:** 前提条件是在运行jest 测试时候确保 `--verbose=false` 使得可在测试过程中拿到console log信息.|
+---
 ---
 
 #### 添加report配置的例子
