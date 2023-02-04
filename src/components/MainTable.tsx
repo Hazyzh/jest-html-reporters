@@ -77,6 +77,7 @@ const getColumns = (
   execCommand: string | undefined,
   urlForTestFiles: string | undefined,
   attachInfos: IMainTableProps['attachInfos'],
+  logInfoMapping: IMainTableProps['logInfoMapping'],
   colorToken: GlobalToken
 ): ColumnsType<ITestItem> => [
   {
@@ -162,6 +163,7 @@ const getColumns = (
             attachInfos?.[testFilePath]['jest-html-reporters-file-attach']) ||
           []
         }
+        logsInfo={logInfoMapping[testFilePath]}
       />
     ),
   },
@@ -173,6 +175,7 @@ export const MainTable = ({
   config: { rootDir },
   globalExpandState,
   attachInfos,
+  logInfoMapping,
 }: IMainTableProps) => {
   const box = useRef<HTMLDivElement>(null);
   const {
@@ -211,6 +214,7 @@ export const MainTable = ({
               _reporterOptions.testCommand,
               _reporterOptions.urlForTestFiles,
               attachInfos,
+              logInfoMapping,
               colorToken
             )}
             dataSource={testResults}

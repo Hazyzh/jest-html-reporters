@@ -1,8 +1,16 @@
 import React from 'react';
-import { Card, Col, Tag, Modal, Row, Button, Typography } from 'antd';
+import { Card, Col, Tag, Modal, Row, Button, Typography, Divider } from 'antd';
 
-import { InfoCircleFilled, FieldTimeOutlined } from '@ant-design/icons';
-import type { IAttachInfosItem } from '../interfaces/ReportData.interface';
+import {
+  InfoCircleFilled,
+  FieldTimeOutlined,
+  InfoCircleTwoTone,
+  FileTwoTone,
+} from '@ant-design/icons';
+import type {
+  IAttachInfosItem,
+  ITestItem,
+} from '../interfaces/ReportData.interface';
 
 import ErrorInfoItem from './ErrorInfoItem';
 import { formatDate } from '../utils/index';
@@ -67,10 +75,35 @@ const FileNode = ({ description, filePath, extName }: any) => {
   }
 };
 
+const LogsInfoView = ({ logsInfo }: { logsInfo: ITestItem['console'] }) => {
+  return (
+    <Col span={24} className='log-box'>
+      {logsInfo?.map((item, index) => (
+        <Row key={`item.type - ${index}`}>
+          <Row
+            align='middle'
+            wrap={false}
+            style={{ width: '100%', margin: '10px' }}
+          >
+            <Col flex='none' style={{ color: 'red' }}>
+              <Tag icon={<InfoCircleTwoTone />}>Info Type: {item.type} </Tag>
+            </Col>
+            <Col flex='auto'>
+              <pre className='log_pre'> {item.message}</pre>
+            </Col>
+          </Row>
+          <Row>{<pre className='log_origin'> {item.origin}</pre>}</Row>
+        </Row>
+      ))}
+    </Col>
+  );
+};
+
 function getModalConfig(
   data: string | undefined,
   caseAttachInfos: IAttachInfosItem[],
-  title: string | undefined
+  title: string | undefined,
+  logsInfo: ITestItem['console']
 ) {
   return {
     title: `INFO FOR --> ${title}`,
@@ -81,49 +114,61 @@ function getModalConfig(
         <Col span={24}>
           <ErrorInfoItem data={data} />
         </Col>
-        <Col span={24}>
-          {!!caseAttachInfos.length && (
-            <Row gutter={24}>
-              {caseAttachInfos.map((item) =>
-                item.filePath ? (
-                  <Col xs={24} sm={12} md={8}>
-                    <Card hoverable bordered cover={<FileNode {...item} />}>
-                      <Meta
-                        title={
-                          <>
-                            <a
-                              href={item.filePath}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              Detail 
-                            </a>
-                            {` `}
-                           <Text italic type="secondary">{formatDate(item.createTime)}</Text>
-                          </>
-                        }
-                        description={item.description}
-                      />
-                    </Card>
-                  </Col>
-                ) : (
-                  <Col span={24}>
-                    <Row align='middle'>
-                      <Col flex='none'>
-                        <Tag icon={<FieldTimeOutlined />}>
-                          {formatDate(item.createTime)}
-                        </Tag>
-                      </Col>
-                      <Col flex='auto'>
-                        <pre className='log_pre'> {item.description}</pre>
-                      </Col>
-                    </Row>
-                  </Col>
-                )
-              )}
-            </Row>
-          )}
-        </Col>
+        {logsInfo && (
+          <>
+            <Divider><InfoCircleTwoTone/> Console Logs Infos</Divider>
+            <LogsInfoView logsInfo={logsInfo} />
+          </>
+        )}
+        {!!caseAttachInfos.length && (
+          <>
+            {' '}
+            <Divider><FileTwoTone /> Attach Log Infos</Divider>{' '}
+            <Col span={24}>
+              <Row gutter={24}>
+                {caseAttachInfos.map((item) =>
+                  item.filePath ? (
+                    <Col xs={24} sm={12} md={8}>
+                      <Card hoverable bordered cover={<FileNode {...item} />}>
+                        <Meta
+                          title={
+                            <>
+                              <a
+                                href={item.filePath}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                Detail
+                              </a>
+                              {` `}
+                              <Text italic type='secondary'>
+                                {formatDate(item.createTime)}
+                              </Text>
+                            </>
+                          }
+                          description={item.description}
+                        />
+                      </Card>
+                    </Col>
+                  ) : (
+                    <Col span={24}>
+                      <Row align='middle'>
+                        <Col flex='none'>
+                          <Tag icon={<FieldTimeOutlined />}>
+                            {formatDate(item.createTime)}
+                          </Tag>
+                        </Col>
+                        <Col flex='auto'>
+                          <pre className='log_pre'> {item.description}</pre>
+                        </Col>
+                      </Row>
+                    </Col>
+                  )
+                )}
+              </Row>
+            </Col>
+          </>
+        )}
       </Row>
     ),
   };
@@ -134,25 +179,30 @@ export const ErrorButton = ({
   testFilePath,
   failureMessage,
   caseAttachInfos = [],
+  logsInfo,
 }: {
   testFilePath?: string;
   fullName?: string;
   failureMessage?: string;
   caseAttachInfos?: IAttachInfosItem[];
+  logsInfo?: ITestItem['console'];
 }) => {
   const [modal, contextHolder] = Modal.useModal();
   const title = fullName || testFilePath;
+  if (!failureMessage && !caseAttachInfos.length && !logsInfo) return null;
 
-  if (!failureMessage && !caseAttachInfos.length) return null;
+  const isError = !!failureMessage;
   return (
     <>
       {contextHolder}
       <Button
         data-sign='ErrorButton'
-        danger
+        danger={isError}
         type='primary'
         onClick={() =>
-          modal.warning(getModalConfig(failureMessage, caseAttachInfos, title))
+          modal.warning(
+            getModalConfig(failureMessage, caseAttachInfos, title, logsInfo)
+          )
         }
       >
         <InfoCircleFilled />

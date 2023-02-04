@@ -1,15 +1,15 @@
 {
-  "numFailedTestSuites": 3,
-  "numFailedTests": 3,
+  "numFailedTestSuites": 4,
+  "numFailedTests": 4,
   "numPassedTestSuites": 6,
-  "numPassedTests": 31,
+  "numPassedTests": 36,
   "numPendingTestSuites": 1,
   "numPendingTests": 3,
   "numRuntimeErrorTestSuites": 1,
   "numTodoTests": 2,
-  "numTotalTestSuites": 10,
-  "numTotalTests": 39,
-  "startTime": 1674980519804,
+  "numTotalTestSuites": 11,
+  "numTotalTests": 45,
+  "startTime": 1675487107617,
   "success": false,
   "testResults": [
     {
@@ -19,10 +19,10 @@
       "numPendingTests": 2,
       "numTodoTests": 1,
       "perfStats": {
-        "end": 1674980520127,
-        "runtime": 276,
+        "end": 1675487107927,
+        "runtime": 262,
         "slow": false,
-        "start": 1674980519851
+        "start": 1675487107665
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/multipleTests.test.js",
@@ -32,7 +32,7 @@
           "ancestorTitles": [
             "multiple tests all passed"
           ],
-          "duration": 2,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed succeed examples 1",
@@ -64,7 +64,7 @@
           "ancestorTitles": [
             "multiple tests all passed"
           ],
-          "duration": 0,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed succeed examples 3",
@@ -96,7 +96,7 @@
           "ancestorTitles": [
             "multiple tests all passed"
           ],
-          "duration": 1,
+          "duration": 0,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed succeed examples 5",
@@ -112,7 +112,7 @@
           "ancestorTitles": [
             "multiple tests all passed"
           ],
-          "duration": 0,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed succeed examples 6",
@@ -163,7 +163,7 @@
             "multiple tests all passed",
             "multiple tests all passed inner level"
           ],
-          "duration": 0,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed multiple tests all passed inner level succeed inner level examples 3",
@@ -214,7 +214,7 @@
             "multiple tests all passed",
             "multiple tests all passed inner level 2"
           ],
-          "duration": 0,
+          "duration": 4,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 1",
@@ -231,7 +231,7 @@
             "multiple tests all passed",
             "multiple tests all passed inner level 2"
           ],
-          "duration": 0,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 2",
@@ -265,7 +265,7 @@
             "multiple tests all passed",
             "multiple tests all passed inner level 2"
           ],
-          "duration": 1,
+          "duration": 0,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests all passed multiple tests all passed inner level 2 succeed inner level 2 examples 4",
@@ -426,7 +426,7 @@
             "multiple tests others",
             "multiple tests all passed inner level"
           ],
-          "duration": 0,
+          "duration": 1,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "multiple tests others multiple tests all passed inner level succeed inner level examples 4",
@@ -460,7 +460,7 @@
             "multiple tests others",
             "multiple tests all passed inner level 2"
           ],
-          "duration": 1,
+          "duration": 0,
           "failureDetails": [
             {
               "matcherResult": {
@@ -561,10 +561,10 @@
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520235,
-        "runtime": 100,
+        "end": 1675487108037,
+        "runtime": 102,
         "slow": false,
-        "start": 1674980520135
+        "start": 1675487107935
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/failed.test.js",
@@ -602,15 +602,117 @@
     },
     {
       "leaks": false,
+      "numFailingTests": 1,
+      "numPassingTests": 4,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1675487108225,
+        "runtime": 175,
+        "slow": false,
+        "start": 1675487108050
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "this will include some console log data"
+          ],
+          "duration": 3,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "this will include some console log data test1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "test1"
+        },
+        {
+          "rowKey": 1,
+          "ancestorTitles": [
+            "this will include some console log data"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "this will include some console log data test2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "test2"
+        },
+        {
+          "rowKey": 2,
+          "ancestorTitles": [
+            "this will include some console log data 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "this will include some console log data 2 test1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "test1"
+        },
+        {
+          "rowKey": 3,
+          "ancestorTitles": [
+            "this will include some console log data 2"
+          ],
+          "duration": 1,
+          "failureDetails": [
+            {}
+          ],
+          "failureMessages": [
+            "TypeError: console.warning is not a function\n    at Object.warning (/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js:24:13)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)"
+          ],
+          "fullName": "this will include some console log data 2 test2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "test2"
+        },
+        {
+          "rowKey": 4,
+          "ancestorTitles": [
+            "this will include some console log data 2"
+          ],
+          "duration": 0,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "this will include some console log data 2 test2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "test2"
+        }
+      ],
+      "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mthis will include some console log data 2 › test2\u001b[39m\u001b[22m\n\n    TypeError: console.warning is not a function\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 22 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 23 |\u001b[39m   test(\u001b[32m'test2'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 24 |\u001b[39m     console\u001b[33m.\u001b[39mwarning(\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 25 |\u001b[39m       \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify({ name\u001b[33m:\u001b[39m \u001b[32m'dr'\u001b[39m\u001b[33m,\u001b[39m age\u001b[33m:\u001b[39m \u001b[35m14\u001b[39m\u001b[33m,\u001b[39m sex\u001b[33m:\u001b[39m \u001b[32m'boy'\u001b[39m\u001b[33m,\u001b[39m widget\u001b[33m:\u001b[39m \u001b[35m60\u001b[39m })\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 26 |\u001b[39m     )\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 27 |\u001b[39m     expect(\u001b[35m1\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.warning (\u001b[22m\u001b[2m\u001b[0m\u001b[36mtest/consoleLog.test.js\u001b[39m\u001b[0m\u001b[2m:24:13)\u001b[22m\u001b[2m\u001b[22m\n"
+    },
+    {
+      "leaks": false,
       "numFailingTests": 0,
       "numPassingTests": 0,
       "numPendingTests": 1,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520331,
-        "runtime": 85,
+        "end": 1675487108339,
+        "runtime": 88,
         "slow": false,
-        "start": 1674980520246
+        "start": 1675487108251
       },
       "skipped": true,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/pending.test.js",
@@ -637,14 +739,14 @@
     {
       "leaks": false,
       "numFailingTests": 0,
-      "numPassingTests": 2,
+      "numPassingTests": 3,
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520483,
-        "runtime": 145,
+        "end": 1675487108467,
+        "runtime": 125,
         "slow": false,
-        "start": 1674980520338
+        "start": 1675487108342
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/attachLog.test.js",
@@ -680,6 +782,22 @@
           "retryReasons": [],
           "status": "passed",
           "title": "attach logs for 卧龙吟 2"
+        },
+        {
+          "rowKey": 2,
+          "ancestorTitles": [
+            "add log to test"
+          ],
+          "duration": 1,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "add log to test attach logs 2",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "attach logs 2"
         }
       ],
       "failureMessage": null
@@ -691,10 +809,10 @@
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520613,
-        "runtime": 126,
+        "end": 1675487108584,
+        "runtime": 114,
         "slow": false,
-        "start": 1674980520487
+        "start": 1675487108470
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/attach.test.js",
@@ -702,7 +820,7 @@
         {
           "rowKey": 0,
           "ancestorTitles": [],
-          "duration": 19,
+          "duration": 22,
           "failureDetails": [],
           "failureMessages": [],
           "fullName": "attach《卧龙吟》",
@@ -723,13 +841,13 @@
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520705,
-        "runtime": 89,
+        "end": 1675487108669,
+        "runtime": 83,
         "slow": false,
-        "start": 1674980520616
+        "start": 1675487108586
       },
       "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-4.test.js",
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-2.test.js",
       "testResults": [
         {
           "rowKey": 0,
@@ -757,13 +875,47 @@
       "numPendingTests": 0,
       "numTodoTests": 0,
       "perfStats": {
-        "end": 1674980520797,
-        "runtime": 89,
+        "end": 1675487108759,
+        "runtime": 86,
         "slow": false,
-        "start": 1674980520708
+        "start": 1675487108673
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed.test.js",
+      "testResults": [
+        {
+          "rowKey": 0,
+          "ancestorTitles": [
+            "succeed examples"
+          ],
+          "duration": 2,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "succeed examples succeed examples",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples"
+        }
+      ],
+      "failureMessage": null
+    },
+    {
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 1,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "perfStats": {
+        "end": 1675487108843,
+        "runtime": 80,
+        "slow": false,
+        "start": 1675487108763
+      },
+      "skipped": false,
+      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-4.test.js",
       "testResults": [
         {
           "rowKey": 0,
@@ -791,10 +943,10 @@
       "numPendingTests": 0,
       "numTodoTests": 1,
       "perfStats": {
-        "end": 1674980520888,
-        "runtime": 87,
+        "end": 1675487108933,
+        "runtime": 86,
         "slow": false,
-        "start": 1674980520801
+        "start": 1675487108847
       },
       "skipped": false,
       "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/todo.test.js",
@@ -814,40 +966,6 @@
           "retryReasons": [],
           "status": "todo",
           "title": " going to do this"
-        }
-      ],
-      "failureMessage": null
-    },
-    {
-      "leaks": false,
-      "numFailingTests": 0,
-      "numPassingTests": 1,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "perfStats": {
-        "end": 1674980520975,
-        "runtime": 84,
-        "slow": false,
-        "start": 1674980520891
-      },
-      "skipped": false,
-      "testFilePath": "/Users/harry.hou/Desktop/harry/report-examples/test/succeed-2.test.js",
-      "testResults": [
-        {
-          "rowKey": 0,
-          "ancestorTitles": [
-            "succeed examples"
-          ],
-          "duration": 2,
-          "failureDetails": [],
-          "failureMessages": [],
-          "fullName": "succeed examples succeed examples",
-          "invocations": 1,
-          "location": null,
-          "numPassingAsserts": 1,
-          "retryReasons": [],
-          "status": "passed",
-          "title": "succeed examples"
         }
       ],
       "failureMessage": null
@@ -924,8 +1042,7 @@
       [
         "/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-html-reporters/index.js",
         {
-          "publicPath": "examples",
-          "filename": "index.html",
+          "filename": "report.html",
           "pageTitle": "时空是个圆圈",
           "logoImgPath": "./logo.png",
           "testCommand": "yarn test",
@@ -938,7 +1055,7 @@
     ],
     "rootDir": "/Users/harry.hou/Desktop/harry/report-examples",
     "runTestsByPath": false,
-    "seed": -1491484634,
+    "seed": -2074530231,
     "skipFilter": false,
     "snapshotFormat": {
       "escapeString": false,
@@ -949,15 +1066,39 @@
     "testSequencer": "/Users/harry.hou/Desktop/harry/report-examples/node_modules/@jest/test-sequencer/build/index.js",
     "updateSnapshot": "new",
     "useStderr": false,
-    "verbose": true,
+    "verbose": false,
     "watch": false,
     "watchAll": false,
     "watchman": true
   },
-  "endTime": 1674980521237,
+  "endTime": 1675487109176,
+  "logInfoMapping": {
+    "/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js": [
+      {
+        "message": "hello world!",
+        "origin": "    at Object.log (/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js:3:13)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)",
+        "type": "log"
+      },
+      {
+        "message": "{\"name\":\"dr\",\"age\":14,\"sex\":\"boy\",\"widget\":60}",
+        "origin": "    at Object.log (/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js:8:13)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)",
+        "type": "log"
+      },
+      {
+        "message": "'hello world!'",
+        "origin": "    at Object.dir (/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js:19:13)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)",
+        "type": "dir"
+      },
+      {
+        "message": "{\"name\":\"dr\",\"age\":14,\"sex\":\"boy\",\"widget\":60}",
+        "origin": "    at Object.info (/Users/harry.hou/Desktop/harry/report-examples/test/consoleLog.test.js:31:13)\n    at Promise.then.completed (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:290:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/utils.js:223:10)\n    at _callCircusTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:248:40)\n    at _runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:184:3)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:86:9)\n    at _runTestsForDescribeBlock (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:81:9)\n    at run (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/run.js:26:3)\n    at runAndTransformResultsToJestFormat (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)\n    at jestAdapter (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/harry.hou/Desktop/harry/report-examples/node_modules/jest-runner/build/runTest.js:444:34)",
+        "type": "info"
+      }
+    ]
+  },
   "_reporterOptions": {
-    "publicPath": "examples",
-    "filename": "index.html",
+    "publicPath": "/Users/harry.hou/Desktop/harry/report-examples",
+    "filename": "report.html",
     "expand": false,
     "pageTitle": "时空是个圆圈",
     "logoImgPath": "./logo.png",
@@ -992,82 +1133,88 @@
       "add log to test attach logs for 卧龙吟": [
         {
           "description": "束发读诗书 修德兼修身",
-          "createTime": 1674980520472
+          "createTime": 1675487108454
         },
         {
           "description": "仰观与俯察 韬略胸中存",
-          "createTime": 1674980520473
-        },
-        {
-          "description": "躬耕从未忘忧国 谁知热血在山林",
-          "createTime": 1674980520474
+          "createTime": 1675487108456
         },
         {
           "description": "凤兮凤兮思高举 时乱势危久沉吟",
-          "createTime": 1674980520475
+          "createTime": 1675487108457
+        },
+        {
+          "description": "躬耕从未忘忧国 谁知热血在山林",
+          "createTime": 1675487108457
         },
         {
           "description": "茅庐承三顾 促膝纵横论",
-          "createTime": 1674980520475
+          "createTime": 1675487108457
         },
         {
           "description": "半生遇知己 蛰人感幸甚",
-          "createTime": 1674980520476
+          "createTime": 1675487108458
         },
         {
           "description": "明朝携剑随君去 羽扇纶巾赴征尘",
-          "createTime": 1674980520477
-        },
-        {
-          "description": "龙兮龙兮风云会 长啸一声抒怀襟",
-          "createTime": 1674980520477
+          "createTime": 1675487108458
         },
         {
           "description": "归去归去来兮 我宿愿 余年还做垅亩民",
-          "createTime": 1674980520478
+          "createTime": 1675487108459
+        },
+        {
+          "description": "龙兮龙兮风云会 长啸一声抒怀襟",
+          "createTime": 1675487108459
         }
       ],
       "add log to test attach logs for 卧龙吟 2": [
         {
           "description": "天道常变异 运数杳难寻",
-          "createTime": 1674980520480
-        },
-        {
-          "description": "丈夫在世当有为 为民播下太平春",
-          "createTime": 1674980520481
+          "createTime": 1675487108462
         },
         {
           "description": "成败在人谋 一诺竭终悃",
-          "createTime": 1674980520481
+          "createTime": 1675487108462
         },
         {
-          "description": "归去归去来兮 我宿愿 余年还做垅亩民",
-          "createTime": 1674980520482
+          "description": "丈夫在世当有为 为民播下太平春",
+          "createTime": 1675487108463
         },
         {
           "description": "清风明月入怀抱 猿鹤听我再抚琴",
-          "createTime": 1674980520482
+          "createTime": 1675487108464
+        },
+        {
+          "description": "归去归去来兮 我宿愿 余年还做垅亩民",
+          "createTime": 1675487108464
+        }
+      ],
+      "add log to test attach logs 2": [
+        {
+          "description": "{\n  \"hell\": \"world\",\n  \"name\": \"test\",\n  \"age\": 18\n}",
+          "createTime": 1675487108466
         }
       ]
     },
     "/Users/harry.hou/Desktop/harry/report-examples/test/attach.test.js": {
       "attach《卧龙吟》": [
         {
-          "filePath": "./jest-html-reporters-attach/index/16749805205970.781264167528948.jpg",
+          "filePath": "./jest-html-reporters-attach/report/16754871085650.8450902462567753.jpg",
           "description": "清风",
-          "createTime": 1674980520597,
+          "createTime": 1675487108565,
           "extName": ".jpg"
         },
         {
-          "filePath": "./jest-html-reporters-attach/index/16749805206030.827799834647662.jpg",
+          "filePath": "./jest-html-reporters-attach/report/16754871085730.48346937271185153.jpg",
           "description": "明月",
-          "createTime": 1674980520603,
+          "createTime": 1675487108573,
           "extName": ".jpg"
         },
         {
-          "filePath": "./jest-html-reporters-attach/index/16749805206090.5171552447392991.jpg",
+          "filePath": "./jest-html-reporters-attach/report/16754871085800.8248639631663841.jpg",
           "description": "入怀抱",
-          "createTime": 1674980520609,
+          "createTime": 1675487108580,
           "extName": ".jpg"
         }
       ]
