@@ -163,3 +163,7 @@
 ### 3.1.1
 
 * Fix style issue of table and attach file.
+
+### 3.1.2
+
+* Add console log configuration
