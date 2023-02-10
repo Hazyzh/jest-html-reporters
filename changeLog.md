@@ -167,3 +167,7 @@
 ### 3.1.2
 
 * Add console log configuration
+
+### 3.1.3
+
+* fix double slashes url issue by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/264
