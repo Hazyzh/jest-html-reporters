@@ -98,7 +98,7 @@ const getColumns = (
             <a
               className='go_to_file_icon'
               title='click to see the test file in a web browser.'
-              href={`${urlForTestFiles}/${relativePath}`}
+              href={`${urlForTestFiles}${relativePath}`}
               target='_blank' rel="noreferrer"
             >
               <SelectOutlined />
