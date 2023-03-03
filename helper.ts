@@ -1,4 +1,3 @@
-import stringify from 'fast-safe-stringify';
 import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
@@ -360,5 +359,5 @@ const basisClone = (obj: any, structure: StructureMetaData) => {
 
 export const deepClone = <T>(obj: T): T => {
   const res = basisClone(obj, usingStructure);
-  return JSON.parse(stringify(res));
+  return JSON.parse(JSON.stringify(res));
 };
