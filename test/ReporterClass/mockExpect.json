@@ -1,0 +1,40 @@
+{
+  "numFailedTestSuites": 3,
+  "numFailedTests": 3,
+  "numPassedTestSuites": 7,
+  "numPassedTests": 37,
+  "numPendingTestSuites": 1,
+  "numPendingTests": 3,
+  "numRuntimeErrorTestSuites": 1,
+  "numTodoTests": 2,
+  "numTotalTestSuites": 11,
+  "numTotalTests": 45,
+  "startTime": 1677825284360,
+  "success": false,
+  "testResults": [
+    {
+      "numFailingTests": 2,
+      "numPassingTests": 25,
+      "numPendingTests": 2,
+      "numTodoTests": 1,
+      "perfStats": {
+        "end": 1677825284657,
+        "runtime": 255,
+        "slow": false,
+        "start": 1677825284402
+      },
+      "testFilePath": "multipleTests.test.js",
+      "testResults": [
+        {
+          "ancestorTitles": ["multiple tests all passed"],
+          "duration": 2,
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 1",
+          "status": "passed",
+          "title": "succeed examples 1"
+        }
+      ],
+      "failureMessage": "hello world"
+    }
+  ]
+}
