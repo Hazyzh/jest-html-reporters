@@ -11,7 +11,6 @@ import {
   dataDirPath,
   deepClone,
   getOptions,
-  pickData,
   readAttachInfos,
   replaceRootDirVariable,
   resourceDirName,
@@ -67,20 +66,6 @@ const formatCustomInfo = (customInfos: string) => {
   return undefined;
 };
 
-const removeUnusedData = (result: AggregatedResult) => {
-  const res = pickData(result, ['coverageMap', 'openHandles', 'snapshot']);
-  const testResults = result.testResults.map((item) => {
-    return {
-      ...pickData(item, ['openHandles', 'snapshot']),
-      testResults: item.testResults.map((itemRes, index) => ({
-        rowKey: index,
-        ...itemRes,
-      })),
-    };
-  });
-  return { ...res, testResults };
-};
-
 const filenameErrorWordings = `
 jest-html-reporters error: 
     config error for 【filename】option!
@@ -130,7 +115,7 @@ class MyCustomReporter {
   }
 
   async onRunComplete(contexts, originalResults) {
-    const results = deepClone(originalResults);
+    const results = deepClone(originalResults) as any;
     const {
       publicPath,
       filename,
@@ -176,7 +161,7 @@ class MyCustomReporter {
       }
     }
 
-    const data = JSON.stringify(removeUnusedData(results));
+    const data = JSON.stringify(results);
     const filePath = path.resolve(publicPath, filename);
     // fs.writeFileSync('./src/devMock.json', data);
     if (!this._options.inlineSource) {

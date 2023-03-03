@@ -1,0 +1,75 @@
+{
+  "numFailedTestSuites": 3,
+  "numFailedTests": 3,
+  "numPassedTestSuites": 7,
+  "numPassedTests": 37,
+  "numPendingTestSuites": 1,
+  "numPendingTests": 3,
+  "numRuntimeErrorTestSuites": 1,
+  "numTodoTests": 2,
+  "numTotalTestSuites": 11,
+  "numTotalTests": 45,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1677825284360,
+  "success": false,
+  "testResults": [
+    {
+      "leaks": false,
+      "numFailingTests": 2,
+      "numPassingTests": 25,
+      "numPendingTests": 2,
+      "numTodoTests": 1,
+      "openHandles": [],
+      "perfStats": {
+        "end": 1677825284657,
+        "runtime": 255,
+        "slow": false,
+        "start": 1677825284402
+      },
+      "skipped": false,
+      "snapshot": {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "uncheckedKeys": [],
+        "unmatched": 0,
+        "updated": 0
+      },
+      "testFilePath": "multipleTests.test.js",
+      "testResults": [
+        {
+          "ancestorTitles": ["multiple tests all passed"],
+          "duration": 2,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "multiple tests all passed succeed examples 1",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 1,
+          "retryReasons": [],
+          "status": "passed",
+          "title": "succeed examples 1"
+        }
+      ],
+      "failureMessage": "hello world"
+    }
+  ],
+  "wasInterrupted": false
+}

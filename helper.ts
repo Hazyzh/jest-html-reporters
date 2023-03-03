@@ -38,7 +38,12 @@ type TAttachObject = {
   fileName?: string;
 };
 
-export const addAttach = async ({ attach, description, context, bufferFormat = 'jpg' } : IAddAttachParams) => {
+export const addAttach = async ({
+  attach,
+  description,
+  context,
+  bufferFormat = 'jpg',
+}: IAddAttachParams) => {
   const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== 'string' && !Buffer.isBuffer(attach)) {
@@ -50,7 +55,14 @@ export const addAttach = async ({ attach, description, context, bufferFormat = '
   const createTime = Date.now();
   const fileName = generateRandomString();
   if (typeof attach === 'string') {
-    const attachObject: TAttachObject = { createTime, testPath, testName, filePath: attach, description, extName: path.extname(attach) };
+    const attachObject: TAttachObject = {
+      createTime,
+      testPath,
+      testName,
+      filePath: attach,
+      description,
+      extName: path.extname(attach),
+    };
     await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
   }
 
@@ -89,7 +101,12 @@ export const addMsg = async ({ message, context }: IAddMsgParams) => {
   const { testPath, testName } = getJestGlobalData(context);
   const createTime = Date.now();
   const fileName = generateRandomString();
-  const attachObject: TAttachObject = { createTime, testPath, testName, description: message };
+  const attachObject: TAttachObject = {
+    createTime,
+    testPath,
+    testName,
+    description: message,
+  };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
 
@@ -109,7 +126,10 @@ const getJestGlobalData = (globalContext) => {
 
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
 
-export const readAttachInfos = async (publicPath: string, publicRelativePath: string) => {
+export const readAttachInfos = async (
+  publicPath: string,
+  publicRelativePath: string
+) => {
   const result: any = {};
   try {
     const exist = await fs.pathExists(dataDirPath);
@@ -130,8 +150,8 @@ export const readAttachInfos = async (publicPath: string, publicRelativePath: st
     const attachFiles = await fs.readdir(attachDirPath);
     if (attachFiles.length) {
       result.hasAttachFiles = true;
-      await fs.copy(attachDirPath, publicPath)
-    };
+      await fs.copy(attachDirPath, publicPath);
+    }
 
     dataList.forEach((attachObject) => {
       if (!attachObject) return;
@@ -148,7 +168,9 @@ export const readAttachInfos = async (publicPath: string, publicRelativePath: st
       const attachMappingName = testName || 'jest-html-reporters-file-attach';
 
       if (!result[testPath]) result[testPath] = {};
-      if (!result[testPath][attachMappingName]) { result[testPath][attachMappingName] = []; }
+      if (!result[testPath][attachMappingName]) {
+        result[testPath][attachMappingName] = [];
+      }
 
       result[testPath][attachMappingName].push({
         filePath: fileName ? `${publicRelativePath}/${fileName}` : filePath,
@@ -182,7 +204,6 @@ const INLINE_SOURCE = 'inlineSource';
 const URL_FOR_TEST_FILES = 'urlForTestFiles';
 const DARK_THEME = 'darkTheme';
 const INCLUDE_CONSOLE_LOG = 'includeConsoleLog';
-
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -241,7 +262,12 @@ export const getOptions = (reporterOptions = {}) =>
     getEnvOptions()
   );
 
-export const copyAndReplace = ({ tmpPath, outPutPath, pattern, newSubstr }: {
+export const copyAndReplace = ({
+  tmpPath,
+  outPutPath,
+  pattern,
+  newSubstr,
+}: {
   tmpPath: string;
   outPutPath: string;
   pattern: string | RegExp;
@@ -252,25 +278,87 @@ export const copyAndReplace = ({ tmpPath, outPutPath, pattern, newSubstr }: {
   fs.writeFileSync(outPutPath, res);
 };
 
-export const pickData = (obj: Object, filterKeys: string[]) => {
+const rootDirVariable = '<rootDir>';
+export const replaceRootDirVariable = (
+  publicPath: string,
+  rootDirPath: string
+) => {
+  if (!publicPath.startsWith(rootDirVariable)) {
+    return publicPath;
+  }
+
+  return publicPath.replace(rootDirVariable, rootDirPath);
+};
+
+interface StructureMetaData {
+  keys: (string | [string, StructureMetaData])[];
+}
+
+const usingStructure: StructureMetaData = {
+  keys: [
+    'numFailedTestSuites',
+    'numFailedTests',
+    'numPassedTestSuites',
+    'numPassedTests',
+    'numPendingTestSuites',
+    'numPendingTests',
+    'numRuntimeErrorTestSuites',
+    'numTodoTests',
+    'numTotalTestSuites',
+    'numTotalTests',
+    'startTime',
+    'success',
+    [
+      'testResults',
+      {
+        keys: [
+          'numFailingTests',
+          'numPassingTests',
+          'numPendingTests',
+          'numTodoTests',
+          'perfStats',
+          'testFilePath',
+          'failureMessage',
+          [
+            'testResults',
+            {
+              keys: [
+                'ancestorTitles',
+                'duration',
+                'failureMessages',
+                'fullName',
+                'status',
+                'title',
+              ],
+            },
+          ],
+        ],
+      },
+    ],
+  ],
+};
+
+const basisClone = (obj: any, structure: StructureMetaData) => {
+  if (typeof obj !== 'object') return obj;
+
+  if (Array.isArray(obj)) {
+    return obj.map(item => basisClone(item, structure))
+  }
+
+  const { keys } = structure;
   const res = {};
-  Object.keys(obj).forEach(key => {
-    if (!filterKeys.includes(key)) {
-      res[key] = obj[key];
+  keys.forEach(item => {
+    if (typeof item === 'string') {
+      res[item] = obj[item];
+    } else {
+      const [key, innerStructure] = item;
+      res[key] = basisClone(obj[key], innerStructure)
     }
-  });
+  })
   return res;
 };
 
 export const deepClone = <T>(obj: T): T => {
-  return JSON.parse(stringify(obj));
-};
-
-const rootDirVariable = '<rootDir>';
-export const replaceRootDirVariable = (publicPath: string, rootDirPath: string) => {
-  if (!publicPath.startsWith(rootDirVariable)) {
-    return publicPath;
-  };
-
-  return publicPath.replace(rootDirVariable, rootDirPath);
+  const res = basisClone(obj, usingStructure);
+  return JSON.parse(stringify(res));
 };

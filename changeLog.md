@@ -171,3 +171,7 @@
 ### 3.1.3
 
 * fix double slashes url issue by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/264
+
+### 3.1.4
+
+* fix deep clone issue by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/265
