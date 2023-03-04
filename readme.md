@@ -66,8 +66,7 @@ The options below are specific to the reporter.
 | `customInfos`       |  array   | undefined | show some custom data info in the report, example value `[ {title: 'test1', value: 'test1'}, {title: 'test2', value: 'test2'}]`, you can also set value to a environment variable **JEST_HTML_REPORTERS_CUSTOM_INFOS**, see detail in [#32](https://github.com/Hazyzh/jest-html-reporters/issues/32) | JEST_HTML_REPORTERS_CUSTOM_INFOS |
 | `enableMergeData`   | boolean    | false | for default enable merge test data feature | JEST_HTML_REPORTERS_ENABLE_MERGE_DATA                 |
 | `dataMergeLevel`    |  number    | 1|  default merge test data level |JEST_HTML_REPORTERS_DATA_MERGE_LEVEL|
-| `env only`          |  string  | system default temporary directory | path to a temporary folder with attachments |
-JEST_HTML_REPORTERS_TEMP_DIR_PATH|
+| `env only`          |  string  | system default temporary directory | path to a temporary folder with attachments |JEST_HTML_REPORTERS_TEMP_DIR_PATH |
 ---
 
 #### example add config options
