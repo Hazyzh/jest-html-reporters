@@ -107,6 +107,7 @@ const getColumns = (
         </div>
       );
     },
+    sorter: (a, b) => { return a.testFilePath.localeCompare(b.testFilePath) },
   },
   {
     title: 'ExecTime',
