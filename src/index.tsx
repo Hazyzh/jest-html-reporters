@@ -21,6 +21,7 @@ import pathPlaceholder from '../config/packageReplaceString'
   const defaultTitle = 'Report';
   window.realData = data;
   document.title = data._reporterOptions.pageTitle || defaultTitle;
+  document.head.insertAdjacentHTML("beforeend", `<style>td.ant-table-column-sort {background: transparent !important}</style>`)
 
   const root = createRoot(document.getElementById('app') as HTMLDivElement); 
   root.render(<App data={data} />);
