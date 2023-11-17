@@ -190,7 +190,7 @@ export const getRecordClass = (status: string, id: number) => {
   if (status === 'failed') return RowClassNames['row_failed'] + '-' + id;
   if (status === 'pending') return RowClassNames['row_pending'] + '-' + id;
   if (status === 'todo') return RowClassNames['row_todo'] + '-' + id;
-  return '';
+  return RowClassNames['row_passed'] + '-' + id;
 };
 
 export const renderRootRowClass = (
