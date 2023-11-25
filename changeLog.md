@@ -175,3 +175,10 @@
 ### 3.1.4
 
 * fix deep clone issue by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/265
+
+### 3.1.5
+
+* add sort function and button for sort test by file name by @warakonsantang in https://github.com/Hazyzh/jest-html-reporters/pull/282
+* Fix when sort column, hover effect will not working by @warakonsantang in https://github.com/Hazyzh/jest-html-reporters/pull/288
+* fix(helper): fix add message method type by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/294
+* feat/add default content format by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/295
