@@ -101,7 +101,7 @@ This feature regrading to [#36](https://github.com/Hazyzh/jest-html-reporters/is
 ```
 interface IAddAttachParams {
     attach: string | Buffer;
-    description: string;
+    description: string | object;
     context: any;
     bufferFormat: string;
 }
@@ -172,13 +172,13 @@ This feature is in regards to [#63](https://github.com/Hazyzh/jest-html-reporter
 ```
 /**
  * @param {object} options - options object
- * @param {string} options.message - message string
+ * @param {string | object} options.message - message string
  * @param {any} [options.context] - custom context (optional)
  */
 const addMsg = async ({ message, context }) => { ... }
 ```
 
-Only one parameter is required. If you stringify an object like this `JSON.stringify(object, null, 2)`, the object will be prettified.
+Only one parameter is required. If you pass an serializable object like, it will auth using `JSON.stringify(object, null, 2)` to save the object and then prettified it in report.
 `context` is an optional parameter. Here can be specified **context** (default is this.global).
 
 Here is an Example with [Nightmare](https://www.npmjs.com/package/nightmare).
@@ -190,7 +190,7 @@ const Nightmare = require("nightmare");
 describe("Yet another example", () => {
   test("Both addAttach & addMsg with failure", async () => {
     const nightmare = Nightmare({ show: true });
-    await addMsg({ message: JSON.stringify({ won: 1, too: 2 }, null, 2) });
+    await addMsg({ message: { won: 1, too: 2 } });
     await nightmare.goto("https://duckduckgo.com");
     const s1 = await nightmare.screenshot();
     await addAttach(s1, "test duckduckgo 1");

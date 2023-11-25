@@ -9,7 +9,8 @@
     "buildCi": "yarn tsc -p build && node scripts/build.js",
     "start": "node scripts/start.js",
     "test": "yarn tsc -p build && node scripts/test.js",
-    "testCi": "yarn tsc -p build && node scripts/test.js --reporters=default"
+    "testCi": "yarn tsc -p build && node scripts/test.js --reporters=default",
+    "commit": "gh pr create"
   },
   "keywords": [
     "jest",
