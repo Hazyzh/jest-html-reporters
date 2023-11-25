@@ -89,7 +89,7 @@ export const addAttach = async ({
 
 interface IAddMsgParams {
   message: string;
-  context: any;
+  context?: any;
 }
 /**
  *
