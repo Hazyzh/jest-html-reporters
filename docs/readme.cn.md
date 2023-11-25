@@ -170,13 +170,13 @@ describe("just examples", () => {
 ```
 /**
  * @param {object} options - options object
- * @param {string} options.message - message string
+ * @param {string | object} options.message - message string
  * @param {any} [options.context] - custom context (optional)
  */
 const addMsg = async ({ message, context }) => { ... }
 ```
 
-只需要一个参数。 如果像这样 `JSON.stringify(object, null, 2)` 将对象字符串化，该对象将被美化。
+只需要一个参数。 可以传入字符串或者可以序列化的对象，对于可序列化的对象会默认用`JSON.stringify(object, null, 2)`保存，该对象在报告页面页将被美化。
 `context` 是可选参数。 这里可以指定**context**（默认是this.global）。
 
 这是一个使用 [Nightmare](https://www.npmjs.com/package/nightmare) 的例子.

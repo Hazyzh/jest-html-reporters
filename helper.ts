@@ -22,7 +22,7 @@ export const resourceDirName = './jest-html-reporters-attach';
 
 interface IAddAttachParams {
   attach: string | Buffer;
-  description: string;
+  description: string | object;
   context?: any;
   bufferFormat?: string;
 }
@@ -30,7 +30,7 @@ interface IAddAttachParams {
 type TAttachObject = {
   testPath: string;
   testName: string;
-  description: string;
+  description: string | object;
   createTime: number;
   extName?: string;
   filePath?: string;
@@ -39,10 +39,12 @@ type TAttachObject = {
 
 export const addAttach = async ({
   attach,
-  description,
+  description: descriptionRaw,
   context,
   bufferFormat = 'jpg',
 }: IAddAttachParams) => {
+  const description = getSerializableContent(descriptionRaw);
+
   const { testPath, testName } = getJestGlobalData(context);
   // type check
   if (typeof attach !== 'string' && !Buffer.isBuffer(attach)) {
@@ -88,7 +90,7 @@ export const addAttach = async ({
 };
 
 interface IAddMsgParams {
-  message: string;
+  message: string | object;
   context?: any;
 }
 /**
@@ -97,6 +99,7 @@ interface IAddMsgParams {
  * @param {object} context. Optional. It contains custom configs
  */
 export const addMsg = async ({ message, context }: IAddMsgParams) => {
+  const description = getSerializableContent(message);
   const { testPath, testName } = getJestGlobalData(context);
   const createTime = Date.now();
   const fileName = generateRandomString();
@@ -104,7 +107,7 @@ export const addMsg = async ({ message, context }: IAddMsgParams) => {
     createTime,
     testPath,
     testName,
-    description: message,
+    description,
   };
   await fs.writeJSON(`${dataDirPath}/${fileName}.json`, attachObject);
 };
@@ -361,3 +364,8 @@ export const deepClone = <T>(obj: T): T => {
   const res = basisClone(obj, usingStructure);
   return JSON.parse(JSON.stringify(res));
 };
+
+const getSerializableContent = (content: string | object) => {
+  if (typeof content === 'string') return content; 
+  return JSON.stringify(content, null, 2);
+}
