@@ -10,7 +10,8 @@
     "start": "node scripts/start.js",
     "test": "yarn tsc -p build && node scripts/test.js",
     "testCi": "yarn tsc -p build && node scripts/test.js --reporters=default",
-    "commit": "gh pr create"
+    "commit": "cz",
+    "pr": "gh pr create"
   },
   "keywords": [
     "jest",
@@ -55,6 +56,7 @@
     "copy-to-clipboard": "^3.3.1",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
     "escape-html": "^1.0.3",
@@ -138,5 +140,10 @@
     "dist/singleFile.html",
     "dist/index.js",
     "helper.d.ts"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
