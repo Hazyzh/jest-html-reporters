@@ -15,6 +15,7 @@ import {
   replaceRootDirVariable,
   resourceDirName,
   tempDirPath,
+  filterSkipTests,
 } from './helper';
 
 const localTemplateHTMLPath = path.resolve(__dirname, './dist/index.html');
@@ -115,7 +116,7 @@ class MyCustomReporter {
   }
 
   async onRunComplete(contexts, originalResults) {
-    const results = deepClone(originalResults) as any;
+    let results = deepClone(originalResults) as any;
     const {
       publicPath,
       filename,
@@ -123,6 +124,7 @@ class MyCustomReporter {
       customInfos,
       openReport,
       failureMessageOnly,
+      stripSkippedTest,
     } = this._options;
     const logoImg = logoImgPath ? imgToBase64(logoImgPath) : undefined;
     results.config = this._globalConfig;
@@ -159,6 +161,11 @@ class MyCustomReporter {
         );
         return;
       }
+    }
+
+    // filter skipped tests if stripSkippedTest
+    if (stripSkippedTest) {
+      results = filterSkipTests(results);
     }
 
     const data = JSON.stringify(results);
