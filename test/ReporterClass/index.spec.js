@@ -11,7 +11,7 @@ describe('get options ', () => {
     process.env = OLD_ENV; // restore old env
   });
 
-  test('should return default option with no config', () => {
+  test('env should return default option with no config', () => {
     const defaultOption = {
       publicPath: process.cwd(),
       filename: 'jest_html_reporters.html',
@@ -29,6 +29,7 @@ describe('get options ', () => {
       urlForTestFiles: '',
       darkTheme: false,
       includeConsoleLog: false,
+      stripSkippedTest: false,
     };
     expect(getOptions()).toEqual(defaultOption);
   });
