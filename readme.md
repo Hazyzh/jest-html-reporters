@@ -67,6 +67,7 @@ The options below are specific to the reporter.
 | `enableMergeData`   | boolean    | false | for default enable merge test data feature | JEST_HTML_REPORTERS_ENABLE_MERGE_DATA                 |
 | `dataMergeLevel`    |  number    | 1|  default merge test data level |JEST_HTML_REPORTERS_DATA_MERGE_LEVEL|
 | `env only`          |  string  | system default temporary directory | path to a temporary folder with attachments |JEST_HTML_REPORTERS_TEMP_DIR_PATH |
+| `stripSkippedTest`  |  boolean  | false | skip the pending tests and suites in the final report |JEST_HTML_REPORTERS_STRIP_SKIPPED_TEST |
 ---
 
 #### example add config options

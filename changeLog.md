@@ -182,3 +182,7 @@
 * Fix when sort column, hover effect will not working by @warakonsantang in https://github.com/Hazyzh/jest-html-reporters/pull/288
 * fix(helper): fix add message method type by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/294
 * feat/add default content format by @Hazyzh in https://github.com/Hazyzh/jest-html-reporters/pull/295
+
+### 3.1.6
+
+* skip the pending tests and suites in the final report https://github.com/Hazyzh/jest-html-reporters/issues/298
