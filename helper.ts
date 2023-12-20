@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
+import { AggregatedResult } from '@jest/test-result';
 
 let username: string = '';
 try {
@@ -206,6 +207,7 @@ const INLINE_SOURCE = 'inlineSource';
 const URL_FOR_TEST_FILES = 'urlForTestFiles';
 const DARK_THEME = 'darkTheme';
 const INCLUDE_CONSOLE_LOG = 'includeConsoleLog';
+const STRIP_SKIPPED_TEST = 'stripSkippedTest';
 
 const constants = {
   ENVIRONMENT_CONFIG_MAP: {
@@ -225,6 +227,7 @@ const constants = {
     JEST_HTML_REPORTERS_URL_FOR_TEST_FILES: URL_FOR_TEST_FILES,
     JEST_HTML_REPORTERS_DARK_THEME: DARK_THEME,
     JEST_HTML_REPORTERS_INCLUDE_CONSOLE_LOG: INCLUDE_CONSOLE_LOG,
+    JEST_HTML_REPORTERS_STRIP_SKIPPED_TEST: STRIP_SKIPPED_TEST,
   },
   DEFAULT_OPTIONS: {
     [PUBLIC_PATH]: process.cwd(),
@@ -243,6 +246,7 @@ const constants = {
     [URL_FOR_TEST_FILES]: '',
     [DARK_THEME]: false,
     [INCLUDE_CONSOLE_LOG]: false,
+    [STRIP_SKIPPED_TEST]: false,
   },
 };
 
@@ -344,19 +348,19 @@ const basisClone = (obj: any, structure: StructureMetaData) => {
   if (typeof obj !== 'object') return obj;
 
   if (Array.isArray(obj)) {
-    return obj.map(item => basisClone(item, structure))
+    return obj.map((item) => basisClone(item, structure));
   }
 
   const { keys } = structure;
   const res = {};
-  keys.forEach(item => {
+  keys.forEach((item) => {
     if (typeof item === 'string') {
       res[item] = obj[item];
     } else {
       const [key, innerStructure] = item;
-      res[key] = basisClone(obj[key], innerStructure)
+      res[key] = basisClone(obj[key], innerStructure);
     }
-  })
+  });
   return res;
 };
 
@@ -366,6 +370,19 @@ export const deepClone = <T>(obj: T): T => {
 };
 
 const getSerializableContent = (content: string | object) => {
-  if (typeof content === 'string') return content; 
+  if (typeof content === 'string') return content;
   return JSON.stringify(content, null, 2);
-}
+};
+
+export const filterSkipTests = (obj: AggregatedResult): AggregatedResult => {
+  obj.testResults.forEach((item) => {
+    item.numPendingTests = 0;
+    item.testResults = item.testResults.filter(
+      (test) => !(test.status === 'skipped' || test.status === 'pending')
+    );
+  });
+  obj.testResults = obj.testResults.filter(
+    (i) => !(i.skipped || i.testResults.length === 0)
+  );
+  return obj;
+};
