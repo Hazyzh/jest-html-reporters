@@ -186,3 +186,7 @@
 ### 3.1.6
 
 * skip the pending tests and suites in the final report https://github.com/Hazyzh/jest-html-reporters/issues/298
+
+### 3.1.7
+
+* fix count issue for skip pending tests option https://github.com/Hazyzh/jest-html-reporters/issues/298

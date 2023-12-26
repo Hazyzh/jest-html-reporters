@@ -381,8 +381,17 @@ export const filterSkipTests = (obj: AggregatedResult): AggregatedResult => {
       (test) => !(test.status === 'skipped' || test.status === 'pending')
     );
   });
-  obj.testResults = obj.testResults.filter(
-    (i) => !(i.skipped || i.testResults.length === 0)
-  );
+  let countTotalTests = 0;
+  obj.testResults = obj.testResults.filter((i) => {
+    const notSkipped = !(i.skipped || i.testResults.length === 0);
+    if (notSkipped) {
+      countTotalTests += i.testResults.length;
+    }
+    return notSkipped;
+  });
+  obj.numTotalTests = countTotalTests;
+  obj.numTotalTestSuites = obj.testResults.length;
+  obj.numPendingTestSuites = 0;
+  obj.numPendingTests = 0;
   return obj;
 };
