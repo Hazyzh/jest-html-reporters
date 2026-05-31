@@ -13,7 +13,7 @@ try {
 
 export const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
-  `${username}-${createHash('sha256').update(Buffer.from(process.cwd())).digest('base64')}`,
+  `${username}-${createHash('sha256').update(Buffer.from(process.cwd())).digest('hex')}`,
   'jest-html-reporters-temp'
 );
 
@@ -58,11 +58,9 @@ export const addAttach = async ({
     return;
   }
   const createTime = Date.now();
-  var fileName;
-  if (!fileCustomName)
-    fileName = generateRandomString();
-  else
-    fileName = fileCustomName;
+  const fileName = await getAvailableAttachFileName(
+    fileCustomName ? getSafeFileName(fileCustomName) : generateRandomString()
+  );
   if (typeof attach === 'string') {
     const attachObject: TAttachObject = {
       createTime,
@@ -135,6 +133,28 @@ const getJestGlobalData = (globalContext) => {
 };
 
 const generateRandomString = () => `${Date.now()}${Math.random()}`;
+
+const getSafeFileName = (fileName: string) => {
+  const parsedName = path.parse(path.basename(fileName)).name;
+  const safeName = parsedName
+    .replace(/[^a-zA-Z0-9._-]/g, '_')
+    .replace(/^\.+/, '')
+    .slice(0, 120);
+
+  return safeName || generateRandomString();
+};
+
+const getAvailableAttachFileName = async (fileName: string) => {
+  let nextFileName = fileName;
+  let index = 1;
+
+  while (await fs.pathExists(`${dataDirPath}/${nextFileName}.json`)) {
+    nextFileName = `${fileName}-${index}`;
+    index += 1;
+  }
+
+  return nextFileName;
+};
 
 export const readAttachInfos = async (
   publicPath: string,
