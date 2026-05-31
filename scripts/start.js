@@ -113,6 +113,18 @@ checkBrowsers(paths.appPath, isInteractive)
       port,
     };
     const devServer = new WebpackDevServer(serverConfig, compiler);
+    const closeDevServer = () => {
+      if (typeof devServer.stopCallback === 'function') {
+        devServer.stopCallback(() => process.exit());
+        return;
+      }
+      if (typeof devServer.stop === 'function') {
+        Promise.resolve(devServer.stop()).finally(() => process.exit());
+        return;
+      }
+      devServer.close();
+      process.exit();
+    };
     // Launch WebpackDevServer.
     devServer.startCallback(() => {
       if (isInteractive) {
@@ -133,16 +145,14 @@ checkBrowsers(paths.appPath, isInteractive)
 
     ['SIGINT', 'SIGTERM'].forEach(function (sig) {
       process.on(sig, function () {
-        devServer.close();
-        process.exit();
+        closeDevServer();
       });
     });
 
     if (process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
       process.stdin.on('end', function () {
-        devServer.close();
-        process.exit();
+        closeDevServer();
       });
     }
   })

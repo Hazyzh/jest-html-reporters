@@ -91,7 +91,7 @@ const renderTitle = ({
   const tooltip = subGroups ? subTitle : nestedTitle;
 
   return (
-    <Tooltip overlayStyle={{ maxWidth: '800px' }} title={tooltip}>
+    <Tooltip styles={{ root: { maxWidth: '800px' } }} title={tooltip}>
       <div>
         <span className='inner_path_text'>{nestedTitle}</span>
       </div>

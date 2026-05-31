@@ -16,7 +16,12 @@ export const MyCardItem = ({
   content,
   clickHandler,
 }: any) => (
-  <Card onClick={clickHandler} bodyStyle={{ padding: '12px' }} hoverable data-sign="MyCardItem">
+  <Card
+    onClick={clickHandler}
+    styles={{ body: { padding: '12px' } }}
+    hoverable
+    data-sign='MyCardItem'
+  >
     <p className='card_item_label' style={{ color: labelColor }}>
       {label}
     </p>

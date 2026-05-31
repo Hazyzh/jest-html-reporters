@@ -1,8 +1,16 @@
+import '../node_modules/react-app-polyfill/jsdom';
 import '@testing-library/jest-dom';
 
 import { configure } from '@testing-library/react';
 
 configure({ testIdAttribute: 'data-sign' });
+
+const originalGetComputedStyle = window.getComputedStyle;
+
+Object.defineProperty(window, 'getComputedStyle', {
+  writable: true,
+  value: element => originalGetComputedStyle(element),
+});
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
