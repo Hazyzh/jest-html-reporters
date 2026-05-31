@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
 import { AggregatedResult } from '@jest/test-result';
+import { createHash } from 'crypto';
 
 let username: string = '';
 try {
@@ -12,7 +13,7 @@ try {
 
 export const tempDirPath = path.resolve(
   process.env.JEST_HTML_REPORTERS_TEMP_DIR_PATH || os.tmpdir(),
-  `${username}-${Buffer.from(process.cwd()).toString('base64')}`,
+  `${username}-${createHash('sha256').update(Buffer.from(process.cwd())).digest('base64')}`,
   'jest-html-reporters-temp'
 );
 
