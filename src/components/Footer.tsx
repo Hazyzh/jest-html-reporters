@@ -11,7 +11,7 @@ export const Footer = () => (
     <Row justify='center'>
       <Space size='large'>
         <a href={Github}>About</a>
-        <Divider type='vertical' />
+        <Divider orientation='vertical' />
         <a href={Issues}>Feedback</a>
       </Space>
       <Divider />

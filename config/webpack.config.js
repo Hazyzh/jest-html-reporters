@@ -63,6 +63,13 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 const useTailwind = fs.existsSync(
   path.join(paths.appPath, 'tailwind.config.js')
 );
+const sassLoaderMajor = (() => {
+  try {
+    return Number(require('sass-loader/package.json').version.split('.')[0]);
+  } catch (error) {
+    return 0;
+  }
+})();
 
 // Get the path to the uncompiled service worker (if it exists).
 const swSrc = paths.swSrc;
@@ -171,6 +178,9 @@ module.exports = function (webpackEnv) {
           loader: require.resolve(preProcessor),
           options: {
             sourceMap: true,
+            ...(preProcessor === 'sass-loader' && sassLoaderMajor >= 16
+              ? { api: 'modern' }
+              : {}),
           },
         }
       );
