@@ -4,12 +4,14 @@
   "version": "3.1.7",
   "description": "Jest test results processor for generating a summary in HTML",
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "yarn tsc -p build && node scripts/build.js",
     "buildCi": "yarn tsc -p build && node scripts/build.js",
     "start": "node scripts/start.js",
     "test": "yarn tsc -p build && node scripts/test.js",
     "testCi": "yarn tsc -p build && node scripts/test.js --reporters=default",
+    "test:package": "node scripts/verifyPackageFiles.js",
     "commit": "cz",
     "pr": "gh pr create"
   },
@@ -138,6 +140,7 @@
   },
   "files": [
     "index.js",
+    "index.d.ts",
     "helper.js",
     "readme.md",
     "dist/index.html",
