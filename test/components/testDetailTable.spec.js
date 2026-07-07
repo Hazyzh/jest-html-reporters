@@ -51,6 +51,49 @@ test('Top level test in a file', async () => {
   expect(item).toBeInTheDocument();
 })
 
+test('Pending status should be displayed as skipped', async () => {
+  const title = 'pending test'
+  const mockProps = {
+    data: [
+      {
+        rowKey: 1214,
+        ancestorTitles: [],
+        fileAttachInfos: {},
+        fullName: title,
+        title,
+        status: 'pending',
+        duration: 2,
+        failureMessages: [],
+      },
+    ],
+  }
+  render(<DetailTable {...mockProps} />)
+  const item = await screen.findByText('skipped');
+  expect(item).toBeInTheDocument();
+  expect(screen.queryByText('pending')).not.toBeInTheDocument();
+})
+
+test('Skipped status should be displayed as skipped', async () => {
+  const title = 'skipped test'
+  const mockProps = {
+    data: [
+      {
+        rowKey: 1215,
+        ancestorTitles: [],
+        fileAttachInfos: {},
+        fullName: title,
+        title,
+        status: 'skipped',
+        duration: 2,
+        failureMessages: [],
+      },
+    ],
+  }
+  render(<DetailTable {...mockProps} />)
+  const item = await screen.findByText('skipped');
+  expect(item).toBeInTheDocument();
+})
+
 describe('Nested describes', () => {
   test('Top level test in a describe should be prepended by describe name', async () => {
     const describeTitle = 'Nested describes'

@@ -85,14 +85,14 @@ export const DashBoard = ({
   };
   const PendingTestSuites = {
     title: numPendingTestSuites,
-    content: 'Pending Suites',
+    content: 'Skipped Suites',
     label: `${getPercentage(numPendingTestSuites, numTotalTestSuites)} %`,
     labelColor: colorWarning,
     clickHandler: getScrollDownFunc(pendingTest),
   };
   const PendingTests = {
     title: numPendingTests,
-    content: 'Pending Tests',
+    content: 'Skipped Tests',
     label: `${getPercentage(numPendingTests, numTotalTests)} %`,
     labelColor: colorWarning,
     clickHandler: getScrollDownFunc(pendingTest),

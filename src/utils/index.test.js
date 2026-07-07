@@ -1,7 +1,9 @@
 import {
+  formatCollapsibleData,
   getExecutionResult,
   getExistKeys,
   getRecordClass,
+  getStatusDisplayText,
 } from './index';
 
 describe('Test Func  ==> `getRecordClass` :', () => {
@@ -19,11 +21,44 @@ describe('Test Func  ==> `getRecordClass` :', () => {
     expect(getRecordClass(state, 8)).toBe('row_pending-8')
   })
 
+  test('should return `row_pending` is state is skipped', () => {
+    const state = 'skipped'
+    expect(getRecordClass(state, 0)).toBe('row_pending-0')
+    expect(getRecordClass(state, 3)).toBe('row_pending-3')
+    expect(getRecordClass(state, 8)).toBe('row_pending-8')
+  })
+
   test('should return `row_todo` is state is todo', () => {
     const state = 'todo'
     expect(getRecordClass(state, 0)).toBe('row_todo-0')
     expect(getRecordClass(state, 1)).toBe('row_todo-1')
     expect(getRecordClass(state, 8)).toBe('row_todo-8')
+  })
+})
+
+describe('Test Func  ==> `getStatusDisplayText` :', () => {
+  test('should display pending and skipped statuses as skipped', () => {
+    expect(getStatusDisplayText('pending')).toBe('skipped')
+    expect(getStatusDisplayText('skipped')).toBe('skipped')
+  })
+
+  test('should keep other status display names', () => {
+    expect(getStatusDisplayText('passed')).toBe('passed')
+    expect(getStatusDisplayText('failed')).toBe('failed')
+    expect(getStatusDisplayText('todo')).toBe('todo')
+  })
+})
+
+describe('Test Func  ==> `formatCollapsibleData` :', () => {
+  test('should count pending and skipped statuses as pending test counts', () => {
+    const data = [
+      { ancestorTitles: ['group'], status: 'pending' },
+      { ancestorTitles: ['group'], status: 'skipped' },
+      { ancestorTitles: ['group'], status: 'passed' },
+    ]
+    const res = formatCollapsibleData(data, 1)
+    expect(res[0].numPendingTests).toBe(2)
+    expect(res[0].numPassingTests).toBe(1)
   })
 })
 

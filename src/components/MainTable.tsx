@@ -127,7 +127,7 @@ const getColumns = (
     filters: [
       { text: 'Passed', value: 'passed' },
       { text: 'Failed', value: 'failed' },
-      { text: 'Pending', value: 'pending' },
+      { text: 'Skipped', value: 'pending' },
       { text: 'Todo', value: 'todo' },
       { text: 'Not Passed', value: 'noPass' },
     ],

@@ -114,6 +114,12 @@ export const getFormattedTime = (start: number, end: number) => {
   return node;
 };
 
+export const isSkippedStatus = (status: string) =>
+  status === 'pending' || status === 'skipped';
+
+export const getStatusDisplayText = (status: string) =>
+  isSkippedStatus(status) ? 'skipped' : status;
+
 export const formatCollapsibleData = (
   data: IDetailTableProps['data'],
   groupLevel = 1
@@ -142,7 +148,7 @@ export const formatCollapsibleData = (
       tests,
       numFailingTests: tests.filter((item) => item.status === 'failed').length,
       numPassingTests: tests.filter((item) => item.status === 'passed').length,
-      numPendingTests: tests.filter((item) => item.status === 'pending').length,
+      numPendingTests: tests.filter((item) => isSkippedStatus(item.status)).length,
       numTodoTests: tests.filter((item) => item.status === 'todo').length,
     };
     rootArray.push(item);
@@ -188,7 +194,7 @@ export const getFormatTimeDisplay = (start: number, end: number) => {
 
 export const getRecordClass = (status: string, id: number) => {
   if (status === 'failed') return RowClassNames['row_failed'] + '-' + id;
-  if (status === 'pending') return RowClassNames['row_pending'] + '-' + id;
+  if (isSkippedStatus(status)) return RowClassNames['row_pending'] + '-' + id;
   if (status === 'todo') return RowClassNames['row_todo'] + '-' + id;
   return RowClassNames['row_passed'] + '-' + id;
 };
