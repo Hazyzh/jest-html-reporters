@@ -92,7 +92,7 @@ const CustomTooltip = ({
       },
       {
         icon: <Loading3QuartersOutlined style={{ color: '#faad14' }} />,
-        title: 'Pending',
+        title: 'Skipped',
         content: numPendingTests,
       },
     ];

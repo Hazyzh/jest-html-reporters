@@ -27,6 +27,9 @@ import { ErrorButton } from './ErrorButton';
 import { renderStatus as parentRowRenderStatus } from './MainTable';
 const { Text } = Typography;
 
+const getStatusText = (status: string) =>
+  status === 'pending' ? 'skipped' : status;
+
 const renderStatus = ({
   status,
   colorToken,
@@ -46,7 +49,7 @@ const renderStatus = ({
       info = (
         <Text style={{ color: colorWarning }} strong >
           <Loading3QuartersOutlined />
-          <span className='detail_status_text'>{status}</span>
+          <span className='detail_status_text'>{getStatusText(status)}</span>
         </Text>
       );
       break;
