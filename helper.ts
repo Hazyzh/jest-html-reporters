@@ -40,6 +40,8 @@ type TAttachObject = {
   fileName?: string;
 };
 
+const isReporterDataReady = async () => fs.pathExists(dataDirPath);
+
 export const addAttach = async ({
   attach,
   description: descriptionRaw,
@@ -47,6 +49,8 @@ export const addAttach = async ({
   bufferFormat = 'jpg',
   fileCustomName,
 }: IAddAttachParams) => {
+  if (!(await isReporterDataReady())) return;
+
   const description = getSerializableContent(descriptionRaw);
 
   const { testPath, testName } = getJestGlobalData(context);
@@ -105,6 +109,8 @@ interface IAddMsgParams {
  * @param {object} context. Optional. It contains custom configs
  */
 export const addMsg = async ({ message, context }: IAddMsgParams) => {
+  if (!(await isReporterDataReady())) return;
+
   const description = getSerializableContent(message);
   const { testPath, testName } = getJestGlobalData(context);
   const createTime = Date.now();

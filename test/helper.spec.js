@@ -3,6 +3,7 @@ import path from 'path';
 
 import {
   addAttach,
+  addMsg,
   attachDirPath,
   dataDirPath,
   tempDirPath,
@@ -45,5 +46,36 @@ describe('helper attachment paths', () => {
     expect(await fs.pathExists(path.join(attachDirPath, 'unsafe_name-1.png'))).toBe(true);
     expect(await fs.pathExists(path.join(dataDirPath, 'unsafe_name.json'))).toBe(true);
     expect(await fs.pathExists(path.join(dataDirPath, 'unsafe_name-1.json'))).toBe(true);
+  });
+
+  test('does not fail or create temp files when addMsg runs without reporter setup', async () => {
+    await fs.remove(tempDirPath);
+
+    await expect(addMsg({ message: 'message without reporter' })).resolves.toBeUndefined();
+
+    expect(await fs.pathExists(tempDirPath)).toBe(false);
+  });
+
+  test('does not fail or create temp files when addAttach runs without reporter setup', async () => {
+    await fs.remove(tempDirPath);
+
+    await expect(
+      addAttach({
+        attach: Buffer.from('attachment without reporter'),
+        description: 'attachment without reporter',
+        bufferFormat: 'png',
+      })
+    ).resolves.toBeUndefined();
+
+    expect(await fs.pathExists(tempDirPath)).toBe(false);
+  });
+
+  test('writes messages when reporter temp data directory exists', async () => {
+    await addMsg({ message: 'message with reporter' });
+
+    const [fileName] = await fs.readdir(dataDirPath);
+    const message = await fs.readJSON(path.join(dataDirPath, fileName));
+
+    expect(message.description).toBe('message with reporter');
   });
 });
