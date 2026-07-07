@@ -53,14 +53,17 @@ const IMG_TYPE = 'IMG_TYPE';
 const VIDEO_TYPE = 'VIDEO_TYPE';
 const UNKNOWN_TYPE = 'UNKNOWN_TYPE';
 
-const getFileType = (extName: string) => {
+const getFileType = (filePath: string = '', extName: string = '') => {
+  if (/^data:image\//i.test(filePath)) return IMG_TYPE;
+  if (/^data:video\//i.test(filePath)) return VIDEO_TYPE;
+
   if (imgSupportedFormats.includes(extName)) return IMG_TYPE;
   if (videoSupportFormats.includes(extName)) return VIDEO_TYPE;
   return UNKNOWN_TYPE;
 };
 
 const FileNode = ({ description, filePath, extName }: any) => {
-  const fileType = getFileType(extName.toLowerCase());
+  const fileType = getFileType(filePath, String(extName || '').toLowerCase());
   switch (fileType) {
     case IMG_TYPE:
       return <img alt={description} src={filePath} />;
@@ -108,7 +111,7 @@ function getModalConfig(
   return {
     title: `INFO FOR --> ${title}`,
     width: '80%',
-    maskClosable: true,
+    mask: { closable: true },
     content: (
       <Row style={{ flexDirection: 'column' }}>
         <Col span={24}>
@@ -128,8 +131,17 @@ function getModalConfig(
               <Row gutter={24}>
                 {caseAttachInfos.map((item) =>
                   item.filePath ? (
-                    <Col xs={24} sm={12} md={8}>
-                      <Card hoverable bordered cover={<FileNode {...item} />}>
+                    <Col
+                      key={`${item.filePath}-${item.createTime}`}
+                      xs={24}
+                      sm={12}
+                      md={8}
+                    >
+                      <Card
+                        hoverable
+                        variant='outlined'
+                        cover={<FileNode {...item} />}
+                      >
                         <Meta
                           title={
                             <>
@@ -151,7 +163,10 @@ function getModalConfig(
                       </Card>
                     </Col>
                   ) : (
-                    <Col span={24}>
+                    <Col
+                      key={`${item.description}-${item.createTime}`}
+                      span={24}
+                    >
                       <Row align='middle'>
                         <Col flex='none'>
                           <Tag icon={<FieldTimeOutlined />}>
