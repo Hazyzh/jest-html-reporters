@@ -13,13 +13,14 @@ import {
   formatCollapsibleData,
   getFormatTimeDisplay,
   getRecordClass,
+  getStatusDisplayText,
   renderRootRowClass,
 } from '../utils/index';
 
 import {
   CheckOutlined,
   CloseOutlined,
-  Loading3QuartersOutlined,
+  MinusCircleOutlined,
   PushpinOutlined,
 } from '@ant-design/icons';
 
@@ -43,10 +44,11 @@ const renderStatus = ({
       );
       break;
     case 'pending':
+    case 'skipped':
       info = (
         <Text style={{ color: colorWarning }} strong >
-          <Loading3QuartersOutlined />
-          <span className='detail_status_text'>{status}</span>
+          <MinusCircleOutlined />
+          <span className='detail_status_text'>{getStatusDisplayText(status)}</span>
         </Text>
       );
       break;
